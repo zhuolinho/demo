@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Ik3-UC-5uA">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="a4z-JT-Ngm">
+            <objects>
+                <navigationController id="Ik3-UC-5uA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OQy-bc-hA3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="II1-US-GSQ" kind="relationship" relationship="rootViewController" id="7uU-xv-jww"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q01-Bm-s0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-15" y="388"/>
+        </scene>
+        <!--Action-->
+        <scene sceneID="eH7-Hn-rzD">
+            <objects>
+                <viewController id="II1-US-GSQ" customClass="WelcomeViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iqx-gC-sKp"/>
+                        <viewControllerLayoutGuide type="bottom" id="qpX-ps-USC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sKh-a3-yJl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9Q-JE-4Er">
+                                <rect key="frame" x="160" y="64" width="160" height="30"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bGl-Iw-x6a" kind="push" id="cCP-Sz-Vbw"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9BC-WU-47V">
+                                <rect key="frame" x="0.0" y="94" width="320" height="466"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="coz-dX-xeV">
+                                <rect key="frame" x="140" y="266" width="39" height="37"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="od1-UQ-r5i">
+                                <rect key="frame" x="0.0" y="64" width="156" height="30"/>
+                                <state key="normal" title="注册">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bzH-HX-Mx7" kind="push" id="EDQ-Gm-ybE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Action" id="LI9-0Z-nrc">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="3Rw-Pt-ZU5"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pageControl1" destination="coz-dX-xeV" id="j3o-5V-Jyr"/>
+                        <outlet property="scrollView1" destination="9BC-WU-47V" id="ekB-hL-SxR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rCx-3n-hhY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="421" y="394"/>
+        </scene>
+        <!--注册-->
+        <scene sceneID="QzQ-bo-BaC">
+            <objects>
+                <viewController id="bzH-HX-Mx7" customClass="ResignPhoneViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rmc-41-Rkp"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Nk-ac-UdH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZzI-7f-hSq" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHG-VA-zMV">
+                                <rect key="frame" x="119" y="150" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abo-6S-74E">
+                                <rect key="frame" x="137" y="436" width="65" height="30"/>
+                                <state key="normal" title="下一步">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="8fa-5l-hiF" kind="push" id="dbg-7j-PfE"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w6I-JM-0xh">
+                                <rect key="frame" x="119" y="291" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="codeEditingDidEnd:" destination="bzH-HX-Mx7" eventType="editingDidEnd" id="iad-Zi-P66"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSM-rp-Bjt">
+                                <rect key="frame" x="224" y="291" width="30" height="30"/>
+                                <state key="normal" title="获取">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="codeButtonClick:" destination="bzH-HX-Mx7" eventType="touchUpInside" id="tn2-ul-7I1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="touchDown1:" destination="bzH-HX-Mx7" eventType="touchDown" id="xKy-cW-6O1"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="注册" id="qYm-bk-kah">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="hdX-WQ-ZgQ"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="codeButton" destination="CSM-rp-Bjt" id="Oa6-jr-8Py"/>
+                        <outlet property="codeTextField" destination="w6I-JM-0xh" id="zLQ-Xe-zzP"/>
+                        <outlet property="nextButton" destination="abo-6S-74E" id="Wag-5q-zU1"/>
+                        <outlet property="phoneTextField" destination="cHG-VA-zMV" id="qc8-t2-gfh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WmO-Ya-MYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="871" y="394"/>
+        </scene>
+        <!--设置帐号-->
+        <scene sceneID="7e1-0U-1NZ">
+            <objects>
+                <viewController id="8fa-5l-hiF" customClass="ResignAccountViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5kY-Hw-XDl"/>
+                        <viewControllerLayoutGuide type="bottom" id="iAi-Gz-qJ4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ydM-hx-dh3" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMA-4I-sYo">
+                                <rect key="frame" x="112" y="224" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgK-Op-4g3">
+                                <rect key="frame" x="112" y="288" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYK-la-FPj">
+                                <rect key="frame" x="137" y="440" width="30" height="30"/>
+                                <state key="normal" title="注册">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resignButtonClick:" destination="8fa-5l-hiF" eventType="touchUpInside" id="2Lg-Sv-07H"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRu-Hq-25O">
+                                <rect key="frame" x="112" y="152" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="touchDown1:" destination="8fa-5l-hiF" eventType="touchDown" id="klq-5n-Hhu"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="设置帐号" id="AoQ-gx-E5q"/>
+                    <connections>
+                        <outlet property="pwd" destination="dMA-4I-sYo" id="whF-f4-658"/>
+                        <outlet property="pwdConfirm" destination="tgK-Op-4g3" id="I7k-C2-4Eu"/>
+                        <outlet property="resignButton" destination="IYK-la-FPj" id="oM1-8X-8bl"/>
+                        <outlet property="usrName" destination="gRu-Hq-25O" id="g0g-9Q-Fmw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WiR-Ng-cHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1293" y="394"/>
+        </scene>
+        <!--登录-->
+        <scene sceneID="2NO-Rc-Kes">
+            <objects>
+                <viewController id="bGl-Iw-x6a" customClass="LoginViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aYq-Fh-2jj"/>
+                        <viewControllerLayoutGuide type="bottom" id="sKU-ne-kz0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Njf-It-a7z" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A9s-uz-QY7">
+                                <rect key="frame" x="107" y="313" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aui-7h-ttx">
+                                <rect key="frame" x="119" y="405" width="30" height="30"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonClick:" destination="bGl-Iw-x6a" eventType="touchUpInside" id="Qng-pS-Pwe"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名/手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bjQ-iY-Y8j">
+                                <rect key="frame" x="100" y="185" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdH-6b-Yga">
+                                <rect key="frame" x="188" y="405" width="60" height="30"/>
+                                <state key="normal" title="忘记密码">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="EUN-BN-Sth" kind="push" id="z5T-Kt-4LS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="touchDown:" destination="bGl-Iw-x6a" eventType="touchDown" id="BhP-a5-Ngi"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="登录" id="gTE-8c-stx">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="rnc-rT-TYR"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="loginButton" destination="aui-7h-ttx" id="SQJ-cn-0Da"/>
+                        <outlet property="pwd" destination="A9s-uz-QY7" id="Qjd-vi-87s"/>
+                        <outlet property="usrName" destination="bjQ-iY-Y8j" id="s9K-xm-IJB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qNU-R0-4ya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="871" y="1029"/>
+        </scene>
+        <!--忘记密码-->
+        <scene sceneID="V1Z-DE-PNm">
+            <objects>
+                <viewController id="EUN-BN-Sth" customClass="ForgetPwdViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jI3-JI-mNf"/>
+                        <viewControllerLayoutGuide type="bottom" id="CGZ-kQ-7Ru"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N4t-U1-aCg" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpK-ci-fNi">
+                                <rect key="frame" x="90" y="116" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyg-CR-Hfp">
+                                <rect key="frame" x="115" y="263" width="60" height="30"/>
+                                <state key="normal" title="找回密码">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="touchDown:" destination="EUN-BN-Sth" eventType="touchDown" id="Lve-bq-5L0"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="忘记密码" id="5Uc-dX-fop"/>
+                    <connections>
+                        <outlet property="phoneTextField" destination="dpK-ci-fNi" id="cHk-eF-x9X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dUp-Kw-fKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1302" y="1029"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
