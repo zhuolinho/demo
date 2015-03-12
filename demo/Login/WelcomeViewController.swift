@@ -10,6 +10,8 @@ import UIKit
 
 class WelcomeViewController: UIViewController, UIScrollViewDelegate{
 
+    @IBOutlet weak var resignButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var pageControl1: UIPageControl!
     @IBOutlet weak var scrollView1: UIScrollView!
 
@@ -17,16 +19,18 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate{
         super.viewDidLoad()
         scrollView1.delegate = self
         let width = self.view.bounds.width
-        scrollView1.contentSize = CGSize(width: width*3, height: 568)
-        var aview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 568))
-        aview.backgroundColor = UIColor.redColor()
-        scrollView1.addSubview(aview)
-        var bview = UIView(frame: CGRect(x: width, y: 0, width: width, height: 568))
+        let height = self.view.bounds.height
+        scrollView1.contentSize = CGSize(width: width*3, height: 0)
+        var bview = UIView(frame: CGRect(x: width, y: 0, width: width, height: height-94))
         bview.backgroundColor = UIColor.greenColor()
         scrollView1.addSubview(bview)
-        var cview = UIView(frame: CGRect(x: width*2, y: 0, width: width, height: 568))
+        var aview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height-94))
+        aview.backgroundColor = UIColor.redColor()
+        scrollView1.addSubview(aview)
+        var cview = UIView(frame: CGRect(x: width*2, y: 0, width: width, height: height-94))
         cview.backgroundColor = UIColor.blueColor()
         scrollView1.addSubview(cview)
+        pageControl1.enabled = false
 //         Do any additional setup after loading the view.
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {

@@ -24,6 +24,7 @@
 		068AEBF31AAC7BE800F5B84C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBF21AAC7BE800F5B84C /* LoginViewController.swift */; };
 		068AEBF51AAC7C8100F5B84C /* ResignPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBF41AAC7C8100F5B84C /* ResignPhoneViewController.swift */; };
 		068AEBF71AAC7C9600F5B84C /* ResignAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBF61AAC7C9600F5B84C /* ResignAccountViewController.swift */; };
+		069F73CE1AB1C38300D73AA8 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F73CD1AB1C38300D73AA8 /* NewsViewController.swift */; };
 		06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD92471AA877E10026C3E7 /* AppDelegate.swift */; };
 		06CD924D1AA877E10026C3E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924B1AA877E10026C3E7 /* Main.storyboard */; };
 		06CD924F1AA877E10026C3E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924E1AA877E10026C3E7 /* Images.xcassets */; };
@@ -63,6 +64,7 @@
 		068AEBF21AAC7BE800F5B84C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		068AEBF41AAC7C8100F5B84C /* ResignPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResignPhoneViewController.swift; sourceTree = "<group>"; };
 		068AEBF61AAC7C9600F5B84C /* ResignAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResignAccountViewController.swift; sourceTree = "<group>"; };
+		069F73CD1AB1C38300D73AA8 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		06CD92421AA877E10026C3E7 /* demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CD92461AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD92471AA877E10026C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				06CD92471AA877E10026C3E7 /* AppDelegate.swift */,
 				06216D751AAC8D5200683C40 /* API.swift */,
 				06CD924B1AA877E10026C3E7 /* Main.storyboard */,
+				069F73CD1AB1C38300D73AA8 /* NewsViewController.swift */,
 				06CD924E1AA877E10026C3E7 /* Images.xcassets */,
 				06CD92501AA877E10026C3E7 /* LaunchScreen.xib */,
 				06CD92451AA877E10026C3E7 /* Supporting Files */,
@@ -707,6 +710,7 @@
 				068AEBF11AAC6C0F00F5B84C /* WelcomeViewController.swift in Sources */,
 				06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */,
 				06216D761AAC8D5200683C40 /* API.swift in Sources */,
+				069F73CE1AB1C38300D73AA8 /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

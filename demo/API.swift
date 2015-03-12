@@ -44,14 +44,9 @@ class API: NSObject {
         static var profilePhotoUrl = ""
         static var profilePhotoPath = ""
         static var rmb = 0
-        static var languagePreference = 0
         static var acceptNote = true
-        static var messageSound = false
         static let host = "http://121.41.98.147:8080/anydo/api/"//"http://218.244.141.224:8080/yozaii2/api/"//
         static let imageHost = "http://121.41.98.147:8080/"//"http://218.244.141.224:8080"//
-        static let themeColor = UIColor(red: 0.293, green: 0.754, blue: 0.82, alpha: 1)
-        static let lightGray = UIColor(hue: 0, saturation: 0, brightness: 0.9, alpha: 1)
-        static let orange = UIColor(red: 1, green: 0.66, blue: 0, alpha: 1)
         static var imageCache = Dictionary<String, UIImage>()
     }
     override init(){
