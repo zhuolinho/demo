@@ -256,7 +256,7 @@
         <!--我的资料-->
         <scene sceneID="ipC-8o-FXZ">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="yhG-Uv-dn1" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="yhG-Uv-dn1" customClass="MeSettingViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="U2B-f0-nQQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,13 +299,14 @@
         <!--系统设置-->
         <scene sceneID="eNX-bW-xrA">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="7TE-MJ-DC4" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="POC-jD-0m6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="7TE-MJ-DC4" customClass="AppSettingViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1Ay-Ax-WId">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection id="jyE-vx-ne0">
+                            <tableViewSection headerTitle="Section-1" id="jyE-vx-ne0">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Rtm-0F-MHj">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -327,6 +328,28 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Section-2" id="tQH-aj-N0N">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cFB-AL-amj">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cFB-AL-amj" id="gnF-qZ-RaQ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="退出登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSC-xE-xbD">
+                                                    <rect key="frame" x="132" y="11" width="68" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="DSC-xE-xbD" secondAttribute="centerX" id="9Ci-ge-3Mr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="7TE-MJ-DC4" id="piV-Bd-bBE"/>
@@ -335,7 +358,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="系统设置" id="lao-FT-OeM"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="POC-jD-0m6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1739" y="3529"/>
         </scene>
