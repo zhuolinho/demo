@@ -85,7 +85,7 @@ class LoginViewController: UIViewController, APIProtocol {
             }
             else {
                 API.userInfo.token = res["token"] as String
-                let userInfoDic: NSDictionary = NSDictionary(dictionary: ["token": API.userInfo.token, "language": API.userInfo.languagePreference, "sound": API.userInfo.messageSound])
+                let userInfoDic: NSDictionary = NSDictionary(dictionary: ["token": API.userInfo.token])
                 NSUserDefaults.standardUserDefaults().setObject(userInfoDic, forKey: "YoUserInfo")
                 NSUserDefaults.standardUserDefaults().synchronize()
                 
@@ -126,13 +126,6 @@ class LoginViewController: UIViewController, APIProtocol {
             
             println(res)
             
-//            if (res["ifmessage"] as Int) == 1 {
-//                API.userInfo.acceptNote = true
-//            }
-//            else {
-//                API.userInfo.acceptNote = false
-//            }
-            
             println("login huanxin")
             
             //            API.userInfo.languagePreference = res["lang"] as Int
@@ -149,31 +142,15 @@ class LoginViewController: UIViewController, APIProtocol {
                         self.loginButton.enabled = true
                         return
                     }
-                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    var main: UITabBarController = mainStoryboard.instantiateInitialViewController() as UITabBarController
-                    
-//                    self.presentingViewController!.view.userInteractionEnabled = true
-//                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
-                    self.presentViewController(main, animated: true, completion: nil)
+                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    //self.presentViewController(main, animated: true, completion: nil)
                     
                     NSLog("dismiss")
                     self.cancelLock.unlock()
                     self.iflogining = false
                     self.loginButton.enabled = true
                 }
-                else {/*
-                    API.userInfo.tokenValid = false
-                    EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.phone, password: "123456", completion: {
-                    (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-                    println(error)
-                    if (error == nil) {
-                    API.userInfo.tokenValid = true
-                    if self.activity.isAnimating() {
-                    self.activity.stopAnimating()
-                    }
-                    self.presentingViewController.dismissViewControllerAnimated(true, completion: nil)
-                    }
-                    else {*/
+                else {
                     println(error.description)
                     //EaseMob.sharedInstance().chatManager.registerNewAccount(API.userInfo.username, password: "123456", error: nil)
                     self.iflogining = false
@@ -183,12 +160,6 @@ class LoginViewController: UIViewController, APIProtocol {
                     //}, onQueue: nil)
                 }
                 }, onQueue: nil)
-            //APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: "setTags:", target: self)
-            
-            //loginButton.enabled = true
-            //loginButton.userInteractionEnabled = true
-            //println("unlock")
-            //YoLock.sharedInstance().lock.unlock()
 
         }
     }

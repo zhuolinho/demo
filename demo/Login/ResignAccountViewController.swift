@@ -81,10 +81,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
                 println(loginInfo)
                 if (error == nil) {
                     API.userInfo.tokenValid = true
-                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    var main: UITabBarController = mainStoryboard.instantiateInitialViewController() as UITabBarController
-                    self.presentViewController(main, animated: true, completion: nil)
-                    //self.presentingViewController!.presentingViewController!.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    self.presentingViewController!.presentingViewController!.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                 }
                 else {
                     API.userInfo.tokenValid = false
@@ -93,10 +90,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
                         println(error)
                         if (error == nil) {
                             API.userInfo.tokenValid = true
-                            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            var main: UITabBarController = mainStoryboard.instantiateInitialViewController() as UITabBarController
-                            self.presentViewController(main, animated: true, completion: nil)
-                            //self.presentingViewController!.presentingViewController!.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                            self.presentingViewController!.presentingViewController!.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                         }
                         else {
                             
