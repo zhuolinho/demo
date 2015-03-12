@@ -16,14 +16,15 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView1.delegate = self
-        scrollView1.contentSize = CGSize(width: 320*3, height: 568)
-        var aview = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 568))
+        let width = self.view.bounds.width
+        scrollView1.contentSize = CGSize(width: width*3, height: 568)
+        var aview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 568))
         aview.backgroundColor = UIColor.redColor()
         scrollView1.addSubview(aview)
-        var bview = UIView(frame: CGRect(x: 320, y: 0, width: 320, height: 568))
+        var bview = UIView(frame: CGRect(x: width, y: 0, width: width, height: 568))
         bview.backgroundColor = UIColor.greenColor()
         scrollView1.addSubview(bview)
-        var cview = UIView(frame: CGRect(x: 320*2, y: 0, width: 320, height: 568))
+        var cview = UIView(frame: CGRect(x: width*2, y: 0, width: width, height: 568))
         cview.backgroundColor = UIColor.blueColor()
         scrollView1.addSubview(cview)
 //         Do any additional setup after loading the view.

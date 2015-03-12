@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Ik3-UC-5uA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Ik3-UC-5uA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -41,8 +42,8 @@
                                     <segue destination="bGl-Iw-x6a" kind="push" id="cCP-Sz-Vbw"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9BC-WU-47V">
-                                <rect key="frame" x="0.0" y="94" width="320" height="466"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9BC-WU-47V">
+                                <rect key="frame" x="0.0" y="94" width="320" height="474"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="coz-dX-xeV">
                                 <rect key="frame" x="140" y="266" width="39" height="37"/>
@@ -58,6 +59,12 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qpX-ps-USC" firstAttribute="top" secondItem="9BC-WU-47V" secondAttribute="bottom" id="0Ph-t9-964"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9BC-WU-47V" secondAttribute="trailing" constant="-16" id="1T4-9X-GlI"/>
+                            <constraint firstItem="9BC-WU-47V" firstAttribute="width" secondItem="sKh-a3-yJl" secondAttribute="width" id="85x-Wr-70l"/>
+                            <constraint firstItem="9BC-WU-47V" firstAttribute="top" secondItem="Iqx-gC-sKp" secondAttribute="bottom" constant="30" id="bAr-PY-r3P"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Action" id="LI9-0Z-nrc">
                         <barButtonItem key="backBarButtonItem" title="返回" id="3Rw-Pt-ZU5"/>
