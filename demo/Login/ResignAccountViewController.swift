@@ -81,7 +81,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
                 println(loginInfo)
                 if (error == nil) {
                     API.userInfo.tokenValid = true
-                    self.presentingViewController!.presentingViewController!.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                 }
                 else {
                     API.userInfo.tokenValid = false
