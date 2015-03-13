@@ -1,5 +1,5 @@
 //
-//  AppSettingViewController.swift
+//  MeViewController.swift
 //  demo
 //
 //  Created by HoJolin on 15/3/13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
+class MeViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,37 +27,7 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 2
-    }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 1
-    }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1{
-            if indexPath.row == 0{
-                var alert = UIAlertView(title: "登出后需要重新登录", message: "", delegate: self, cancelButtonTitle: "登出", otherButtonTitles: "取消")
-                alert.show()
-            }
-        }
-    }
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        if buttonIndex == 0{
-            API.userInfo.tokenValid = false
-            API.userInfo.token = ""
-            API.userInfo.profilePhoto = UIImage(named: "DefaultAvatar")
-            API.userInfo.profilePhotoUrl = ""
-            EaseMob.sharedInstance().chatManager.asyncLogoffWithUnbindDeviceToken(true)
-            let mainStoryboard = UIStoryboard(name: "Login", bundle: nil)
-            let auth = mainStoryboard.instantiateInitialViewController() as UIViewController
-            self.presentViewController(auth, animated: true, completion: nil)
-        }
-    }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         return true
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        
+        NSLog("\(errno)")
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         let res = data["result"] as NSDictionary
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
             API.userInfo.profilePhotoUrl = res["avatar"] as String
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
                 (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-                println(error)
+//                println(error)
                 if (error == nil) {
                     API.userInfo.tokenValid = true
                 }
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
                     API.userInfo.tokenValid = false
                     EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.phone, password: "123456", completion: {
                         (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-                        println(error)
+//                        println(error)
                         if (error == nil) {
                             API.userInfo.tokenValid = true
                         }
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
                 }
                 }, onQueue: nil)
             APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: nil, target: self)
-            println(API.userInfo.username)
+//            println(API.userInfo.username)
         }
     }
     func applicationWillResignActive(application: UIApplication) {

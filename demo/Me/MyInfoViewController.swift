@@ -1,5 +1,5 @@
 //
-//  AppSettingViewController.swift
+//  MyInfoViewController.swift
 //  demo
 //
 //  Created by HoJolin on 15/3/13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
+class MyInfoViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,33 +30,50 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 2
+        return 3
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 1
-    }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1{
-            if indexPath.row == 0{
-                var alert = UIAlertView(title: "登出后需要重新登录", message: "", delegate: self, cancelButtonTitle: "登出", otherButtonTitles: "取消")
-                alert.show()
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "infoSetting")
+        switch indexPath.section{
+        case 0:
+            switch indexPath.row{
+            case 0:
+                cell.textLabel?.text = "头像"
+            case 1:
+                cell.textLabel?.text = "名字"
+                cell.detailTextLabel?.text = API.userInfo.nickname
+            case 2:
+                cell.textLabel?.text = "ID"
+                cell.detailTextLabel?.text = API.userInfo.username
+            case 3:
+                cell.textLabel?.text = "二维码"
+            default:
+                return cell
             }
+        case 1:
+            switch indexPath.row{
+            case 0:
+                cell.textLabel?.text = "性别"
+                if API.userInfo.gender == "M" {
+                    cell.detailTextLabel?.text = "男"
+                }
+                else{
+                    cell.detailTextLabel?.text = "女"
+                }
+            case 1:
+                cell.textLabel?.text = "签名"
+                cell.detailTextLabel?.text = API.userInfo.signature
+            default:
+                return cell
+            }
+        case 2:
+            cell.textLabel?.text = "微信号"
+            cell.detailTextLabel?.text = API.userInfo.wxID
+        default:
+            return cell
         }
-    }
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        if buttonIndex == 0{
-            API.userInfo.tokenValid = false
-            API.userInfo.token = ""
-            API.userInfo.profilePhoto = UIImage(named: "DefaultAvatar")
-            API.userInfo.profilePhotoUrl = ""
-            EaseMob.sharedInstance().chatManager.asyncLogoffWithUnbindDeviceToken(true)
-            let mainStoryboard = UIStoryboard(name: "Login", bundle: nil)
-            let auth = mainStoryboard.instantiateInitialViewController() as UIViewController
-            self.presentViewController(auth, animated: true, completion: nil)
-        }
+        return cell
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

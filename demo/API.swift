@@ -45,6 +45,8 @@ class API: NSObject {
         static var profilePhotoPath = ""
         static var rmb = 0
         static var acceptNote = true
+        static var signature = "猪一样的队友"
+        static var wxID = "Jolin_H"
         static let host = "http://121.41.98.147:8080/anydo/api/"//"http://218.244.141.224:8080/yozaii2/api/"//
         static let imageHost = "http://121.41.98.147:8080/"//"http://218.244.141.224:8080"//
         static var imageCache = Dictionary<String, UIImage>()
@@ -138,7 +140,7 @@ class API: NSObject {
         sendURLEncodedForm(action: "auth.action", data: authInfo, image: nil)
     }
     func register(username: String, phone p: String, password pass: String, authCode code: String) {
-        let d = ["username": username, "phone": p, "password": pass, "type": "0", "identification": "0", "code": code, "gender": "M"]
+        let d = ["nickname": username, "phone": p, "password": pass, "type": "0", "identification": "0", "code": code, "gender": "M"]
         sendURLEncodedForm(action: "register.action", data: d, image: nil)
     }
     func sendAuthCode(phoneNumber num: String) {
@@ -286,7 +288,7 @@ class API: NSObject {
         }
         
         if img != nil {
-            println("have img")
+//            println("have img")
             var imgData = UIImageJPEGRepresentation(img, 1.0)
             var base64Img = imgData.base64EncodedDataWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
             body.appendData(("--" + boundary + "\r\n").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
@@ -338,7 +340,7 @@ class API: NSObject {
     
     func get(path: String) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        println(path)
+//        println(path)
         let url = NSURL(string: path)
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         sessionConfiguration.timeoutIntervalForRequest = 10
@@ -348,9 +350,9 @@ class API: NSObject {
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
             if(error != nil) {
                 // If there is an error in the web request, print it to the console
-                println(error.localizedDescription)
-                self.delegate?.didReceiveAPIErrorOf(self, errno: -10)
-                NSLog("b")
+//                println(error.localizedDescription)
+                self.delegate?.didReceiveAPIErrorOf(self, errno: -1)
+//                NSLog("b")
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
             }
@@ -381,8 +383,8 @@ class API: NSObject {
                     }
                 }
                 else {
-                    self.delegate?.didReceiveAPIErrorOf(self, errno: -10)
-                    println("JSON Error \(err!)")
+                    self.delegate?.didReceiveAPIErrorOf(self, errno: -2)
+//                    println("JSON Error \(err!)")
 
                 }
             }
@@ -394,8 +396,8 @@ class API: NSObject {
     
     
     func connection(connection: NSURLConnection!, didFailWithError error: NSError!) {
-        println("Connection failed.\(error.localizedDescription)")
-        self.delegate?.didReceiveAPIErrorOf(self, errno: -10)
+//        println("Connection failed.\(error.localizedDescription)")
+        self.delegate?.didReceiveAPIErrorOf(self, errno: -3)
 
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
@@ -418,8 +420,6 @@ class API: NSObject {
         var err: NSError? = nil
         
         NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions.MutableContainers, error: &err)
-        //println(response)
-        NSLog("\(response)")
         if err == nil {
             var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions.AllowFragments, error: &err) as NSDictionary
             // Now send the JSON result to our delegate object
@@ -443,7 +443,7 @@ class API: NSObject {
             }
         }
         else {
-            self.delegate?.didReceiveAPIErrorOf(self, errno: -10)
+            self.delegate?.didReceiveAPIErrorOf(self, errno: -4)
         }
         
     }
