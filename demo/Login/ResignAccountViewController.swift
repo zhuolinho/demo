@@ -15,8 +15,6 @@ class ResignAccountViewController: UIViewController, APIProtocol {
     var code : String?
     var api = API()
     var controllerType = RegistrationStep.SetUpAccount
-    let isLetterOrNumber = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"]
-    var isLetterOrNumberDic = Dictionary<String, Bool>()
     @IBOutlet weak var usrName: UITextField!
     @IBOutlet weak var pwd: UITextField!
     @IBOutlet weak var pwdConfirm: UITextField!
@@ -28,7 +26,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
 
     @IBAction func resignButtonClick(sender: UIButton) {
         if usrName.text.isEmpty || pwd.text.isEmpty{
-            var alert = UIAlertView(title: "用户名密码不能为空", message: nil, delegate: nil, cancelButtonTitle: "OK")
+            var alert = UIAlertView(title: "名字或密码不能为空", message: nil, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
         else if countElements(pwd.text)<6{
@@ -39,10 +37,6 @@ class ResignAccountViewController: UIViewController, APIProtocol {
             var alert = UIAlertView(title: "两次输入密码不一致", message: nil, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
-        else if !checkUsernameValid(usrName.text){
-            var alert = UIAlertView(title: "用户名只能为字母或数字", message: nil, delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-        }
         else{
             api.register(usrName.text , phone: phone!, password: pwd.text, authCode: code!)
             self.resignButton.enabled = false
@@ -50,13 +44,12 @@ class ResignAccountViewController: UIViewController, APIProtocol {
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if controllerType == RegistrationStep.SetUpAccount {
-            var result = data["result"] as String
-            if result == "repeated" || result == "huanxin_repeated" {
-                var alert = UIAlertView(title: "用户名已被使用", message: nil, delegate: nil, cancelButtonTitle: "OK")
+            let res = data["result"] as NSDictionary
+            var result = res["token"] as NSString
+            if result == "wrong" {
+                var alert = UIAlertView(title: "注册失败，请重试", message: nil, delegate: nil, cancelButtonTitle: "OK")
                 self.resignButton.enabled = true
-                dispatch_async(dispatch_get_main_queue(), {
                     alert.show()
-                })
             }
             else {
                 API.userInfo.token = result
@@ -78,7 +71,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
             
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
                 (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-                println(loginInfo)
+//                println(loginInfo)
                 if (error == nil) {
                     API.userInfo.tokenValid = true
                     self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
@@ -87,7 +80,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
                     API.userInfo.tokenValid = false
                     EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.phone, password: "123456", completion: {
                         (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-                        println(error)
+//                        println(error)
                         if (error == nil) {
                             API.userInfo.tokenValid = true
                             self.presentingViewController!.presentingViewController!.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
@@ -106,22 +99,9 @@ class ResignAccountViewController: UIViewController, APIProtocol {
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         NSLog("\(errno)")
     }
-    func checkUsernameValid(name: String) -> Bool{
-        for c in name {
-            let cS = "\(c)"
-            if isLetterOrNumberDic[cS] == nil {
-                return false
-            }
-        }
-        
-        return true
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         api.delegate = self
-        for c in isLetterOrNumber {
-            isLetterOrNumberDic[c] = true
-        }
         // Do any additional setup after loading the view.
     }
 

@@ -75,7 +75,7 @@ class LoginViewController: UIViewController, APIProtocol {
         if api === login{
             let res = data["result"] as NSDictionary
             if res["token"] as NSString == "wrong" {
-                var alert = UIAlertView(title: "用户名或密码有误", message: nil, delegate: nil, cancelButtonTitle: "OK")
+                var alert = UIAlertView(title: "手机号或密码有误", message: nil, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
                 //loginButton.userInteractionEnabled = true
                 //println("unlock")
@@ -106,14 +106,13 @@ class LoginViewController: UIViewController, APIProtocol {
             self.cancelLock.lock()
             if self.ifcanceled {
                 self.cancelLock.unlock()
-                println("canceled")
+//                println("canceled")
                 iflogining = false
                 loginButton.enabled = true
-                NSLog("cancelLock")
+//                NSLog("cancelLock")
                 return
             }
             cancelLock.unlock()
-            
             let res = data["result"] as NSDictionary
             API.userInfo.username = res["username"] as NSString
             API.userInfo.nickname = res["nickname"] as NSString
@@ -122,18 +121,18 @@ class LoginViewController: UIViewController, APIProtocol {
             API.userInfo.rmb = res["rmb"] as Int
             API.userInfo.id = res["uid"] as Int
             API.userInfo.profilePhotoUrl = res["avatar"] as String
-            NSLog("refreshUserInfo")
+//            NSLog("refreshUserInfo")
             
-            println(res)
+//            println(res)
             
-            println("login huanxin")
+//            println("login huanxin")
             
             //            API.userInfo.languagePreference = res["lang"] as Int
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
                 (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-                println(loginInfo)
+//                println(loginInfo)
                 if (error == nil) {
-                    println("no error")
+//                    println("no error")
                     API.userInfo.tokenValid = true
                     self.cancelLock.lock()
                     if self.ifcanceled {
@@ -145,13 +144,13 @@ class LoginViewController: UIViewController, APIProtocol {
                     self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                     //self.presentViewController(main, animated: true, completion: nil)
                     
-                    NSLog("dismiss")
+//                    NSLog("dismiss")
                     self.cancelLock.unlock()
                     self.iflogining = false
                     self.loginButton.enabled = true
                 }
                 else {
-                    println(error.description)
+//                    println(error.description)
                     //EaseMob.sharedInstance().chatManager.registerNewAccount(API.userInfo.username, password: "123456", error: nil)
                     self.iflogining = false
                     var alert = UIAlertView(title: "提示", message: "对不起，暂时不能登录，请稍候重试", delegate: nil, cancelButtonTitle: "OK")

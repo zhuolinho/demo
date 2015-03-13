@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */; };
 		06216D761AAC8D5200683C40 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D751AAC8D5200683C40 /* API.swift */; };
+		063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D03661AB31C4F005A1ED1 /* MeViewController.swift */; };
 		06522AAF1AADAEC700D67CAE /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522AAD1AADAEC700D67CAE /* libPushSDK.a */; };
 		06522AB01AADAEC700D67CAE /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06522AAE1AADAEC700D67CAE /* PushConfig.plist */; };
 		06522AB21AADB04E00D67CAE /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522AB11AADB04D00D67CAE /* libstdc++.6.dylib */; };
@@ -19,6 +20,7 @@
 		06522ABC1AADB13D00D67CAE /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABB1AADB13D00D67CAE /* libresolv.dylib */; };
 		06522ABE1AADB14400D67CAE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABD1AADB14400D67CAE /* CFNetwork.framework */; };
 		06522AC01AADB14B00D67CAE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */; };
+		0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */; };
 		068AEBF01AAC6C0F00F5B84C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 068AEBEE1AAC6C0F00F5B84C /* Login.storyboard */; };
 		068AEBF11AAC6C0F00F5B84C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBEF1AAC6C0F00F5B84C /* WelcomeViewController.swift */; };
 		068AEBF31AAC7BE800F5B84C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBF21AAC7BE800F5B84C /* LoginViewController.swift */; };
@@ -48,6 +50,7 @@
 /* Begin PBXFileReference section */
 		06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPwdViewController.swift; sourceTree = "<group>"; };
 		06216D751AAC8D5200683C40 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		063D03661AB31C4F005A1ED1 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		06522AAA1AADAE0300D67CAE /* demo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		06522AAC1AADAEC700D67CAE /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		06522AAD1AADAEC700D67CAE /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		06522ABB1AADB13D00D67CAE /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		06522ABD1AADB14400D67CAE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		0685D2211AB209CD00708337 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0685D2231AB209DB00708337 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0685D2251AB209F400708337 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -268,6 +272,8 @@
 			isa = PBXGroup;
 			children = (
 				069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */,
+				0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */,
+				063D03661AB31C4F005A1ED1 /* MeViewController.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -734,7 +740,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */,
+				063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */,
 				068AEBF31AAC7BE800F5B84C /* LoginViewController.swift in Sources */,
+				0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */,
 				06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */,
 				068AEBF51AAC7C8100F5B84C /* ResignPhoneViewController.swift in Sources */,
 				068AEBF71AAC7C9600F5B84C /* ResignAccountViewController.swift in Sources */,
