@@ -1,31 +1,58 @@
 //
-//  MeViewController.swift
+//  GenderSettingTableViewController.swift
 //  demo
 //
-//  Created by HoJolin on 15/3/13.
+//  Created by HoJolin on 15/3/14.
 //  Copyright (c) 2015年 CBC. All rights reserved.
 //
 
 import UIKit
 
-class MeViewController: UITableViewController {
-
+class GenderSettingTableViewController: UITableViewController,APIProtocol {
+    
+    var api = API()
+    var gender = ""
+    @IBOutlet weak var manButton: UITableViewCell!
+    @IBOutlet weak var femalButton: UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.scrollEnabled = false
+        api.delegate = self
+        if API.userInfo.gender == "M" {
+            manButton.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }
+        else{
+            femalButton.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0{
+            gender = "M"
+            api.setGender(gender)
+        }
+        else if indexPath.row == 1{
+            gender = "F"
+            api.setGender(gender)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func didReceiveAPIErrorOf(api: API, errno: Int) {
+        NSLog("\(errno)")
+    }
+    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
+        API.userInfo.gender = gender
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     // MARK: - Table view data source
-
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

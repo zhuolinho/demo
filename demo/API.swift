@@ -45,7 +45,7 @@ class API: NSObject {
         static var profilePhotoPath = ""
         static var rmb = 0
         static var acceptNote = true
-        static var signature = "猪一样的队友"
+        static var signature = ""
         static var wxID = "Jolin_H"
         static let host = "http://121.41.98.147:8080/anydo/api/"//"http://218.244.141.224:8080/yozaii2/api/"//
         static let imageHost = "http://121.41.98.147:8080/"//"http://218.244.141.224:8080"//
@@ -173,7 +173,7 @@ class API: NSObject {
     }
     func setNickname(name: String) {
         let d = ["token": API.userInfo.token, "nickname": name]
-        sendURLEncodedForm(action: "setName.action", data: d, image: nil)
+        sendURLEncodedForm(action: "setNickname.action", data: d, image: nil)
     }
     func setAddress(addr: String) {
         let d = ["token": API.userInfo.token, "address": addr]
@@ -182,6 +182,10 @@ class API: NSObject {
     func setGender(g: String) {
         let d = ["token": API.userInfo.token, "gender": g]
         sendURLEncodedForm(action: "setGender.action", data: d, image: nil)
+    }
+    func setSignature(g: String) {
+        let d = ["token": API.userInfo.token, "sign": g]
+        sendURLEncodedForm(action: "setSign.action", data: d, image: nil)
     }
     func setPhone(p: String) {
         let d = ["token": API.userInfo.token, "phone": p]
@@ -443,6 +447,7 @@ class API: NSObject {
             }
         }
         else {
+            NSLog(NSString(data: response, encoding: NSUTF8StringEncoding)!)
             self.delegate?.didReceiveAPIErrorOf(self, errno: -4)
         }
         
