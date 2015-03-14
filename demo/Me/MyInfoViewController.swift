@@ -10,6 +10,7 @@ import UIKit
 
 class MyInfoViewController: UITableViewController {
 
+    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nickName: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var wxID: UILabel!
