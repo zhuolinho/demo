@@ -16,7 +16,6 @@ class GenderSettingTableViewController: UITableViewController,APIProtocol {
     @IBOutlet weak var femalButton: UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.scrollEnabled = false
         api.delegate = self
         if API.userInfo.gender == "M" {
             manButton.accessoryType = UITableViewCellAccessoryType.Checkmark

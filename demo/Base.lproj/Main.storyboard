@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VMt-Yi-oXU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--用户名-->
@@ -354,14 +353,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9R-xV-HeL">
-                                                    <rect key="frame" x="247" y="11" width="60" height="60"/>
-                                                </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="M9R-xV-HeL" secondAttribute="trailing" constant="35" id="2F8-3o-2mi"/>
-                                                <constraint firstAttribute="centerY" secondItem="M9R-xV-HeL" secondAttribute="centerY" constant="-1.5" id="mxu-se-pTU"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="jIP-uD-tvE" detailTextLabel="GIS-vt-mJb" style="IBUITableViewCellStyleValue1" id="ycC-Od-Mb6">
@@ -514,7 +506,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="个人资料" id="chD-J9-BlW"/>
                     <connections>
-                        <outlet property="avatarImageView" destination="M9R-xV-HeL" id="hjt-Ru-hGi"/>
                         <outlet property="gender" destination="IE5-jk-EJX" id="hR8-n5-Bkj"/>
                         <outlet property="nickName" destination="GIS-vt-mJb" id="ugl-SV-kZ6"/>
                         <outlet property="sign" destination="49i-cc-oZC" id="yu6-1e-3Vd"/>
