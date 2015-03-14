@@ -27,17 +27,6 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 2
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 1
-    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1{
             if indexPath.row == 0{
@@ -55,7 +44,10 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
             EaseMob.sharedInstance().chatManager.asyncLogoffWithUnbindDeviceToken(true)
             let mainStoryboard = UIStoryboard(name: "Login", bundle: nil)
             let auth = mainStoryboard.instantiateInitialViewController() as UIViewController
+            self.tabBarController?.selectedIndex = 0
             self.presentViewController(auth, animated: true, completion: nil)
+            self.navigationController?.popToRootViewControllerAnimated(true)
+            
         }
     }
     /*

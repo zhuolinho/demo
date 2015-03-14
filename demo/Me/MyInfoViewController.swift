@@ -10,16 +10,54 @@ import UIKit
 
 class MyInfoViewController: UITableViewController {
 
+    @IBOutlet weak var nickName: UILabel!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var wxID: UILabel!
+    @IBOutlet weak var sign: UILabel!
+    @IBOutlet weak var gender: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.scrollEnabled = false
+        nickName.text = API.userInfo.nickname
+        userName.text = API.userInfo.username
+        wxID.text = API.userInfo.wxID
+        if API.userInfo.signature == "" {
+            sign.text = "未设置"
+        }
+        else{
+            sign.text = API.userInfo.signature
+        }
+        if API.userInfo.gender ==  "M" {
+            gender.text = "男"
+        }
+        else{
+            gender.text = "女"
+        }
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        nickName.text = API.userInfo.nickname
+        userName.text = API.userInfo.username
+        wxID.text = API.userInfo.wxID
+        if API.userInfo.signature == "" {
+            sign.text = "未设置"
+        }
+        else{
+            sign.text = API.userInfo.signature
+        }
+        if API.userInfo.gender ==  "M" {
+            gender.text = "男"
+        }
+        else{
+            gender.text = "女"
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -27,54 +65,6 @@ class MyInfoViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 3
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "infoSetting")
-        switch indexPath.section{
-        case 0:
-            switch indexPath.row{
-            case 0:
-                cell.textLabel?.text = "头像"
-            case 1:
-                cell.textLabel?.text = "名字"
-                cell.detailTextLabel?.text = API.userInfo.nickname
-            case 2:
-                cell.textLabel?.text = "ID"
-                cell.detailTextLabel?.text = API.userInfo.username
-            case 3:
-                cell.textLabel?.text = "二维码"
-            default:
-                return cell
-            }
-        case 1:
-            switch indexPath.row{
-            case 0:
-                cell.textLabel?.text = "性别"
-                if API.userInfo.gender == "M" {
-                    cell.detailTextLabel?.text = "男"
-                }
-                else{
-                    cell.detailTextLabel?.text = "女"
-                }
-            case 1:
-                cell.textLabel?.text = "签名"
-                cell.detailTextLabel?.text = API.userInfo.signature
-            default:
-                return cell
-            }
-        case 2:
-            cell.textLabel?.text = "微信号"
-            cell.detailTextLabel?.text = API.userInfo.wxID
-        default:
-            return cell
-        }
-        return cell
-    }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

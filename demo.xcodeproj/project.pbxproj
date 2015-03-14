@@ -10,6 +10,9 @@
 		06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */; };
 		06216D761AAC8D5200683C40 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D751AAC8D5200683C40 /* API.swift */; };
 		063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D03661AB31C4F005A1ED1 /* MeViewController.swift */; };
+		0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */; };
+		0648D1361AB4206C008B0F67 /* GenderSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */; };
+		0648D1381AB42F58008B0F67 /* SignatureSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */; };
 		06522AAF1AADAEC700D67CAE /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522AAD1AADAEC700D67CAE /* libPushSDK.a */; };
 		06522AB01AADAEC700D67CAE /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06522AAE1AADAEC700D67CAE /* PushConfig.plist */; };
 		06522AB21AADB04E00D67CAE /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522AB11AADB04D00D67CAE /* libstdc++.6.dylib */; };
@@ -51,6 +54,9 @@
 		06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPwdViewController.swift; sourceTree = "<group>"; };
 		06216D751AAC8D5200683C40 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		063D03661AB31C4F005A1ED1 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NickNameSettingViewController.swift; sourceTree = "<group>"; };
+		0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderSettingTableViewController.swift; sourceTree = "<group>"; };
+		0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureSettingViewController.swift; sourceTree = "<group>"; };
 		06522AAA1AADAE0300D67CAE /* demo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		06522AAC1AADAEC700D67CAE /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		06522AAD1AADAEC700D67CAE /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
@@ -273,7 +279,10 @@
 			children = (
 				069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */,
 				0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */,
+				0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */,
+				0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */,
 				063D03661AB31C4F005A1ED1 /* MeViewController.swift */,
+				0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -739,7 +748,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0648D1381AB42F58008B0F67 /* SignatureSettingViewController.swift in Sources */,
 				069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */,
+				0648D1361AB4206C008B0F67 /* GenderSettingTableViewController.swift in Sources */,
 				063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */,
 				068AEBF31AAC7BE800F5B84C /* LoginViewController.swift in Sources */,
 				0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */,
@@ -748,6 +759,7 @@
 				068AEBF71AAC7C9600F5B84C /* ResignAccountViewController.swift in Sources */,
 				068AEBF11AAC6C0F00F5B84C /* WelcomeViewController.swift in Sources */,
 				06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */,
+				0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */,
 				06216D761AAC8D5200683C40 /* API.swift in Sources */,
 				069F73CE1AB1C38300D73AA8 /* NewsViewController.swift in Sources */,
 			);
