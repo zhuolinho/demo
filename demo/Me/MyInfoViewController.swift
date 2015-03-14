@@ -10,7 +10,6 @@ import UIKit
 
 class MyInfoViewController: UITableViewController {
 
-    var avatarImageView = UIImageView(frame: CGRect(x: 245, y: 11, width: 60, height: 60))
     @IBOutlet weak var nickName: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var wxID: UILabel!
@@ -18,6 +17,8 @@ class MyInfoViewController: UITableViewController {
     @IBOutlet weak var gender: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -41,14 +42,14 @@ class MyInfoViewController: UITableViewController {
         else{
             gender.text = "女"
         }
-        avatarImageView.image = API.userInfo.profilePhoto
-        self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.addSubview(avatarImageView)
+        var avatarImage = UIImageView(frame: CGRect(x: self.view.bounds.width-95, y: 11, width: 60, height: 60))
+        avatarImage.image = API.userInfo.profilePhoto
+        self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.addSubview(avatarImage)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     // MARK: - Table view data source
 
     /*

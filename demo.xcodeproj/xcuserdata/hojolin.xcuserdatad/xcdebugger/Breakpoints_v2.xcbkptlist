@@ -579,5 +579,121 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "demo/Me/MyInfoViewController.swift"
+            timestampString = "448052467.590397"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "MyInfoViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "demo.MyInfoViewController.avatarImage.getter : ObjectiveC.UIImageView"
+                  moduleName = "demo"
+                  urlString = "file:///Users/hojolin/Documents/demo/demo/Me/MyInfoViewController.swift"
+                  timestampString = "448051620.232765"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "demo.MyInfoViewController.avatarImage.setter : ObjectiveC.UIImageView"
+                  moduleName = "demo"
+                  urlString = "file:///Users/hojolin/Documents/demo/demo/Me/MyInfoViewController.swift"
+                  timestampString = "448051620.233163"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "demo.MyInfoViewController.avatarImage.materializeForSet : ObjectiveC.UIImageView"
+                  moduleName = "demo"
+                  urlString = "file:///Users/hojolin/Documents/demo/demo/Me/MyInfoViewController.swift"
+                  timestampString = "448051620.233367"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "demo.MyInfoViewController.init (demo.MyInfoViewController.Type)(style : C.UITableViewStyle) -&gt; demo.MyInfoViewController"
+                  moduleName = "demo"
+                  urlString = "file:///Users/hojolin/Documents/demo/demo/Me/MyInfoViewController.swift"
+                  timestampString = "448051620.23356"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "356">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "demo.MyInfoViewController.init (demo.MyInfoViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; demo.MyInfoViewController"
+                  moduleName = "demo"
+                  urlString = "file:///Users/hojolin/Documents/demo/demo/Me/MyInfoViewController.swift"
+                  timestampString = "448051620.233762"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "423">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "demo.MyInfoViewController.init (demo.MyInfoViewController.Type)() -&gt; demo.MyInfoViewController"
+                  moduleName = "demo"
+                  urlString = "file:///Users/hojolin/Documents/demo/demo/Me/MyInfoViewController.swift"
+                  timestampString = "448051620.233951"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "336">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "demo.MyInfoViewController.init (demo.MyInfoViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; demo.MyInfoViewController"
+                  moduleName = "demo"
+                  urlString = "file:///Users/hojolin/Documents/demo/demo/Me/MyInfoViewController.swift"
+                  timestampString = "448051620.234135"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "356">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
