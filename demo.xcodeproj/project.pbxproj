@@ -10,6 +10,7 @@
 		06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */; };
 		06216D761AAC8D5200683C40 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D751AAC8D5200683C40 /* API.swift */; };
 		063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D03661AB31C4F005A1ED1 /* MeViewController.swift */; };
+		0647DE1C1AB47E55001737F9 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */; };
 		0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */; };
 		0648D1361AB4206C008B0F67 /* GenderSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */; };
 		0648D1381AB42F58008B0F67 /* SignatureSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */; };
@@ -54,6 +55,7 @@
 		06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPwdViewController.swift; sourceTree = "<group>"; };
 		06216D751AAC8D5200683C40 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		063D03661AB31C4F005A1ED1 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DefaultAvatar.png; path = Image/DefaultAvatar.png; sourceTree = "<group>"; };
 		0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NickNameSettingViewController.swift; sourceTree = "<group>"; };
 		0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderSettingTableViewController.swift; sourceTree = "<group>"; };
 		0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureSettingViewController.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				06CD92461AA877E10026C3E7 /* Info.plist */,
+				0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 			files = (
 				06CE44511AAFFF3A002FD6CF /* EaseMob.bundle in Resources */,
 				068AEBF01AAC6C0F00F5B84C /* Login.storyboard in Resources */,
+				0647DE1C1AB47E55001737F9 /* DefaultAvatar.png in Resources */,
 				06CD924D1AA877E10026C3E7 /* Main.storyboard in Resources */,
 				06CD92521AA877E10026C3E7 /* LaunchScreen.xib in Resources */,
 				06CD924F1AA877E10026C3E7 /* Images.xcassets in Resources */,

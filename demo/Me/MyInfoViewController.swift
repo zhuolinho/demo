@@ -10,7 +10,7 @@ import UIKit
 
 class MyInfoViewController: UITableViewController {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
+    var avatarImageView = UIImageView(frame: CGRect(x: 245, y: 11, width: 60, height: 60))
     @IBOutlet weak var nickName: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var wxID: UILabel!
@@ -18,23 +18,6 @@ class MyInfoViewController: UITableViewController {
     @IBOutlet weak var gender: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.scrollEnabled = false
-        nickName.text = API.userInfo.nickname
-        userName.text = API.userInfo.username
-        wxID.text = API.userInfo.wxID
-        if API.userInfo.signature == "" {
-            sign.text = "未设置"
-        }
-        else{
-            sign.text = API.userInfo.signature
-        }
-        if API.userInfo.gender ==  "M" {
-            gender.text = "男"
-        }
-        else{
-            gender.text = "女"
-        }
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -58,6 +41,8 @@ class MyInfoViewController: UITableViewController {
         else{
             gender.text = "女"
         }
+        avatarImageView.image = API.userInfo.profilePhoto
+        self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.addSubview(avatarImageView)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
