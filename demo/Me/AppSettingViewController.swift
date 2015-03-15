@@ -33,6 +33,7 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
                 alert.show()
             }
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         if buttonIndex == 0{

@@ -296,7 +296,7 @@ class API: NSObject {
             var imgData = UIImageJPEGRepresentation(img, 1.0)
             var base64Img = imgData.base64EncodedDataWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
             body.appendData(("--" + boundary + "\r\n").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
-            body.appendData(("Content-Disposition: form-data; name=base64Files; filename=imageName.jpg\r\n").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
+            body.appendData(("Content-Disposition: form-data; name=Base64Files; filename=imageName.jpg\r\n").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
             body.appendData(("Content-Type: image/jpeg\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
             body.appendData(base64Img)
             body.appendData(("\r\n").dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
@@ -331,7 +331,7 @@ class API: NSObject {
             var stringImg = NSString(data: base64Img, encoding: NSUTF8StringEncoding)!
 //            stringImg = stringImg.stringByReplacingOccurrencesOfString("/", withString: "%2F")
             stringImg = stringImg.stringByReplacingOccurrencesOfString("+", withString: "%2B")
-            body.appendData(("base64Files=data:image/jpeg;base64,").dataUsingEncoding(NSUTF8StringEncoding , allowLossyConversion: false)!)
+            body.appendData(("Base64File=data:image/jpeg;base64,").dataUsingEncoding(NSUTF8StringEncoding , allowLossyConversion: false)!)
             body.appendData(stringImg.dataUsingEncoding(NSUTF8StringEncoding)!)
         }
         request.HTTPMethod = "POST"
