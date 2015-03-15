@@ -22,9 +22,31 @@ class MeViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    override func viewWillAppear(animated: Bool) {
+        if !API.userInfo.profilePhotoUrl.isEmpty {
+            let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
+            let request: NSURLRequest = NSURLRequest(URL: url!)
+            let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                if error? == nil {
+                    let img: UIImage? = UIImage(data: data)
+                    let avatar: UIImage? = img
+                    if avatar != nil {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            API.userInfo.profilePhoto = avatar!
+                            
+                        })
+                    }
+                    
+                }
+            })
+        }
+    }
     // MARK: - Table view data source
-
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

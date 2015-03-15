@@ -106,10 +106,8 @@ class LoginViewController: UIViewController, APIProtocol {
             self.cancelLock.lock()
             if self.ifcanceled {
                 self.cancelLock.unlock()
-//                println("canceled")
                 iflogining = false
                 loginButton.enabled = true
-//                NSLog("cancelLock")
                 return
             }
             cancelLock.unlock()
@@ -121,11 +119,7 @@ class LoginViewController: UIViewController, APIProtocol {
             API.userInfo.rmb = res["rmb"] as Int
             API.userInfo.id = res["uid"] as Int
             API.userInfo.profilePhotoUrl = res["avatar"] as String
-//            NSLog("refreshUserInfo")
-            
-//            println(res)
-            
-//            println("login huanxin")
+            API.userInfo.signature = res["sign"] as String
             
             //            API.userInfo.languagePreference = res["lang"] as Int
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
@@ -142,9 +136,6 @@ class LoginViewController: UIViewController, APIProtocol {
                         return
                     }
                     self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
-                    //self.presentViewController(main, animated: true, completion: nil)
-                    
-//                    NSLog("dismiss")
                     self.cancelLock.unlock()
                     self.iflogining = false
                     self.loginButton.enabled = true
@@ -155,8 +146,6 @@ class LoginViewController: UIViewController, APIProtocol {
                     self.iflogining = false
                     var alert = UIAlertView(title: "提示", message: "对不起，暂时不能登录，请稍候重试", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
-                    //}
-                    //}, onQueue: nil)
                 }
                 }, onQueue: nil)
 

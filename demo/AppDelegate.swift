@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
             API.userInfo.phone = res["phone"] as NSString
             API.userInfo.gender = res["gender"] as NSString
             API.userInfo.profilePhotoUrl = res["avatar"] as String
+            API.userInfo.signature = res["sign"] as String
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
                 (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
 //                println(error)
