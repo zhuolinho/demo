@@ -12,7 +12,7 @@
 #import "EaseMob.h"
 //#import "EaseMobHeaders.h"
 //#import "ChatListCell.h"
-//#import "ChatListViewController.h"
+#import "ChatListViewController.h"
 //#import "ChatViewController.h"
 //#import "IChatManagerSettingOptions.h"
 //#import "WXApi.h"
