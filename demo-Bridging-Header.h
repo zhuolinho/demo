@@ -13,7 +13,7 @@
 //#import "EaseMobHeaders.h"
 //#import "ChatListCell.h"
 #import "ChatListViewController.h"
-//#import "ChatViewController.h"
+#import "ChatViewController.h"
 //#import "IChatManagerSettingOptions.h"
 //#import "WXApi.h"
 //#import "WeiboSDK.h"

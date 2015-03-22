@@ -63,12 +63,6 @@
 
 /*!
  @property
- @brief 文件消息体的本地第一帧图片uuid
- */
-@property (nonatomic, strong) NSString *thumbnailUuid;
-
-/*!
- @property
  @brief 文件消息体的本地第一帧图片路径
  */
 @property (nonatomic, strong) NSString *thumbnailLocalPath;
