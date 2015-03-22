@@ -98,7 +98,6 @@ typedef enum : NSUInteger {
     EMErrorGroupJoinNeedRequired,               //加入群组需要申请
     EMErrorGroupFetchInfoFailure,               //获取群组失败
     EMErrorGroupInvalidRequired,                //无效的群组申请
-    EMErrorGroupInvalidSubject_NULL,            //无效的群主题（为空）
     
     //username error
     EMErrorInvalidUsername,                     // 无效的username
@@ -129,9 +128,6 @@ typedef enum : NSUInteger {
     EMErrorNetworkNotConnected,                 //网络未连接
     EMErrorFailure,                             //失败
     EMErrorFeatureNotImplemented,               //还未实现的功能
-    
-    EMErrorGroupOccupantsReachLimit,            //群组成员达到上限
-    EMErrorRequestRefused,                      //申请失效
 } EMErrorType;
 
 #endif

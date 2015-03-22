@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VMt-Yi-oXU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VMt-Yi-oXU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -93,12 +93,12 @@
         <scene sceneID="eim-30-9ug">
             <objects>
                 <tableViewController id="JQG-s1-iar" customClass="ChatTableViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="Mcu-5j-J7F">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="22" id="Mcu-5j-J7F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChatTabelCell" rowHeight="60" id="fo5-G7-kQR">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatTabelCell" rowHeight="60" id="fo5-G7-kQR" customClass="ChatListCell" customModule="demo" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fo5-G7-kQR" id="zvm-kN-LZ9">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -129,7 +129,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="oST-g2-Hik" kind="push" id="40z-gd-eJ2"/>
+                                    <segue destination="oST-g2-Hik" kind="push" identifier="CellSegue" id="40z-gd-eJ2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -141,7 +141,7 @@
                     <navigationItem key="navigationItem" title="消息" id="Kek-f0-dhC">
                         <barButtonItem key="rightBarButtonItem" title="我的好友" id="PZa-uG-2Hn">
                             <connections>
-                                <segue destination="E2t-Tz-0OR" kind="push" id="0b5-a2-3xx"/>
+                                <segue destination="E2t-Tz-0OR" kind="push" identifier="BarSegue" id="KfD-7c-wsi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

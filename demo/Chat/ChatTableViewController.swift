@@ -8,13 +8,38 @@
 
 import UIKit
 
-class ChatTableViewController: UITableViewController {
+class ChatTableViewController: UITableViewController, IChatManagerDelegate {
 
     var emChatListVC = ChatListViewController()
     var conversations = NSMutableArray()
     
     func refreshDataSource() {
         self.conversations = emChatListVC.loadDataSource()
+        if self.conversations.count > 0 {
+            self.conversations.sortUsingComparator({ (obj1, obj2) -> NSComparisonResult in
+                var msg1 = (obj1 as EMConversation).latestMessage()
+                var msg2 = (obj2 as EMConversation).latestMessage()
+                if msg1 == nil {
+                    if msg2 == nil {
+                        return NSComparisonResult.OrderedSame
+                    } else {
+                        return NSComparisonResult.OrderedDescending
+                    }
+                } else {
+                    if msg2 == nil {
+                        return NSComparisonResult.OrderedAscending
+                    } else {
+                        if msg1.timestamp > msg2.timestamp {
+                            return NSComparisonResult.OrderedAscending
+                        } else if msg1.timestamp < msg2.timestamp {
+                            return NSComparisonResult.OrderedDescending
+                        } else {
+                            return NSComparisonResult.OrderedSame
+                        }
+                    }
+                }
+            })
+        }
         tableView.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
@@ -22,7 +47,8 @@ class ChatTableViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        didUnreadMessagesCountChanged()
+        EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,7 +62,16 @@ class ChatTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            let row = indexPath.row
+            let conversation = self.conversations[row] as EMConversation
+            EaseMob.sharedInstance().chatManager.removeConversationByChatter!(conversation.chatter, deleteMessages: true)
+            self.conversations.removeObjectAtIndex(row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
@@ -44,23 +79,54 @@ class ChatTableViewController: UITableViewController {
         return conversations.count
     }
 
+//    func registerNotifications() {
+//        self.unregisterNotifications()
+//        EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
+//    }
+//    func unregisterNotifications() {
+//        EaseMob.sharedInstance().chatManager.removeDelegate(self)
+//    }
+    func didUnreadMessagesCountChanged() {
+        self.refreshDataSource()
+        self.setupUnreadMessageCount()
+        
+    }
+    func didReceiveMessage(message: EMMessage!) {
+        refreshDataSource()
+    }
 
+    func setupUnreadMessageCount() {
+        var conversations = EaseMob.sharedInstance().chatManager.conversations
+        var unreadCount: Int = 0
+        for item in conversations! {
+            let conversation = item as EMConversation
+            unreadCount += Int(conversation.unreadMessagesCount())
+        }
+        let vc = self.tabBarController!.viewControllers![2] as UIViewController
+        if unreadCount > 0 {
+            vc.tabBarItem.badgeValue = String(unreadCount)
+        }
+        else {
+            vc.tabBarItem.badgeValue = nil
+        }
+    }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as ChatListCell
         let row = indexPath.row
         let conversation = conversations[row] as EMConversation
         var unreadCount = emChatListVC.unreadMessageCountByConversation(conversation)
         let username = conversation.chatter
-        let timeLabel = cell.viewWithTag(3) as UILabel
-        let messageLabel = cell.viewWithTag(2) as UILabel
-        let nameLabel = cell.viewWithTag(1) as UILabel
-        var avatarUrl = ""
-        timeLabel.text = emChatListVC.lastMessageTimeByConversation(conversation)
-        messageLabel.text = emChatListVC.subTitleMessageByConversation(conversation)
+        cell.time?.text = emChatListVC.lastMessageTimeByConversation(conversation)
+        cell.detailMsg?.text = emChatListVC.subTitleMessageByConversation(conversation)
+        cell.unreadLabel.text = "\(unreadCount)"
+        if unreadCount == 0{
+            cell.unreadLabel.hidden = true
+        }
+        else{
+            cell.unreadLabel.hidden = false
+        }
+        
         // Configure the cell...
-        var avatarView = UIImageView(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
-        cell.addSubview(avatarView)
-        var unreadLabel = UILabel(frame: CGRect(x: 42, y: 2, width: 16, height: 16))
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             let requestAvatarUrl = NSURL(string: "\(API.userInfo.host)getAvatarAndNicknameFromUid.action?userstr=\(username)") // No such API !!!!!!!!!!!!!
             let request: NSURLRequest = NSURLRequest(URL: requestAvatarUrl!)
@@ -78,8 +144,8 @@ class ChatTableViewController: UITableViewController {
                             let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
                             dispatch_async(dispatch_get_main_queue(), {
                                 
-                                nameLabel.text = nickname
-                                avatarUrl = url
+                                cell.name?.text = nickname
+                                cell.imageURL = url
                             })
                             let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
                             let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
@@ -90,43 +156,23 @@ class ChatTableViewController: UITableViewController {
                                     let img: UIImage? = rawImage
                                     if img != nil {
                                         dispatch_async(dispatch_get_main_queue(), {
-                                            avatarView.image = img!
+                                            cell.avatarView.image = img!
                                         })
                                     }
-                                    avatarView.image = UIImage(named: "DefaultAvatar")
-                                    
                                 }
-                                avatarView.image = UIImage(named: "DefaultAvatar")
-                                
                             })
                         } else {
-                            avatarView.image = UIImage(named: "DefaultAvatar")
+                            cell.avatarView.image = UIImage(named: "DefaultAvatar")
                         }
                     } else {
-                        avatarView.image = UIImage(named: "DefaultAvatar")
+                        cell.avatarView.image = UIImage(named: "DefaultAvatar")
                     }
                     
                 } else {
-                    avatarView.image = UIImage(named: "DefaultAvatar")
+                    cell.avatarView.image = UIImage(named: "DefaultAvatar")
                 }
             })
         })
-        unreadLabel.backgroundColor = UIColor.redColor()
-        unreadLabel.text = "\(unreadCount)"
-        unreadLabel.textAlignment = NSTextAlignment.Center
-        unreadLabel.textColor = UIColor.whiteColor()
-        unreadLabel.layer.cornerRadius = 8
-        unreadLabel.layer.masksToBounds = true
-        if unreadCount>0{
-            if (unreadCount < 9) {
-                unreadLabel.font = UIFont.systemFontOfSize(13)
-            }else if unreadCount > 9 && unreadCount <= 99 {
-                unreadLabel.font = UIFont.systemFontOfSize(10)
-            }else{
-                unreadLabel.font = UIFont.systemFontOfSize(7)
-            }
-            cell.addSubview(unreadLabel)
-        }
         return cell
     }
 
@@ -166,14 +212,24 @@ class ChatTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if(segue.identifier == "CellSegue"){
+            let cell = sender as ChatListCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let row = indexPath!.row
+            let conversation = self.conversations[row] as EMConversation
+            let chatVC = segue.destinationViewController as ChatViewController
+            chatVC.chatter = conversation.chatter
+            chatVC.myHeadUrl = API.userInfo.imageHost + API.userInfo.profilePhotoUrl
+            chatVC.friendHeadUrl = API.userInfo.imageHost + cell.imageURL
+            chatVC.buyCourseRightNow = false
+            chatVC.navigationItem.title = (sender as ChatListCell).name?.text
+            chatVC.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+            conversation.markAllMessagesAsRead(true)
+        }
+    }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -41,7 +41,7 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
             API.userInfo.token = ""
             API.userInfo.profilePhoto = UIImage(named: "DefaultAvatar")
             API.userInfo.profilePhotoUrl = ""
-            EaseMob.sharedInstance().chatManager.asyncLogoffWithUnbindDeviceToken(true)
+            EaseMob.sharedInstance().chatManager.asyncLogoff()
             let mainStoryboard = UIStoryboard(name: "Login", bundle: nil)
             let auth = mainStoryboard.instantiateInitialViewController() as UIViewController
             self.tabBarController?.selectedIndex = 0
