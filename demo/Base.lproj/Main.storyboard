@@ -27,12 +27,46 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="用户名" id="bmd-o0-7Qe">
-                        <barButtonItem key="rightBarButtonItem" title="filter" id="sKQ-qW-Uk0"/>
+                        <barButtonItem key="rightBarButtonItem" title="filter" id="sKQ-qW-Uk0">
+                            <connections>
+                                <segue destination="xEo-cr-v5j" kind="push" id="gmQ-cU-P5i"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3P-bb-oVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1314" y="270"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lZw-hH-cZj">
+            <objects>
+                <viewController id="xEo-cr-v5j" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WgV-1b-6xq"/>
+                        <viewControllerLayoutGuide type="bottom" id="bum-Zn-hdj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B7f-CR-5O4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbi-2a-WL5">
+                                <rect key="frame" x="137" y="383" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="oST-g2-Hik" kind="push" id="E1c-Z1-eZK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IjI-BH-BVC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CxT-QK-FAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2560" y="264"/>
         </scene>
         <!--我的任务-->
         <scene sceneID="2k3-Pl-btr">
@@ -93,7 +127,7 @@
         <scene sceneID="eim-30-9ug">
             <objects>
                 <tableViewController id="JQG-s1-iar" customClass="ChatTableViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="22" id="Mcu-5j-J7F">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="Mcu-5j-J7F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -153,17 +187,31 @@
         <!--我的好友-->
         <scene sceneID="mrB-RR-UL9">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="E2t-Tz-0OR" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TO8-B1-7b6">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="E2t-Tz-0OR" customClass="ContactsViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="TO8-B1-7b6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2vm-dM-wt9">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" textLabel="imS-wt-byu" imageView="EcM-zy-XUm" style="IBUITableViewCellStyleDefault" id="2vm-dM-wt9">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2vm-dM-wt9" id="4cZ-fb-X73">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="imS-wt-byu">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="DefaultAvatar.png" id="EcM-zy-XUm">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="xEo-cr-v5j" kind="push" id="ODk-uZ-aNu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -882,9 +930,16 @@
             <point key="canvasLocation" x="782" y="2189"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DefaultAvatar.png" width="200" height="200"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ODk-uZ-aNu"/>
+        <segue reference="E1c-Z1-eZK"/>
+    </inferredMetricsTieBreakers>
 </document>
