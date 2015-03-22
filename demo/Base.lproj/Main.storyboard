@@ -66,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CxT-QK-FAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2560" y="264"/>
+            <point key="canvasLocation" x="2567" y="270"/>
         </scene>
         <!--我的任务-->
         <scene sceneID="2k3-Pl-btr">
@@ -121,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LY-xa-mz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1744" y="931"/>
+            <point key="canvasLocation" x="1739" y="931"/>
         </scene>
         <!--消息-->
         <scene sceneID="eim-30-9ug">
@@ -193,20 +193,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" textLabel="imS-wt-byu" imageView="EcM-zy-XUm" style="IBUITableViewCellStyleDefault" id="2vm-dM-wt9">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" textLabel="Wda-wh-Uig" style="IBUITableViewCellStyleDefault" id="2vm-dM-wt9">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2vm-dM-wt9" id="4cZ-fb-X73">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="imS-wt-byu">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wda-wh-Uig">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="DefaultAvatar.png" id="EcM-zy-XUm">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -248,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aux-wv-vxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142" y="1556"/>
+            <point key="canvasLocation" x="2142" y="1557"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="4cQ-X2-Rfl">
@@ -267,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBI-0v-VDU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2566" y="1554"/>
+            <point key="canvasLocation" x="2567" y="1557"/>
         </scene>
         <!--名字-->
         <scene sceneID="4Wg-GY-pxz">
@@ -719,7 +716,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w4d-Pp-8hh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1744" y="2850"/>
+            <point key="canvasLocation" x="1739" y="2862"/>
         </scene>
         <!--我的二维码-->
         <scene sceneID="u8e-zb-FPc">
@@ -738,7 +735,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sIN-4U-you" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2560" y="2189"/>
+            <point key="canvasLocation" x="2567" y="2189"/>
         </scene>
         <!--性别-->
         <scene sceneID="ul1-65-Ga1">
@@ -795,7 +792,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2v-DW-HQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2962" y="2195"/>
+            <point key="canvasLocation" x="2960" y="2189"/>
         </scene>
         <!--签名-->
         <scene sceneID="PRJ-mx-Xlf">
@@ -830,7 +827,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcW-CL-Shd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3370" y="2195"/>
+            <point key="canvasLocation" x="3372" y="2189"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="z4p-W2-d3x">
@@ -930,9 +927,6 @@
             <point key="canvasLocation" x="782" y="2189"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="DefaultAvatar.png" width="200" height="200"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

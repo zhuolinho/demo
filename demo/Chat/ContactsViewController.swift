@@ -12,6 +12,7 @@ class ContactsViewController: UITableViewController {
     var dataSource = NSMutableArray()
     var contactsSource = NSMutableArray()
     var sectionTitles = NSMutableArray()
+    var sortedDataSource = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadDataSource()
@@ -32,7 +33,7 @@ class ContactsViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 2
+        return sortedDataSource.count+1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,12 +43,13 @@ class ContactsViewController: UITableViewController {
             return 1
         }
         else{
-            return dataSource.count
+            return sortedDataSource.objectAtIndex(section-1).count
         }
     }
     func reloadDataSource(){
         dataSource.removeAllObjects()
         contactsSource.removeAllObjects()
+        sortedDataSource.removeAllObjects()
         var buddyList = EaseMob.sharedInstance().chatManager.fetchBuddyListWithError(nil)
         var buddy:EMBuddy
         for buddy in buddyList {
@@ -85,7 +87,7 @@ class ContactsViewController: UITableViewController {
                                     self.dataSource.addObject(info)
                                     if(buddy.username == loginUsername!)
                                     {
-                                        self.sortDataSource(self.dataSource)
+                                        self.sortedDataSource.addObjectsFromArray(self.sortDataSource(self.dataSource))
                                         self.tableView.reloadData()
                                     }
                                 })
@@ -96,19 +98,49 @@ class ContactsViewController: UITableViewController {
             })
         }
     }
-    func sortDataSource(array: NSMutableArray){
-        
+    func sortDataSource(dataArray: NSMutableArray) -> NSArray{
+        var indexCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation
+        self.sectionTitles.removeAllObjects()
+        self.sectionTitles.addObjectsFromArray(indexCollation.sectionTitles)
+        var highSection = self.sectionTitles.count
+        var sortedArray = NSMutableArray(capacity: 1)
+        for(var i = 0; i <= highSection; i++){
+            var sectionArray = NSMutableArray(capacity: 1)
+            sortedArray.addObject(sectionArray)
+        }
+        var buddy : NSDictionary
+        for buddy in dataArray {
+            var firstLetter = ChineseToPinyin.pinyinFromChineseString(buddy.objectForKey("nickname") as NSString)
+            var section = indexCollation.sectionForObject(firstLetter.substringToIndex(advance(firstLetter.startIndex, 1)), collationStringSelector: "uppercaseString")
+            var array = sortedArray.objectAtIndex(section) as NSMutableArray
+            array.addObject(buddy)
+        }
+        for(var i = 0; i < sortedArray.count; i++){
+            var array = sortedArray.objectAtIndex(i).sortedArrayUsingComparator({
+                (obj1: AnyObject!, obj2: AnyObject!) -> NSComparisonResult in
+                    var firstLetter1 = ChineseToPinyin.pinyinFromChineseString(obj1.objectForKey("nickname")as NSString)
+                    var firstLetter2 = ChineseToPinyin.pinyinFromChineseString(obj2.objectForKey("nickname")as NSString)
+                return firstLetter1.caseInsensitiveCompare(firstLetter2)
+            })
+            sortedArray.replaceObjectAtIndex(i, withObject: NSMutableArray(array: array))
+        }
+        return sortedArray
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as UITableViewCell
         // Configure the cell...
+        var imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
+        cell.addSubview(imageView)
         if indexPath.section == 0 {
-            cell.imageView?.image = UIImage(named: "newFriends")
-            cell.textLabel?.text = "新的朋友"
+            if indexPath.row == 0 {
+                imageView.image = UIImage(named: "newFriends")
+                cell.textLabel?.text = "新的朋友"
+            }
         }
         else{
-            var buddy = dataSource.objectAtIndex(indexPath.row) as NSDictionary
+            var buddy = sortedDataSource.objectAtIndex(indexPath.section-1).objectAtIndex(indexPath.row) as NSDictionary
             cell.textLabel?.text = buddy.objectForKey("nickname") as? String
+            imageView.image = UIImage(named: "DefaultAvatar")
             var url = buddy.objectForKey("avatarURL") as String
             let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
             let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
@@ -119,7 +151,7 @@ class ContactsViewController: UITableViewController {
                     let img: UIImage? = rawImage
                     if img != nil {
                         dispatch_async(dispatch_get_main_queue(), {
-                            cell.imageView!.image = img
+                            imageView.image = img
                         })
                     }
                 }
@@ -128,7 +160,24 @@ class ContactsViewController: UITableViewController {
         }
         return cell
     }
-    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(section == 0 || sortedDataSource.objectAtIndex(section-1).count == 0){
+            return nil
+        }
+        else{
+            return self.sectionTitles.objectAtIndex(section - 1)as? String
+        }
+    }
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]{
+        var existTitles = NSMutableArray()
+        existTitles.addObject("")
+        for(var i = 0; i < sectionTitles.count; i++){
+            if(sortedDataSource.objectAtIndex(i).count > 0){
+                existTitles.addObject(sectionTitles.objectAtIndex(i))
+            }
+        }
+        return existTitles
+    }
 
     /*
     // Override to support conditional editing of the table view.
