@@ -225,7 +225,6 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
             chatVC.friendHeadUrl = API.userInfo.imageHost + cell.imageURL
             chatVC.buyCourseRightNow = false
             chatVC.navigationItem.title = (sender as ChatListCell).name?.text
-            chatVC.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
             conversation.markAllMessagesAsRead(true)
         }
     }

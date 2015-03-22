@@ -298,6 +298,8 @@
 		06CD924F1AA877E10026C3E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924E1AA877E10026C3E7 /* Images.xcassets */; };
 		06CD92521AA877E10026C3E7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06CD92501AA877E10026C3E7 /* LaunchScreen.xib */; };
 		06CD925E1AA877E10026C3E7 /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD925D1AA877E10026C3E7 /* demoTests.swift */; };
+		06F618EF1ABEA72300918389 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F618EE1ABEA72300918389 /* ContactsViewController.swift */; };
+		06F618F11ABEB83E00918389 /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F618F01ABEB83E00918389 /* newFriends@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -790,6 +792,8 @@
 		06CD92571AA877E10026C3E7 /* demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CD925C1AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD925D1AA877E10026C3E7 /* demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoTests.swift; sourceTree = "<group>"; };
+		06F618EE1ABEA72300918389 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		06F618F01ABEB83E00918389 /* newFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newFriends@2x.png"; path = "Image/newFriends@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1078,6 +1082,7 @@
 			children = (
 				0694E6DA1AB7217B008ADF21 /* ChatTableViewController.swift */,
 				065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */,
+				06F618EE1ABEA72300918389 /* ContactsViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1879,6 +1884,7 @@
 			children = (
 				06CD92461AA877E10026C3E7 /* Info.plist */,
 				0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */,
+				06F618F01ABEB83E00918389 /* newFriends@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1997,6 +2003,7 @@
 				0694E6391AB6CE72008ADF21 /* chatBar_colorMore_photo@2x.png in Resources */,
 				0694E6BC1AB6CE72008ADF21 /* chat_sender_audio_playing_002.png in Resources */,
 				0694E67B1AB6CE72008ADF21 /* VoiceSearchFeedback006.png in Resources */,
+				06F618F11ABEB83E00918389 /* newFriends@2x.png in Resources */,
 				0694E6B51AB6CE72008ADF21 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				0694E6901AB6CE72008ADF21 /* VoiceSearchFeedback016@2x.png in Resources */,
 				0694E6371AB6CE72008ADF21 /* chatBar_colorMore_location@2x.png in Resources */,
@@ -2226,6 +2233,7 @@
 				0694E6111AB6CE72008ADF21 /* UIViewController+HUD.m in Sources */,
 				068AEBF31AAC7BE800F5B84C /* LoginViewController.swift in Sources */,
 				0694E61A1AB6CE72008ADF21 /* DXMessageToolBar.m in Sources */,
+				06F618EF1ABEA72300918389 /* ContactsViewController.swift in Sources */,
 				0694E6581AB6CE72008ADF21 /* BaseTableViewCell.m in Sources */,
 				0694E5F61AB6CE72008ADF21 /* UIImageView+EMWebCache.m in Sources */,
 				0694E5F91AB6CE72008ADF21 /* PSTCollectionView.m in Sources */,
