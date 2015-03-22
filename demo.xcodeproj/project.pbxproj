@@ -300,6 +300,7 @@
 		06CD925E1AA877E10026C3E7 /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD925D1AA877E10026C3E7 /* demoTests.swift */; };
 		06F618EF1ABEA72300918389 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F618EE1ABEA72300918389 /* ContactsViewController.swift */; };
 		06F618F11ABEB83E00918389 /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F618F01ABEB83E00918389 /* newFriends@2x.png */; };
+		06F618F51ABF0B5A00918389 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F618F41ABF0B5A00918389 /* ChineseToPinyin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -794,6 +795,8 @@
 		06CD925D1AA877E10026C3E7 /* demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoTests.swift; sourceTree = "<group>"; };
 		06F618EE1ABEA72300918389 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		06F618F01ABEB83E00918389 /* newFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newFriends@2x.png"; path = "Image/newFriends@2x.png"; sourceTree = "<group>"; };
+		06F618F31ABF0B5A00918389 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
+		06F618F41ABF0B5A00918389 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1353,6 +1356,7 @@
 		0694E4D31AB6CE72008ADF21 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				06F618F21ABF0B5A00918389 /* Contacts */,
 				0694E4D41AB6CE72008ADF21 /* Chat */,
 			);
 			path = Class;
@@ -1906,6 +1910,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		06F618F21ABF0B5A00918389 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				06F618F31ABF0B5A00918389 /* ChineseToPinyin.h */,
+				06F618F41ABF0B5A00918389 /* ChineseToPinyin.m */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2217,6 +2230,7 @@
 				0694E5FD1AB6CE72008ADF21 /* PSTCollectionViewFlowLayout.m in Sources */,
 				0694E60B1AB6CE72008ADF21 /* TTGlobalUICommon.m in Sources */,
 				0648D1361AB4206C008B0F67 /* GenderSettingTableViewController.swift in Sources */,
+				06F618F51ABF0B5A00918389 /* ChineseToPinyin.m in Sources */,
 				063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */,
 				0694E5F21AB6CE72008ADF21 /* UIImage+EMGIF.m in Sources */,
 				0694E5F71AB6CE72008ADF21 /* UIView+EMWebCacheOperation.m in Sources */,
