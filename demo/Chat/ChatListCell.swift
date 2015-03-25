@@ -39,8 +39,6 @@ class ChatListCell: UITableViewCell {
         unreadLabel.layer.masksToBounds = true
         unreadLabel.font = UIFont.systemFontOfSize(10)
         self.addSubview(unreadLabel)
-        var line = UIView(frame: CGRect(x: 10, y: 60, width: self.bounds.width-10, height: 1))
-        line.backgroundColor = UIColor.lightGrayColor()
-        self.addSubview(line)
+        self.backgroundColor = UIColor.clearColor()
     }
 }

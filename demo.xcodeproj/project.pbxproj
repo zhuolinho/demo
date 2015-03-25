@@ -298,6 +298,8 @@
 		06CD924F1AA877E10026C3E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924E1AA877E10026C3E7 /* Images.xcassets */; };
 		06CD92521AA877E10026C3E7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06CD92501AA877E10026C3E7 /* LaunchScreen.xib */; };
 		06CD925E1AA877E10026C3E7 /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD925D1AA877E10026C3E7 /* demoTests.swift */; };
+		06EADEF31AC270D7003C0B27 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EADEF21AC270D7003C0B27 /* ContactCell.swift */; };
+		06EADEF51AC2737C003C0B27 /* FriendInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EADEF41AC2737C003C0B27 /* FriendInfoViewController.swift */; };
 		06F618EF1ABEA72300918389 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F618EE1ABEA72300918389 /* ContactsViewController.swift */; };
 		06F618F11ABEB83E00918389 /* newFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F618F01ABEB83E00918389 /* newFriends@2x.png */; };
 		06F618F51ABF0B5A00918389 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F618F41ABF0B5A00918389 /* ChineseToPinyin.m */; };
@@ -793,6 +795,8 @@
 		06CD92571AA877E10026C3E7 /* demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CD925C1AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD925D1AA877E10026C3E7 /* demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoTests.swift; sourceTree = "<group>"; };
+		06EADEF21AC270D7003C0B27 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		06EADEF41AC2737C003C0B27 /* FriendInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoViewController.swift; sourceTree = "<group>"; };
 		06F618EE1ABEA72300918389 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		06F618F01ABEB83E00918389 /* newFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newFriends@2x.png"; path = "Image/newFriends@2x.png"; sourceTree = "<group>"; };
 		06F618F31ABF0B5A00918389 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
@@ -1086,6 +1090,8 @@
 				0694E6DA1AB7217B008ADF21 /* ChatTableViewController.swift */,
 				065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */,
 				06F618EE1ABEA72300918389 /* ContactsViewController.swift */,
+				06EADEF21AC270D7003C0B27 /* ContactCell.swift */,
+				06EADEF41AC2737C003C0B27 /* FriendInfoViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2215,6 +2221,8 @@
 				0694E5F11AB6CE72008ADF21 /* UIButton+EMWebCache.m in Sources */,
 				0694E65B1AB6CE72008ADF21 /* EMRemarkImageView.m in Sources */,
 				0694E5EF1AB6CE72008ADF21 /* MKAnnotationView+EMWebCache.m in Sources */,
+				06EADEF31AC270D7003C0B27 /* ContactCell.swift in Sources */,
+				06EADEF51AC2737C003C0B27 /* FriendInfoViewController.swift in Sources */,
 				0694E6591AB6CE72008ADF21 /* EMSearchBar.m in Sources */,
 				0694E60F1AB6CE72008ADF21 /* NSDateFormatter+Category.m in Sources */,
 				0694E5E51AB6CE72008ADF21 /* MWTapDetectingView.m in Sources */,

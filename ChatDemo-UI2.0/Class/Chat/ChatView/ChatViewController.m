@@ -184,6 +184,12 @@
     [super viewWillAppear:animated];
     
     [self scrollViewToBottom:YES];
+    
+    NSMutableArray *array =[[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    while (array.count > 2) {
+        [array removeObjectAtIndex:array.count - 2];
+        [self.navigationController setViewControllers:array animated:YES];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

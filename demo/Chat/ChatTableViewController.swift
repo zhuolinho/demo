@@ -113,6 +113,12 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as ChatListCell
         let row = indexPath.row
+        if row % 2 == 1 {
+            cell.backgroundColor = UIColor.whiteColor()
+        }
+        else {
+            cell.backgroundColor = UIColor.clearColor()
+        }
         let conversation = conversations[row] as EMConversation
         var unreadCount = emChatListVC.unreadMessageCountByConversation(conversation)
         let username = conversation.chatter
@@ -125,7 +131,6 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         else{
             cell.unreadLabel.hidden = false
         }
-        
         // Configure the cell...
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             let requestAvatarUrl = NSURL(string: "\(API.userInfo.host)getAvatarAndNicknameFromUid.action?userstr=\(username)") // No such API !!!!!!!!!!!!!
@@ -159,16 +164,24 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
                                             cell.avatarView.image = img!
                                         })
                                     }
+                                    else {
+                                        cell.avatarView.image = UIImage(named: "DefaultAvatar")
+                                    }
+                                }
+                                else {
+                                    cell.avatarView.image = UIImage(named: "DefaultAvatar")
                                 }
                             })
-                        } else {
+                        }
+                        else {
                             cell.avatarView.image = UIImage(named: "DefaultAvatar")
                         }
-                    } else {
+                    }
+                    else {
                         cell.avatarView.image = UIImage(named: "DefaultAvatar")
                     }
-                    
-                } else {
+                }
+                else {
                     cell.avatarView.image = UIImage(named: "DefaultAvatar")
                 }
             })
