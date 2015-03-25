@@ -16,6 +16,8 @@ class ContactsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadDataSource()
+        var v = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = v
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -127,21 +129,29 @@ class ContactsViewController: UITableViewController {
         return sortedArray
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as UITableViewCell
+
         // Configure the cell...
         var imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
-        cell.addSubview(imageView)
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("NewFriendsCell", forIndexPath: indexPath) as UITableViewCell
             if indexPath.row == 0 {
                 imageView.image = UIImage(named: "newFriends")
-                cell.textLabel?.text = "新的朋友"
+                var label = view.viewWithTag(2) as UILabel
+                label.text = "新的朋友"
+                cell.addSubview(imageView) 
             }
+            return cell
         }
         else{
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as ContactCell
             var buddy = sortedDataSource.objectAtIndex(indexPath.section-1).objectAtIndex(indexPath.row) as NSDictionary
-            cell.textLabel?.text = buddy.objectForKey("nickname") as? String
-            imageView.image = UIImage(named: "DefaultAvatar")
+            var label = view.viewWithTag(1) as UILabel
+            label.text = buddy.objectForKey("nickname") as? String
+            cell.nickname = label.text!
+            cell.userName = buddy.objectForKey("username") as String
+            cell.addSubview(imageView)
             var url = buddy.objectForKey("avatarURL") as String
+            cell.avatarURL = url
             let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
             let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
             let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
@@ -152,13 +162,19 @@ class ContactsViewController: UITableViewController {
                     if img != nil {
                         dispatch_async(dispatch_get_main_queue(), {
                             imageView.image = img
+                            cell.avatar = img
                         })
                     }
+                    else{
+                        imageView.image = UIImage(named: "DefaultAvatar")
+                    }
+                }
+                else{
+                    imageView.image = UIImage(named: "DefaultAvatar")
                 }
             })
-
+            return cell
         }
-        return cell
     }
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section == 0 || sortedDataSource.objectAtIndex(section-1).count == 0){
@@ -214,14 +230,25 @@ class ContactsViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == "ContactSegue" {
+            var cell = sender as ContactCell
+            var friendInfoVC = segue.destinationViewController as FriendInfoViewController
+            friendInfoVC.nickName = cell.nickname
+            friendInfoVC.userName = cell.userName
+            friendInfoVC.avatar = cell.avatar
+            friendInfoVC.avatarURL = cell.avatarURL
+        }
+        else if segue.identifier == "NewFriendsSegue" {
+            
+        }
     }
-    */
+    
 
 }
