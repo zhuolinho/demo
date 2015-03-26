@@ -87,7 +87,7 @@ class ContactsViewController: UITableViewController {
                                     info.updateValue(nickname, forKey: "nickname")
                                     info.updateValue(url, forKey: "avatarURL")
                                     self.dataSource.addObject(info)
-                                    if(buddy.username == loginUsername!)
+                                    if(self.dataSource.count == self.contactsSource.count)
                                     {
                                         self.sortedDataSource.addObjectsFromArray(self.sortDataSource(self.dataSource))
                                         self.tableView.reloadData()
@@ -152,6 +152,7 @@ class ContactsViewController: UITableViewController {
             cell.addSubview(imageView)
             var url = buddy.objectForKey("avatarURL") as String
             cell.avatarURL = url
+            println(url)
             let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
             let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
             let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!

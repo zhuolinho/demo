@@ -120,7 +120,7 @@ class LoginViewController: UIViewController, APIProtocol {
             API.userInfo.id = res["uid"] as Int
             API.userInfo.profilePhotoUrl = res["avatar"] as String
             API.userInfo.signature = res["sign"] as String
-            
+            API.userInfo.phone = res["phone"] as String
             //            API.userInfo.languagePreference = res["lang"] as Int
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
                 (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
@@ -147,8 +147,8 @@ class LoginViewController: UIViewController, APIProtocol {
                     var alert = UIAlertView(title: "提示", message: "对不起，暂时不能登录，请稍候重试", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 }
-                }, onQueue: nil)
-
+            }, onQueue: nil)
+            APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: "setTags:", target: self)
         }
     }
 

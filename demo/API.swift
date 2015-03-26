@@ -196,7 +196,10 @@ class API: NSObject {
         let d = ["token": API.userInfo.token, "newPassword": p, "oldPassword": o]
         sendURLEncodedForm(action: "setPassword.action", data: d, image: nil)
     }
-    
+    func getUserInfo(g: String) {
+        let d = ["token": API.userInfo.token, "username": g]
+        sendURLEncodedForm(action: "getIndividual.action", data: d, image: nil)
+    }
     func getFinance() {
         get(host + "getGoldRMB.action?token=" + API.userInfo.token)
     }
