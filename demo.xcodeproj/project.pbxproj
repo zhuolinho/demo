@@ -27,6 +27,13 @@
 		06522ABE1AADB14400D67CAE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABD1AADB14400D67CAE /* CFNetwork.framework */; };
 		06522AC01AADB14B00D67CAE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */; };
 		065E2CD01ABD8AD0006207FE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */; };
+		066EF69E1AC3B05600200360 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF69D1AC3B05600200360 /* CoreFoundation.framework */; };
+		066EF6A01AC3B06700200360 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF69F1AC3B06700200360 /* CoreTelephony.framework */; };
+		066EF6A11AC3B07800200360 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D2291AB20A2900708337 /* SystemConfiguration.framework */; };
+		066EF6A31AC3B08300200360 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF6A21AC3B08300200360 /* CoreGraphics.framework */; };
+		066EF6A41AC3B08E00200360 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D2211AB209CD00708337 /* Foundation.framework */; };
+		066EF6A51AC3B09600200360 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D2231AB209DB00708337 /* UIKit.framework */; };
+		066EF6A71AC3B09D00200360 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF6A61AC3B09D00200360 /* Security.framework */; };
 		0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */; };
 		068AEBF01AAC6C0F00F5B84C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 068AEBEE1AAC6C0F00F5B84C /* Login.storyboard */; };
 		068AEBF11AAC6C0F00F5B84C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBEF1AAC6C0F00F5B84C /* WelcomeViewController.swift */; };
@@ -417,6 +424,10 @@
 		06522ABD1AADB14400D67CAE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		066EF69D1AC3B05600200360 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		066EF69F1AC3B06700200360 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		066EF6A21AC3B08300200360 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		066EF6A61AC3B09D00200360 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		0685D2211AB209CD00708337 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0685D2231AB209DB00708337 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -808,13 +819,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06522ABA1AADB12A00D67CAE /* libz.dylib in Frameworks */,
+				066EF6A71AC3B09D00200360 /* Security.framework in Frameworks */,
+				066EF6A51AC3B09600200360 /* UIKit.framework in Frameworks */,
+				066EF6A41AC3B08E00200360 /* Foundation.framework in Frameworks */,
+				066EF6A31AC3B08300200360 /* CoreGraphics.framework in Frameworks */,
+				066EF6A11AC3B07800200360 /* SystemConfiguration.framework in Frameworks */,
+				066EF6A01AC3B06700200360 /* CoreTelephony.framework in Frameworks */,
+				066EF69E1AC3B05600200360 /* CoreFoundation.framework in Frameworks */,
 				061AC2711ABD19B100C9FFE6 /* libEaseMobClientSDKLite.a in Frameworks */,
 				06522AC01AADB14B00D67CAE /* MobileCoreServices.framework in Frameworks */,
 				0694E5DB1AB6CE72008ADF21 /* libvoice_engine_arm.a in Frameworks */,
 				0694E60C1AB6CE72008ADF21 /* libMobClickLibrary.a in Frameworks */,
 				06522ABE1AADB14400D67CAE /* CFNetwork.framework in Frameworks */,
 				06522ABC1AADB13D00D67CAE /* libresolv.dylib in Frameworks */,
-				06522ABA1AADB12A00D67CAE /* libz.dylib in Frameworks */,
 				06522AB81AADB11C00D67CAE /* libiconv.dylib in Frameworks */,
 				0694E5DC1AB6CE72008ADF21 /* libvoice_engine_x86.a in Frameworks */,
 				06522AB61AADB10E00D67CAE /* libxml2.dylib in Frameworks */,
@@ -1063,6 +1081,10 @@
 		06522AC11AADB17A00D67CAE /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				066EF6A61AC3B09D00200360 /* Security.framework */,
+				066EF6A21AC3B08300200360 /* CoreGraphics.framework */,
+				066EF69F1AC3B06700200360 /* CoreTelephony.framework */,
+				066EF69D1AC3B05600200360 /* CoreFoundation.framework */,
 				0685D2311AB20A7300708337 /* CoreText.framework */,
 				0685D22F1AB20A5200708337 /* ImageIO.framework */,
 				0685D22D1AB20A4800708337 /* MapKit.framework */,
@@ -1975,6 +1997,11 @@
 					06CD92411AA877E10026C3E7 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = EMVT83BHS4;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					06CD92561AA877E10026C3E7 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2428,7 +2455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2445,7 +2472,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bf493de0-58fd-4ea2-bc4a-55beccdae090";
 				SWIFT_OBJC_BRIDGING_HEADER = "demo-Bridging-Header.h";
 			};
 			name = Debug;
@@ -2454,7 +2481,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2471,7 +2498,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "bf493de0-58fd-4ea2-bc4a-55beccdae090";
 				SWIFT_OBJC_BRIDGING_HEADER = "demo-Bridging-Header.h";
 			};
 			name = Release;

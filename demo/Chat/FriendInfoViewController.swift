@@ -8,11 +8,14 @@
 
 import UIKit
 
-class FriendInfoViewController: UITableViewController {
+class FriendInfoViewController: UITableViewController,APIProtocol {
     var userName = ""
     var nickName = ""
     var avatar = UIImage(named: "DefaultAvatar")
     var avatarURL = ""
+    var api = API()
+    var gender = ""
+    var sign = ""
 //    @IBAction func chatButtonClick(sender: UIBarButtonItem) {
 //        var chatVC = ChatViewController()
 //        chatVC.chatter = userName
@@ -26,6 +29,8 @@ class FriendInfoViewController: UITableViewController {
 //    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        api.getUserInfo(userName)
+        api.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -61,13 +66,22 @@ class FriendInfoViewController: UITableViewController {
         var signLabel = cell.viewWithTag(3) as UILabel
         nicknameLabel.text = nickName
         avatarView.image = avatar
-        
+        signLabel.text = sign
+        genderLabel.text = gender
         // Configure the cell...
 
         return cell
     }
 
-
+    func didReceiveAPIErrorOf(api: API, errno: Int) {
+        NSLog("\(errno)")
+    }
+    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
+        let res = data["result"] as NSDictionary
+        sign = res["sign"] as NSString
+        gender = res["gender"] as NSString
+        tableView.reloadData()
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

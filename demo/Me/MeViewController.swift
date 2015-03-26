@@ -10,8 +10,15 @@ import UIKit
 
 class MeViewController: UITableViewController {
 
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var signLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var avatarView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        avatarView.layer.cornerRadius = 50
+        avatarView.layer.masksToBounds = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,31 +30,25 @@ class MeViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(animated: Bool) {
-        if !API.userInfo.profilePhotoUrl.isEmpty {
-            let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
-            let request: NSURLRequest = NSURLRequest(URL: url!)
-            let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                if error? == nil {
-                    let img: UIImage? = UIImage(data: data)
-                    let avatar: UIImage? = img
-                    if avatar != nil {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            API.userInfo.profilePhoto = avatar!
-                            
-                        })
-                    }
-                    
-                }
-            })
-        }
+        avatarView.image = API.userInfo.profilePhoto
+        signLabel.text = API.userInfo.signature
+        nameLabel.text = API.userInfo.nickname
+        genderLabel.text = API.userInfo.gender
+        phoneLabel.text = API.userInfo.phone
     }
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            return self.tableView.bounds.width * 2 / 3
+        }
+        else {
+            return 150
+        }
+    }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

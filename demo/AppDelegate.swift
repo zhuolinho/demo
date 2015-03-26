@@ -38,7 +38,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
             let userInfoDic: NSDictionary = NSDictionary(dictionary: ["token": API.userInfo.token])
             NSUserDefaults.standardUserDefaults().synchronize()
         }
+        let userNotificationTypes = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
+        let remoteNotificationTypes = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound | UIRemoteNotificationType.Alert
+        
+        if (UIDevice.currentDevice().systemVersion as NSString).doubleValue >= 8.0 {
+            APService.registerForRemoteNotificationTypes(userNotificationTypes.rawValue, categories: nil)
+            var setting = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+            application.registerUserNotificationSettings(setting)
+        }
+        else {
+            APService.registerForRemoteNotificationTypes(remoteNotificationTypes.rawValue, categories: nil)
+            application.registerForRemoteNotificationTypes(remoteNotificationTypes)
+        }
+        APService.setupWithOption(launchOptions)
         return true
+    }
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        APService.registerDeviceToken(deviceToken)
+    }
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        APService.handleRemoteNotification(userInfo)
+    }
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        APService.handleRemoteNotification(userInfo)
+        completionHandler(UIBackgroundFetchResult.NewData)
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         NSLog("\(errno)")
@@ -52,6 +76,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
             API.userInfo.gender = res["gender"] as NSString
             API.userInfo.profilePhotoUrl = res["avatar"] as String
             API.userInfo.signature = res["sign"] as String
+            if !API.userInfo.profilePhotoUrl.isEmpty {
+                let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
+                let request: NSURLRequest = NSURLRequest(URL: url!)
+                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                    if error? == nil {
+                        let img: UIImage? = UIImage(data: data)
+                        let avatar: UIImage? = img
+                        if avatar != nil {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                API.userInfo.profilePhoto = avatar!
+                            })
+                        }
+                    }
+                })
+            }
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
                 (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
 //                println(error)

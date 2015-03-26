@@ -91,7 +91,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
                         }, onQueue: nil)
                 }
                 }, onQueue: nil)
-            //APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: "setTags:", target: self)
+            APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: "setTags:", target: self)
             
         }
 
