@@ -19,4 +19,6 @@
 //#import "WXApi.h"
 //#import "WeiboSDK.h"
 #import "APService.h"
-
+//#import "AppDelegating.h"
+#import "ApplyViewController.h"
+#import "AddFriendViewController.h"

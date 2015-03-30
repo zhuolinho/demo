@@ -44,6 +44,7 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         self.refreshDataSource()
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,20 +80,10 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         return conversations.count
     }
 
-//    func registerNotifications() {
-//        self.unregisterNotifications()
-//        EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
-//    }
-//    func unregisterNotifications() {
-//        EaseMob.sharedInstance().chatManager.removeDelegate(self)
-//    }
     func didUnreadMessagesCountChanged() {
         self.refreshDataSource()
         self.setupUnreadMessageCount()
         
-    }
-    func didReceiveMessage(message: EMMessage!) {
-        refreshDataSource()
     }
 
     func setupUnreadMessageCount() {
@@ -105,9 +96,11 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         let vc = self.tabBarController!.viewControllers![2] as UIViewController
         if unreadCount > 0 {
             vc.tabBarItem.badgeValue = String(unreadCount)
+            UIApplication.sharedApplication().applicationIconBadgeNumber = unreadCount
         }
         else {
             vc.tabBarItem.badgeValue = nil
+            UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         }
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

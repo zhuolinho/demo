@@ -59,13 +59,13 @@ static LocationViewController *defaultLocation = nil;
     
     self.title = @"位置信息";
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setTintColor:[UIColor whiteColor]];
-//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    [backButton setTintColor:[UIColor whiteColor]];
+////    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     _mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate = self;
     _mapView.mapType = MKMapTypeStandard;
@@ -99,8 +99,8 @@ static LocationViewController *defaultLocation = nil;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

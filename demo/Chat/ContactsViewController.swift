@@ -13,6 +13,13 @@ class ContactsViewController: UITableViewController {
     var contactsSource = NSMutableArray()
     var sectionTitles = NSMutableArray()
     var sortedDataSource = NSMutableArray()
+    
+    @IBAction func addButtonClick(sender: UIBarButtonItem) {
+        let addFriendVC = AddFriendViewController(style: UITableViewStyle.Plain)
+        self.navigationController?.pushViewController(addFriendVC, animated: true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadDataSource()
@@ -55,6 +62,7 @@ class ContactsViewController: UITableViewController {
         var buddyList = EaseMob.sharedInstance().chatManager.fetchBuddyListWithError(nil)
         var buddy:EMBuddy
         for buddy in buddyList {
+            println(buddy.username)
             if buddy.followState.value != eEMBuddyFollowState_NotFollowed.value {
                 contactsSource.addObject(buddy)
             }
@@ -152,7 +160,6 @@ class ContactsViewController: UITableViewController {
             cell.addSubview(imageView)
             var url = buddy.objectForKey("avatarURL") as String
             cell.avatarURL = url
-            println(url)
             let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
             let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
             let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
