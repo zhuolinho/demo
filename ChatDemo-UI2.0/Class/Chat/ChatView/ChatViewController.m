@@ -488,6 +488,7 @@
                 });
                 
             } onQueue:nil];
+            [[EaseMob sharedInstance].chatManager sendHasReadResponseForMessage:model.message];
         }
     }
 }

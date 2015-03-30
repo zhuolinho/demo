@@ -16,11 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         EaseMob.sharedInstance().registerSDKWithAppKey("action#actiontech", apnsCertName: "actionShen")
-        if launchOptions == nil {
-            EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: NSDictionary(objects: [], forKeys: []))
-        } else {
-            EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        }
         EaseMob.sharedInstance().deviceManager.addDelegate(self, onQueue: nil)
         EaseMob.sharedInstance().chatManager.removeDelegate(self)
         EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
@@ -43,26 +38,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         
         if (UIDevice.currentDevice().systemVersion as NSString).doubleValue >= 8.0 {
             APService.registerForRemoteNotificationTypes(userNotificationTypes.rawValue, categories: nil)
-            var setting = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-            application.registerUserNotificationSettings(setting)
         }
         else {
             APService.registerForRemoteNotificationTypes(remoteNotificationTypes.rawValue, categories: nil)
-            application.registerForRemoteNotificationTypes(remoteNotificationTypes)
         }
         APService.setupWithOption(launchOptions)
+//        if application.respondsToSelector("registerForRemoteNotifications:"){
+//            application.registerForRemoteNotifications()
+//            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+//            application.registerUserNotificationSettings(settings)
+//        }
+//        else {
+//            UIApplication.sharedApplication().registerForRemoteNotificationTypes(remoteNotificationTypes)
+//        }
+//        
+//        if launchOptions == nil {
+//            EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: NSDictionary(objects: [], forKeys: []))
+//        } else {
+//            EaseMob.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+//        }
+
+//        EaseMob.sharedInstance().chatManager.enableDeliveryNotification!()
         return true
     }
+    func didReceiveMessage(message: EMMessage!) {
+        var appState = UIApplication.sharedApplication().applicationState
+        if appState == UIApplicationState.Active {
+            EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
+        }
+        else {
+            EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
+            EaseMob.sharedInstance().deviceManager.asyncPlayNewMessageSound()
+            showNotificationWithMessage(message)
+        }
+    }
+    func showNotificationWithMessage(message: EMMessage) {
+        var messageBody = message.messageBodies[0] as IEMMessageBody
+        var messageStr = "新消息"
+        var notification = UILocalNotification()
+        notification.fireDate = NSDate()
+        notification.alertBody = messageStr//[NSString stringWithFormat:@"%@:%@", title, messageStr];
+        notification.alertAction = "打开"
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+        notification.soundName = UILocalNotificationDefaultSoundName
+        //发送通知
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.sharedApplication().applicationIconBadgeNumber += 1
+        
+    }
+    func didReceiveBuddyRequest(username: String!, message: String!) {
+        if username == nil {
+            return
+        }
+        var messag = username + " 添加你喂好友"
+        var dic = NSMutableDictionary(dictionary: ["title": username, "username": username, "applyMessage": message, "applyStyle": "0"])
+        ApplyViewController.shareController().loadDataSourceFromLocalDB()
+        ApplyViewController.shareController().addNewApply(dic)
+    }
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+//        EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
         APService.registerDeviceToken(deviceToken)
     }
+//    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+//        EaseMob.sharedInstance().application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+//    }
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         APService.handleRemoteNotification(userInfo)
+//        EaseMob.sharedInstance().deviceManager.asyncPlayNewMessageSound()
+//        EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
     }
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         APService.handleRemoteNotification(userInfo)
         completionHandler(UIBackgroundFetchResult.NewData)
+//        EaseMob.sharedInstance().deviceManager.asyncPlayNewMessageSound()
+//        EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         NSLog("\(errno)")
@@ -94,7 +143,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
             }
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
                 (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-//                println(error)
                 if (error == nil) {
                     API.userInfo.tokenValid = true
                 }
@@ -102,7 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
                     API.userInfo.tokenValid = false
                     EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.phone, password: "123456", completion: {
                         (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-//                        println(error)
                         if (error == nil) {
                             API.userInfo.tokenValid = true
                         }
@@ -113,7 +160,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
                 }
                 }, onQueue: nil)
             APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: nil, target: self)
-//            println(API.userInfo.username)
         }
     }
     func applicationWillResignActive(application: UIApplication) {
