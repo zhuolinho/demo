@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  Action
@@ -135,6 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
                         let avatar: UIImage? = img
                         if avatar != nil {
                             dispatch_async(dispatch_get_main_queue(), {
+                                PicDic.picDic[API.userInfo.profilePhotoUrl] = avatar
                                 API.userInfo.profilePhoto = avatar!
                             })
                         }
