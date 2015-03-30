@@ -19,10 +19,12 @@ class ContactsViewController: UITableViewController {
         self.navigationController?.pushViewController(addFriendVC, animated: true)
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadDataSource()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadDataSource()
         var v = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = v
         // Uncomment the following line to preserve selection between presentations
@@ -55,6 +57,40 @@ class ContactsViewController: UITableViewController {
             return sortedDataSource.objectAtIndex(section-1).count
         }
     }
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        }
+        return true
+    }
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            var loginInfo = EaseMob.sharedInstance().chatManager.loginInfo as NSDictionary
+            var loginUsername = loginInfo.objectForKey(kSDKUsername) as NSString
+            var buddy = sortedDataSource.objectAtIndex(indexPath.section - 1).objectAtIndex(indexPath.row) as NSDictionary
+            var username = buddy["username"] as NSString
+            if username == loginUsername {
+                var alert = UIAlertView(title: "提示", message: "不能删除自己", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                return
+            }
+            tableView.beginUpdates()
+            sortedDataSource.objectAtIndex(indexPath.section - 1).removeObjectAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            tableView.endUpdates()
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                var error = AutoreleasingUnsafeMutablePointer<EMError?>()
+                EaseMob.sharedInstance().chatManager.removeBuddy(username, removeFromRemote: true, error: error)
+                println(error)
+                if error == nil {
+                    EaseMob.sharedInstance().chatManager.removeConversationByChatter?(username, deleteMessages: true)
+                }
+            })
+        }
+    }
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
+    }
     func reloadDataSource(){
         dataSource.removeAllObjects()
         contactsSource.removeAllObjects()
@@ -62,7 +98,6 @@ class ContactsViewController: UITableViewController {
         var buddyList = EaseMob.sharedInstance().chatManager.fetchBuddyListWithError(nil)
         var buddy:EMBuddy
         for buddy in buddyList {
-            println(buddy.username)
             if buddy.followState.value != eEMBuddyFollowState_NotFollowed.value {
                 contactsSource.addObject(buddy)
             }
@@ -160,27 +195,34 @@ class ContactsViewController: UITableViewController {
             cell.addSubview(imageView)
             var url = buddy.objectForKey("avatarURL") as String
             cell.avatarURL = url
-            let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-            let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-            let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                if error? == nil {
-                    var rawImage: UIImage? = UIImage(data: data)
-                    let img: UIImage? = rawImage
-                    if img != nil {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            imageView.image = img
-                            cell.avatar = img
-                        })
+            if PicDic.picDic[url] == nil {
+                let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                    if error? == nil {
+                        var rawImage: UIImage? = UIImage(data: data)
+                        let img: UIImage? = rawImage
+                        if img != nil {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                imageView.image = img
+                                cell.avatar = img
+                                PicDic.picDic[url] = img
+                            })
+                        }
+                        else{
+                            imageView.image = UIImage(named: "DefaultAvatar")
+                        }
                     }
                     else{
                         imageView.image = UIImage(named: "DefaultAvatar")
                     }
-                }
-                else{
-                    imageView.image = UIImage(named: "DefaultAvatar")
-                }
-            })
+                })
+            }
+            else {
+                imageView.image = PicDic.picDic[url]
+                cell.avatar = PicDic.picDic[url]
+            }
             return cell
         }
     }
@@ -194,7 +236,7 @@ class ContactsViewController: UITableViewController {
     }
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]{
         var existTitles = NSMutableArray()
-        existTitles.addObject("")
+        existTitles.addObject("?")
         for(var i = 0; i < sectionTitles.count; i++){
             if(sortedDataSource.objectAtIndex(i).count > 0){
                 existTitles.addObject(sectionTitles.objectAtIndex(i))
@@ -203,25 +245,6 @@ class ContactsViewController: UITableViewController {
         return existTitles
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
 
     /*
     // Override to support rearranging the table view.
@@ -253,10 +276,5 @@ class ContactsViewController: UITableViewController {
             friendInfoVC.avatar = cell.avatar
             friendInfoVC.avatarURL = cell.avatarURL
         }
-        else if segue.identifier == "NewFriendsSegue" {
-            
-        }
     }
-    
-
 }

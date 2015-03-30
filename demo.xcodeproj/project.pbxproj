@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0615378C1AC946AA0046EEBE /* PicDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615378B1AC946AA0046EEBE /* PicDic.swift */; };
 		061AC2711ABD19B100C9FFE6 /* libEaseMobClientSDKLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 061AC26E1ABD19B100C9FFE6 /* libEaseMobClientSDKLite.a */; };
 		061AC2721ABD19B100C9FFE6 /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061AC2701ABD19B100C9FFE6 /* EaseMob.bundle */; };
 		06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */; };
@@ -28,6 +29,7 @@
 		06522AC01AADB14B00D67CAE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */; };
 		065E2CD01ABD8AD0006207FE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */; };
 		066700691AC9392000714D54 /* me11_35.png in Resources */ = {isa = PBXBuildFile; fileRef = 066700681AC9392000714D54 /* me11_35.png */; };
+		0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667006B1AC93EF000714D54 /* NewsViewController.swift */; };
 		066EF69E1AC3B05600200360 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF69D1AC3B05600200360 /* CoreFoundation.framework */; };
 		066EF6A01AC3B06700200360 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF69F1AC3B06700200360 /* CoreTelephony.framework */; };
 		066EF6A11AC3B07800200360 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D2291AB20A2900708337 /* SystemConfiguration.framework */; };
@@ -299,8 +301,9 @@
 		0694E6D81AB6CE72008ADF21 /* tabbarSelectBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0694E5D71AB6CE72008ADF21 /* tabbarSelectBg.png */; };
 		0694E6D91AB6CE72008ADF21 /* tabbarSelectBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0694E5D81AB6CE72008ADF21 /* tabbarSelectBg@2x.png */; };
 		0694E6DB1AB7217B008ADF21 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0694E6DA1AB7217B008ADF21 /* ChatTableViewController.swift */; };
-		069F73CE1AB1C38300D73AA8 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F73CD1AB1C38300D73AA8 /* NewsViewController.swift */; };
 		069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */; };
+		06A108CE1AC9837000493A2A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CD1AC9837000493A2A /* TitleCell.swift */; };
+		06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CF1AC9AF3600493A2A /* PickPicCell.swift */; };
 		06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC41AC823A600F52391 /* InvitationManager.m */; };
 		06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC81AC823AE00F52391 /* AddFriendCell.m */; };
 		06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCA1AC823AE00F52391 /* AddFriendViewController.m */; };
@@ -330,6 +333,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0615378B1AC946AA0046EEBE /* PicDic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicDic.swift; sourceTree = "<group>"; };
 		061AC2141ABD19B100C9FFE6 /* IChatManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IChatManagerDelegate.h; sourceTree = "<group>"; };
 		061AC2161ABD19B100C9FFE6 /* EMChatManagerBuddyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatManagerBuddyDelegate.h; sourceTree = "<group>"; };
 		061AC2171ABD19B100C9FFE6 /* EMChatManagerChatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatManagerChatDelegate.h; sourceTree = "<group>"; };
@@ -432,6 +436,7 @@
 		06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		066700681AC9392000714D54 /* me11_35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = me11_35.png; path = Image/me11_35.png; sourceTree = "<group>"; };
+		0667006B1AC93EF000714D54 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		066EF69D1AC3B05600200360 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		066EF69F1AC3B06700200360 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		066EF6A21AC3B08300200360 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -803,8 +808,9 @@
 		0694E5D71AB6CE72008ADF21 /* tabbarSelectBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbarSelectBg.png; sourceTree = "<group>"; };
 		0694E5D81AB6CE72008ADF21 /* tabbarSelectBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarSelectBg@2x.png"; sourceTree = "<group>"; };
 		0694E6DA1AB7217B008ADF21 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
-		069F73CD1AB1C38300D73AA8 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
+		06A108CD1AC9837000493A2A /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		06A108CF1AC9AF3600493A2A /* PickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickPicCell.swift; sourceTree = "<group>"; };
 		06BA9BC31AC823A600F52391 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		06BA9BC41AC823A600F52391 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		06BA9BC71AC823AE00F52391 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
@@ -1134,6 +1140,16 @@
 				06EADEF21AC270D7003C0B27 /* ContactCell.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		0667006A1AC93EF000714D54 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				0667006B1AC93EF000714D54 /* NewsViewController.swift */,
+				06A108CD1AC9837000493A2A /* TitleCell.swift */,
+				06A108CF1AC9AF3600493A2A /* PickPicCell.swift */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 		068AEBED1AAC6C0F00F5B84C /* Login */ = {
@@ -1940,6 +1956,7 @@
 		06CD92441AA877E10026C3E7 /* demo */ = {
 			isa = PBXGroup;
 			children = (
+				0667006A1AC93EF000714D54 /* News */,
 				06CF5C791AC70022003D46B8 /* Main */,
 				0662E0B11AB6CC1B002AAF4F /* Chat */,
 				069F73D31AB1F53F00D73AA8 /* Me */,
@@ -1947,7 +1964,6 @@
 				06CD92471AA877E10026C3E7 /* AppDelegate.swift */,
 				06216D751AAC8D5200683C40 /* API.swift */,
 				06CD924B1AA877E10026C3E7 /* Main.storyboard */,
-				069F73CD1AB1C38300D73AA8 /* NewsViewController.swift */,
 				06CD924E1AA877E10026C3E7 /* Images.xcassets */,
 				06CD92501AA877E10026C3E7 /* LaunchScreen.xib */,
 				06CD92451AA877E10026C3E7 /* Supporting Files */,
@@ -1988,6 +2004,7 @@
 			children = (
 				06CF5C7A1AC70022003D46B8 /* FriendInfoViewController.swift */,
 				06CF5C7E1AC700B2003D46B8 /* MainTabBarController.swift */,
+				0615378B1AC946AA0046EEBE /* PicDic.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2334,6 +2351,7 @@
 				0694E5D91AB6CE72008ADF21 /* Emoji.m in Sources */,
 				0694E5DF1AB6CE72008ADF21 /* MWCaptionView.m in Sources */,
 				0694E6141AB6CE72008ADF21 /* ChatListViewController.m in Sources */,
+				06A108CE1AC9837000493A2A /* TitleCell.swift in Sources */,
 				0694E64B1AB6CE72008ADF21 /* EMChatBaseBubbleView.m in Sources */,
 				0694E5E21AB6CE72008ADF21 /* MWPhoto.m in Sources */,
 				0694E6111AB6CE72008ADF21 /* UIViewController+HUD.m in Sources */,
@@ -2364,8 +2382,10 @@
 				06BA9BD21AC823AE00F52391 /* ApplyViewController.m in Sources */,
 				068AEBF71AAC7C9600F5B84C /* ResignAccountViewController.swift in Sources */,
 				0694E6201AB6CE72008ADF21 /* DXRecordView.m in Sources */,
+				06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */,
 				0694E6DB1AB7217B008ADF21 /* ChatTableViewController.swift in Sources */,
 				0694E5F51AB6CE72008ADF21 /* UIImageView+EMHighlightedWebCache.m in Sources */,
+				0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */,
 				068AEBF11AAC6C0F00F5B84C /* WelcomeViewController.swift in Sources */,
 				0694E65E1AB6CE72008ADF21 /* EMNavigationController.m in Sources */,
 				06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */,
@@ -2383,10 +2403,10 @@
 				0694E65A1AB6CE72008ADF21 /* EMTextView.m in Sources */,
 				0694E6171AB6CE72008ADF21 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				0694E5E11AB6CE72008ADF21 /* MWGridViewController.m in Sources */,
-				069F73CE1AB1C38300D73AA8 /* NewsViewController.swift in Sources */,
 				0694E5E01AB6CE72008ADF21 /* MWGridCell.m in Sources */,
 				06BA9BD11AC823AE00F52391 /* ApplyFriendCell.m in Sources */,
 				0694E6081AB6CE72008ADF21 /* SRRefreshView.m in Sources */,
+				0615378C1AC946AA0046EEBE /* PicDic.swift in Sources */,
 				0694E64E1AB6CE72008ADF21 /* EMChatTextBubbleView.m in Sources */,
 				0694E64A1AB6CE72008ADF21 /* EMChatAudioBubbleView.m in Sources */,
 				06CF5C7F1AC700B2003D46B8 /* MainTabBarController.swift in Sources */,

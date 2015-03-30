@@ -240,6 +240,9 @@ class API: NSObject {
     func getLearningHistory(skip: Int) {
         get(host + "myAddMissions.action?token=" + API.userInfo.token + "&start=\(skip)&limit=10")
     }
+    func getMissionsAndEvidences(skip: Int) {
+        get(host + "getMissionsAndEvidences.action?token=" + API.userInfo.token + "&start=\(skip)&limit=10")
+    }
     func getSomeoneLeaningHistory(id: Int) {
         get(host + "getAddMissions.action?token=" + API.userInfo.token + "&uid=\(id)")
     }

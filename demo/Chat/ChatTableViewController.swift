@@ -141,30 +141,35 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
                             let url = urlWithComma.componentsSeparatedByString(",")[0]
                             let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
                             dispatch_async(dispatch_get_main_queue(), {
-                                
                                 cell.name?.text = nickname
                                 cell.imageURL = url
                             })
-                            let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                            let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                            let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                                if error? == nil {
-                                    var rawImage: UIImage? = UIImage(data: data)
-                                    let img: UIImage? = rawImage
-                                    if img != nil {
-                                        dispatch_async(dispatch_get_main_queue(), {
-                                            cell.avatarView.image = img!
-                                        })
+                            if PicDic.picDic[url] == nil {
+                                let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                                let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                                    if error? == nil {
+                                        var rawImage: UIImage? = UIImage(data: data)
+                                        let img: UIImage? = rawImage
+                                        if img != nil {
+                                            dispatch_async(dispatch_get_main_queue(), {
+                                                cell.avatarView.image = img!
+                                                PicDic.picDic[url] = img
+                                            })
+                                        }
+                                        else {
+                                            cell.avatarView.image = UIImage(named: "DefaultAvatar")
+                                        }
                                     }
                                     else {
                                         cell.avatarView.image = UIImage(named: "DefaultAvatar")
                                     }
-                                }
-                                else {
-                                    cell.avatarView.image = UIImage(named: "DefaultAvatar")
-                                }
-                            })
+                                })
+                            }
+                            else {
+                                cell.avatarView.image = PicDic.picDic[url]
+                            }
                         }
                         else {
                             cell.avatarView.image = UIImage(named: "DefaultAvatar")
