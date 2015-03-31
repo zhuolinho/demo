@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IQc-QY-J6Y" customClass="TitleCell" customModule="demo" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleCell" id="IQc-QY-J6Y" customClass="TitleCell" customModule="demo" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IQc-QY-J6Y" id="9iO-1V-LZt">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -43,11 +43,25 @@
                                     <outlet property="timeLabel" destination="4jy-lM-sWr" id="hLm-N2-WVd"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="65V-Vf-phW">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainImageCell" id="65V-Vf-phW" customClass="MainImageCell" customModule="demo" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="65V-Vf-phW" id="Gpn-vo-aeo">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2TT-pd-dFe">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2TT-pd-dFe" firstAttribute="leading" secondItem="Gpn-vo-aeo" secondAttribute="leadingMargin" constant="-8" id="Bmg-gI-hik"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="2TT-pd-dFe" secondAttribute="trailing" constant="-8" id="CCl-fl-NlV"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2TT-pd-dFe" secondAttribute="bottom" constant="-8" id="abG-bn-b3M"/>
+                                        <constraint firstItem="2TT-pd-dFe" firstAttribute="top" secondItem="Gpn-vo-aeo" secondAttribute="topMargin" constant="-8" id="wCL-DC-557"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mainImageView" destination="2TT-pd-dFe" id="xzO-Ix-Fe7"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="HoM-Ee-B0g" customClass="PickPicCell" customModule="demo" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
