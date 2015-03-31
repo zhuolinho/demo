@@ -63,32 +63,49 @@
                                     <outlet property="mainImageView" destination="2TT-pd-dFe" id="xzO-Ix-Fe7"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="HoM-Ee-B0g" customClass="PickPicCell" customModule="demo" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickPicCell" id="HoM-Ee-B0g" customClass="PickPicCell" customModule="demo" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HoM-Ee-B0g" id="JZh-iw-R9g">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MI3-zq-FT9">
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MI3-zq-FT9">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ayx-V0-xSy">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="1" minimumInteritemSpacing="10" id="ayx-V0-xSy">
                                                 <size key="itemSize" width="50" height="50"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xsM-lv-0Nc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PickCollectionCell" id="C9p-5Q-3S0">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LL8-cR-bfN">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            </imageView>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </view>
+                                                    <constraints>
+                                                        <constraint firstItem="LL8-cR-bfN" firstAttribute="top" secondItem="C9p-5Q-3S0" secondAttribute="topMargin" constant="-8" id="3NV-E3-vRC"/>
+                                                        <constraint firstItem="LL8-cR-bfN" firstAttribute="leading" secondItem="C9p-5Q-3S0" secondAttribute="leadingMargin" constant="-8" id="5Qr-pv-jDd"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="LL8-cR-bfN" secondAttribute="bottom" constant="-8" id="f5s-0M-Igh"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="LL8-cR-bfN" secondAttribute="trailing" constant="-8" id="rbz-4U-wBT"/>
+                                                    </constraints>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MI3-zq-FT9" secondAttribute="trailing" constant="-8" id="4ZL-zc-d92"/>
+                                        <constraint firstItem="MI3-zq-FT9" firstAttribute="top" secondItem="JZh-iw-R9g" secondAttribute="topMargin" constant="-8" id="87h-Fq-s6j"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="MI3-zq-FT9" secondAttribute="bottom" constant="-8" id="QS2-X8-nRo"/>
+                                        <constraint firstItem="MI3-zq-FT9" firstAttribute="leading" secondItem="JZh-iw-R9g" secondAttribute="leadingMargin" constant="-8" id="ggQ-Sf-jtZ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="pickCollectionView" destination="MI3-zq-FT9" id="4eK-yJ-grl"/>

@@ -106,12 +106,6 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as ChatListCell
         let row = indexPath.row
-        if row % 2 == 1 {
-            cell.backgroundColor = UIColor.whiteColor()
-        }
-        else {
-            cell.backgroundColor = UIColor.clearColor()
-        }
         let conversation = conversations[row] as EMConversation
         var unreadCount = emChatListVC.unreadMessageCountByConversation(conversation)
         let username = conversation.chatter
@@ -145,6 +139,7 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
                                 cell.imageURL = url
                             })
                             if PicDic.picDic[url] == nil {
+                                cell.avatarView.image = UIImage()
                                 let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
                                 let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
                                 let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
