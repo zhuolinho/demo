@@ -121,12 +121,26 @@ class LoginViewController: UIViewController, APIProtocol {
             API.userInfo.profilePhotoUrl = res["avatar"] as String
             API.userInfo.signature = res["sign"] as String
             API.userInfo.phone = res["phone"] as String
-            //            API.userInfo.languagePreference = res["lang"] as Int
+            if !API.userInfo.profilePhotoUrl.isEmpty {
+                let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
+                let request: NSURLRequest = NSURLRequest(URL: url!)
+                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                    if error? == nil {
+                        let img: UIImage? = UIImage(data: data)
+                        let avatar: UIImage? = img
+                        if avatar != nil {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                PicDic.picDic[API.userInfo.profilePhotoUrl] = avatar
+                                API.userInfo.profilePhoto = avatar!
+                            })
+                        }
+                    }
+                })
+            }
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
                 (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-//                println(loginInfo)
                 if (error == nil) {
-//                    println("no error")
                     API.userInfo.tokenValid = true
                     self.cancelLock.lock()
                     if self.ifcanceled {
@@ -141,7 +155,6 @@ class LoginViewController: UIViewController, APIProtocol {
                     self.loginButton.enabled = true
                 }
                 else {
-//                    println(error.description)
                     //EaseMob.sharedInstance().chatManager.registerNewAccount(API.userInfo.username, password: "123456", error: nil)
                     self.iflogining = false
                     var alert = UIAlertView(title: "提示", message: "对不起，暂时不能登录，请稍候重试", delegate: nil, cancelButtonTitle: "OK")
