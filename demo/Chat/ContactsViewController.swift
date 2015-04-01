@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ContactsViewController: UITableViewController {
+class ContactsViewController: UITableViewController, IChatManagerDelegate {
     var dataSource = NSMutableArray()
     var contactsSource = NSMutableArray()
     var sectionTitles = NSMutableArray()
     var sortedDataSource = NSMutableArray()
-    
+    var buddyList = NSArray()
     @IBAction func addButtonClick(sender: UIBarButtonItem) {
         let addFriendVC = AddFriendViewController(style: UITableViewStyle.Plain)
         self.navigationController?.pushViewController(addFriendVC, animated: true)
@@ -21,10 +21,11 @@ class ContactsViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        reloadDataSource()
+        EaseMob.sharedInstance().chatManager.asyncFetchBuddyList()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
         var v = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = v
         // Uncomment the following line to preserve selection between presentations
@@ -81,7 +82,6 @@ class ContactsViewController: UITableViewController {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 var error = AutoreleasingUnsafeMutablePointer<EMError?>()
                 EaseMob.sharedInstance().chatManager.removeBuddy(username, removeFromRemote: true, error: error)
-                println(error)
                 if error == nil {
                     EaseMob.sharedInstance().chatManager.removeConversationByChatter?(username, deleteMessages: true)
                 }
@@ -91,11 +91,17 @@ class ContactsViewController: UITableViewController {
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         return UITableViewCellEditingStyle.Delete
     }
+    func didFetchedBuddyList(buddyList: [AnyObject]!, error: EMError!) {
+        if error == nil {
+            self.buddyList = buddyList
+            reloadDataSource()
+        }
+    }
     func reloadDataSource(){
         dataSource.removeAllObjects()
         contactsSource.removeAllObjects()
         sortedDataSource.removeAllObjects()
-        var buddyList = EaseMob.sharedInstance().chatManager.fetchBuddyListWithError(nil)
+
         var buddy:EMBuddy
         for buddy in buddyList {
             if buddy.followState.value != eEMBuddyFollowState_NotFollowed.value {
