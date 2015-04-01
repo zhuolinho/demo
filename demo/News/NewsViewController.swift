@@ -12,6 +12,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     
     var requesMore = API()
     var news = [NSDictionary]()
+    var skip = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         requesMore.delegate = self
@@ -36,132 +37,134 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return news.count
+        if skip == -1 {
+            return news.count
+        }
+        else {
+            return news.count + 1
+        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        let stuct = news[section]["struct"] as NSDictionary
-        let pics = stuct["pics"] as [NSDictionary]
-        if pics.count > 1 {
+        if section == news.count {
+            return 1
+        }
+        else {
             return 3
         }
-        else {
-            return 2
-        }
     }
-//    
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
-    }
+//
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let stuct = news[indexPath.section]["struct"] as NSDictionary
-        let pics = stuct["pics"] as [NSDictionary]
-        if indexPath.row == 0 {
-            return 44
-        }
-        else if indexPath.row == 1 {
-            return self.view.bounds.width
-        }
-        else if indexPath.row == 2 {
-            if pics.count > 1 {
-                return self.view.bounds.width / 4
-            }
-            else {
+        if indexPath.section < news.count
+        {
+            let stuct = news[indexPath.section]["struct"] as NSDictionary
+            let pics = stuct["pics"] as [NSDictionary]
+            if indexPath.row == 0 {
                 return 44
             }
+            else if indexPath.row == 1 {
+                return self.view.bounds.width
+            }
+            else if indexPath.row == 2 {
+                if pics.count > 1 {
+                    return self.view.bounds.width / 4
+                }
+            }
         }
-        else {
-            return 0
-        }
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let stuct = news[indexPath.section]["struct"] as NSDictionary
-        let pics = stuct["pics"] as [NSDictionary]
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as TitleCell
-            cell.timeLabel.text = stuct["createTime"] as? String
-            cell.nameLabel.text = stuct["nickname"] as? String
-            var url = stuct["avatar"] as String
-            if PicDic.picDic[url] == nil {
-                cell.avatar.image = UIImage()
-                let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error? == nil {
-                        var rawImage: UIImage? = UIImage(data: data)
-                        let img: UIImage? = rawImage
-                        if img != nil {
-                            dispatch_async(dispatch_get_main_queue(), {
-                                cell.avatar.image = img
-                                PicDic.picDic[url] = img
-                            })
+        if indexPath.section < news.count {
+            let stuct = news[indexPath.section]["struct"] as NSDictionary
+            let pics = stuct["pics"] as [NSDictionary]
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as TitleCell
+                cell.timeLabel.text = stuct["createTime"] as? String
+                cell.nameLabel.text = stuct["nickname"] as? String
+                var url = stuct["avatar"] as String
+                if PicDic.picDic[url] == nil {
+                    cell.avatar.image = UIImage()
+                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                        if error? == nil {
+                            var rawImage: UIImage? = UIImage(data: data)
+                            let img: UIImage? = rawImage
+                            if img != nil {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    cell.avatar.image = img
+                                    PicDic.picDic[url] = img
+                                })
+                            }
+                            else{
+                                cell.avatar.image = UIImage(named: "DefaultAvatar")
+                            }
                         }
                         else{
                             cell.avatar.image = UIImage(named: "DefaultAvatar")
                         }
-                    }
-                    else{
-                        cell.avatar.image = UIImage(named: "DefaultAvatar")
-                    }
-                })
+                    })
+                }
+                else {
+                    cell.avatar.image = PicDic.picDic[url]
+                }
+                return cell
             }
-            else {
-                cell.avatar.image = PicDic.picDic[url]
-            }
-            return cell
-        }
-        else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as MainImageCell
-            let url = pics[0]["url"] as String
-            if PicDic.picDic[url] == nil {
-                cell.mainImageView.image = UIImage()
-                let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error? == nil {
-                        var rawImage: UIImage? = UIImage(data: data)
-                        let img: UIImage? = rawImage
-                        if img != nil {
-                            dispatch_async(dispatch_get_main_queue(), {
-                                cell.mainImageView.image = img!
-                                PicDic.picDic[url] = img
-                            })
+            else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as MainImageCell
+                let url = pics[0]["url"] as String
+                if PicDic.picDic[url] == nil {
+                    cell.mainImageView.image = UIImage()
+                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                        if error? == nil {
+                            var rawImage: UIImage? = UIImage(data: data)
+                            let img: UIImage? = rawImage
+                            if img != nil {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    cell.mainImageView.image = img!
+                                    PicDic.picDic[url] = img
+                                })
+                            }
                         }
-                    }
-                })
+                    })
+                }
+                else {
+                    cell.mainImageView.image = PicDic.picDic[url]!
+                }
+                return cell
             }
-            else {
-                cell.mainImageView.image = PicDic.picDic[url]!
+            else if indexPath.row == 2 && pics.count > 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("PickPicCell", forIndexPath: indexPath) as PickPicCell
+                cell.pickCollectionView.tag = indexPath.section
+                cell.pickCollectionView.delegate = self
+                cell.dataSource.removeAll(keepCapacity: true)
+                cell.dataSource += pics
+                cell.pickCollectionView.reloadData()
+                return cell
             }
-            return cell
+
         }
-        else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("PickPicCell", forIndexPath: indexPath) as PickPicCell
-            cell.pickCollectionView.tag = indexPath.section
-            cell.pickCollectionView.delegate = self
-            cell.dataSource.removeAll(keepCapacity: true)
-            cell.dataSource += pics
-            cell.pickCollectionView.reloadData()
-            return cell
-        }
-        else {
-            return UITableViewCell()
-        }
+        return UITableViewCell()
         
     }
-    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == news.count && skip != -1 {
+            requesMore.getMissionsAndEvidences(indexPath.section)
+        }
+    }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width / 4, height: view.bounds.width / 4)
+        return CGSize(width: view.bounds.width / 4 - 1, height: view.bounds.width / 4 - 1)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -175,10 +178,12 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     func refreshing(){
         news.removeAll(keepCapacity: true)
         requesMore.getMissionsAndEvidences(0)
+        skip = 0
     }
     
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        NSLog("\(errno)")
+        refreshControl?.endRefreshing()
+        skip = -1
     }
     
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
@@ -191,6 +196,12 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                      items.append(it as NSDictionary)
                 }
                 news += items
+                if items.count == 0 {
+                    skip = -1
+                }
+                else {
+                    skip += items.count
+                }
                 refreshControl?.endRefreshing()
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableView.reloadData()
