@@ -61,6 +61,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mainImageView" destination="2TT-pd-dFe" id="xzO-Ix-Fe7"/>
+                                    <segue destination="ZoJ-6e-T8D" kind="modal" id="CS2-35-jjq"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickPicCell" id="HoM-Ee-B0g" customClass="PickPicCell" customModule="demo" customModuleProvider="target">
@@ -232,6 +233,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3P-bb-oVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1314" y="266"/>
+        </scene>
+        <!--Photos View Controller-->
+        <scene sceneID="yIr-4l-vGN">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="ZoJ-6e-T8D" customClass="PhotosViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HaN-lY-xkn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1739" y="266"/>
         </scene>
         <!--我的任务-->
         <scene sceneID="2k3-Pl-btr">

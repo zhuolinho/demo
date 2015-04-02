@@ -305,6 +305,7 @@
 		069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */; };
 		06A108CE1AC9837000493A2A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CD1AC9837000493A2A /* TitleCell.swift */; };
 		06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CF1AC9AF3600493A2A /* PickPicCell.swift */; };
+		06B77D551ACD9A7E00B0CC5D /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B77D541ACD9A7E00B0CC5D /* PhotosViewController.swift */; };
 		06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC41AC823A600F52391 /* InvitationManager.m */; };
 		06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC81AC823AE00F52391 /* AddFriendCell.m */; };
 		06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCA1AC823AE00F52391 /* AddFriendViewController.m */; };
@@ -813,6 +814,7 @@
 		069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
 		06A108CD1AC9837000493A2A /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		06A108CF1AC9AF3600493A2A /* PickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickPicCell.swift; sourceTree = "<group>"; };
+		06B77D541ACD9A7E00B0CC5D /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		06BA9BC31AC823A600F52391 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		06BA9BC41AC823A600F52391 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		06BA9BC71AC823AE00F52391 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
@@ -1151,6 +1153,7 @@
 				06A108CD1AC9837000493A2A /* TitleCell.swift */,
 				06A108CF1AC9AF3600493A2A /* PickPicCell.swift */,
 				069E56D91ACA83B5008B3340 /* MainImageCell.swift */,
+				06B77D541ACD9A7E00B0CC5D /* PhotosViewController.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -2345,6 +2348,7 @@
 				06F618F51ABF0B5A00918389 /* ChineseToPinyin.m in Sources */,
 				063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */,
 				0694E5F21AB6CE72008ADF21 /* UIImage+EMGIF.m in Sources */,
+				06B77D551ACD9A7E00B0CC5D /* PhotosViewController.swift in Sources */,
 				0694E5F71AB6CE72008ADF21 /* UIView+EMWebCacheOperation.m in Sources */,
 				0694E65D1AB6CE72008ADF21 /* EMChooseViewController.m in Sources */,
 				0694E6031AB6CE72008ADF21 /* PSTGridLayoutRow.m in Sources */,

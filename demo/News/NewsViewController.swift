@@ -16,14 +16,17 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     var skip = -1
     var buffer = [Int]()
     var isRequesing = false
-    
+    var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     override func viewDidLoad() {
         super.viewDidLoad()
         requesMore.delegate = self
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: "refreshing", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
         refreshing()
-        titleButton.addTarget(self, action: "titleButtonDoubleClick", forControlEvents: UIControlEvents.TouchDownRepeat)
+        titleButton.addTarget(self, action: "refreshing", forControlEvents: UIControlEvents.TouchDownRepeat)
+        activity.hidesWhenStopped = true
+        self.tableView.tableFooterView = activity
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,12 +59,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        if section == news.count {
-            return 1
-        }
-        else {
-            return 3
-        }
+        return 3
     }
 //
     
@@ -93,38 +91,24 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as TitleCell
                 cell.timeLabel.text = stuct["createTime"] as? String
                 cell.nameLabel.text = stuct["nickname"] as? String
-                var url = stuct["avatar"] as String
-                if PicDic.picDic[url] == nil {
-                    cell.avatar.image = UIImage()
-                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                        if error? == nil {
-                            var rawImage: UIImage? = UIImage(data: data)
-                            let img: UIImage? = rawImage
-                            if img != nil {
-                                dispatch_async(dispatch_get_main_queue(), {
-                                    cell.avatar.image = img
-                                    PicDic.picDic[url] = img
-                                })
-                            }
-                            else{
-                                cell.avatar.image = UIImage(named: "DefaultAvatar")
-                            }
-                        }
-                        else{
-                            cell.avatar.image = UIImage(named: "DefaultAvatar")
-                        }
-                    })
-                }
-                else {
+                let url = stuct["avatar"] as String
+                if PicDic.picDic[url] != nil {
                     cell.avatar.image = PicDic.picDic[url]
                 }
+                else {
+                    cell.avatar.image = UIImage(named: "DefaultAvatar")
+                }           
                 return cell
             }
             else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as MainImageCell
+                let url =  pics[buffer[indexPath.section]]["url"] as String
+                if PicDic.picDic[url] != nil {
+                    cell.mainImageView.image = PicDic.picDic[url]
+                }
+                else {
+                    cell.mainImageView.image = UIImage()
+                }
                 return cell
             }
             else if indexPath.row == 2 {
@@ -141,22 +125,15 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         
     }
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == news.count - 1 {
+        let stuct = news[indexPath.section]["struct"] as NSDictionary
+        let pics = stuct["pics"] as [NSDictionary]
+        if indexPath.section == news.count - 1 && skip != -1 {
             if !isRequesing {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.startAnimating()
+                })
                 requesMore.getMissionsAndEvidences(skip)
                 isRequesing = true
-            }
-        }
-        else if indexPath.row == 1 {
-            let mainImagecell = cell as MainImageCell
-            let stuct = news[indexPath.section]["struct"] as NSDictionary
-            let pics = stuct["pics"] as [NSDictionary]
-            let url =  pics[buffer[indexPath.section]]["url"] as String
-            if PicDic.picDic[url] == nil {
-                mainImagecell.mainImageView.image = UIImage()
-            }
-            else {
-                mainImagecell.mainImageView.image = PicDic.picDic[url]
             }
         }
     }
@@ -174,29 +151,38 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     }
     
     func refreshing() {
-        requesMore.getMissionsAndEvidences(0)
-        skip = 0
-        isRequesing = true
+        if !isRequesing {
+            requesMore.getMissionsAndEvidences(0)
+            skip = 0
+            isRequesing = true
+        }
     }
     
-    func titleButtonDoubleClick() {
-        refreshing()
-    }
     
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        if refreshControl?.refreshing == true {
-            refreshControl?.endRefreshing()
-        }
         skip = -1
         isRequesing = false
+        dispatch_async(dispatch_get_main_queue(), {
+            if self.refreshControl?.refreshing == true {
+                self.refreshControl?.endRefreshing()
+            }
+            if self.activity.isAnimating() {
+                self.activity.stopAnimating()
+            }
+        })
     }
     
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === requesMore {
             isRequesing = false
-            if refreshControl?.refreshing == true {
-                refreshControl?.endRefreshing()
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                if self.refreshControl?.refreshing == true {
+                    self.refreshControl?.endRefreshing()
+                }
+                if self.activity.isAnimating() {
+                    self.activity.stopAnimating()
+                }
+            })
             if skip == 0 {
                 buffer.removeAll(keepCapacity: true)
                 news.removeAll(keepCapacity: true)
@@ -207,20 +193,37 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 for it in res {
                     items.append(it as NSDictionary)
                     buffer.append(0)
+                    let stuct = it["struct"] as NSDictionary
+                    let avatar = ["url": stuct["avatar"] as String]
+                    var pics = stuct["pics"] as [NSDictionary]
+                    pics.append(avatar)
+                    for pic in pics {
+                        let url = pic["url"] as String
+                        if PicDic.picDic[url] == nil {
+                            let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                            let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                            let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                                if error? == nil {
+                                    var rawImage: UIImage? = UIImage(data: data)
+                                    let img: UIImage? = rawImage
+                                    if img != nil {
+                                        dispatch_async(dispatch_get_main_queue(), {
+                                            PicDic.picDic[url] = img
+                                            self.tableView.reloadData()
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    }
                 }
                 news += items
                 var range = NSMakeRange(self.skip, items.count)
                 var indexSet = NSIndexSet(indexesInRange: range)
                 self.skip += items.count
                 dispatch_async(dispatch_get_main_queue(), {
-                    if range.location == 0 {
-                        self.tableView.reloadData()
-                    }
-                    else {
-                        self.tableView.beginUpdates()
-                        self.tableView.insertSections(indexSet, withRowAnimation:UITableViewRowAnimation.Fade)
-                        self.tableView.endUpdates()
-                    }
+                    self.tableView.reloadData()
                 })
             }
             else {
