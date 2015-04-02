@@ -8,15 +8,18 @@
 
 import UIKit
 
-class MeViewController: UITableViewController {
+class MeViewController: UITableViewController, APIProtocol {
 
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var signLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarView: UIImageView!
+    let api = API()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        api.delegate = self
         avatarView.layer.cornerRadius = 50
         avatarView.layer.masksToBounds = true
         // Uncomment the following line to preserve selection between presentations
@@ -30,6 +33,9 @@ class MeViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(animated: Bool) {
+        if !API.userInfo.tokenValid {
+            api.getMyInfo()
+        }
         avatarView.image = API.userInfo.profilePhoto
         signLabel.text = API.userInfo.signature
         nameLabel.text = API.userInfo.nickname
@@ -49,6 +55,65 @@ class MeViewController: UITableViewController {
             return 150
         }
     }
+    
+    func didReceiveAPIErrorOf(api: API, errno: Int) {
+        NSLog("\(errno)")
+    }
+    
+    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
+        let res = data["result"] as NSDictionary
+        if res.count > 0 {
+            API.userInfo.username = res["username"] as NSString
+            API.userInfo.nickname = res["nickname"] as NSString
+            API.userInfo.phone = res["phone"] as NSString
+            API.userInfo.gender = res["gender"] as NSString
+            API.userInfo.profilePhotoUrl = res["avatar"] as String
+            API.userInfo.signature = res["sign"] as String
+            if !API.userInfo.profilePhotoUrl.isEmpty {
+                let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
+                let request: NSURLRequest = NSURLRequest(URL: url!)
+                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                    if error? == nil {
+                        let img: UIImage? = UIImage(data: data)
+                        let avatar: UIImage? = img
+                        if avatar != nil {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                PicDic.picDic[API.userInfo.profilePhotoUrl] = avatar
+                                API.userInfo.profilePhoto = avatar!
+                                self.avatarView.image = API.userInfo.profilePhoto
+                                self.signLabel.text = API.userInfo.signature
+                                self.nameLabel.text = API.userInfo.nickname
+                                self.genderLabel.text = API.userInfo.gender
+                                self.phoneLabel.text = API.userInfo.phone
+                                self.tableView.reloadData()
+                            })
+                        }
+                    }
+                })
+            }
+            EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
+                (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
+                if (error == nil) {
+                    API.userInfo.tokenValid = true
+                }
+                else {
+                    API.userInfo.tokenValid = false
+                    EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.phone, password: "123456", completion: {
+                        (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
+                        if (error == nil) {
+                            API.userInfo.tokenValid = true
+                        }
+                        else {
+                            EaseMob.sharedInstance().chatManager.registerNewAccount(API.userInfo.username, password: "123456", error: nil)
+                        }
+                        }, onQueue: nil)
+                }
+                }, onQueue: nil)
+            APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: nil, target: self)
+        }
+    }
+    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

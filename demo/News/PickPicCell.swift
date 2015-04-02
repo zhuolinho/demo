@@ -46,6 +46,7 @@ class PickPicCell: UITableViewCell, UICollectionViewDataSource {
                         dispatch_async(dispatch_get_main_queue(), {
                             imageView.image = img!
                             PicDic.picDic[url] = img
+                            self.pickCollectionView.reloadData()
                         })
                     }
                 }
