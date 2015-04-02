@@ -35,25 +35,9 @@ class PickPicCell: UITableViewCell, UICollectionViewDataSource {
         let url = dataSource[indexPath.row]["url"] as String
         if PicDic.picDic[url] == nil {
             imageView.image = UIImage()
-            let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-            let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-            let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                if error? == nil {
-                    var rawImage: UIImage? = UIImage(data: data)
-                    let img: UIImage? = rawImage
-                    if img != nil {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            imageView.image = img!
-                            PicDic.picDic[url] = img
-                            self.pickCollectionView.reloadData()
-                        })
-                    }
-                }
-            })
         }
         else {
-            imageView.image = PicDic.picDic[url]!
+            imageView.image = PicDic.picDic[url]
         }
         return cell
     }
