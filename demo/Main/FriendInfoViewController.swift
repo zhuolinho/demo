@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendInfoViewController: UITableViewController,APIProtocol {
+class FriendInfoViewController: UITableViewController, APIProtocol {
     var userName = ""
     var nickName = ""
     var avatar = UIImage(named: "DefaultAvatar")

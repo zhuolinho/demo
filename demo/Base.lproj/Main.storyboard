@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--动态-->
+        <!--News View Controller-->
         <scene sceneID="fdV-Ps-Egg">
             <objects>
                 <tableViewController id="qO2-gL-LFJ" customClass="NewsViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -212,9 +212,22 @@
                             <outlet property="delegate" destination="qO2-gL-LFJ" id="AHn-w1-4e8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="动态" id="bmd-o0-7Qe">
+                    <navigationItem key="navigationItem" id="bmd-o0-7Qe">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bzA-ha-um1">
+                            <rect key="frame" x="50" y="7" width="221" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="动态">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="filter" id="sKQ-qW-Uk0"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="titleButton" destination="bzA-ha-um1" id="JtZ-zQ-Un9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3P-bb-oVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1245,6 +1258,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="WyV-qS-o6b"/>
+        <segue reference="40z-gd-eJ2"/>
     </inferredMetricsTieBreakers>
 </document>
