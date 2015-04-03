@@ -34,7 +34,7 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate{
 //         Do any additional setup after loading the view.
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        var curPage = scrollView.contentOffset.x/320
+        var curPage = scrollView.contentOffset.x/view.bounds.width
         pageControl1.currentPage = Int(curPage)
         
     }
