@@ -273,7 +273,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == "ViewPhotosSegue" {
-            let photosVC = segue.destinationViewController as PhotosViewController
+            let photosVC = segue.destinationViewController as PhotosView
             let cell = sender as MainImageCell
             photosVC.photosData = cell.photosData
             photosVC.startIndex = buffer[tableView.indexPathForCell(cell)!.section]

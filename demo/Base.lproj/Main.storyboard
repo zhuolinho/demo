@@ -61,7 +61,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mainImageView" destination="2TT-pd-dFe" id="xzO-Ix-Fe7"/>
-                                    <segue destination="ZoJ-6e-T8D" kind="modal" identifier="ViewPhotosSegue" id="CS2-35-jjq"/>
+                                    <segue destination="RSm-z0-z5T" kind="modal" identifier="ViewPhotosSegue" id="WNe-cM-ld0"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickPicCell" id="HoM-Ee-B0g" customClass="PickPicCell" customModule="demo" customModuleProvider="target">
@@ -234,45 +234,44 @@
             </objects>
             <point key="canvasLocation" x="1314" y="266"/>
         </scene>
-        <!--Photos View Controller-->
-        <scene sceneID="yIr-4l-vGN">
+        <!--Photos View-->
+        <scene sceneID="h4Z-Cx-xx8">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ZoJ-6e-T8D" customClass="PhotosViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HaN-lY-xkn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1739" y="266"/>
-        </scene>
-        <!--Photo View-->
-        <scene sceneID="wYw-nY-I2N">
-            <objects>
-                <viewController storyboardIdentifier="PhotoView" id="cxs-pt-vwa" customClass="PhotoView" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RSm-z0-z5T" customClass="PhotosView" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dC4-Vw-wLj"/>
-                        <viewControllerLayoutGuide type="bottom" id="NQn-SE-NSW"/>
+                        <viewControllerLayoutGuide type="top" id="Roh-Wj-fOD"/>
+                        <viewControllerLayoutGuide type="bottom" id="dR4-DY-ooq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xzu-De-rCj">
+                    <view key="view" contentMode="scaleToFill" id="D0h-wh-u48">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bEb-KA-FTh">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="USE-W7-urf" customClass="TouchableScroolView" customModule="demo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-mb-5mU">
+                                <rect key="frame" x="140" y="501" width="39" height="37"/>
+                            </pageControl>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="bEb-KA-FTh" secondAttribute="trailing" constant="-16" id="anT-MF-aW7"/>
-                            <constraint firstItem="bEb-KA-FTh" firstAttribute="leading" secondItem="xzu-De-rCj" secondAttribute="leadingMargin" constant="-16" id="oGU-Qw-Bee"/>
-                            <constraint firstItem="bEb-KA-FTh" firstAttribute="top" secondItem="xzu-De-rCj" secondAttribute="topMargin" id="ohI-qJ-mxp"/>
-                            <constraint firstItem="NQn-SE-NSW" firstAttribute="top" secondItem="bEb-KA-FTh" secondAttribute="bottom" id="zjI-wY-74F"/>
+                            <constraint firstItem="USE-W7-urf" firstAttribute="top" secondItem="D0h-wh-u48" secondAttribute="topMargin" id="Nxm-yR-OgA"/>
+                            <constraint firstItem="USE-W7-urf" firstAttribute="leading" secondItem="D0h-wh-u48" secondAttribute="leadingMargin" constant="-16" id="XMg-kg-dML"/>
+                            <constraint firstItem="dR4-DY-ooq" firstAttribute="top" secondItem="EAI-mb-5mU" secondAttribute="bottom" constant="30" id="g6V-2o-zdy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="USE-W7-urf" secondAttribute="trailing" constant="-16" id="rvk-e4-kkJ"/>
+                            <constraint firstItem="dR4-DY-ooq" firstAttribute="top" secondItem="USE-W7-urf" secondAttribute="bottom" id="tkj-HQ-CPD"/>
+                            <constraint firstAttribute="centerX" secondItem="EAI-mb-5mU" secondAttribute="centerX" constant="0.5" id="x7S-VH-Hzv"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="photoView" destination="bEb-KA-FTh" id="fLv-9Q-vCq"/>
+                        <outlet property="mainView" destination="USE-W7-urf" id="yTN-VG-h6m"/>
+                        <outlet property="pageControl" destination="EAI-mb-5mU" id="mWO-ih-1uD"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ajN-lX-J6C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUa-0R-ia7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142" y="266"/>
+            <point key="canvasLocation" x="1739" y="266"/>
         </scene>
         <!--我的任务-->
         <scene sceneID="2k3-Pl-btr">
