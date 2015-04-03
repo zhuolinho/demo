@@ -12,7 +12,8 @@ class MainImageCell: UITableViewCell {
 
 
     @IBOutlet weak var mainImageView: UIImageView!
-
+    var photosData = [NSDictionary]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
