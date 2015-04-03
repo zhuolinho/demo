@@ -61,7 +61,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mainImageView" destination="2TT-pd-dFe" id="xzO-Ix-Fe7"/>
-                                    <segue destination="ZoJ-6e-T8D" kind="modal" id="CS2-35-jjq"/>
+                                    <segue destination="ZoJ-6e-T8D" kind="modal" identifier="ViewPhotosSegue" id="CS2-35-jjq"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickPicCell" id="HoM-Ee-B0g" customClass="PickPicCell" customModule="demo" customModuleProvider="target">
@@ -237,10 +237,42 @@
         <!--Photos View Controller-->
         <scene sceneID="yIr-4l-vGN">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="ZoJ-6e-T8D" customClass="PhotosViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ZoJ-6e-T8D" customClass="PhotosViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaN-lY-xkn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1739" y="266"/>
+        </scene>
+        <!--Photo View-->
+        <scene sceneID="wYw-nY-I2N">
+            <objects>
+                <viewController storyboardIdentifier="PhotoView" id="cxs-pt-vwa" customClass="PhotoView" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dC4-Vw-wLj"/>
+                        <viewControllerLayoutGuide type="bottom" id="NQn-SE-NSW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xzu-De-rCj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bEb-KA-FTh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="bEb-KA-FTh" secondAttribute="trailing" constant="-16" id="anT-MF-aW7"/>
+                            <constraint firstItem="bEb-KA-FTh" firstAttribute="leading" secondItem="xzu-De-rCj" secondAttribute="leadingMargin" constant="-16" id="oGU-Qw-Bee"/>
+                            <constraint firstItem="bEb-KA-FTh" firstAttribute="top" secondItem="xzu-De-rCj" secondAttribute="topMargin" id="ohI-qJ-mxp"/>
+                            <constraint firstItem="NQn-SE-NSW" firstAttribute="top" secondItem="bEb-KA-FTh" secondAttribute="bottom" id="zjI-wY-74F"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="photoView" destination="bEb-KA-FTh" id="fLv-9Q-vCq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ajN-lX-J6C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2142" y="266"/>
         </scene>
         <!--我的任务-->
         <scene sceneID="2k3-Pl-btr">
@@ -1267,6 +1299,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="40z-gd-eJ2"/>
+        <segue reference="WyV-qS-o6b"/>
     </inferredMetricsTieBreakers>
 </document>

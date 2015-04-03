@@ -43,12 +43,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if API.userInfo.nickname != "" {
-            titleButton.setTitle(API.userInfo.nickname, forState: UIControlState.Normal)
-        }
-    }
+
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
@@ -103,6 +98,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as MainImageCell
                 let url =  pics[buffer[indexPath.section]]["url"] as String
+                cell.photosData = pics
                 if PicDic.picDic[url] != nil {
                     cell.mainImageView.image = PicDic.picDic[url]
                 }
@@ -176,6 +172,9 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         if api === requesMore {
             isRequesing = false
             dispatch_async(dispatch_get_main_queue(), {
+                if API.userInfo.nickname != "" {
+                    self.titleButton.setTitle(API.userInfo.nickname, forState: UIControlState.Normal)
+                }
                 if self.refreshControl?.refreshing == true {
                     self.refreshControl?.endRefreshing()
                 }
@@ -266,14 +265,20 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == "ViewPhotosSegue" {
+            let photosVC = segue.destinationViewController as PhotosViewController
+            let cell = sender as MainImageCell
+            photosVC.photosData = cell.photosData
+            photosVC.startIndex = buffer[tableView.indexPathForCell(cell)!.section]
+        }
     }
-    */
+    
 
 }
