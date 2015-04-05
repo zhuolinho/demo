@@ -17,17 +17,19 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        resignButton.layer.cornerRadius = 50
+//        resignButton.layer.masksToBounds = true
         scrollView1.delegate = self
         let width = self.view.bounds.width
         let height = self.view.bounds.height
         scrollView1.contentSize = CGSize(width: width*3, height: 0)
-        var bview = UIView(frame: CGRect(x: width, y: 0, width: width, height: height-94))
+        var bview = UIView(frame: CGRect(x: width, y: 0, width: width, height: height))
         bview.backgroundColor = UIColor.greenColor()
         scrollView1.addSubview(bview)
-        var aview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height-94))
+        var aview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
         aview.backgroundColor = UIColor.redColor()
         scrollView1.addSubview(aview)
-        var cview = UIView(frame: CGRect(x: width*2, y: 0, width: width, height: height-94))
+        var cview = UIView(frame: CGRect(x: width*2, y: 0, width: width, height: height))
         cview.backgroundColor = UIColor.blueColor()
         scrollView1.addSubview(cview)
         pageControl1.enabled = false
@@ -42,7 +44,10 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = true
+    }
 
     /*
     // MARK: - Navigation

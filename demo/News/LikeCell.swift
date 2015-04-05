@@ -1,22 +1,21 @@
 //
-//  TitleCell.swift
+//  LikeCell.swift
 //  demo
 //
-//  Created by HoJolin on 15/3/30.
+//  Created by HoJolin on 15/4/4.
 //  Copyright (c) 2015年 CBC. All rights reserved.
 //
 
 import UIKit
 
-class TitleCell: UITableViewCell {
-    @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
+class LikeCell: UITableViewCell {
 
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
-        avatar.layer.cornerRadius = 20
-        avatar.layer.masksToBounds = true
         // Initialization code
     }
 
