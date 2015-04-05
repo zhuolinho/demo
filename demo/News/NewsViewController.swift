@@ -9,8 +9,17 @@
 import UIKit
 
 class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+    var viewa = UIView()
     
     @IBOutlet weak var titleButton: UIButton!
+    @IBAction func filterClick(sender: UIBarButtonItem) {
+        if viewa.hidden {
+            viewa.hidden = false
+        }
+        else {
+            viewa.hidden = true
+        }
+    }
     var requesMore = API()
     var news = [NSDictionary]()
     var skip = -1
@@ -19,6 +28,9 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewa = UIView(frame: CGRect(x: view.bounds.width - 100, y: 40, width: 0, height: 0))
+        navigationController?.navigationBar.addSubview(viewa)
+        viewa.addSubview(UIImageView(image: UIImage(named: "moment1_07")))
         requesMore.delegate = self
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: "refreshing", forControlEvents: UIControlEvents.ValueChanged)
@@ -39,6 +51,11 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        viewa.hidden = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,7 +71,18 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 3
+        var add = 0
+        if section < news.count {
+            let stuct = news[section]["struct"] as NSDictionary
+            let comment = stuct["comment"] as [NSDictionary]
+            if comment.count > 5 {
+                add = 6
+            }
+            else {
+                add = comment.count
+            }
+        }
+        return 7 + add
     }
 //
     
@@ -73,6 +101,21 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 if pics.count > 1 {
                     return self.view.bounds.width / 4
                 }
+                else {
+                    return 0
+                }
+            }
+            else if indexPath.row == 3 {
+                return 60
+            }
+            else if indexPath.row == 4 {
+                return 44
+            }
+            else if indexPath.row == 5 {
+                return 44
+            }
+            else {
+                return 30
             }
         }
         return 0
@@ -80,8 +123,10 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section < news.count {
+            let type = news[indexPath.section]["type"] as String
             let stuct = news[indexPath.section]["struct"] as NSDictionary
             let pics = stuct["pics"] as [NSDictionary]
+            let comments = stuct["comment"] as [NSDictionary]
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as TitleCell
                 cell.timeLabel.text = stuct["createTime"] as? String
@@ -115,20 +160,65 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 cell.pickCollectionView.reloadData()
                 return cell
             }
+            else if indexPath.row == 3 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("StatusCell", forIndexPath: indexPath) as StatusCell
+                let charge = stuct["charge"] as Int
+                if type == "mission" {
+                    cell.backgroundColor = UIColor.orangeColor()
+                    cell.typeLabel.text = "任务剩余时间"
+                    cell.meneyLabel.text = String(charge)
+                }
+                else {
+                    cell.backgroundColor = UIColor.blackColor()
+                    cell.typeLabel.text = "证据拍摄时间"
+                    cell.meneyLabel.text = String(charge)
+                }
+                return cell
+            }
+            else if indexPath.row == 4 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as DetailCell
+                cell.titleLabel.text = stuct["title"] as? String
+                cell.contentLabel.text = stuct["content"] as? String
+                return cell
+            }
+            else if indexPath.row == 6 {
+                let numOfLike = stuct["numOfLike"] as Int
+                let numOfComment = stuct["numOfComment"] as Int
+                let cell = tableView.dequeueReusableCellWithIdentifier("LikeCell", forIndexPath: indexPath) as LikeCell
+                cell.likeLabel.text = String(numOfLike)
+                cell.commentLabel.text = String(numOfComment)
+                cell.locationLabel.text = stuct["location"] as? String
+                return cell
+            }
+            else if indexPath.row > 6 && indexPath.row < 12 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as CommentCell
+                let comment = comments[indexPath.row - 7]
+                let nickname = comment["nickname"] as String
+                let content = comment["content"] as String
+                cell.commentLabel.text = nickname + "：" + content
+                return cell
+            }
+            else if indexPath.row == 5 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("SloganCell", forIndexPath: indexPath) as SloganCell
+                cell.sloganLabel.text = stuct["slogan"] as? String
+                return cell
+            }
+            else if indexPath.row == 12 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("MoreCommentsCell", forIndexPath: indexPath) as MoreCommentsCell
+                return cell
+            }
 
         }
         return UITableViewCell()
         
     }
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        let stuct = news[indexPath.section]["struct"] as NSDictionary
-        let pics = stuct["pics"] as [NSDictionary]
         if indexPath.section == news.count - 1 && skip != -1 {
             if !isRequesing {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.activity.startAnimating()
                 })
-                requesMore.getMissionsAndEvidences(skip)
+                requesMore.getMissionsAndEvidences(0)
                 isRequesing = true
             }
         }
@@ -148,6 +238,9 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     
     func refreshing() {
         if !isRequesing {
+            if refreshControl?.refreshing == false {
+                self.tableView.setContentOffset(CGPointMake(0, -60), animated: true)
+            }
             requesMore.getMissionsAndEvidences(0)
             skip = 0
             isRequesing = true

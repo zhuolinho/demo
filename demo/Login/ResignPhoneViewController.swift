@@ -78,6 +78,7 @@ class ResignPhoneViewController: UIViewController, APIProtocol {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = false
         sendCodeApi.delegate = self
         checkCodeApi.delegate = self
         nextButton.setTitle("请验证手机号", forState: UIControlState.Disabled)

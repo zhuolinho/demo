@@ -18,7 +18,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         let addFriendVC = AddFriendViewController(style: UITableViewStyle.Plain)
         self.navigationController?.pushViewController(addFriendVC, animated: true)
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         EaseMob.sharedInstance().chatManager.asyncFetchBuddyList()
@@ -28,6 +28,8 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
         var v = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = v
+        tableView.sectionIndexColor = UIColor.grayColor()
+        tableView.sectionIndexBackgroundColor = UIColor.clearColor()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -181,6 +183,8 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
 
         // Configure the cell...
         var imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("NewFriendsCell", forIndexPath: indexPath) as UITableViewCell
             if indexPath.row == 0 {
@@ -233,14 +237,32 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
             return cell
         }
     }
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section == 0 || sortedDataSource.objectAtIndex(section-1).count == 0){
-            return nil
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 || sortedDataSource.objectAtIndex(section - 1).count == 0 {
+            return 0
         }
-        else{
-            return self.sectionTitles.objectAtIndex(section - 1)as? String
+        else {
+            return 20
         }
     }
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var headerView = UIView(frame: CGRectZero)
+        headerView.backgroundColor = UIColor.orangeColor()
+//        headerView.tintColor = UIColor.whiteColor()
+        var label = UILabel(frame: CGRect(x: 10, y: 0, width: 100, height: 20))
+        label.text = sectionTitles.objectAtIndex(section - 1) as? String
+        label.textColor = UIColor.whiteColor()
+        headerView.addSubview(label)
+        return headerView
+    }
+//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if(section == 0 || sortedDataSource.objectAtIndex(section-1).count == 0){
+//            return nil
+//        }
+//        else{
+//            return self.sectionTitles.objectAtIndex(section - 1)as? String
+//        }
+//    }
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]{
         var existTitles = NSMutableArray()
         existTitles.addObject("?")

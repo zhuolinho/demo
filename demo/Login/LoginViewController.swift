@@ -55,6 +55,7 @@ class LoginViewController: UIViewController, APIProtocol {
         super.viewDidLoad()
         login.delegate = self
         refreshUserInfo.delegate = self
+        self.navigationController?.navigationBarHidden = false
         // Do any additional setup after loading the view.
     }
 
