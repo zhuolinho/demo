@@ -325,13 +325,16 @@
 		069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */; };
 		06A108CE1AC9837000493A2A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CD1AC9837000493A2A /* TitleCell.swift */; };
 		06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CF1AC9AF3600493A2A /* PickPicCell.swift */; };
-		06A9B0A61AD12F2E00546E40 /* PickMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9B0A51AD12F2E00546E40 /* PickMissionCell.swift */; };
 		06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC41AC823A600F52391 /* InvitationManager.m */; };
 		06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC81AC823AE00F52391 /* AddFriendCell.m */; };
 		06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCA1AC823AE00F52391 /* AddFriendViewController.m */; };
 		06BA9BD11AC823AE00F52391 /* ApplyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCC1AC823AE00F52391 /* ApplyFriendCell.m */; };
 		06BA9BD21AC823AE00F52391 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCE1AC823AE00F52391 /* ApplyViewController.m */; };
 		06C50D0C1AD039F100075F8D /* SloganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C50D0B1AD039F100075F8D /* SloganCell.swift */; };
+		06C677AD1AD250F000D23FF7 /* NewSportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C677AC1AD250F000D23FF7 /* NewSportController.swift */; };
+		06C677AE1AD26B2600D23FF7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D22B1AB20A3D00708337 /* CoreLocation.framework */; };
+		06C677AF1AD26B2E00D23FF7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D22D1AB20A4800708337 /* MapKit.framework */; };
+		06C677B61AD26CD600D23FF7 /* ANNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C677B51AD26CD600D23FF7 /* ANNViewController.swift */; };
 		06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD92471AA877E10026C3E7 /* AppDelegate.swift */; };
 		06CD924D1AA877E10026C3E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924B1AA877E10026C3E7 /* Main.storyboard */; };
 		06CD924F1AA877E10026C3E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924E1AA877E10026C3E7 /* Images.xcassets */; };
@@ -857,7 +860,6 @@
 		069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
 		06A108CD1AC9837000493A2A /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		06A108CF1AC9AF3600493A2A /* PickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickPicCell.swift; sourceTree = "<group>"; };
-		06A9B0A51AD12F2E00546E40 /* PickMissionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickMissionCell.swift; sourceTree = "<group>"; };
 		06BA9BC31AC823A600F52391 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		06BA9BC41AC823A600F52391 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		06BA9BC71AC823AE00F52391 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
@@ -869,6 +871,8 @@
 		06BA9BCD1AC823AE00F52391 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
 		06BA9BCE1AC823AE00F52391 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		06C50D0B1AD039F100075F8D /* SloganCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SloganCell.swift; sourceTree = "<group>"; };
+		06C677AC1AD250F000D23FF7 /* NewSportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSportController.swift; sourceTree = "<group>"; };
+		06C677B51AD26CD600D23FF7 /* ANNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNViewController.swift; sourceTree = "<group>"; };
 		06CD92421AA877E10026C3E7 /* demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CD92461AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD92471AA877E10026C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -894,6 +898,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C677AF1AD26B2E00D23FF7 /* MapKit.framework in Frameworks */,
+				06C677AE1AD26B2600D23FF7 /* CoreLocation.framework in Frameworks */,
 				06522ABA1AADB12A00D67CAE /* libz.dylib in Frameworks */,
 				066EF6A71AC3B09D00200360 /* Security.framework in Frameworks */,
 				066EF6A51AC3B09600200360 /* UIKit.framework in Frameworks */,
@@ -1967,7 +1973,8 @@
 		06A9B0A41AD12F1200546E40 /* Mission */ = {
 			isa = PBXGroup;
 			children = (
-				06A9B0A51AD12F2E00546E40 /* PickMissionCell.swift */,
+				06C677AC1AD250F000D23FF7 /* NewSportController.swift */,
+				06C677B51AD26CD600D23FF7 /* ANNViewController.swift */,
 			);
 			path = Mission;
 			sourceTree = "<group>";
@@ -2432,6 +2439,7 @@
 				0694E6011AB6CE72008ADF21 /* PSTGridLayoutInfo.m in Sources */,
 				0694E60D1AB6CE72008ADF21 /* WCAlertView.m in Sources */,
 				0694E5F31AB6CE72008ADF21 /* UIImage+EMMultiFormat.m in Sources */,
+				06C677B61AD26CD600D23FF7 /* ANNViewController.swift in Sources */,
 				0684777B1ACEFFDB00F5B667 /* LikeCell.swift in Sources */,
 				0694E5EE1AB6CE72008ADF21 /* EMSDWebImagePrefetcher.m in Sources */,
 				0694E6161AB6CE72008ADF21 /* ChatViewController.m in Sources */,
@@ -2448,7 +2456,6 @@
 				0694E6031AB6CE72008ADF21 /* PSTGridLayoutRow.m in Sources */,
 				064CE74F1ACFB19B00F51D06 /* MainNavigationController.swift in Sources */,
 				0694E6091AB6CE72008ADF21 /* SRSlimeView.m in Sources */,
-				06A9B0A61AD12F2E00546E40 /* PickMissionCell.swift in Sources */,
 				0694E6571AB6CE72008ADF21 /* MessageReadManager.m in Sources */,
 				0694E5DE1AB6CE72008ADF21 /* MBProgressHUD.m in Sources */,
 				0694E5D91AB6CE72008ADF21 /* Emoji.m in Sources */,
@@ -2477,6 +2484,7 @@
 				0694E5EA1AB6CE72008ADF21 /* EMSDWebImageDecoder.m in Sources */,
 				0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */,
 				06EE1DF31ACE8A3B00050893 /* TouchableScroolView.swift in Sources */,
+				06C677AD1AD250F000D23FF7 /* NewSportController.swift in Sources */,
 				0694E64F1AB6CE72008ADF21 /* EMChatVideoBubbleView.m in Sources */,
 				0694E5E31AB6CE72008ADF21 /* MWPhotoBrowser.m in Sources */,
 				06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */,

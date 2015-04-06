@@ -112,7 +112,17 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 return 44
             }
             else if indexPath.row == 5 {
-                return 44
+                if news[indexPath.section]["type"] as? String == "mission" {
+                    if stuct["slogan"] as? String != "*" {
+                        return 44
+                    }
+                    else {
+                        return 0
+                    }
+                }
+                else {
+                    return 0
+                }
             }
             else {
                 return 30
@@ -200,7 +210,12 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             }
             else if indexPath.row == 5 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("SloganCell", forIndexPath: indexPath) as SloganCell
-                cell.sloganLabel.text = stuct["slogan"] as? String
+                if stuct["slogan"] as? String != "*" {
+                    cell.sloganLabel.text = stuct["slogan"] as? String
+                }
+                else {
+                    cell.sloganLabel.text = ""
+                }
                 return cell
             }
             else if indexPath.row == 12 {
@@ -218,7 +233,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 dispatch_async(dispatch_get_main_queue(), {
                     self.activity.startAnimating()
                 })
-                requesMore.getMissionsAndEvidences(0)
+                requesMore.getMissionsAndEvidences(skip)
                 isRequesing = true
             }
         }
