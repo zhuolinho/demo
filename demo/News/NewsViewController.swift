@@ -50,7 +50,9 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             self.presentViewController(auth, animated: true, completion: nil)
         }
     }
-    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        viewa.hidden = true
+    }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         viewa.hidden = true

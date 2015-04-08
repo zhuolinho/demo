@@ -8,8 +8,9 @@
 
 import UIKit
 
-class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var picCollection: UICollectionView!
     @IBOutlet weak var timesLabel: UILabel!
     @IBOutlet weak var meneyTextField: UITextField!
     var picker = UIPickerView()
@@ -28,6 +29,8 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         picker.delegate = self
         picker.hidden = true
         view.addSubview(picker)
+        picCollection.dataSource = self
+        picCollection.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,7 +40,9 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         meneyTextField.resignFirstResponder()
         picker.hidden = true
-
+    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        timesLabel.text = String(row)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -58,6 +63,14 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return String(row)
     }
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionCell", forIndexPath: indexPath) as UICollectionViewCell
+        return cell
+    }
+    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

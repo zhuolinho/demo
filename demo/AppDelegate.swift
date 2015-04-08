@@ -126,6 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
             API.userInfo.gender = res["gender"] as NSString
             API.userInfo.profilePhotoUrl = res["avatar"] as String
             API.userInfo.signature = res["sign"] as String
+            API.userInfo.id = res["uid"] as Int
             if !API.userInfo.profilePhotoUrl.isEmpty {
                 let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
                 let request: NSURLRequest = NSURLRequest(URL: url!)
