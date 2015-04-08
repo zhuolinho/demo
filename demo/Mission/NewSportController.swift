@@ -8,21 +8,27 @@
 
 import UIKit
 
-class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
-
+class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var sloganTF: UITextField!
     @IBOutlet weak var picCollection: UICollectionView!
     @IBOutlet weak var timesLabel: UILabel!
     @IBOutlet weak var meneyTextField: UITextField!
+    
+    var imagePicker = UIImagePickerController()
     var picker = UIPickerView()
+    var picArray = [UIImage]()
+    var deleteRow = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var blankView = UIView(frame: CGRectZero)
         tableView.tableFooterView = blankView
-        var commitButton = UIButton(frame: CGRect(x: 0, y: view.bounds.height - 125, width: view.bounds.width, height: 60))
-        commitButton.setTitle("发布任务", forState: UIControlState.Normal)
-        commitButton.backgroundColor = UIColor.orangeColor()
-        commitButton.titleLabel?.textColor = UIColor.whiteColor()
-        view.addSubview(commitButton)
+//        var commitButton = UIButton(frame: CGRect(x: 0, y: view.bounds.height - 125, width: view.bounds.width, height: 60))
+//        commitButton.setTitle("发布任务", forState: UIControlState.Normal)
+//        commitButton.backgroundColor = UIColor.orangeColor()
+//        commitButton.titleLabel?.textColor = UIColor.whiteColor()
+//        view.addSubview(commitButton)
         picker = UIPickerView(frame: CGRect(x: 0, y: view.bounds.height - 314, width: view.bounds.width, height: 162))
         picker.backgroundColor = UIColor.whiteColor()
         picker.dataSource = self
@@ -31,15 +37,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         view.addSubview(picker)
         picCollection.dataSource = self
         picCollection.delegate = self
+        imagePicker.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        meneyTextField.resignFirstResponder()
-        picker.hidden = true
     }
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         timesLabel.text = String(row)
@@ -49,8 +52,18 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         // Dispose of any resources that can be recreated.
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        meneyTextField.resignFirstResponder()
+        sloganTF.resignFirstResponder()
         if indexPath.section == 0 && indexPath.row == 1 {
-            picker.hidden = false
+            if picker.hidden {
+                picker.hidden = false
+            }
+            else {
+                picker.hidden = true
+            }
+        }
+        else {
+            picker.hidden = true
         }
     }
     // MARK: - Table view data source
@@ -64,13 +77,88 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         return String(row)
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return picArray.count + 1
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: (view.bounds.width - 60) / 4, height: (view.bounds.width - 60) / 4)
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionCell", forIndexPath: indexPath) as UICollectionViewCell
+        let imageView = cell.viewWithTag(1) as UIImageView
+        if indexPath.row >= picArray.count {
+            imageView.image = UIImage(named: "new_task_07")
+        }
+        else {
+            imageView.image = picArray[indexPath.row]
+        }
         return cell
     }
-    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        meneyTextField.resignFirstResponder()
+        sloganTF.resignFirstResponder()
+        picker.hidden = true
+        if indexPath.row == collectionView.numberOfItemsInSection(0) - 1 {
+            var changeAvatarActionSheet = UIActionSheet()
+            changeAvatarActionSheet.delegate = self
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+                changeAvatarActionSheet.addButtonWithTitle("拍摄照片")
+                changeAvatarActionSheet.addButtonWithTitle("图片库中选取")
+                changeAvatarActionSheet.addButtonWithTitle("取消")
+                changeAvatarActionSheet.cancelButtonIndex = 2
+            }
+            else {
+                changeAvatarActionSheet.addButtonWithTitle("图片库中选取")
+                changeAvatarActionSheet.addButtonWithTitle("取消")
+                changeAvatarActionSheet.cancelButtonIndex = 1
+            }
+            
+            changeAvatarActionSheet.showInView(self.tableView)
+        }
+        else {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("DeletePicViewController") as DeletePicViewController
+            vc.image = picArray[indexPath.row]
+            vc.title = String(indexPath.row + 1) + "/" + String(picArray.count)
+//            vc.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "删除", style: UIBarButtonItemStyle.Done, target: self, action: "deletePic: indexPath.row")
+            vc.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "删除", style: UIBarButtonItemStyle.Done, target: self, action: "deletePic"), animated: true)
+            deleteRow = indexPath.row
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            if buttonIndex == 0 {//拍照
+//                imagePicker.allowsEditing = true;
+                imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
+                
+                self.presentViewController(imagePicker, animated:true, completion:nil)
+            }
+            if buttonIndex == 1 {//图片库
+//                imagePicker.allowsEditing = true;
+                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+                
+                self.presentViewController(imagePicker, animated:true, completion:nil)
+            }
+        }
+        else {
+            if buttonIndex == 0 {//图片库
+//                imagePicker.allowsEditing = true;
+                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+                
+                self.presentViewController(imagePicker, animated:true, completion:nil)
+            }
+        }
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        var chosenImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        picArray.append(chosenImage)
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        picCollection.reloadData()
+    }
+    func deletePic() {
+        picArray.removeAtIndex(deleteRow)
+        picCollection.reloadData()
+        navigationController?.popViewControllerAnimated(true)
+    }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

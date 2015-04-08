@@ -9,8 +9,8 @@
 import UIKit
 
 class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
-    var viewa = UIView()
     
+    var viewa = UIView()
     @IBOutlet weak var titleButton: UIButton!
     @IBAction func filterClick(sender: UIBarButtonItem) {
         if viewa.hidden {
@@ -49,9 +49,6 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             let auth = mainStoryboard.instantiateInitialViewController() as UIViewController
             self.presentViewController(auth, animated: true, completion: nil)
         }
-    }
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        viewa.hidden = true
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -245,6 +242,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        viewa.hidden = true
         let stuct = news[collectionView.tag]["struct"] as NSDictionary
         let pics = stuct["pics"] as [NSDictionary]
         let url = pics[indexPath.row]["url"] as String
@@ -263,7 +261,9 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             isRequesing = true
         }
     }
-    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        viewa.hidden = true
+    }
     
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         skip = -1
