@@ -82,27 +82,10 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
 
     func didUnreadMessagesCountChanged() {
         self.refreshDataSource()
-        self.setupUnreadMessageCount()
+//        self.setupUnreadMessageCount()
         
     }
 
-    func setupUnreadMessageCount() {
-        var conversations = EaseMob.sharedInstance().chatManager.conversations
-        var unreadCount: Int = 0
-        for item in conversations! {
-            let conversation = item as EMConversation
-            unreadCount += Int(conversation.unreadMessagesCount())
-        }
-        let vc = self.tabBarController!.viewControllers![2] as UIViewController
-        if unreadCount > 0 {
-            vc.tabBarItem.badgeValue = String(unreadCount)
-            UIApplication.sharedApplication().applicationIconBadgeNumber = unreadCount
-        }
-        else {
-            vc.tabBarItem.badgeValue = nil
-            UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        }
-    }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as ChatListCell
         let row = indexPath.row

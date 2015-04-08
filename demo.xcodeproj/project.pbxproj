@@ -39,6 +39,11 @@
 		06522AC01AADB14B00D67CAE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */; };
 		065E2CD01ABD8AD0006207FE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */; };
 		0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667006B1AC93EF000714D54 /* NewsViewController.swift */; };
+		066E337A1AD3B3020062C31B /* My2Dcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E33791AD3B3020062C31B /* My2Dcode.swift */; };
+		066E33801AD3B4080062C31B /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E337C1AD3B4080062C31B /* CIColorExtension.swift */; };
+		066E33811AD3B4080062C31B /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E337E1AD3B4080062C31B /* QRCode.swift */; };
+		066E33821AD3B4080062C31B /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E337F1AD3B4080062C31B /* UIImageViewExtension.swift */; };
+		066E33841AD3C2ED0062C31B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E33831AD3C2ED0062C31B /* ViewController.swift */; };
 		066EF69E1AC3B05600200360 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF69D1AC3B05600200360 /* CoreFoundation.framework */; };
 		066EF6A01AC3B06700200360 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF69F1AC3B06700200360 /* CoreTelephony.framework */; };
 		066EF6A11AC3B07800200360 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D2291AB20A2900708337 /* SystemConfiguration.framework */; };
@@ -474,6 +479,12 @@
 		06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		0667006B1AC93EF000714D54 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		066E33791AD3B3020062C31B /* My2Dcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = My2Dcode.swift; sourceTree = "<group>"; };
+		066E337C1AD3B4080062C31B /* CIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIColorExtension.swift; sourceTree = "<group>"; };
+		066E337D1AD3B4080062C31B /* QRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCode.h; sourceTree = "<group>"; };
+		066E337E1AD3B4080062C31B /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		066E337F1AD3B4080062C31B /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		066E33831AD3C2ED0062C31B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		066EF69D1AC3B05600200360 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		066EF69F1AC3B06700200360 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		066EF6A21AC3B08300200360 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1214,6 +1225,17 @@
 				06C50D0B1AD039F100075F8D /* SloganCell.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		066E337B1AD3B4080062C31B /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				066E337C1AD3B4080062C31B /* CIColorExtension.swift */,
+				066E337D1AD3B4080062C31B /* QRCode.h */,
+				066E337E1AD3B4080062C31B /* QRCode.swift */,
+				066E337F1AD3B4080062C31B /* UIImageViewExtension.swift */,
+			);
+			path = QRCode;
 			sourceTree = "<group>";
 		};
 		068AEBED1AAC6C0F00F5B84C /* Login */ = {
@@ -1960,12 +1982,14 @@
 		069F73D31AB1F53F00D73AA8 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				066E33831AD3C2ED0062C31B /* ViewController.swift */,
 				069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */,
 				0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */,
 				0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */,
 				0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */,
 				063D03661AB31C4F005A1ED1 /* MeViewController.swift */,
 				0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */,
+				066E33791AD3B3020062C31B /* My2Dcode.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -2006,6 +2030,7 @@
 		06CD92391AA877E10026C3E7 = {
 			isa = PBXGroup;
 			children = (
+				066E337B1AD3B4080062C31B /* QRCode */,
 				061AC20F1ABD19B100C9FFE6 /* EaseMobSDK */,
 				0694E44B1AB6CE71008ADF21 /* ChatDemo-UI2.0 */,
 				06522AC11AADB17A00D67CAE /* framework */,
@@ -2408,9 +2433,11 @@
 			files = (
 				0694E6561AB6CE72008ADF21 /* MessageModelManager.m in Sources */,
 				0694E6021AB6CE72008ADF21 /* PSTGridLayoutItem.m in Sources */,
+				066E33821AD3B4080062C31B /* UIImageViewExtension.swift in Sources */,
 				068477731ACED13500F5B667 /* DetailCell.swift in Sources */,
 				0694E5FA1AB6CE72008ADF21 /* PSTCollectionViewCell.m in Sources */,
 				0694E5DA1AB6CE72008ADF21 /* EmojiEmoticons.m in Sources */,
+				066E33811AD3B4080062C31B /* QRCode.swift in Sources */,
 				0694E64D1AB6CE72008ADF21 /* EMChatLocationBubbleView.m in Sources */,
 				06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */,
 				0694E5E61AB6CE72008ADF21 /* MWZoomingScrollView.m in Sources */,
@@ -2464,6 +2491,7 @@
 				06A108CE1AC9837000493A2A /* TitleCell.swift in Sources */,
 				0694E64B1AB6CE72008ADF21 /* EMChatBaseBubbleView.m in Sources */,
 				0694E5E21AB6CE72008ADF21 /* MWPhoto.m in Sources */,
+				066E33841AD3C2ED0062C31B /* ViewController.swift in Sources */,
 				0694E6111AB6CE72008ADF21 /* UIViewController+HUD.m in Sources */,
 				068AEBF31AAC7BE800F5B84C /* LoginViewController.swift in Sources */,
 				064CE74B1ACFAB5C00F51D06 /* MainTabBarController.swift in Sources */,
@@ -2498,9 +2526,11 @@
 				0694E6201AB6CE72008ADF21 /* DXRecordView.m in Sources */,
 				06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */,
 				0694E6DB1AB7217B008ADF21 /* ChatTableViewController.swift in Sources */,
+				066E337A1AD3B3020062C31B /* My2Dcode.swift in Sources */,
 				0694E5F51AB6CE72008ADF21 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */,
 				068AEBF11AAC6C0F00F5B84C /* WelcomeViewController.swift in Sources */,
+				066E33801AD3B4080062C31B /* CIColorExtension.swift in Sources */,
 				0694E65E1AB6CE72008ADF21 /* EMNavigationController.m in Sources */,
 				06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */,
 				0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */,
