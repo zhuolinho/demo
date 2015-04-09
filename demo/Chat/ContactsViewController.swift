@@ -69,9 +69,9 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             var loginInfo = EaseMob.sharedInstance().chatManager.loginInfo as NSDictionary
-            var loginUsername = loginInfo.objectForKey(kSDKUsername) as NSString
-            var buddy = sortedDataSource.objectAtIndex(indexPath.section - 1).objectAtIndex(indexPath.row) as NSDictionary
-            var username = buddy["username"] as NSString
+            var loginUsername = loginInfo.objectForKey(kSDKUsername) as! NSString
+            var buddy = sortedDataSource.objectAtIndex(indexPath.section - 1).objectAtIndex(indexPath.row) as! NSDictionary
+            var username = buddy["username"] as! String
             if username == loginUsername {
                 var alert = UIAlertView(title: "提示", message: "不能删除自己", delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
@@ -111,9 +111,8 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
             }
         }
         var loginInfo = EaseMob.sharedInstance().chatManager.loginInfo as NSDictionary
-        var loginUsername:NSString?
-        loginUsername = loginInfo.objectForKey(kSDKUsername) as? NSString
-        if(loginUsername != nil && loginUsername?.length > 0){
+        var loginUsername = loginInfo.objectForKey(kSDKUsername) as! String
+        if loginUsername != "" {
             var loginBuddy = EMBuddy(username: loginUsername)
             contactsSource.addObject(loginBuddy)
         }
@@ -127,11 +126,11 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
                     if error == nil {
                         var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
                         if (jsonRaw != nil) {
-                            var jsonResult = jsonRaw as NSDictionary
+                            var jsonResult = jsonRaw as! NSDictionary
                             if jsonResult.count > 0 {
-                                let result = jsonResult["result"] as NSDictionary
-                                let urlWithComma = result["avatar"] as String
-                                let nicknameWithComma = result["nickname"] as String
+                                let result = jsonResult["result"] as! NSDictionary
+                                let urlWithComma = result["avatar"] as! String
+                                let nicknameWithComma = result["nickname"] as! String
                                 let url = urlWithComma.componentsSeparatedByString(",")[0]
                                 let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
                                 dispatch_async(dispatch_get_main_queue(), {
@@ -140,7 +139,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
                                     self.dataSource.addObject(info)
                                     if(self.dataSource.count == self.contactsSource.count)
                                     {
-                                        self.sortedDataSource.addObjectsFromArray(self.sortDataSource(self.dataSource))
+                                        self.sortedDataSource.addObjectsFromArray(self.sortDataSource(self.dataSource) as [AnyObject])
                                         self.tableView.reloadData()
                                     }
                                 })
@@ -152,7 +151,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         }
     }
     func sortDataSource(dataArray: NSMutableArray) -> NSArray{
-        var indexCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation
+        var indexCollation = UILocalizedIndexedCollation.currentCollation() as! UILocalizedIndexedCollation
         self.sectionTitles.removeAllObjects()
         self.sectionTitles.addObjectsFromArray(indexCollation.sectionTitles)
         var highSection = self.sectionTitles.count
@@ -163,16 +162,16 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         }
         var buddy : NSDictionary
         for buddy in dataArray {
-            var firstLetter = ChineseToPinyin.pinyinFromChineseString(buddy.objectForKey("nickname") as NSString)
+            var firstLetter = ChineseToPinyin.pinyinFromChineseString(buddy.objectForKey("nickname") as! String)
             var section = indexCollation.sectionForObject(firstLetter.substringToIndex(advance(firstLetter.startIndex, 1)), collationStringSelector: "uppercaseString")
-            var array = sortedArray.objectAtIndex(section) as NSMutableArray
+            var array = sortedArray.objectAtIndex(section) as! NSMutableArray
             array.addObject(buddy)
         }
         for(var i = 0; i < sortedArray.count; i++){
             var array = sortedArray.objectAtIndex(i).sortedArrayUsingComparator({
                 (obj1: AnyObject!, obj2: AnyObject!) -> NSComparisonResult in
-                    var firstLetter1 = ChineseToPinyin.pinyinFromChineseString(obj1.objectForKey("nickname")as NSString)
-                    var firstLetter2 = ChineseToPinyin.pinyinFromChineseString(obj2.objectForKey("nickname")as NSString)
+                    var firstLetter1 = ChineseToPinyin.pinyinFromChineseString(obj1.objectForKey("nickname")as! String)
+                    var firstLetter2 = ChineseToPinyin.pinyinFromChineseString(obj2.objectForKey("nickname")as! String)
                 return firstLetter1.caseInsensitiveCompare(firstLetter2)
             })
             sortedArray.replaceObjectAtIndex(i, withObject: NSMutableArray(array: array))
@@ -186,24 +185,24 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NewFriendsCell", forIndexPath: indexPath) as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("NewFriendsCell", forIndexPath: indexPath) as! UITableViewCell
             if indexPath.row == 0 {
                 imageView.image = UIImage(named: "newFriends")
-                var label = view.viewWithTag(2) as UILabel
+                var label = view.viewWithTag(2) as! UILabel
                 label.text = "新的朋友"
                 cell.addSubview(imageView) 
             }
             return cell
         }
         else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as ContactCell
-            var buddy = sortedDataSource.objectAtIndex(indexPath.section-1).objectAtIndex(indexPath.row) as NSDictionary
-            var label = view.viewWithTag(1) as UILabel
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as! ContactCell
+            var buddy = sortedDataSource.objectAtIndex(indexPath.section-1).objectAtIndex(indexPath.row) as! NSDictionary
+            var label = view.viewWithTag(1) as! UILabel
             label.text = buddy.objectForKey("nickname") as? String
             cell.nickname = label.text!
-            cell.userName = buddy.objectForKey("username") as String
+            cell.userName = buddy.objectForKey("username") as! String
             cell.addSubview(imageView)
-            var url = buddy.objectForKey("avatarURL") as String
+            var url = buddy.objectForKey("avatarURL") as! String
             cell.avatarURL = url
             if PicDic.picDic[url] == nil {
                 cell.avatar = UIImage()
@@ -211,7 +210,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
                 let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
                 let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error? == nil {
+                    if error == nil {
                         var rawImage: UIImage? = UIImage(data: data)
                         let img: UIImage? = rawImage
                         if img != nil {
@@ -271,7 +270,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
                 existTitles.addObject(sectionTitles.objectAtIndex(i))
             }
         }
-        return existTitles
+        return existTitles as [AnyObject]
     }
 
 
@@ -298,8 +297,8 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == "ContactSegue" {
-            var cell = sender as ContactCell
-            var friendInfoVC = segue.destinationViewController as FriendInfoViewController
+            var cell = sender as! ContactCell
+            var friendInfoVC = segue.destinationViewController as! FriendInfoViewController
             friendInfoVC.nickName = cell.nickname
             friendInfoVC.userName = cell.userName
             friendInfoVC.avatar = cell.avatar

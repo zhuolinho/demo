@@ -29,7 +29,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
             var alert = UIAlertView(title: "名字或密码不能为空", message: nil, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
-        else if countElements(pwd.text)<6{
+        else if count(pwd.text) < 6{
             var alert = UIAlertView(title: "密码不能少于6位", message: nil, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
@@ -44,29 +44,29 @@ class ResignAccountViewController: UIViewController, APIProtocol {
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if controllerType == RegistrationStep.SetUpAccount {
-            let res = data["result"] as NSDictionary
-            var result = res["token"] as NSString
+            let res = data["result"] as! NSDictionary
+            var result = res["token"] as! NSString
             if result == "wrong" {
                 var alert = UIAlertView(title: "注册失败，请重试", message: nil, delegate: nil, cancelButtonTitle: "OK")
                 self.resignButton.enabled = true
                     alert.show()
             }
             else {
-                API.userInfo.token = result
+                API.userInfo.token = result as String
                 controllerType = RegistrationStep.RefreshUserInfo
                 api.getMyInfo()
             }
         }
         else {
             
-            let res = data["result"] as NSDictionary
-            API.userInfo.username = res["username"] as NSString
-            API.userInfo.nickname = res["nickname"] as NSString
-            API.userInfo.phone = res["phone"] as NSString
-            API.userInfo.gender = res["gender"] as NSString
-            API.userInfo.rmb = res["rmb"] as Int
-            API.userInfo.id = res["uid"] as Int
-            API.userInfo.profilePhotoUrl = res["avatar"] as String
+            let res = data["result"] as! NSDictionary
+            API.userInfo.username = res["username"] as! String
+            API.userInfo.nickname = res["nickname"] as! String
+            API.userInfo.phone = res["phone"] as! String
+            API.userInfo.gender = res["gender"] as! String
+            API.userInfo.rmb = res["rmb"] as! Int
+            API.userInfo.id = res["uid"] as! Int
+            API.userInfo.profilePhotoUrl = res["avatar"] as! String
             
             
             EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
@@ -91,7 +91,7 @@ class ResignAccountViewController: UIViewController, APIProtocol {
                         }, onQueue: nil)
                 }
                 }, onQueue: nil)
-            APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: "setTags:", target: self)
+            APService.setTags([API.userInfo.username], alias: API.userInfo.username, callbackSelector: "setTags:", target: self)
             
         }
 

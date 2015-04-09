@@ -102,7 +102,7 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
         }
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        var chosenImage = info[UIImagePickerControllerEditedImage] as UIImage
+        var chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
         var height = chosenImage.size.height
         var width = chosenImage.size.width
         if height > width {
@@ -121,8 +121,8 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
         api.setAvatar()
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        let photoUrl = data["result"] as NSString //sss
-        API.userInfo.profilePhotoUrl = photoUrl
+        let photoUrl = data["result"] as! NSString //sss
+        API.userInfo.profilePhotoUrl = photoUrl as String
         dispatch_async(dispatch_get_main_queue(), {
             self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
         })

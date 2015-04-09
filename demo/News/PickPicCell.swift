@@ -30,9 +30,9 @@ class PickPicCell: UITableViewCell, UICollectionViewDataSource {
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = pickCollectionView.dequeueReusableCellWithReuseIdentifier("PickCollectionCell", forIndexPath: indexPath) as UICollectionViewCell
-        let imageView = cell.viewWithTag(1) as UIImageView
-        let url = dataSource[indexPath.row]["url"] as String
+        let cell = pickCollectionView.dequeueReusableCellWithReuseIdentifier("PickCollectionCell", forIndexPath: indexPath) as! UICollectionViewCell
+        let imageView = cell.viewWithTag(1) as! UIImageView
+        let url = dataSource[indexPath.row]["url"] as! String
         if PicDic.picDic[url] == nil {
             imageView.image = UIImage()
         }

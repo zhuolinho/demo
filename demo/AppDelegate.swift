@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         checkToken.delegate = self
         let userPreference: NSDictionary? = (NSUserDefaults.standardUserDefaults().objectForKey("YoUserInfo") as? NSDictionary)
         if userPreference != nil {
-            let token: String = userPreference!["token"] as String
+            let token: String = userPreference!["token"] as! String
             API.userInfo.token = token
             if !API.userInfo.token.isEmpty {
                 checkToken.getMyInfo()
@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         }
     }
     func showNotificationWithMessage(message: EMMessage) {
-        var messageBody = message.messageBodies[0] as IEMMessageBody
+        var messageBody = message.messageBodies[0] as! IEMMessageBody
         var messageStr = "新消息"
         var notification = UILocalNotification()
         notification.fireDate = NSDate()
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         var messag = username + " 添加你喂好友"
         var dic = NSMutableDictionary(dictionary: ["title": username, "username": username, "applyMessage": message, "applyStyle": "0"])
         ApplyViewController.shareController().loadDataSourceFromLocalDB()
-        ApplyViewController.shareController().addNewApply(dic)
+        ApplyViewController.shareController().addNewApply(dic as [NSObject : AnyObject])
     }
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 //        EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
@@ -118,21 +118,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         NSLog("\(errno)")
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        let res = data["result"] as NSDictionary
+        let res = data["result"] as! NSDictionary
         if res.count > 0 {
-            API.userInfo.username = res["username"] as NSString
-            API.userInfo.nickname = res["nickname"] as NSString
-            API.userInfo.phone = res["phone"] as NSString
-            API.userInfo.gender = res["gender"] as NSString
-            API.userInfo.profilePhotoUrl = res["avatar"] as String
-            API.userInfo.signature = res["sign"] as String
-            API.userInfo.id = res["uid"] as Int
+            API.userInfo.username = res["username"] as! String
+            API.userInfo.nickname = res["nickname"] as! String
+            API.userInfo.phone = res["phone"] as! String
+            API.userInfo.gender = res["gender"] as! String
+            API.userInfo.profilePhotoUrl = res["avatar"] as! String
+            API.userInfo.signature = res["sign"] as! String
+            API.userInfo.id = res["uid"] as! Int
             if !API.userInfo.profilePhotoUrl.isEmpty {
                 let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
                 let request: NSURLRequest = NSURLRequest(URL: url!)
                 let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error? == nil {
+                    if error == nil {
                         let img: UIImage? = UIImage(data: data)
                         let avatar: UIImage? = img
                         if avatar != nil {
@@ -162,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
                         }, onQueue: nil)
                 }
                 }, onQueue: nil)
-            APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: nil, target: self)
+            APService.setTags([API.userInfo.username], alias: API.userInfo.username, callbackSelector: nil, target: self)
         }
     }
     func applicationWillResignActive(application: UIApplication) {

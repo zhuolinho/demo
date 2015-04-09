@@ -52,7 +52,7 @@ class API: NSObject {
         static var imageCache = Dictionary<String, UIImage>()
     }
     override init(){
-        imageHost = hostBase
+//        imageHost = hostBase
     }
     init(delegate del: APIProtocol?) {
         self.delegate = del
@@ -371,13 +371,13 @@ class API: NSObject {
                 NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err)// as NSDictionary
                 
                 if err == nil {
-                    var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+                    var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
                     
                     // Now send the JSON result to our delegate object
 //                    println(jsonResult)
                     if jsonResult.count > 0 {
                         if (jsonResult["errno"] != nil) {
-                            var errno = jsonResult["errno"] as Int
+                            var errno = jsonResult["errno"] as! Int
                             if errno == 0{
                                 self.delegate?.didReceiveAPIResponseOf(self, data: jsonResult)
                             }
@@ -431,12 +431,12 @@ class API: NSObject {
         
         NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions.MutableContainers, error: &err)
         if err == nil {
-            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions.AllowFragments, error: &err) as NSDictionary
+            var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(response, options: NSJSONReadingOptions.AllowFragments, error: &err) as! NSDictionary
             // Now send the JSON result to our delegate object
 //            println(jsonResult)
             if jsonResult.count > 0 {
                 if jsonResult["errno"] != nil {
-                    var errno = Int(jsonResult["errno"] as NSNumber)
+                    var errno = Int(jsonResult["errno"] as! NSNumber)
                     if errno == 0{
                         self.delegate?.didReceiveAPIResponseOf(self, data: jsonResult)
 
@@ -453,7 +453,7 @@ class API: NSObject {
             }
         }
         else {
-            NSLog(NSString(data: response, encoding: NSUTF8StringEncoding)!)
+//            NSLog(String(contentsOfFile: response, encoding: NSUTF8StringEncoding)!)
             self.delegate?.didReceiveAPIErrorOf(self, errno: -4)
         }
         

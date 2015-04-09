@@ -17,8 +17,8 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         self.conversations = emChatListVC.loadDataSource()
         if self.conversations.count > 0 {
             self.conversations.sortUsingComparator({ (obj1, obj2) -> NSComparisonResult in
-                var msg1 = (obj1 as EMConversation).latestMessage()
-                var msg2 = (obj2 as EMConversation).latestMessage()
+                var msg1 = (obj1 as! EMConversation).latestMessage()
+                var msg2 = (obj2 as! EMConversation).latestMessage()
                 if msg1 == nil {
                     if msg2 == nil {
                         return NSComparisonResult.OrderedSame
@@ -67,7 +67,7 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         if editingStyle == .Delete {
             // Delete the row from the data source
             let row = indexPath.row
-            let conversation = self.conversations[row] as EMConversation
+            let conversation = self.conversations[row] as! EMConversation
             EaseMob.sharedInstance().chatManager.removeConversationByChatter!(conversation.chatter, deleteMessages: true)
             self.conversations.removeObjectAtIndex(row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -87,9 +87,9 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as ChatListCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as! ChatListCell
         let row = indexPath.row
-        let conversation = conversations[row] as EMConversation
+        let conversation = conversations[row] as! EMConversation
         var unreadCount = emChatListVC.unreadMessageCountByConversation(conversation)
         let username = conversation.chatter
         cell.time?.text = emChatListVC.lastMessageTimeByConversation(conversation)
@@ -110,11 +110,11 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
                 if error == nil {
                     var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
                     if (jsonRaw != nil) {
-                        var jsonResult = jsonRaw as NSDictionary
+                        var jsonResult = jsonRaw as! NSDictionary
                         if jsonResult.count > 0 {
-                            let result = jsonResult["result"] as NSDictionary
-                            let urlWithComma = result["avatar"] as String
-                            let nicknameWithComma = result["nickname"] as String
+                            let result = jsonResult["result"] as! NSDictionary
+                            let urlWithComma = result["avatar"] as! String
+                            let nicknameWithComma = result["nickname"] as! String
                             let url = urlWithComma.componentsSeparatedByString(",")[0]
                             let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
                             dispatch_async(dispatch_get_main_queue(), {
@@ -127,7 +127,7 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
                                 let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
                                 let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                                    if error? == nil {
+                                    if error == nil {
                                         var rawImage: UIImage? = UIImage(data: data)
                                         let img: UIImage? = rawImage
                                         if img != nil {
@@ -204,16 +204,16 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if(segue.identifier == "CellSegue"){
-            let cell = sender as ChatListCell
+            let cell = sender as! ChatListCell
             let indexPath = tableView.indexPathForCell(cell)
             let row = indexPath!.row
-            let conversation = self.conversations[row] as EMConversation
-            let chatVC = segue.destinationViewController as ChatViewController
+            let conversation = self.conversations[row] as! EMConversation
+            let chatVC = segue.destinationViewController as! ChatViewController
             chatVC.chatter = conversation.chatter
             chatVC.myHeadUrl = API.userInfo.imageHost + API.userInfo.profilePhotoUrl
             chatVC.friendHeadUrl = API.userInfo.imageHost + cell.imageURL
             chatVC.buyCourseRightNow = false
-            chatVC.navigationItem.title = (sender as ChatListCell).name?.text
+            chatVC.navigationItem.title = (sender as! ChatListCell).name?.text
             conversation.markAllMessagesAsRead(true)
         }
     }

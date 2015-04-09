@@ -46,7 +46,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         if (!API.userInfo.tokenValid && API.userInfo.token == ""){
             let mainStoryboard = UIStoryboard(name: "Login", bundle: nil)
-            let auth = mainStoryboard.instantiateInitialViewController() as UIViewController
+            let auth = mainStoryboard.instantiateInitialViewController() as! UIViewController
             self.presentViewController(auth, animated: true, completion: nil)
         }
     }
@@ -72,8 +72,8 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         // Return the number of rows in the section.
         var add = 0
         if section < news.count {
-            let stuct = news[section]["struct"] as NSDictionary
-            let comment = stuct["comment"] as [NSDictionary]
+            let stuct = news[section]["struct"] as! NSDictionary
+            let comment = stuct["comment"] as! [NSDictionary]
             if comment.count > 5 {
                 add = 6
             }
@@ -88,8 +88,8 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section < news.count
         {
-            let stuct = news[indexPath.section]["struct"] as NSDictionary
-            let pics = stuct["pics"] as [NSDictionary]
+            let stuct = news[indexPath.section]["struct"] as! NSDictionary
+            let pics = stuct["pics"] as! [NSDictionary]
             if indexPath.row == 0 {
                 return 44
             }
@@ -132,15 +132,15 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section < news.count {
-            let type = news[indexPath.section]["type"] as String
-            let stuct = news[indexPath.section]["struct"] as NSDictionary
-            let pics = stuct["pics"] as [NSDictionary]
-            let comments = stuct["comment"] as [NSDictionary]
+            let type = news[indexPath.section]["type"] as! String
+            let stuct = news[indexPath.section]["struct"] as! NSDictionary
+            let pics = stuct["pics"] as! [NSDictionary]
+            let comments = stuct["comment"] as! [NSDictionary]
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as TitleCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as! TitleCell
                 cell.timeLabel.text = stuct["createTime"] as? String
                 cell.nameLabel.text = stuct["nickname"] as? String
-                let url = stuct["avatar"] as String
+                let url = stuct["avatar"] as! String
                 if PicDic.picDic[url] != nil {
                     cell.avatar.image = PicDic.picDic[url]
                 }
@@ -150,8 +150,8 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 return cell
             }
             else if indexPath.row == 1 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as MainImageCell
-                let url =  pics[buffer[indexPath.section]]["url"] as String
+                let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as! MainImageCell
+                let url =  pics[buffer[indexPath.section]]["url"] as! String
                 cell.photosData = pics
                 if PicDic.picDic[url] != nil {
                     cell.mainImageView.image = PicDic.picDic[url]
@@ -162,7 +162,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 return cell
             }
             else if indexPath.row == 2 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("PickPicCell", forIndexPath: indexPath) as PickPicCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("PickPicCell", forIndexPath: indexPath) as! PickPicCell
                 cell.pickCollectionView.tag = indexPath.section
                 cell.pickCollectionView.delegate = self
                 cell.dataSource = pics
@@ -170,8 +170,8 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 return cell
             }
             else if indexPath.row == 3 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("StatusCell", forIndexPath: indexPath) as StatusCell
-                let charge = stuct["charge"] as Int
+                let cell = tableView.dequeueReusableCellWithIdentifier("StatusCell", forIndexPath: indexPath) as! StatusCell
+                let charge = stuct["charge"] as! Int
                 if type == "mission" {
                     cell.backgroundColor = UIColor.orangeColor()
                     cell.typeLabel.text = "任务剩余时间"
@@ -185,30 +185,30 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 return cell
             }
             else if indexPath.row == 4 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as DetailCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as! DetailCell
                 cell.titleLabel.text = stuct["title"] as? String
                 cell.contentLabel.text = stuct["content"] as? String
                 return cell
             }
             else if indexPath.row == 6 {
-                let numOfLike = stuct["numOfLike"] as Int
-                let numOfComment = stuct["numOfComment"] as Int
-                let cell = tableView.dequeueReusableCellWithIdentifier("LikeCell", forIndexPath: indexPath) as LikeCell
+                let numOfLike = stuct["numOfLike"] as! Int
+                let numOfComment = stuct["numOfComment"] as! Int
+                let cell = tableView.dequeueReusableCellWithIdentifier("LikeCell", forIndexPath: indexPath) as! LikeCell
                 cell.likeLabel.text = String(numOfLike)
                 cell.commentLabel.text = String(numOfComment)
                 cell.locationLabel.text = stuct["location"] as? String
                 return cell
             }
             else if indexPath.row > 6 && indexPath.row < 12 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as CommentCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
                 let comment = comments[indexPath.row - 7]
-                let nickname = comment["nickname"] as String
-                let content = comment["content"] as String
+                let nickname = comment["nickname"] as! String
+                let content = comment["content"] as! String
                 cell.commentLabel.text = nickname + "：" + content
                 return cell
             }
             else if indexPath.row == 5 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("SloganCell", forIndexPath: indexPath) as SloganCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("SloganCell", forIndexPath: indexPath) as! SloganCell
                 if stuct["slogan"] as? String != "*" {
                     cell.sloganLabel.text = stuct["slogan"] as? String
                 }
@@ -218,7 +218,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 return cell
             }
             else if indexPath.row == 12 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("MoreCommentsCell", forIndexPath: indexPath) as MoreCommentsCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("MoreCommentsCell", forIndexPath: indexPath) as! MoreCommentsCell
                 return cell
             }
 
@@ -243,10 +243,10 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         viewa.hidden = true
-        let stuct = news[collectionView.tag]["struct"] as NSDictionary
-        let pics = stuct["pics"] as [NSDictionary]
-        let url = pics[indexPath.row]["url"] as String
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: collectionView.tag)) as MainImageCell
+        let stuct = news[collectionView.tag]["struct"] as! NSDictionary
+        let pics = stuct["pics"] as! [NSDictionary]
+        let url = pics[indexPath.row]["url"] as! String
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: collectionView.tag)) as! MainImageCell
         cell.mainImageView.image = PicDic.picDic[url]
         buffer[collectionView.tag] = indexPath.row
     }
@@ -296,24 +296,24 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 buffer.removeAll(keepCapacity: true)
                 news.removeAll(keepCapacity: true)
             }
-            var res = data["result"] as NSArray
+            var res = data["result"] as! NSArray
             if res.count > 0 {
                 var items = [NSDictionary]()
                 for it in res {
-                    items.append(it as NSDictionary)
+                    items.append(it as! NSDictionary)
                     buffer.append(0)
-                    let stuct = it["struct"] as NSDictionary
-                    let avatar = ["url": stuct["avatar"] as String]
-                    var pics = stuct["pics"] as [NSDictionary]
+                    let stuct = it["struct"] as! NSDictionary
+                    let avatar = ["url": stuct["avatar"] as! String]
+                    var pics = stuct["pics"] as! [NSDictionary]
                     pics.append(avatar)
                     for pic in pics {
-                        let url = pic["url"] as String
+                        let url = pic["url"] as! String
                         if PicDic.picDic[url] == nil {
                             let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
                             let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
                             let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                                if error? == nil {
+                                if error == nil {
                                     var rawImage: UIImage? = UIImage(data: data)
                                     let img: UIImage? = rawImage
                                     if img != nil {
@@ -383,8 +383,8 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == "ViewPhotosSegue" {
-            let photosVC = segue.destinationViewController as PhotosView
-            let cell = sender as MainImageCell
+            let photosVC = segue.destinationViewController as! PhotosView
+            let cell = sender as! MainImageCell
             photosVC.photosData = cell.photosData
             photosVC.startIndex = buffer[tableView.indexPathForCell(cell)!.section]
         }

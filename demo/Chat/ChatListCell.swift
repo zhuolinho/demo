@@ -28,9 +28,9 @@ class ChatListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     override func layoutSubviews() {
-        let timeLabel = self.viewWithTag(3) as UILabel
-        let messageLabel = self.viewWithTag(2) as UILabel
-        let nameLabel = self.viewWithTag(1) as UILabel
+        let timeLabel = self.viewWithTag(3) as! UILabel
+        let messageLabel = self.viewWithTag(2) as! UILabel
+        let nameLabel = self.viewWithTag(1) as! UILabel
         self.addSubview(avatarView)
         unreadLabel.backgroundColor = UIColor.redColor()
         unreadLabel.textAlignment = NSTextAlignment.Center
