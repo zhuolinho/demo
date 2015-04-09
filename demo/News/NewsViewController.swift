@@ -97,12 +97,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 return self.view.bounds.width
             }
             else if indexPath.row == 2 {
-                if pics.count > 1 {
-                    return self.view.bounds.width / 4
-                }
-                else {
-                    return 0
-                }
+                return 0
             }
             else if indexPath.row == 3 {
                 return 60

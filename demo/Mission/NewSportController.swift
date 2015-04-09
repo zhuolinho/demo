@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import AssetsLibrary
+import CoreLocation
+import MapKit
 
-class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout {
+class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
     
     @IBOutlet weak var sloganTF: UITextField!
     @IBOutlet weak var picCollection: UICollectionView!
@@ -18,18 +21,20 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     var imagePicker = UIImagePickerController()
     var picker = UIPickerView()
     var picArray = [UIImage]()
+    var picDate = [String]()
     var deleteRow = 0
+    var locationManger = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         var blankView = UIView(frame: CGRectZero)
         tableView.tableFooterView = blankView
-//        var commitButton = UIButton(frame: CGRect(x: 0, y: view.bounds.height - 125, width: view.bounds.width, height: 60))
-//        commitButton.setTitle("发布任务", forState: UIControlState.Normal)
-//        commitButton.backgroundColor = UIColor.orangeColor()
-//        commitButton.titleLabel?.textColor = UIColor.whiteColor()
-//        view.addSubview(commitButton)
-        picker = UIPickerView(frame: CGRect(x: 0, y: view.bounds.height - 314, width: view.bounds.width, height: 162))
+        var commitButton = UIButton(frame: CGRect(x: 0, y: view.bounds.height - 124, width: view.bounds.width, height: 60))
+        commitButton.setTitle("发布任务", forState: UIControlState.Normal)
+        commitButton.backgroundColor = UIColor.orangeColor()
+        commitButton.titleLabel?.textColor = UIColor.whiteColor()
+        view.addSubview(commitButton)
+        picker = UIPickerView(frame: CGRect(x: 0, y: view.bounds.height - 286, width: view.bounds.width, height: 162))
         picker.backgroundColor = UIColor.whiteColor()
         picker.dataSource = self
         picker.delegate = self
@@ -38,6 +43,10 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         picCollection.dataSource = self
         picCollection.delegate = self
         imagePicker.delegate = self
+        locationManger.delegate = self
+        if (UIDevice.currentDevice().systemVersion as NSString).doubleValue >= 8.0 {
+            locationManger.requestWhenInUseAuthorization()
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -51,6 +60,22 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 3 {
+            if picArray.count > 3 {
+                return (view.bounds.width - 60) / 2 + 10
+            }
+            else {
+                return (view.bounds.width - 60) / 4
+            }
+        }
+        else if indexPath.section == 0 && indexPath.row == 0 {
+            return 50
+        }
+        else {
+            return 44
+        }
+    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         meneyTextField.resignFirstResponder()
         sloganTF.resignFirstResponder()
@@ -59,11 +84,16 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                 picker.hidden = false
             }
             else {
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 picker.hidden = true
             }
         }
         else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             picker.hidden = true
+            if indexPath.section == 0 && indexPath.row == 4 {
+                self.locationManger.startUpdatingLocation()
+            }
         }
     }
     // MARK: - Table view data source
@@ -96,6 +126,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         meneyTextField.resignFirstResponder()
         sloganTF.resignFirstResponder()
+        tableView.deselectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), animated: true)
         picker.hidden = true
         if indexPath.row == collectionView.numberOfItemsInSection(0) - 1 {
             var changeAvatarActionSheet = UIActionSheet()
@@ -153,11 +184,60 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         picArray.append(chosenImage)
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         picCollection.reloadData()
+        tableView.reloadData()
+        let formatExip = NSDateFormatter()
+        formatExip.dateFormat = "yyyy:MM:dd hh:mm:ss"
+        let formatSever = NSDateFormatter()
+        formatSever.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        if  info[UIImagePickerControllerReferenceURL] != nil {
+            let url = info[UIImagePickerControllerReferenceURL] as! NSURL
+            ALAssetsLibrary().assetForURL(url, resultBlock: { (asset) -> Void in
+                if asset.defaultRepresentation().metadata()["{Exif}"] != nil {
+                    let exif = asset.defaultRepresentation().metadata()["{Exif}"] as! NSDictionary
+                    if exif["DateTimeOriginal"] != nil {
+                        let date = formatExip.dateFromString(exif["DateTimeOriginal"] as! String)
+                        self.picDate.append(formatSever.stringFromDate(date!))
+                    }
+                    self.picDate.append("*")
+                }
+                self.picDate.append("*")
+                }, failureBlock: { (error) -> Void in
+                println(error)
+            })
+        }
+        else {
+            let metadata = info[UIImagePickerControllerMediaMetadata] as! NSDictionary
+            let exif = metadata["{Exif}"] as! NSDictionary
+            let date = formatExip.dateFromString(exif["DateTimeOriginal"] as! String)
+            picDate.append(formatSever.stringFromDate(date!))
+        }
     }
     func deletePic() {
         picArray.removeAtIndex(deleteRow)
+        picDate.removeAtIndex(deleteRow)
         picCollection.reloadData()
+        tableView.reloadData()
         navigationController?.popViewControllerAnimated(true)
+    }
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        var geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (array,error) -> Void in
+            if array.count > 0 {
+                let placemarks = array as! [CLPlacemark]
+                var placemark: CLPlacemark?
+                placemark = placemarks[0]
+                self.locationManger.stopUpdatingLocation()
+                self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))?.detailTextLabel?.text = placemark?.name
+            }
+            else {
+                self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))?.detailTextLabel?.text = "获取失败"
+            }
+            self.tableView.reloadData()
+        })
+    }
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))?.detailTextLabel?.text = "获取失败"
+        tableView.reloadData()
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

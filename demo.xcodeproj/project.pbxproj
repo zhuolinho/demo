@@ -330,6 +330,7 @@
 		069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */; };
 		06A108CE1AC9837000493A2A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CD1AC9837000493A2A /* TitleCell.swift */; };
 		06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CF1AC9AF3600493A2A /* PickPicCell.swift */; };
+		06B5F18E1AD6F9780035D6DE /* SelectMissionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */; };
 		06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC41AC823A600F52391 /* InvitationManager.m */; };
 		06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC81AC823AE00F52391 /* AddFriendCell.m */; };
 		06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCA1AC823AE00F52391 /* AddFriendViewController.m */; };
@@ -872,6 +873,7 @@
 		069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
 		06A108CD1AC9837000493A2A /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		06A108CF1AC9AF3600493A2A /* PickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickPicCell.swift; sourceTree = "<group>"; };
+		06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMissionTableViewController.swift; sourceTree = "<group>"; };
 		06BA9BC31AC823A600F52391 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		06BA9BC41AC823A600F52391 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		06BA9BC71AC823AE00F52391 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
@@ -1999,6 +2001,7 @@
 		06A9B0A41AD12F1200546E40 /* Mission */ = {
 			isa = PBXGroup;
 			children = (
+				06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */,
 				06C677AC1AD250F000D23FF7 /* NewSportController.swift */,
 				06C677B51AD26CD600D23FF7 /* ANNViewController.swift */,
 				06D86F071AD5194100C6A7D9 /* DeletePicViewController.swift */,
@@ -2552,6 +2555,7 @@
 				0694E65A1AB6CE72008ADF21 /* EMTextView.m in Sources */,
 				0694E6171AB6CE72008ADF21 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				0694E5E11AB6CE72008ADF21 /* MWGridViewController.m in Sources */,
+				06B5F18E1AD6F9780035D6DE /* SelectMissionTableViewController.swift in Sources */,
 				0694E5E01AB6CE72008ADF21 /* MWGridCell.m in Sources */,
 				06BA9BD11AC823AE00F52391 /* ApplyFriendCell.m in Sources */,
 				0694E6081AB6CE72008ADF21 /* SRRefreshView.m in Sources */,
