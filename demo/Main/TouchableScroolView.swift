@@ -12,17 +12,17 @@ class TouchableScroolView: UIScrollView {
     var touchUp = false
     var delegat: TouchableScroolViewDelegate?
     var timer = NSTimer()
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
         touchUp = true
         timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "longPress", userInfo: nil, repeats: false)
     }
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
         touchUp = false
         timer.invalidate()
     }
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         super.touchesEnded(touches, withEvent: event)
         if touchUp && timer.valid {
             delegat?.click()

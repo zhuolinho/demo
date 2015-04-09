@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
         super.viewDidLoad()
         tabBar.tintColor = UIColor.orangeColor()
         EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
-        let vc = self.viewControllers![2] as UIViewController
+        let vc = self.viewControllers![2] as! UIViewController
         if UIApplication.sharedApplication().applicationIconBadgeNumber != 0 {
             vc.tabBarItem.badgeValue = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
         }
@@ -36,10 +36,10 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
         var conversations = EaseMob.sharedInstance().chatManager.conversations
         var unreadCount: Int = 0
         for item in conversations! {
-            let conversation = item as EMConversation
+            let conversation = item as! EMConversation
             unreadCount += Int(conversation.unreadMessagesCount())
         }
-        let vc = self.viewControllers![2] as UIViewController
+        let vc = self.viewControllers![2] as! UIViewController
         if unreadCount > 0 {
             vc.tabBarItem.badgeValue = String(unreadCount)
             if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {

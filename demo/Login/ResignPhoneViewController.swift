@@ -51,7 +51,7 @@ class ResignPhoneViewController: UIViewController, APIProtocol {
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === sendCodeApi {
-            var result = data["result"] as NSString
+            var result = data["result"] as! NSString
             if result == "wrong" {
                 var alert = UIAlertView(title: "发送失败", message: nil, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
@@ -68,7 +68,7 @@ class ResignPhoneViewController: UIViewController, APIProtocol {
             }
         }
         else {
-            var result = data["result"] as Int
+            var result = data["result"] as! Int
             if result == 1 {
                 nextButton.enabled = true
                 code = codeTextField.text

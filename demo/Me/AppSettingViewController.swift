@@ -43,7 +43,7 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
             API.userInfo.profilePhotoUrl = ""
             EaseMob.sharedInstance().chatManager.asyncLogoff()
             let mainStoryboard = UIStoryboard(name: "Login", bundle: nil)
-            let auth = mainStoryboard.instantiateInitialViewController() as UIViewController
+            let auth = mainStoryboard.instantiateInitialViewController() as! UIViewController
             self.tabBarController?.selectedIndex = 0
             self.presentViewController(auth, animated: true, completion: nil)
             self.navigationController?.popToRootViewControllerAnimated(true)

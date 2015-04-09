@@ -74,8 +74,8 @@ class LoginViewController: UIViewController, APIProtocol {
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         if api === login{
-            let res = data["result"] as NSDictionary
-            if res["token"] as NSString == "wrong" {
+            let res = data["result"] as! NSDictionary
+            if res["token"] as! NSString == "wrong" {
                 var alert = UIAlertView(title: "手机号或密码有误", message: nil, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
                 //loginButton.userInteractionEnabled = true
@@ -85,7 +85,7 @@ class LoginViewController: UIViewController, APIProtocol {
                 loginButton.enabled = true
             }
             else {
-                API.userInfo.token = res["token"] as String
+                API.userInfo.token = res["token"] as! String
                 let userInfoDic: NSDictionary = NSDictionary(dictionary: ["token": API.userInfo.token])
                 NSUserDefaults.standardUserDefaults().setObject(userInfoDic, forKey: "YoUserInfo")
                 NSUserDefaults.standardUserDefaults().synchronize()
@@ -112,22 +112,22 @@ class LoginViewController: UIViewController, APIProtocol {
                 return
             }
             cancelLock.unlock()
-            let res = data["result"] as NSDictionary
-            API.userInfo.username = res["username"] as NSString
-            API.userInfo.nickname = res["nickname"] as NSString
-            API.userInfo.phone = res["phone"] as NSString
-            API.userInfo.gender = res["gender"] as NSString
-            API.userInfo.rmb = res["rmb"] as Int
-            API.userInfo.id = res["uid"] as Int
-            API.userInfo.profilePhotoUrl = res["avatar"] as String
-            API.userInfo.signature = res["sign"] as String
-            API.userInfo.phone = res["phone"] as String
+            let res = data["result"] as! NSDictionary
+            API.userInfo.username = res["username"] as! String
+            API.userInfo.nickname = res["nickname"] as! String
+            API.userInfo.phone = res["phone"] as! String
+            API.userInfo.gender = res["gender"] as! String
+            API.userInfo.rmb = res["rmb"] as! Int
+            API.userInfo.id = res["uid"] as! Int
+            API.userInfo.profilePhotoUrl = res["avatar"] as! String
+            API.userInfo.signature = res["sign"] as! String
+            API.userInfo.phone = res["phone"] as! String
             if !API.userInfo.profilePhotoUrl.isEmpty {
                 let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
                 let request: NSURLRequest = NSURLRequest(URL: url!)
                 let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error? == nil {
+                    if error == nil {
                         let img: UIImage? = UIImage(data: data)
                         let avatar: UIImage? = img
                         if avatar != nil {
@@ -162,7 +162,7 @@ class LoginViewController: UIViewController, APIProtocol {
                     alert.show()
                 }
             }, onQueue: nil)
-            APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: "setTags:", target: self)
+            APService.setTags([API.userInfo.username], alias: API.userInfo.username, callbackSelector: "setTags:", target: self)
         }
     }
 

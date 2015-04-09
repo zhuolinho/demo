@@ -83,8 +83,8 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         return CGSize(width: (view.bounds.width - 60) / 4, height: (view.bounds.width - 60) / 4)
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionCell", forIndexPath: indexPath) as UICollectionViewCell
-        let imageView = cell.viewWithTag(1) as UIImageView
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionCell", forIndexPath: indexPath) as! UICollectionViewCell
+        let imageView = cell.viewWithTag(1) as! UIImageView
         if indexPath.row >= picArray.count {
             imageView.image = UIImage(named: "new_task_07")
         }
@@ -115,7 +115,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             changeAvatarActionSheet.showInView(self.tableView)
         }
         else {
-            let vc = storyboard?.instantiateViewControllerWithIdentifier("DeletePicViewController") as DeletePicViewController
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("DeletePicViewController") as! DeletePicViewController
             vc.image = picArray[indexPath.row]
             vc.title = String(indexPath.row + 1) + "/" + String(picArray.count)
 //            vc.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "删除", style: UIBarButtonItemStyle.Done, target: self, action: "deletePic: indexPath.row")
@@ -149,7 +149,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         }
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        var chosenImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         picArray.append(chosenImage)
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         picCollection.reloadData()

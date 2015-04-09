@@ -61,20 +61,20 @@ class MeViewController: UITableViewController, APIProtocol {
     }
     
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        let res = data["result"] as NSDictionary
+        let res = data["result"] as! NSDictionary
         if res.count > 0 {
-            API.userInfo.username = res["username"] as NSString
-            API.userInfo.nickname = res["nickname"] as NSString
-            API.userInfo.phone = res["phone"] as NSString
-            API.userInfo.gender = res["gender"] as NSString
-            API.userInfo.profilePhotoUrl = res["avatar"] as String
-            API.userInfo.signature = res["sign"] as String
+            API.userInfo.username = res["username"] as! String
+            API.userInfo.nickname = res["nickname"] as! String
+            API.userInfo.phone = res["phone"] as! String
+            API.userInfo.gender = res["gender"] as! String
+            API.userInfo.profilePhotoUrl = res["avatar"] as! String
+            API.userInfo.signature = res["sign"] as! String
             if !API.userInfo.profilePhotoUrl.isEmpty {
                 let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
                 let request: NSURLRequest = NSURLRequest(URL: url!)
                 let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error? == nil {
+                    if error == nil {
                         let img: UIImage? = UIImage(data: data)
                         let avatar: UIImage? = img
                         if avatar != nil {
@@ -110,7 +110,7 @@ class MeViewController: UITableViewController, APIProtocol {
                         }, onQueue: nil)
                 }
                 }, onQueue: nil)
-            APService.setTags(NSSet(array: [API.userInfo.username]), alias: API.userInfo.username, callbackSelector: nil, target: self)
+            APService.setTags([API.userInfo.username], alias: API.userInfo.username, callbackSelector: nil, target: self)
         }
     }
     

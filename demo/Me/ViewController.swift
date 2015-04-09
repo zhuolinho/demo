@@ -36,7 +36,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         // Initialize the captureSession object.
         captureSession = AVCaptureSession()
         // Set the input device on the capture session.
-        captureSession?.addInput(input as AVCaptureInput)
+        captureSession?.addInput(input as! AVCaptureInput)
         
         // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
         let captureMetadataOutput = AVCaptureMetadataOutput()
@@ -95,13 +95,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             }
             
             // Get the metadata object.
-            let metadataObj = metadataObjects[0] as AVMetadataMachineReadableCodeObject
+            let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
             
             if metadataObj.type == AVMetadataObjectTypeQRCode {
                 // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
                 let barCodeObject =
                 videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj
-                    as AVMetadataMachineReadableCodeObject) as
+                    as AVMetadataMachineReadableCodeObject) as!
                 AVMetadataMachineReadableCodeObject
                 qrCodeFrameView?.frame = barCodeObject.bounds;
                 
@@ -121,11 +121,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                                 if error == nil {
                                     var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
                                     if (jsonRaw != nil) {
-                                        var jsonResult = jsonRaw as NSDictionary
+                                        var jsonResult = jsonRaw as! NSDictionary
                                         if jsonResult.count > 0 {
-                                            let result = jsonResult["result"] as NSDictionary
-                                            let urlWithComma = result["avatar"] as String
-                                            let nicknameWithComma = result["nickname"] as String
+                                            let result = jsonResult["result"] as! NSDictionary
+                                            let urlWithComma = result["avatar"] as! String
+                                            let nicknameWithComma = result["nickname"] as! String
                                             let url = urlWithComma.componentsSeparatedByString(",")[0]
                                             let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
                                             var avatar = UIImage(named: "DefaultAvatar")
@@ -134,7 +134,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                                                 let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
                                                 let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
                                                 NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                                                    if error? == nil {
+                                                    if error == nil {
                                                         var rawImage: UIImage? = UIImage(data: data)
                                                         let img: UIImage? = rawImage
                                                         if img != nil {
@@ -149,7 +149,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                                             else {
                                                 avatar = PicDic.picDic[url]
                                             }
-                                            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("FriendInfoViewController") as FriendInfoViewController
+                                            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("FriendInfoViewController") as! FriendInfoViewController
                                             vc.nickName = nickname
                                             vc.userName = username
                                             vc.avatar = avatar

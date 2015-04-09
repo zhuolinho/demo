@@ -59,11 +59,11 @@ class FriendInfoViewController: UITableViewController, APIProtocol {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("InfoCell", forIndexPath: indexPath) as UITableViewCell
-        var avatarView = cell.viewWithTag(4) as UIImageView
-        var genderLabel = cell.viewWithTag(1) as UILabel
-        var nicknameLabel = cell.viewWithTag(2) as UILabel
-        var signLabel = cell.viewWithTag(3) as UILabel
+        let cell = tableView.dequeueReusableCellWithIdentifier("InfoCell", forIndexPath: indexPath) as! UITableViewCell
+        var avatarView = cell.viewWithTag(4) as! UIImageView
+        var genderLabel = cell.viewWithTag(1) as! UILabel
+        var nicknameLabel = cell.viewWithTag(2) as! UILabel
+        var signLabel = cell.viewWithTag(3) as! UILabel
         nicknameLabel.text = nickName
         avatarView.image = avatar
         signLabel.text = sign
@@ -77,9 +77,9 @@ class FriendInfoViewController: UITableViewController, APIProtocol {
         NSLog("\(errno)")
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        let res = data["result"] as NSDictionary
-        sign = res["sign"] as NSString
-        gender = res["gender"] as NSString
+        let res = data["result"] as! NSDictionary
+        sign = res["sign"] as! String
+        gender = res["gender"] as! String
         tableView.reloadData()
     }
     /*
@@ -125,7 +125,7 @@ class FriendInfoViewController: UITableViewController, APIProtocol {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if(segue.identifier == "ChatSegue"){
-            let chatVC = segue.destinationViewController as ChatViewController
+            let chatVC = segue.destinationViewController as! ChatViewController
             chatVC.chatter = userName
             chatVC.myHeadUrl = API.userInfo.imageHost + API.userInfo.profilePhotoUrl
             chatVC.friendHeadUrl = API.userInfo.imageHost + avatarURL

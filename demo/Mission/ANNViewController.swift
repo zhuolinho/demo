@@ -22,7 +22,7 @@ class ANNViewController: UIViewController, CLLocationManagerDelegate {
         var geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (array,error) -> Void in
             if array.count > 0 {
-                let placemarks = array as [CLPlacemark]
+                let placemarks = array as! [CLPlacemark]
                 var placemark: CLPlacemark?
                 placemark = placemarks[0]
                 println(placemark)
