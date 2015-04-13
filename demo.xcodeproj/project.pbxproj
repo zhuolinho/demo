@@ -349,6 +349,7 @@
 		06CD925E1AA877E10026C3E7 /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD925D1AA877E10026C3E7 /* demoTests.swift */; };
 		06CF5C7B1AC70022003D46B8 /* FriendInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF5C7A1AC70022003D46B8 /* FriendInfoViewController.swift */; };
 		06D86F081AD5194100C6A7D9 /* DeletePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D86F071AD5194100C6A7D9 /* DeletePicViewController.swift */; };
+		06E85D7A1ADC316500640E08 /* ApplyTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E85D791ADC316500640E08 /* ApplyTableVC.swift */; };
 		06EADEF31AC270D7003C0B27 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EADEF21AC270D7003C0B27 /* ContactCell.swift */; };
 		06EE1DF11ACE7F1600050893 /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EE1DF01ACE7F1600050893 /* PhotosView.swift */; };
 		06EE1DF31ACE8A3B00050893 /* TouchableScroolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EE1DF21ACE8A3B00050893 /* TouchableScroolView.swift */; };
@@ -898,8 +899,9 @@
 		06CD92571AA877E10026C3E7 /* demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CD925C1AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD925D1AA877E10026C3E7 /* demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoTests.swift; sourceTree = "<group>"; };
-		06CF5C7A1AC70022003D46B8 /* FriendInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoViewController.swift; sourceTree = "<group>"; };
+		06CF5C7A1AC70022003D46B8 /* FriendInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendInfoViewController.swift; path = ../Main/FriendInfoViewController.swift; sourceTree = "<group>"; };
 		06D86F071AD5194100C6A7D9 /* DeletePicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePicViewController.swift; sourceTree = "<group>"; };
+		06E85D791ADC316500640E08 /* ApplyTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyTableVC.swift; sourceTree = "<group>"; };
 		06EADEF21AC270D7003C0B27 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		06EE1DF01ACE7F1600050893 /* PhotosView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
 		06EE1DF21ACE8A3B00050893 /* TouchableScroolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchableScroolView.swift; sourceTree = "<group>"; };
@@ -1207,7 +1209,9 @@
 		0662E0B11AB6CC1B002AAF4F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				06E85D791ADC316500640E08 /* ApplyTableVC.swift */,
 				0694E6DA1AB7217B008ADF21 /* ChatTableViewController.swift */,
+				06CF5C7A1AC70022003D46B8 /* FriendInfoViewController.swift */,
 				065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */,
 				06F618EE1ABEA72300918389 /* ContactsViewController.swift */,
 				06EADEF21AC270D7003C0B27 /* ContactCell.swift */,
@@ -2123,7 +2127,6 @@
 		06CF5C791AC70022003D46B8 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				06CF5C7A1AC70022003D46B8 /* FriendInfoViewController.swift */,
 				0615378B1AC946AA0046EEBE /* PicDic.swift */,
 				06EE1DF21ACE8A3B00050893 /* TouchableScroolView.swift */,
 				06EE1DF41ACE8BA300050893 /* TouchableScroolViewDelegate.swift */,
@@ -2570,6 +2573,7 @@
 				0694E64A1AB6CE72008ADF21 /* EMChatAudioBubbleView.m in Sources */,
 				0694E6191AB6CE72008ADF21 /* LocationViewController.m in Sources */,
 				0694E5EB1AB6CE72008ADF21 /* EMSDWebImageDownloader.m in Sources */,
+				06E85D7A1ADC316500640E08 /* ApplyTableVC.swift in Sources */,
 				0694E6601AB6CE72008ADF21 /* XHMessageTextView.m in Sources */,
 				0694E6531AB6CE72008ADF21 /* EMChatViewCell.m in Sources */,
 				0694E6551AB6CE72008ADF21 /* MessageModel.m in Sources */,
@@ -2702,7 +2706,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2729,7 +2733,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

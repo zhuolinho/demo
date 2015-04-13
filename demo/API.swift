@@ -167,6 +167,12 @@ class API: NSObject {
     func addCollection(id: Int) {
         get(host + "addCollection.action?token=\(API.userInfo.token)&id=\(id)")
     }
+    func addFriend(username: String) {
+        get(host + "addFriend.action?token=\(API.userInfo.token)&username=\(username)")
+    }
+    func deleteFriend(username: String) {
+        get(host + "deleteFriend.action?token=\(API.userInfo.token)&username=\(username)")
+    }
     func getMyInfo() {
         let tokenData = ["token": API.userInfo.token]
         get(host + "getMyInfo.action?token=" + API.userInfo.token)

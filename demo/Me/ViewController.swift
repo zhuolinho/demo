@@ -18,7 +18,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         let width = self.view.bounds.width
         let height = self.view.bounds.height
-        messageView.frame = CGRectMake(0, height*6/7, width, height/7)
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -54,7 +53,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         // Start video capture.
         captureSession?.startRunning()
         // Move the message label to the top view
-        view.bringSubviewToFront(messageView)
         
         // Initialize QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
@@ -80,9 +78,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
 
-    @IBOutlet weak var messageView: UIView!
 
-    @IBOutlet weak var messageLabel: UILabel!
     
     func captureOutput(captureOutput: AVCaptureOutput!,
         didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection
@@ -90,7 +86,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             // Check if the metadataObjects array is not nil and it contains at least one object.
             if metadataObjects == nil || metadataObjects.count == 0 {
                 qrCodeFrameView?.frame = CGRectZero
-                messageLabel.text = "No QR code is detected"
                 return
             }
             
@@ -106,7 +101,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 qrCodeFrameView?.frame = barCodeObject.bounds;
                 
                 if metadataObj.stringValue != nil && !lock{
-                    messageLabel.text = metadataObj.stringValue
                     let strRange1 =  metadataObj.stringValue.rangeOfString("%%")
                     let strRange2 =  metadataObj.stringValue.rangeOfString("##")
                     if strRange1 != nil && strRange2 != nil {
