@@ -17,6 +17,7 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
     @IBOutlet weak var gender: UILabel!
     var api = API()
     var imagePicker = UIImagePickerController()
+    var profilePhoto = UIImage()
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -116,6 +117,7 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
         var rect = CGRectMake(0, 0, width, height)
         UIGraphicsBeginImageContext(CGSizeMake(width, height))
         chosenImage.drawInRect(rect)
+        profilePhoto = API.userInfo.profilePhoto!
         API.userInfo.profilePhoto = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext();
         api.setAvatar()
@@ -128,7 +130,12 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
         })
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        NSLog("\(errno)")
+        let alert = UIAlertView(title: "上传失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+        alert.show()
+        API.userInfo.profilePhoto = profilePhoto
+        dispatch_async(dispatch_get_main_queue(), {
+            self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
     // MARK: - Table view data source
 
