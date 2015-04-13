@@ -68,6 +68,7 @@
 		068AEBF31AAC7BE800F5B84C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBF21AAC7BE800F5B84C /* LoginViewController.swift */; };
 		068AEBF51AAC7C8100F5B84C /* ResignPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBF41AAC7C8100F5B84C /* ResignPhoneViewController.swift */; };
 		068AEBF71AAC7C9600F5B84C /* ResignAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068AEBF61AAC7C9600F5B84C /* ResignAccountViewController.swift */; };
+		068BFFD31ADA04FC00CE6CC6 /* AddFriendTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068BFFD21ADA04FC00CE6CC6 /* AddFriendTableVC.swift */; };
 		0694E5D91AB6CE72008ADF21 /* Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 0694E44F1AB6CE71008ADF21 /* Emoji.m */; };
 		0694E5DA1AB6CE72008ADF21 /* EmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0694E4511AB6CE71008ADF21 /* EmojiEmoticons.m */; };
 		0694E5DB1AB6CE72008ADF21 /* libvoice_engine_arm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0694E4521AB6CE71008ADF21 /* libvoice_engine_arm.a */; };
@@ -517,6 +518,7 @@
 		068AEBF21AAC7BE800F5B84C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		068AEBF41AAC7C8100F5B84C /* ResignPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResignPhoneViewController.swift; sourceTree = "<group>"; };
 		068AEBF61AAC7C9600F5B84C /* ResignAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResignAccountViewController.swift; sourceTree = "<group>"; };
+		068BFFD21ADA04FC00CE6CC6 /* AddFriendTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendTableVC.swift; sourceTree = "<group>"; };
 		0694E44E1AB6CE71008ADF21 /* Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emoji.h; sourceTree = "<group>"; };
 		0694E44F1AB6CE71008ADF21 /* Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Emoji.m; sourceTree = "<group>"; };
 		0694E4501AB6CE71008ADF21 /* EmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiEmoticons.h; sourceTree = "<group>"; };
@@ -1209,6 +1211,7 @@
 				065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */,
 				06F618EE1ABEA72300918389 /* ContactsViewController.swift */,
 				06EADEF21AC270D7003C0B27 /* ContactCell.swift */,
+				068BFFD21ADA04FC00CE6CC6 /* AddFriendTableVC.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2559,6 +2562,7 @@
 				0694E5E01AB6CE72008ADF21 /* MWGridCell.m in Sources */,
 				06BA9BD11AC823AE00F52391 /* ApplyFriendCell.m in Sources */,
 				0694E6081AB6CE72008ADF21 /* SRRefreshView.m in Sources */,
+				068BFFD31ADA04FC00CE6CC6 /* AddFriendTableVC.swift in Sources */,
 				069E56DA1ACA83B6008B3340 /* MainImageCell.swift in Sources */,
 				0615378C1AC946AA0046EEBE /* PicDic.swift in Sources */,
 				068477831ACF03AF00F5B667 /* CommentCell.swift in Sources */,
@@ -2691,13 +2695,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2717,13 +2722,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

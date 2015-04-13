@@ -31,6 +31,14 @@ class FriendInfoViewController: UITableViewController, APIProtocol {
         super.viewDidLoad()
         api.getUserInfo(userName)
         api.delegate = self
+        let buddyList = EaseMob.sharedInstance().chatManager.buddyList
+        var buddy = EMBuddy()
+        for buddy in buddyList {
+            if buddy.followState.value != eEMBuddyFollowState_NotFollowed.value && buddy.username == userName {
+                navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "关注", style: UIBarButtonItemStyle.Done, target: self, action: nil), animated: true)
+                println("")
+            }
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

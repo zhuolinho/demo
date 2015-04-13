@@ -217,10 +217,21 @@ class API: NSObject {
         let d = ["token": API.userInfo.token]
         sendURLEncodedForm(action: "setAvatar.action", data: d, image: API.userInfo.profilePhoto)
     }
+    func uploadPic(pic: UIImage) {
+        let d = ["token": API.userInfo.token]
+        sendURLEncodedForm(action: "uploadPicture.action", data: d, image: pic)
+    }
+    func searchFriend(str: String) {
+        let d = ["token": API.userInfo.token, "usernameorphone": str]
+        sendURLEncodedForm(action: "getInfoFromUsernameOrPhone.action", data: d, image: nil)
+    }
     func deleteCollection(id: Int) {
         get(host + "deleteCollection.action?token=\(API.userInfo.token)&id=\(id)")
     }
-    
+    func addMission(missionTemplateID: Int, title: String, content: String, supervisor: String, slogan: String, pics: String, picTimes: String, location: String, rmb: Int) {
+        let data = ["token": API.userInfo.token, "missionTemplateID": "\(missionTemplateID)", "title": title, "content": content, "supervisor": supervisor, "slogan": slogan, "pics": pics, "picTimes": picTimes, "location": location, "rmb": "\(rmb)"]
+        sendURLEncodedForm(action: "addMission.action", data: data, image: nil)
+    }
     func setSchool(school: Int) {
         let data = ["token": API.userInfo.token, "school": "\(school)"]
         sendURLEncodedForm(action: "setSchool.action", data: data, image: nil)

@@ -14,10 +14,6 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
     var sectionTitles = NSMutableArray()
     var sortedDataSource = NSMutableArray()
     var buddyList = NSArray()
-    @IBAction func addButtonClick(sender: UIBarButtonItem) {
-        let addFriendVC = AddFriendViewController(style: UITableViewStyle.Plain)
-        self.navigationController?.pushViewController(addFriendVC, animated: true)
-    }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

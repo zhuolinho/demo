@@ -11,7 +11,7 @@ import AssetsLibrary
 import CoreLocation
 import MapKit
 
-class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
+class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate {
     
     @IBOutlet weak var sloganTF: UITextField!
     @IBOutlet weak var picCollection: UICollectionView!
@@ -24,6 +24,9 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     var picDate = [String]()
     var deleteRow = 0
     var locationManger = CLLocationManager()
+    var apis = [API]()
+    var url = Dictionary<Int, String>()
+    var addMission = API()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         commitButton.setTitle("发布任务", forState: UIControlState.Normal)
         commitButton.backgroundColor = UIColor.orangeColor()
         commitButton.titleLabel?.textColor = UIColor.whiteColor()
+        commitButton.addTarget(self, action: "commitButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(commitButton)
         picker = UIPickerView(frame: CGRect(x: 0, y: view.bounds.height - 286, width: view.bounds.width, height: 162))
         picker.backgroundColor = UIColor.whiteColor()
@@ -47,6 +51,11 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         if (UIDevice.currentDevice().systemVersion as NSString).doubleValue >= 8.0 {
             locationManger.requestWhenInUseAuthorization()
         }
+        for i in 0...7 {
+            apis.append(API())
+            apis[i].delegate = self
+        }
+        addMission.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -107,7 +116,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         return String(row)
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return picArray.count + 1
+        if picArray.count >= 8 {
+            return 8
+        }
+        else {
+            return picArray.count + 1
+        }
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: (view.bounds.width - 60) / 4, height: (view.bounds.width - 60) / 4)
@@ -128,7 +142,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         sloganTF.resignFirstResponder()
         tableView.deselectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), animated: true)
         picker.hidden = true
-        if indexPath.row == collectionView.numberOfItemsInSection(0) - 1 {
+        if indexPath.row == picArray.count {
             var changeAvatarActionSheet = UIActionSheet()
             changeAvatarActionSheet.delegate = self
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -181,14 +195,19 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        picArray.append(chosenImage)
+        let newSize = CGSize(width: view.bounds.width * 2, height: chosenImage.size.height / chosenImage.size.width * view.bounds.width * 2)
+        UIGraphicsBeginImageContext(newSize)
+        chosenImage.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        let editedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        picArray.append(editedImage)
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         picCollection.reloadData()
         tableView.reloadData()
         let formatExip = NSDateFormatter()
-        formatExip.dateFormat = "yyyy:MM:dd hh:mm:ss"
+        formatExip.dateFormat = "yyyy:MM:dd HH:mm:ss"
         let formatSever = NSDateFormatter()
-        formatSever.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
         if  info[UIImagePickerControllerReferenceURL] != nil {
             let url = info[UIImagePickerControllerReferenceURL] as! NSURL
             ALAssetsLibrary().assetForURL(url, resultBlock: { (asset) -> Void in
@@ -198,9 +217,13 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                         let date = formatExip.dateFromString(exif["DateTimeOriginal"] as! String)
                         self.picDate.append(formatSever.stringFromDate(date!))
                     }
+                    else {
+                        self.picDate.append("*")
+                    }
+                }
+                else {
                     self.picDate.append("*")
                 }
-                self.picDate.append("*")
                 }, failureBlock: { (error) -> Void in
                 println(error)
             })
@@ -208,7 +231,8 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         else {
             let metadata = info[UIImagePickerControllerMediaMetadata] as! NSDictionary
             let exif = metadata["{Exif}"] as! NSDictionary
-            let date = formatExip.dateFromString(exif["DateTimeOriginal"] as! String)
+            let strDate = exif["DateTimeOriginal"] as! String
+            let date = formatExip.dateFromString(strDate)
             picDate.append(formatSever.stringFromDate(date!))
         }
     }
@@ -238,6 +262,182 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))?.detailTextLabel?.text = "获取失败"
         tableView.reloadData()
+    }
+    func commitButtonClick() {
+        if timesLabel.text == "" {
+            let alert = UIAlertView(title: "请输入次数", message: "", delegate: nil, cancelButtonTitle: "确认")
+            alert.show()
+            return
+        }
+        if meneyTextField.text.toInt() == nil || meneyTextField.text.toInt() < 0 {
+            let alert = UIAlertView(title: "请输入金额", message: "", delegate: nil, cancelButtonTitle: "确认")
+            alert.show()
+            return
+        }
+        if tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))?.detailTextLabel?.text == "" {
+            let alert = UIAlertView(title: "请定位所在位置", message: "", delegate: nil, cancelButtonTitle: "确认")
+            alert.show()
+            return
+        }
+        let alert = UIAlertView(title: "确认发布？", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "发布")
+        alert.tag = 1
+        alert.delegate = self
+        alert.show()
+    }
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if alertView.tag == 1 {
+            if buttonIndex == 1 {
+                view.userInteractionEnabled = false
+                navigationController?.navigationBar.userInteractionEnabled = false
+                navigationController?.interactivePopGestureRecognizer.enabled = false
+                if picArray.count > 0 {
+                        for i in 0...picArray.count - 1 {
+                        apis[i].uploadPic(picArray[i])
+                    }
+                }
+            }
+        }
+        else if alertView.tag == 2 {
+            if buttonIndex == 1 {
+                if picArray.count > 0 {
+                    for i in 0...picArray.count - 1 {
+                        if url[i] == "" {
+                            apis[i].uploadPic(picArray[i])
+                            url.removeValueForKey(i)
+                        }
+                    }
+                }
+            }
+            else {
+                view.userInteractionEnabled = true
+                navigationController?.navigationBar.userInteractionEnabled = true
+                navigationController?.interactivePopGestureRecognizer.enabled = true
+                url.removeAll(keepCapacity: true)
+            }
+        }
+        else if alertView.tag == 3 {
+            if buttonIndex == 1 {
+                var times = -1
+                if timesLabel.text != "" {
+                    times = timesLabel.text!.toInt()!
+                }
+                let content = "我保证未来两周内要去\(times)次健身房"
+                var slogan = "*"
+                if sloganTF.text != "" {
+                    slogan = sloganTF.text
+                }
+                var rmb = 0
+                if meneyTextField.text != "" {
+                    rmb = meneyTextField.text.toInt()!
+                }
+                var location = "*"
+                if tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))?.detailTextLabel?.text != "" {
+                    location = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))!.detailTextLabel!.text!
+                }
+                var pics = ""
+                var picTimes = ""
+                if picArray.count > 0 {
+                    for i in 0...picArray.count - 1 {
+                        if i == 0 {
+                            pics += url[0]!
+                            picTimes += picDate[0]
+                        }
+                        else {
+                            pics += ",\(url[i]!)"
+                            picTimes += ",\(picDate[i])"
+                        }
+                    }
+                }
+                else {
+                    pics = "*"
+                    picTimes = "*"
+                }
+                addMission.addMission(1, title: "健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+            }
+            else {
+                view.userInteractionEnabled = true
+                navigationController?.navigationBar.userInteractionEnabled = true
+                navigationController?.interactivePopGestureRecognizer.enabled = true
+                url.removeAll(keepCapacity: true)
+            }
+        }
+    }
+    func didReceiveAPIErrorOf(api: API, errno: Int) {
+        if api === addMission {
+            let alert = UIAlertView(title: "上传失败", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "重试")
+            alert.tag = 3
+            alert.show()
+        }
+        for i in 0...7 {
+            if api === apis[i] {
+                url[i] = ""
+                if url.count == picArray.count {
+                    let alert = UIAlertView(title: "上传失败", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "重试")
+                    alert.tag = 2
+                    alert.show()
+                }
+                break
+            }
+        }
+    }
+    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
+        if api === addMission {
+            navigationController?.navigationBar.userInteractionEnabled = true
+            view.userInteractionEnabled = true
+            navigationController?.interactivePopGestureRecognizer.enabled = true
+            let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+            return
+        }
+        for i in 0...7 {
+            if api === apis[i] {
+                let photoUrl = data["result"] as! String
+                url[i] = photoUrl
+                if picArray.count > 0 {
+                    for i in 0...picArray.count - 1 {
+                        if url[i] == nil || url[i] == "" {
+                            return
+                        }
+                    }
+                }
+                break
+            }
+        }
+        var times = -1
+        if timesLabel.text != "" {
+            times = timesLabel.text!.toInt()!
+        }
+        let content = "我保证未来两周内要去\(times)次健身房"
+        var slogan = "*"
+        if sloganTF.text != "" {
+            slogan = sloganTF.text
+        }
+        var rmb = 0
+        if meneyTextField.text != "" {
+            rmb = meneyTextField.text.toInt()!
+        }
+        var location = "*"
+        if tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))?.detailTextLabel?.text != "" {
+            location = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))!.detailTextLabel!.text!
+        }
+        var pics = ""
+        var picTimes = ""
+        if picArray.count > 0 {
+            for i in 0...picArray.count - 1 {
+                if i == 0 {
+                    pics += url[0]!
+                    picTimes += picDate[0]
+                }
+                else {
+                    pics += ",\(url[i]!)"
+                    picTimes += ",\(picDate[i])"
+                }
+            }
+        }
+        else {
+            pics = "*"
+            picTimes = "*"
+        }
+        addMission.addMission(1, title: "健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
