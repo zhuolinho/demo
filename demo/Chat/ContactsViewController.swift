@@ -14,6 +14,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
     var sectionTitles = NSMutableArray()
     var sortedDataSource = NSMutableArray()
     var buddyList = NSArray()
+    let api = API()
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,7 +66,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             var loginInfo = EaseMob.sharedInstance().chatManager.loginInfo as NSDictionary
-            var loginUsername = loginInfo.objectForKey(kSDKUsername) as! NSString
+            var loginUsername = loginInfo.objectForKey(kSDKUsername) as! String
             var buddy = sortedDataSource.objectAtIndex(indexPath.section - 1).objectAtIndex(indexPath.row) as! NSDictionary
             var username = buddy["username"] as! String
             if username == loginUsername {
@@ -82,6 +83,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
                 EaseMob.sharedInstance().chatManager.removeBuddy(username, removeFromRemote: true, error: error)
                 if error == nil {
                     EaseMob.sharedInstance().chatManager.removeConversationByChatter?(username, deleteMessages: true)
+                    self.api.deleteFriend(username)
                 }
             })
         }

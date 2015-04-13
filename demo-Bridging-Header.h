@@ -21,4 +21,5 @@
 #import "APService.h"
 //#import "AppDelegating.h"
 #import "ApplyViewController.h"
-#import "AddFriendViewController.h"
+#import "ApplyFriendCell.h"
+#import "InvitationManager.h"
