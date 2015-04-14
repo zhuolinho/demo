@@ -210,6 +210,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
         if  info[UIImagePickerControllerReferenceURL] != nil {
             let url = info[UIImagePickerControllerReferenceURL] as! NSURL
+            println(url)
             ALAssetsLibrary().assetForURL(url, resultBlock: { (asset) -> Void in
                 if asset.defaultRepresentation().metadata()["{Exif}"] != nil {
                     let exif = asset.defaultRepresentation().metadata()["{Exif}"] as! NSDictionary
@@ -386,6 +387,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             view.userInteractionEnabled = true
             navigationController?.interactivePopGestureRecognizer.enabled = true
             let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
             return
         }
         for i in 0...7 {

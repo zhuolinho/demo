@@ -8,14 +8,20 @@
 
 import UIKit
 
-class FriendInfoViewController: UITableViewController, APIProtocol {
+class FriendInfoViewController: UITableViewController, APIProtocol, UIAlertViewDelegate {
     var userName = ""
     var nickName = ""
     var avatar = UIImage(named: "DefaultAvatar")
     var avatarURL = ""
-    var api = API()
-    var gender = ""
+    var api1 = API()
+    var api2 = API()
     var sign = ""
+    var uid = -1
+    var isFriend = false
+    var createTimes = [NSDate]()
+    var contents = [String]()
+    var titles = [String]()
+    var charges = [Int]()
 //    @IBAction func chatButtonClick(sender: UIBarButtonItem) {
 //        var chatVC = ChatViewController()
 //        chatVC.chatter = userName
@@ -29,16 +35,23 @@ class FriendInfoViewController: UITableViewController, APIProtocol {
 //    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        api.getUserInfo(userName)
-        api.delegate = self
+        api1.getUserInfo(userName)
+        api1.delegate = self
+        api2.delegate = self
         let buddyList = EaseMob.sharedInstance().chatManager.buddyList
         var buddy = EMBuddy()
-        for buddy in buddyList {
-            if buddy.followState.value != eEMBuddyFollowState_NotFollowed.value && buddy.username == userName {
-                navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "关注", style: UIBarButtonItemStyle.Done, target: self, action: nil), animated: true)
-                println("")
+        if userName == API.userInfo.username {
+            isFriend = true
+        }
+        else {
+            for buddy in buddyList {
+                if buddy.followState.value != eEMBuddyFollowState_NotFollowed.value && buddy.username == userName {
+                    isFriend = true
+                }
             }
         }
+        let blankView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = blankView
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,39 +69,126 @@ class FriendInfoViewController: UITableViewController, APIProtocol {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 1
+        if section == 0 {
+            return 1
+        }
+        else {
+            return titles.count
+        }
     }
-
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 200
+        }
+        else {
+            return 60
+        }
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("InfoCell", forIndexPath: indexPath) as! UITableViewCell
-        var avatarView = cell.viewWithTag(4) as! UIImageView
-        var genderLabel = cell.viewWithTag(1) as! UILabel
-        var nicknameLabel = cell.viewWithTag(2) as! UILabel
-        var signLabel = cell.viewWithTag(3) as! UILabel
-        nicknameLabel.text = nickName
-        avatarView.image = avatar
-        signLabel.text = sign
-        genderLabel.text = gender
-        // Configure the cell...
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("InfoCell", forIndexPath: indexPath) as! UITableViewCell
+            var avatarView = cell.viewWithTag(4) as! UIImageView
+            var idLabel = cell.viewWithTag(1) as! UILabel
+            var nicknameLabel = cell.viewWithTag(2) as! UILabel
+            var signLabel = cell.viewWithTag(3) as! UILabel
+            avatarView.layer.cornerRadius = 40
+            avatarView.layer.masksToBounds = true
+            nicknameLabel.text = nickName
+            avatarView.image = avatar
+            signLabel.text = sign
+            idLabel.text = userName
+            let attentButton = cell.viewWithTag(5) as! UIButton
+            attentButton.addTarget(self, action: "addFriend", forControlEvents: UIControlEvents.TouchDown)
+            let chatButton = cell.viewWithTag(6) as! UIButton
+            if isFriend {
+                attentButton.userInteractionEnabled = false
+                chatButton.userInteractionEnabled = true
+                chatButton.imageView?.image = UIImage(named: "user_info11_05")
+                attentButton.imageView?.image = UIImage(named: "user_info11_03")
+            }
+            else {
+                attentButton.userInteractionEnabled = true
+                chatButton.userInteractionEnabled = false
+                attentButton.imageView?.image = UIImage(named: "user_info1_06")
+                chatButton.imageView?.image = UIImage(named: "user_info1_09")
+            }
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("MissionCell", forIndexPath: indexPath) as! UITableViewCell
+            let timeLabel = cell.viewWithTag(1) as! UILabel
+            let titleLabel = cell.viewWithTag(2) as! UILabel
+            let contentLabel = cell.viewWithTag(3) as! UILabel
+            let chargeLabel = cell.viewWithTag(4) as! UILabel
+            titleLabel.text = titles[indexPath.row]
+            contentLabel.text = contents[indexPath.row]
+            chargeLabel.text = String(charges[indexPath.row])
+            let formatMission = NSDateFormatter()
+            formatMission.dateFormat = "yyyy-MM-dd"
+            timeLabel.text = formatMission.stringFromDate(createTimes[indexPath.row])
+            return cell
+        }
 
-        return cell
     }
-
+    func addFriend() {
+        let alert = UIAlertView(title: "申请好友", message: "我是...", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "发送")
+        alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
+        alert.show()
+    }
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex != alertView.cancelButtonIndex {
+            var str = alertView.textFieldAtIndex(0)?.text
+            if str == "" {
+                str = "请求添加好友"
+            }
+            var error = AutoreleasingUnsafeMutablePointer<EMError?>()
+            EaseMob.sharedInstance().chatManager.addBuddy(userName, message: str, error: error)
+            if error == nil {
+                let alert = UIAlertView(title: "发送成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            }
+            else {
+                let alert = UIAlertView(title: "网络错误", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            }
+        }
+    }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         NSLog("\(errno)")
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        let res = data["result"] as! NSDictionary
-        sign = res["sign"] as! String
-        gender = res["gender"] as! String
-        tableView.reloadData()
+        if api === api1 {
+            let res = data["result"] as! NSDictionary
+            sign = res["sign"] as! String
+            uid = res["uid"] as! Int
+            tableView.reloadData()
+            api2.getMoments(uid)
+        }
+        else {
+            let res = data["result"] as! [NSDictionary]
+            for item in res {
+                let charge = item["charge"] as! Int
+                charges.append(charge)
+                let title = item["title"] as! String
+                titles.append(title)
+                let content = item["content"] as! String
+                contents.append(content)
+                let createTime = item["createTime"] as! String
+                let formatSever = NSDateFormatter()
+                formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                createTimes.append(formatSever.dateFromString(createTime)!)
+            }
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        }
     }
     /*
     // Override to support conditional editing of the table view.
