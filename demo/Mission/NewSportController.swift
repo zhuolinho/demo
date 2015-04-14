@@ -210,13 +210,17 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
         if  info[UIImagePickerControllerReferenceURL] != nil {
             let url = info[UIImagePickerControllerReferenceURL] as! NSURL
-            println(url)
             ALAssetsLibrary().assetForURL(url, resultBlock: { (asset) -> Void in
-                if asset.defaultRepresentation().metadata()["{Exif}"] != nil {
-                    let exif = asset.defaultRepresentation().metadata()["{Exif}"] as! NSDictionary
-                    if exif["DateTimeOriginal"] != nil {
-                        let date = formatExip.dateFromString(exif["DateTimeOriginal"] as! String)
-                        self.picDate.append(formatSever.stringFromDate(date!))
+                if asset != nil {
+                    if asset.defaultRepresentation().metadata()["{Exif}"] != nil {
+                        let exif = asset.defaultRepresentation().metadata()["{Exif}"] as! NSDictionary
+                        if exif["DateTimeOriginal"] != nil {
+                            let date = formatExip.dateFromString(exif["DateTimeOriginal"] as! String)
+                            self.picDate.append(formatSever.stringFromDate(date!))
+                        }
+                        else {
+                            self.picDate.append("*")
+                        }
                     }
                     else {
                         self.picDate.append("*")

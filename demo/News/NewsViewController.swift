@@ -70,18 +70,19 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        var add = 0
-        if section < news.count {
-            let stuct = news[section]["struct"] as! NSDictionary
-            let comment = stuct["comment"] as! [NSDictionary]
-            if comment.count > 5 {
-                add = 6
-            }
-            else {
-                add = comment.count
-            }
-        }
-        return 7 + add
+        return 7
+//        var add = 0
+//        if section < news.count {
+//            let stuct = news[section]["struct"] as! NSDictionary
+//            let comment = stuct["comment"] as! [NSDictionary]
+//            if comment.count > 5 {
+//                add = 6
+//            }
+//            else {
+//                add = comment.count
+//            }
+//        }
+//        return 7 + add
     }
 //
     
@@ -100,19 +101,14 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 return 0
             }
             else if indexPath.row == 3 {
-                return 60
+                return 55
             }
             else if indexPath.row == 4 {
                 return 44
             }
             else if indexPath.row == 5 {
-                if news[indexPath.section]["type"] as? String == "mission" {
-                    if stuct["slogan"] as? String != "*" {
-                        return 44
-                    }
-                    else {
-                        return 0
-                    }
+                if stuct["slogan"] as? String != "*" && stuct["slogan"] as! String != "" {
+                    return 44
                 }
                 else {
                     return 0
@@ -148,6 +144,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as! MainImageCell
                 let url =  pics[buffer[indexPath.section]]["url"] as! String
                 cell.photosData = pics
+                cell.countLabel.text = String(pics.count)
                 if PicDic.picDic[url] != nil {
                     cell.mainImageView.image = PicDic.picDic[url]
                 }
@@ -168,14 +165,42 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 let cell = tableView.dequeueReusableCellWithIdentifier("StatusCell", forIndexPath: indexPath) as! StatusCell
                 let charge = stuct["charge"] as! Int
                 if type == "mission" {
+                    if cell.superviseButton.hidden {
+                        cell.superviseButton.hidden = false
+                    }
+                    else {
+                        cell.superviseButton.hidden = true
+                        cell.wtfLabel.text = "已监督"
+                        cell.lockImageView.hidden = false
+                        cell.evidentState.hidden = true
+                    }
                     cell.backgroundColor = UIColor.orangeColor()
                     cell.typeLabel.text = "任务剩余时间"
                     cell.meneyLabel.text = String(charge)
+                    let formatSever = NSDateFormatter()
+                    formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let endTime = formatSever.dateFromString(stuct["endTime"] as! String)
+                    let hour = Int(endTime!.timeIntervalSinceNow / 3600)
+                    if hour < 0 {
+                        cell.timeLabel.text = "已完成"
+                    }
+                    else {
+                        cell.timeLabel.text = "\(hour / 24)天\(hour % 24)小时"
+                    }
                 }
                 else {
+                    cell.superviseButton.hidden = true
+                    cell.lockImageView.hidden = true
+                    cell.evidentState.hidden = false
+                    cell.wtfLabel.text = "任务状态"
                     cell.backgroundColor = UIColor.blackColor()
                     cell.typeLabel.text = "证据拍摄时间"
                     cell.meneyLabel.text = String(charge)
+                    let formatSever = NSDateFormatter()
+                    formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let formatCell = NSDateFormatter()
+                    formatCell.dateFormat = "MM:dd HH:mm"
+                    cell.timeLabel.text = formatCell.stringFromDate(formatSever.dateFromString(stuct["createTime"] as! String)!)
                 }
                 return cell
             }
@@ -194,14 +219,14 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 cell.locationLabel.text = stuct["location"] as? String
                 return cell
             }
-            else if indexPath.row > 6 && indexPath.row < 12 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
-                let comment = comments[indexPath.row - 7]
-                let nickname = comment["nickname"] as! String
-                let content = comment["content"] as! String
-                cell.commentLabel.text = nickname + "：" + content
-                return cell
-            }
+//            else if indexPath.row > 6 && indexPath.row < 12 {
+//                let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
+//                let comment = comments[indexPath.row - 7]
+//                let nickname = comment["nickname"] as! String
+//                let content = comment["content"] as! String
+//                cell.commentLabel.text = nickname + "：" + content
+//                return cell
+//            }
             else if indexPath.row == 5 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("SloganCell", forIndexPath: indexPath) as! SloganCell
                 if stuct["slogan"] as? String != "*" {
@@ -212,10 +237,10 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 }
                 return cell
             }
-            else if indexPath.row == 12 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("MoreCommentsCell", forIndexPath: indexPath) as! MoreCommentsCell
-                return cell
-            }
+//            else if indexPath.row == 12 {
+//                let cell = tableView.dequeueReusableCellWithIdentifier("MoreCommentsCell", forIndexPath: indexPath) as! MoreCommentsCell
+//                return cell
+//            }
 
         }
         return UITableViewCell()

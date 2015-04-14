@@ -194,44 +194,49 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         }
         else{
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as! ContactCell
-            var buddy = sortedDataSource.objectAtIndex(indexPath.section-1).objectAtIndex(indexPath.row) as! NSDictionary
-            var label = view.viewWithTag(1) as! UILabel
-            label.text = buddy.objectForKey("nickname") as? String
-            cell.nickname = label.text!
-            cell.userName = buddy.objectForKey("username") as! String
-            cell.addSubview(imageView)
-            var url = buddy.objectForKey("avatarURL") as! String
-            cell.avatarURL = url
-            if PicDic.picDic[url] == nil {
-                cell.avatar = UIImage()
-                let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error == nil {
-                        var rawImage: UIImage? = UIImage(data: data)
-                        let img: UIImage? = rawImage
-                        if img != nil {
-                            dispatch_async(dispatch_get_main_queue(), {
-                                imageView.image = img
-                                cell.avatar = img
-                                PicDic.picDic[url] = img
-                            })
+            var buddy = sortedDataSource.objectAtIndex(indexPath.section-1).objectAtIndex(indexPath.row) as? NSDictionary
+            if buddy != nil {
+                var label = view.viewWithTag(1) as! UILabel
+                label.text = buddy!.objectForKey("nickname") as? String
+                cell.nickname = label.text!
+                cell.userName = buddy!.objectForKey("username") as! String
+                cell.addSubview(imageView)
+                var url = buddy!.objectForKey("avatarURL") as! String
+                cell.avatarURL = url
+                if PicDic.picDic[url] == nil {
+                    cell.avatar = UIImage()
+                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                        if error == nil {
+                            var rawImage: UIImage? = UIImage(data: data)
+                            let img: UIImage? = rawImage
+                            if img != nil {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    imageView.image = img
+                                    cell.avatar = img
+                                    PicDic.picDic[url] = img
+                                })
+                            }
+                            else{
+                                imageView.image = UIImage(named: "DefaultAvatar")
+                            }
                         }
                         else{
                             imageView.image = UIImage(named: "DefaultAvatar")
                         }
-                    }
-                    else{
-                        imageView.image = UIImage(named: "DefaultAvatar")
-                    }
-                })
+                    })
+                }
+                else {
+                    imageView.image = PicDic.picDic[url]
+                    cell.avatar = PicDic.picDic[url]
+                }
+                return cell
             }
             else {
-                imageView.image = PicDic.picDic[url]
-                cell.avatar = PicDic.picDic[url]
+                return UITableViewCell()
             }
-            return cell
         }
     }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

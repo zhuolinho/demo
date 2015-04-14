@@ -9,7 +9,10 @@
 import UIKit
 
 class StatusCell: UITableViewCell {
+    @IBOutlet weak var superviseButton: UIButton!
 
+    @IBOutlet weak var wtfLabel: UILabel!
+    @IBOutlet weak var lockImageView: UIImageView!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
