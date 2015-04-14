@@ -10,6 +10,7 @@ import UIKit
 
 class MainImageCell: UITableViewCell {
 
+    @IBOutlet weak var countLabel: UILabel!
 
     @IBOutlet weak var mainImageView: UIImageView!
     var photosData = [NSDictionary]()
