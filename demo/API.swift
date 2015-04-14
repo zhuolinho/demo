@@ -275,8 +275,8 @@ class API: NSObject {
         get(host + "getCollection.action?token=" + API.userInfo.token)
     }
     
-    func getMoments(skip: Int) {
-        get(host + "getMissions.action?token=" + API.userInfo.token + "&start=\(skip)&limit=10")
+    func getMoments(uid: Int) {
+        get(host + "getMissions.action?token=" + API.userInfo.token + "&uid=\(uid)&start=0&limit=100")
     }
     
     func getCourses() {
