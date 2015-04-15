@@ -254,8 +254,8 @@ class API: NSObject {
         let d = ["token": API.userInfo.token]
         sendURLEncodedForm(action: "getStudentEvaluations.action", data: d, image: nil )
     }
-    func getLearningHistory(skip: Int) {
-        get(host + "myAddMissions.action?token=" + API.userInfo.token + "&start=\(skip)&limit=10")
+    func getMyMissions(skip: Int) {
+        get(host + "getMyMissions.action?token=" + API.userInfo.token + "&start=\(skip)&limit=100")
     }
     func getMissionsAndEvidences(skip: Int) {
         get(host + "getMissionsAndEvidences.action?token=" + API.userInfo.token + "&start=\(skip)&limit=10")

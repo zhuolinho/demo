@@ -85,7 +85,9 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
 //        self.setupUnreadMessageCount()
         
     }
-
+    override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
+        return "删除"
+    }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as! ChatListCell
         let row = indexPath.row

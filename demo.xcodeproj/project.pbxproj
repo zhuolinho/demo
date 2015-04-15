@@ -339,6 +339,7 @@
 		06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCA1AC823AE00F52391 /* AddFriendViewController.m */; };
 		06BA9BD11AC823AE00F52391 /* ApplyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCC1AC823AE00F52391 /* ApplyFriendCell.m */; };
 		06BA9BD21AC823AE00F52391 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCE1AC823AE00F52391 /* ApplyViewController.m */; };
+		06BFF72F1ADE111A00FD1CCF /* MyMissionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */; };
 		06C50D0C1AD039F100075F8D /* SloganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C50D0B1AD039F100075F8D /* SloganCell.swift */; };
 		06C677AD1AD250F000D23FF7 /* NewSportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C677AC1AD250F000D23FF7 /* NewSportController.swift */; };
 		06C677AE1AD26B2600D23FF7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D22B1AB20A3D00708337 /* CoreLocation.framework */; };
@@ -889,6 +890,7 @@
 		06BA9BCC1AC823AE00F52391 /* ApplyFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyFriendCell.m; sourceTree = "<group>"; };
 		06BA9BCD1AC823AE00F52391 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
 		06BA9BCE1AC823AE00F52391 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
+		06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMissionsVC.swift; sourceTree = "<group>"; };
 		06C50D0B1AD039F100075F8D /* SloganCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SloganCell.swift; sourceTree = "<group>"; };
 		06C677AC1AD250F000D23FF7 /* NewSportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSportController.swift; sourceTree = "<group>"; };
 		06C677B51AD26CD600D23FF7 /* ANNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNViewController.swift; sourceTree = "<group>"; };
@@ -2014,6 +2016,7 @@
 				06C677AC1AD250F000D23FF7 /* NewSportController.swift */,
 				06C677B51AD26CD600D23FF7 /* ANNViewController.swift */,
 				06D86F071AD5194100C6A7D9 /* DeletePicViewController.swift */,
+				06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */,
 			);
 			path = Mission;
 			sourceTree = "<group>";
@@ -2516,6 +2519,7 @@
 				0694E5FC1AB6CE72008ADF21 /* PSTCollectionViewData.m in Sources */,
 				0694E61F1AB6CE72008ADF21 /* DXChatBarMoreView.m in Sources */,
 				0694E5EC1AB6CE72008ADF21 /* EMSDWebImageDownloaderOperation.m in Sources */,
+				06BFF72F1ADE111A00FD1CCF /* MyMissionsVC.swift in Sources */,
 				0694E6041AB6CE72008ADF21 /* PSTGridLayoutSection.m in Sources */,
 				0694E61B1AB6CE72008ADF21 /* DXFaceView.m in Sources */,
 				0694E64C1AB6CE72008ADF21 /* EMChatImageBubbleView.m in Sources */,
