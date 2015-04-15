@@ -8,14 +8,19 @@
 
 import UIKit
 
-class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol {
+class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol, SWTableViewCellDelegate, UIAlertViewDelegate {
 
     @IBOutlet weak var viewTable: UITableView!
     
     @IBOutlet weak var missionsTable: UITableView!
     
-    let api = API()
+    let api1 = API()
     var missions = [NSDictionary]()
+    let api2 = API()
+    var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    let formatSever = NSDateFormatter()
+    var mark = 0
+    var imageViewLock = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +28,20 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         viewTable.delegate = self
         missionsTable.dataSource = self
         missionsTable.delegate = self
-        api.delegate = self
+        api1.delegate = self
+        api2.delegate = self
         let blankView = UIView(frame: CGRectZero)
         missionsTable.tableFooterView = blankView
+        activity.frame.origin = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2)
+        activity.hidesWhenStopped = true
+        view.addSubview(activity)
+        formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        api.getMyMissions(0)
+        activity.startAnimating()
+        api1.getMyMissions(0)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,67 +72,195 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         if tableView === viewTable {
             if indexPath.row == 0 {
                 let cell =  tableView.dequeueReusableCellWithIdentifier("ImageViewCell", forIndexPath: indexPath) as! UITableViewCell
+                if !imageViewLock {
+                    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 320, height: 265))
+                    imageView.tag = 1
+                    imageView.contentMode = .ScaleAspectFill
+                    cell.addSubview(imageView)
+                }
                 let imageView = cell.viewWithTag(1) as! UIImageView
-                imageView.image = UIImage(named: "DefaultAvatar")
+                if missions.count > mark {
+                    let pics = missions[mark]["pics"] as! [NSDictionary]
+                    let url = pics[0]["url"] as! String
+                    if PicDic.picDic[url] != nil {
+                        imageView.image = PicDic.picDic[url]
+                    }
+                    else {
+                        imageView.image = UIImage()
+                    }
+                }
+                else {
+                    imageView.image = UIImage(named: "DefaultAvatar")
+                }
                 return cell
             }
             else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as! UITableViewCell
+                let timeLabel = cell.viewWithTag(1) as! UILabel
+                let chargeLabel = cell.viewWithTag(2) as! UILabel
+                if missions.count <= mark {
+                    timeLabel.text = ""
+                    chargeLabel.text = ""
+                }
+                else {
+                    let endTime = formatSever.dateFromString(missions[mark]["endTime"] as! String)
+                    let hour = Int(endTime!.timeIntervalSinceNow / 3600)
+                    let charge = missions[mark]["charge"] as! Int
+                    if hour < 0 {
+                        timeLabel.text = "已完成"
+                    }
+                    else {
+                        timeLabel.text = "\(hour / 24)天\(hour % 24)小时"
+                    }
+                    chargeLabel.text = String(charge)
+                }
                 return cell
             }
         }
         else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("MissionCell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("MissionCell", forIndexPath: indexPath) as! MissionCell
             if indexPath.row < missions.count {
-                let titleLabel = cell.viewWithTag(1) as! UILabel
-                let contentLabel = cell.viewWithTag(2) as! UILabel
-                titleLabel.text = missions[indexPath.row]["title"] as? String
-                contentLabel.text = missions[indexPath.row]["content"] as? String
-                let scrollView = cell.viewWithTag(5) as! UIScrollView
-                scrollView.contentSize = CGSize(width: view.bounds.width + 108, height: 47)
-                let selectButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 47))
-                selectButton.addTarget(self, action: "selectButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
-                selectButton.tag = indexPath.row
-                scrollView.addSubview(selectButton)
-                let addButton = UIButton(frame: CGRect(x: view.bounds.width, y: 0, width: 54, height: 47))
-                addButton.setImage(UIImage(named: "addButton"), forState: .Normal)
-                addButton.addTarget(self, action: "addButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
-                addButton.tag = indexPath.row
-                scrollView.addSubview(addButton)
-                let deleteButton = UIButton(frame: CGRect(x: view.bounds.width + 54, y: 0, width: 54, height: 47))
-                deleteButton.setImage(UIImage(named: "deleteButton"), forState: .Normal)
-                deleteButton.addTarget(self, action: "deleteButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
-                deleteButton.tag = indexPath.row
-                scrollView.addSubview(deleteButton)
+                var rightButtons = [UIButton]()
+                let addButton = UIButton()
+                addButton.setImage(UIImage(named: "addButton"), forState: UIControlState.Normal)
+                addButton.backgroundColor = UIColor.clearColor()
+                rightButtons.append(addButton)
+                let deleteButton = UIButton()
+                deleteButton.setImage(UIImage(named: "deleteButton"), forState: UIControlState.Normal)
+                deleteButton.backgroundColor = UIColor.clearColor()
+                rightButtons.append(deleteButton)
+                cell.setRightUtilityButtons(rightButtons, withButtonWidth: 54)
+                cell.titleLabel.text = missions[indexPath.row]["title"] as? String
+                cell.contentLabel.text = missions[indexPath.row]["content"] as? String
+                cell.delegate = self
+                cell.tag = indexPath.row
                 return cell
             }
             return UITableViewCell()
         }
     }
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+        if index == 0 {
+            println(cell.tag)
+        }
+        else {
+            let alert = UIAlertView(title: "确认删除？", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确认")
+            alert.tag = cell.tag
+            alert.show()
+        }
+    }
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex != alertView.cancelButtonIndex {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.activity.startAnimating()
+                self.missionsTable.userInteractionEnabled = false
+            })
+            let mid = missions[alertView.tag]["id"] as! Int
+            api2.deleteMission(mid)
+        }
+    }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("fuck")
-    }
-    func addButtonClick() {
-        println("add")
-    }
-    func deleteButtonClick() {
-        println("delete")
-    }
-    func selectButtonClick() {
-        println("select")
+        if tableView === missionsTable {
+            mark = indexPath.row
+            let cell = viewTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))
+            let timeLabel = cell!.viewWithTag(1) as! UILabel
+            let chargeLabel = cell!.viewWithTag(2) as! UILabel
+            let endTime = formatSever.dateFromString(missions[indexPath.row]["endTime"] as! String)
+            let charge = missions[indexPath.row]["charge"] as! Int
+            let hour = Int(endTime!.timeIntervalSinceNow / 3600)
+            if hour < 0 {
+                timeLabel.text = "已完成"
+            }
+            else {
+                timeLabel.text = "\(hour / 24)天\(hour % 24)小时"
+            }
+            chargeLabel.text = String(charge)
+            let cell1 = viewTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+            let imageView = cell1!.viewWithTag(1) as! UIImageView
+            if missions.count > mark {
+                let pics = missions[mark]["pics"] as! [NSDictionary]
+                let url = pics[0]["url"] as! String
+                if PicDic.picDic[url] != nil {
+                    imageView.image = PicDic.picDic[url]
+                }
+                else {
+                    imageView.image = UIImage()
+                }
+            }
+            else {
+                imageView.image = UIImage(named: "DefaultAvatar")
+            }
+        }
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        NSLog("\(errno)")
+        if api === api2 {
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertView(title: "删除失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+                self.missionsTable.userInteractionEnabled = true
+                self.activity.stopAnimating()
+            })
+        }
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        let res = data["result"] as! [NSDictionary]
-        missions.removeAll(keepCapacity: true)
-        for item in res {
-            missions.append(item)
+        if api === api1 {
+            let res = data["result"] as! [NSDictionary]
+            missions.removeAll(keepCapacity: true)
+            for item in res {
+                missions.append(item)
+            }
+            mark = 0
+            dispatch_async(dispatch_get_main_queue(), {
+                self.activity.stopAnimating()
+                self.missionsTable.userInteractionEnabled = true
+                self.missionsTable.reloadData()
+                self.viewTable.reloadData()
+                self.activity.stopAnimating()
+            })
+            if res.count > 0 {
+                for it in res {
+                    var pics = it["pics"] as! [NSDictionary]
+                    if pics.count > 0 {
+                        let url = pics[0]["url"] as! String
+                        if PicDic.picDic[url] == nil {
+                            let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                            let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                            let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                                if error == nil {
+                                    var rawImage: UIImage? = UIImage(data: data)
+                                    let img: UIImage? = rawImage
+                                    if img != nil {
+                                        dispatch_async(dispatch_get_main_queue(), {
+                                            PicDic.picDic[url] = img
+                                            self.viewTable.reloadData()
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    }
+                }
+            }
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            self.missionsTable.reloadData()
-        })
+        else {
+            let res = data["result"] as! Int
+            if res == 1 {
+                api1.getMyMissions(0)
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "删除成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "删除失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                    self.missionsTable.userInteractionEnabled = true
+                    self.activity.stopAnimating()
+                })
+            }
+        }
     }
     /*
     // MARK: - Navigation

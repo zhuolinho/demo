@@ -27,6 +27,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     var apis = [API]()
     var url = Dictionary<Int, String>()
     var addMission = API()
+    var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,9 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             apis[i].delegate = self
         }
         addMission.delegate = self
+        activity.frame.origin = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2 - 64)
+        activity.hidesWhenStopped = true
+        view.addSubview(activity)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -292,9 +296,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if alertView.tag == 1 {
             if buttonIndex == 1 {
-                view.userInteractionEnabled = false
-                navigationController?.navigationBar.userInteractionEnabled = false
-                navigationController?.interactivePopGestureRecognizer.enabled = false
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.startAnimating()
+                    self.view.userInteractionEnabled = false
+                    self.navigationController?.navigationBar.userInteractionEnabled = false
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = false
+                })
                 if picArray.count > 0 {
                         for i in 0...picArray.count - 1 {
                         apis[i].uploadPic(picArray[i])
@@ -314,9 +321,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                 }
             }
             else {
-                view.userInteractionEnabled = true
-                navigationController?.navigationBar.userInteractionEnabled = true
-                navigationController?.interactivePopGestureRecognizer.enabled = true
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                })
                 url.removeAll(keepCapacity: true)
             }
         }
@@ -360,9 +370,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                 addMission.addMission(1, title: "任务详情－健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
             }
             else {
-                view.userInteractionEnabled = true
-                navigationController?.navigationBar.userInteractionEnabled = true
-                navigationController?.interactivePopGestureRecognizer.enabled = true
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                })
                 url.removeAll(keepCapacity: true)
             }
         }
@@ -387,11 +400,14 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === addMission {
-            navigationController?.navigationBar.userInteractionEnabled = true
-            view.userInteractionEnabled = true
-            navigationController?.interactivePopGestureRecognizer.enabled = true
-            let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
-            alert.show()
+            dispatch_async(dispatch_get_main_queue(), {
+                self.activity.stopAnimating()
+                self.navigationController?.navigationBar.userInteractionEnabled = true
+                self.view.userInteractionEnabled = true
+                self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            })
             return
         }
         for i in 0...7 {

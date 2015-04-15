@@ -340,6 +340,12 @@
 		06BA9BD11AC823AE00F52391 /* ApplyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCC1AC823AE00F52391 /* ApplyFriendCell.m */; };
 		06BA9BD21AC823AE00F52391 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCE1AC823AE00F52391 /* ApplyViewController.m */; };
 		06BFF72F1ADE111A00FD1CCF /* MyMissionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */; };
+		06BFF7331ADE5C0C00FD1CCF /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF7321ADE5C0C00FD1CCF /* MissionCell.swift */; };
+		06BFF7591ADE5E3C00FD1CCF /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF74F1ADE5E3C00FD1CCF /* SWCellScrollView.m */; };
+		06BFF75A1ADE5E3C00FD1CCF /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF7511ADE5E3C00FD1CCF /* SWLongPressGestureRecognizer.m */; };
+		06BFF75B1ADE5E3C00FD1CCF /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF7531ADE5E3C00FD1CCF /* SWTableViewCell.m */; };
+		06BFF75C1ADE5E3C00FD1CCF /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF7551ADE5E3C00FD1CCF /* SWUtilityButtonTapGestureRecognizer.m */; };
+		06BFF75D1ADE5E3C00FD1CCF /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF7571ADE5E3C00FD1CCF /* SWUtilityButtonView.m */; };
 		06C50D0C1AD039F100075F8D /* SloganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C50D0B1AD039F100075F8D /* SloganCell.swift */; };
 		06C677AD1AD250F000D23FF7 /* NewSportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C677AC1AD250F000D23FF7 /* NewSportController.swift */; };
 		06C677AE1AD26B2600D23FF7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D22B1AB20A3D00708337 /* CoreLocation.framework */; };
@@ -891,6 +897,17 @@
 		06BA9BCD1AC823AE00F52391 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
 		06BA9BCE1AC823AE00F52391 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMissionsVC.swift; sourceTree = "<group>"; };
+		06BFF7321ADE5C0C00FD1CCF /* MissionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
+		06BFF74E1ADE5E3C00FD1CCF /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
+		06BFF74F1ADE5E3C00FD1CCF /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCellScrollView.m; sourceTree = "<group>"; };
+		06BFF7501ADE5E3C00FD1CCF /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		06BFF7511ADE5E3C00FD1CCF /* SWLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWLongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		06BFF7521ADE5E3C00FD1CCF /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewCell.h; sourceTree = "<group>"; };
+		06BFF7531ADE5E3C00FD1CCF /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
+		06BFF7541ADE5E3C00FD1CCF /* SWUtilityButtonTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonTapGestureRecognizer.h; sourceTree = "<group>"; };
+		06BFF7551ADE5E3C00FD1CCF /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
+		06BFF7561ADE5E3C00FD1CCF /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
+		06BFF7571ADE5E3C00FD1CCF /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
 		06C50D0B1AD039F100075F8D /* SloganCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SloganCell.swift; sourceTree = "<group>"; };
 		06C677AC1AD250F000D23FF7 /* NewSportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSportController.swift; sourceTree = "<group>"; };
 		06C677B51AD26CD600D23FF7 /* ANNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNViewController.swift; sourceTree = "<group>"; };
@@ -1173,6 +1190,16 @@
 		06522AAB1AADAEC700D67CAE /* libJPush */ = {
 			isa = PBXGroup;
 			children = (
+				06BFF74E1ADE5E3C00FD1CCF /* SWCellScrollView.h */,
+				06BFF74F1ADE5E3C00FD1CCF /* SWCellScrollView.m */,
+				06BFF7501ADE5E3C00FD1CCF /* SWLongPressGestureRecognizer.h */,
+				06BFF7511ADE5E3C00FD1CCF /* SWLongPressGestureRecognizer.m */,
+				06BFF7521ADE5E3C00FD1CCF /* SWTableViewCell.h */,
+				06BFF7531ADE5E3C00FD1CCF /* SWTableViewCell.m */,
+				06BFF7541ADE5E3C00FD1CCF /* SWUtilityButtonTapGestureRecognizer.h */,
+				06BFF7551ADE5E3C00FD1CCF /* SWUtilityButtonTapGestureRecognizer.m */,
+				06BFF7561ADE5E3C00FD1CCF /* SWUtilityButtonView.h */,
+				06BFF7571ADE5E3C00FD1CCF /* SWUtilityButtonView.m */,
 				06522AAC1AADAEC700D67CAE /* APService.h */,
 				06522AAD1AADAEC700D67CAE /* libPushSDK.a */,
 				06522AAE1AADAEC700D67CAE /* PushConfig.plist */,
@@ -2017,6 +2044,7 @@
 				06C677B51AD26CD600D23FF7 /* ANNViewController.swift */,
 				06D86F071AD5194100C6A7D9 /* DeletePicViewController.swift */,
 				06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */,
+				06BFF7321ADE5C0C00FD1CCF /* MissionCell.swift */,
 			);
 			path = Mission;
 			sourceTree = "<group>";
@@ -2484,6 +2512,7 @@
 				06C677B61AD26CD600D23FF7 /* ANNViewController.swift in Sources */,
 				0684777B1ACEFFDB00F5B667 /* LikeCell.swift in Sources */,
 				0694E5EE1AB6CE72008ADF21 /* EMSDWebImagePrefetcher.m in Sources */,
+				06BFF7331ADE5C0C00FD1CCF /* MissionCell.swift in Sources */,
 				0694E6161AB6CE72008ADF21 /* ChatViewController.m in Sources */,
 				0694E5F41AB6CE72008ADF21 /* UIImage+EMWebP.m in Sources */,
 				06C50D0C1AD039F100075F8D /* SloganCell.swift in Sources */,
@@ -2526,9 +2555,11 @@
 				06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */,
 				0694E5ED1AB6CE72008ADF21 /* EMSDWebImageManager.m in Sources */,
 				0694E5EA1AB6CE72008ADF21 /* EMSDWebImageDecoder.m in Sources */,
+				06BFF75B1ADE5E3C00FD1CCF /* SWTableViewCell.m in Sources */,
 				0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */,
 				06C677AD1AD250F000D23FF7 /* NewSportController.swift in Sources */,
 				0694E64F1AB6CE72008ADF21 /* EMChatVideoBubbleView.m in Sources */,
+				06BFF75C1ADE5E3C00FD1CCF /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				0694E5E31AB6CE72008ADF21 /* MWPhotoBrowser.m in Sources */,
 				06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */,
 				0694E5FF1AB6CE72008ADF21 /* PSTCollectionViewLayout.m in Sources */,
@@ -2550,6 +2581,7 @@
 				066E33801AD3B4080062C31B /* CIColorExtension.swift in Sources */,
 				0694E65E1AB6CE72008ADF21 /* EMNavigationController.m in Sources */,
 				06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */,
+				06BFF7591ADE5E3C00FD1CCF /* SWCellScrollView.m in Sources */,
 				0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */,
 				0694E6101AB6CE72008ADF21 /* UIResponder+Router.m in Sources */,
 				0694E60E1AB6CE72008ADF21 /* NSDate+Category.m in Sources */,
@@ -2568,6 +2600,7 @@
 				06B5F18E1AD6F9780035D6DE /* SelectMissionTableViewController.swift in Sources */,
 				0694E5E01AB6CE72008ADF21 /* MWGridCell.m in Sources */,
 				06BA9BD11AC823AE00F52391 /* ApplyFriendCell.m in Sources */,
+				06BFF75A1ADE5E3C00FD1CCF /* SWLongPressGestureRecognizer.m in Sources */,
 				0694E6081AB6CE72008ADF21 /* SRRefreshView.m in Sources */,
 				068BFFD31ADA04FC00CE6CC6 /* AddFriendTableVC.swift in Sources */,
 				069E56DA1ACA83B6008B3340 /* MainImageCell.swift in Sources */,
@@ -2577,6 +2610,7 @@
 				0694E64A1AB6CE72008ADF21 /* EMChatAudioBubbleView.m in Sources */,
 				0694E6191AB6CE72008ADF21 /* LocationViewController.m in Sources */,
 				0694E5EB1AB6CE72008ADF21 /* EMSDWebImageDownloader.m in Sources */,
+				06BFF75D1ADE5E3C00FD1CCF /* SWUtilityButtonView.m in Sources */,
 				06E85D7A1ADC316500640E08 /* ApplyTableVC.swift in Sources */,
 				0694E6601AB6CE72008ADF21 /* XHMessageTextView.m in Sources */,
 				0694E6531AB6CE72008ADF21 /* EMChatViewCell.m in Sources */,
