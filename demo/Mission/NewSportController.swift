@@ -357,7 +357,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     pics = "*"
                     picTimes = "*"
                 }
-                addMission.addMission(1, title: "健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                addMission.addMission(1, title: "任务详情－健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
             }
             else {
                 view.userInteractionEnabled = true
@@ -443,7 +443,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             pics = "*"
             picTimes = "*"
         }
-        addMission.addMission(1, title: "健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+        addMission.addMission(1, title: "任务详情－健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -105,7 +105,7 @@ class FriendInfoViewController: UITableViewController, APIProtocol, UIAlertViewD
             signLabel.text = sign
             idLabel.text = userName
             let attentButton = cell.viewWithTag(5) as! UIButton
-            attentButton.addTarget(self, action: "addFriend", forControlEvents: UIControlEvents.TouchDown)
+            attentButton.addTarget(self, action: "addFriend", forControlEvents: UIControlEvents.TouchUpInside)
             let chatButton = cell.viewWithTag(6) as! UIButton
             if isFriend {
                 attentButton.userInteractionEnabled = false

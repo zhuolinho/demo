@@ -63,6 +63,9 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         }
         return true
     }
+    override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
+        return "删除"
+    }
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             var loginInfo = EaseMob.sharedInstance().chatManager.loginInfo as NSDictionary
