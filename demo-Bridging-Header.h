@@ -23,3 +23,4 @@
 #import "ApplyViewController.h"
 #import "ApplyFriendCell.h"
 #import "InvitationManager.h"
+#import "SWTableViewCell.h"
