@@ -142,13 +142,20 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             }
             else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as! MainImageCell
-                let url =  pics[buffer[indexPath.section]]["url"] as! String
-                cell.photosData = pics
                 cell.countLabel.text = String(pics.count)
-                if PicDic.picDic[url] != nil {
-                    cell.mainImageView.image = PicDic.picDic[url]
+                cell.photosData = pics
+                if pics.count > buffer[indexPath.section] {
+//                    cell.userInteractionEnabled = true
+                    let url =  pics[buffer[indexPath.section]]["url"] as! String
+                    if PicDic.picDic[url] != nil {
+                        cell.mainImageView.image = PicDic.picDic[url]
+                    }
+                    else {
+                        cell.mainImageView.image = UIImage()
+                    }
                 }
                 else {
+//                    cell.userInteractionEnabled = false
                     cell.mainImageView.image = UIImage()
                 }
                 return cell
@@ -283,6 +290,17 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         viewa.hidden = true
+        if indexPath.row == 6 {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
+            let sturt = news[indexPath.section]["struct"] as! NSDictionary
+            if news[indexPath.section]["type"] as! String == "mission" {
+                vc.mid = sturt["id"] as! Int
+            }
+            else {
+                vc.mid = sturt["mid"] as! Int
+            }
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func didReceiveAPIErrorOf(api: API, errno: Int) {

@@ -70,13 +70,8 @@ class API: NSObject {
     }
 
     //Tutors
-    func getTutorsList(skip: Int?) {
-        if skip != nil {
-            get(host + "getTeachers.action?start=\(skip!)&limit=10")
-        }
-        else {
-            get(host + "getTeachers.action?")
-        }
+    func getEvidencesFromMid(mid: Int) {
+        get(host + "getEvidencesFromMid.action?token=\(API.userInfo.token)&mid=\(mid)&start=0&limit=100")
     }
     
     
@@ -278,7 +273,9 @@ class API: NSObject {
     func getMoments(uid: Int) {
         get(host + "getMissions.action?token=" + API.userInfo.token + "&uid=\(uid)&start=0&limit=100")
     }
-    
+    func getMissionFromID(mid: Int) {
+        get(host + "getMissionFromID.action?token=" + API.userInfo.token + "&id=\(mid)")
+    }
     func getCourses() {
         get(host + "getTopicTypes.action?token=" + API.userInfo.token)
     }

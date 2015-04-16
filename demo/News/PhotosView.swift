@@ -26,17 +26,19 @@ class PhotosView: UIViewController, UIScrollViewDelegate, TouchableScroolViewDel
         pageControl.enabled = false
         mainView.contentSize = CGSize(width: CGFloat(photosData.count) * view.bounds.width, height: view.bounds.height)
         mainView.contentOffset.x = CGFloat(startIndex) * view.bounds.width
-        for i in 0...photosData.count - 1 {
-            let url = photosData[i]["url"] as! String
-            var imageView = UIImageView(frame: CGRect(x: CGFloat(i) * view.bounds.width + 10, y: 0, width: view.bounds.width - 20, height: view.bounds.height))
-            imageView.contentMode = UIViewContentMode.ScaleAspectFit
-            if PicDic.picDic[url] == nil {
-                imageView.image = UIImage()
+        if photosData.count > 0 {
+            for i in 0...photosData.count - 1 {
+                let url = photosData[i]["url"] as! String
+                var imageView = UIImageView(frame: CGRect(x: CGFloat(i) * view.bounds.width + 10, y: 0, width: view.bounds.width - 20, height: view.bounds.height))
+                imageView.contentMode = UIViewContentMode.ScaleAspectFit
+                if PicDic.picDic[url] == nil {
+                    imageView.image = UIImage()
+                }
+                else {
+                    imageView.image = PicDic.picDic[url]
+                }
+                mainView.addSubview(imageView)
             }
-            else {
-                imageView.image = PicDic.picDic[url]
-            }
-            mainView.addSubview(imageView)
         }
 //        var click = UITapGestureRecognizer(
         // Do any additional setup after loading the view.
