@@ -290,17 +290,16 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         viewa.hidden = true
-        if indexPath.row == 6 {
-            let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
-            let sturt = news[indexPath.section]["struct"] as! NSDictionary
-            if news[indexPath.section]["type"] as! String == "mission" {
-                vc.mid = sturt["id"] as! Int
-            }
-            else {
-                vc.mid = sturt["mid"] as! Int
-            }
-            navigationController?.pushViewController(vc, animated: true)
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
+        let sturt = news[indexPath.section]["struct"] as! NSDictionary
+        if news[indexPath.section]["type"] as! String == "mission" {
+            vc.mid = sturt["id"] as! Int
         }
+        else {
+            vc.mid = sturt["mid"] as! Int
+        }
+        navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func didReceiveAPIErrorOf(api: API, errno: Int) {
@@ -342,9 +341,13 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                     buffer.append(0)
                     let stuct = it["struct"] as! NSDictionary
                     let avatar = ["url": stuct["avatar"] as! String]
-                    var pics = stuct["pics"] as! [NSDictionary]
-                    pics.append(avatar)
-                    for pic in pics {
+                    let pics = stuct["pics"] as! [NSDictionary]
+                    var pices = [NSDictionary]()
+                    if pics.count > 0 {
+                        pices.append(pics[0])
+                    }
+                    pices.append(avatar)
+                    for pic in pices {
                         let url = pic["url"] as! String
                         if PicDic.picDic[url] == nil {
                             let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))

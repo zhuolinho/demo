@@ -31,7 +31,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         api2.delegate = self
         let blankView = UIView(frame: CGRectZero)
         missionsTable.tableFooterView = blankView
-        activity.frame.origin = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2)
+        activity.frame.origin = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2 + 160)
         activity.hidesWhenStopped = true
         view.addSubview(activity)
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -183,6 +183,9 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             else {
                 imageView.image = UIImage(named: "DefaultAvatar")
             }
+        }
+        else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {

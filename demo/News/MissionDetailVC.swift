@@ -430,14 +430,27 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             }
         }
     }
-    /*
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "ViewPhotosSegue" {
+            let photosVC = segue.destinationViewController as! PhotosView
+            let cell = sender as! MainImageCell
+            photosVC.photosData = cell.photosData
+            if segmentCtrl.selectedSegmentIndex == 0 {
+                photosVC.startIndex = buffer
+            }
+            else {
+                photosVC.startIndex = temp[selfTableView.indexPathForCell(cell)!.section]
+            }
+        }
     }
-    */
+    
 
 }

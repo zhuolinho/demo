@@ -52,8 +52,6 @@
 		066EF6A51AC3B09600200360 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D2231AB209DB00708337 /* UIKit.framework */; };
 		066EF6A71AC3B09D00200360 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF6A61AC3B09D00200360 /* Security.framework */; };
 		066FF9EF1ADD6567003BCB8E /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066FF9EC1ADD6567003BCB8E /* StatusCell.swift */; };
-		066FF9F01ADD6567003BCB8E /* TouchableScroolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066FF9ED1ADD6567003BCB8E /* TouchableScroolView.swift */; };
-		066FF9F11ADD6567003BCB8E /* TouchableScroolViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066FF9EE1ADD6567003BCB8E /* TouchableScroolViewDelegate.swift */; };
 		0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */; };
 		068477731ACED13500F5B667 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068477721ACED13500F5B667 /* DetailCell.swift */; };
 		068477751ACED99B00F5B667 /* task_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 068477741ACED99B00F5B667 /* task_5.png */; };
@@ -502,8 +500,6 @@
 		066EF6A21AC3B08300200360 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		066EF6A61AC3B09D00200360 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		066FF9EC1ADD6567003BCB8E /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
-		066FF9ED1ADD6567003BCB8E /* TouchableScroolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchableScroolView.swift; sourceTree = "<group>"; };
-		066FF9EE1ADD6567003BCB8E /* TouchableScroolViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchableScroolViewDelegate.swift; sourceTree = "<group>"; };
 		0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		068477721ACED13500F5B667 /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		068477741ACED99B00F5B667 /* task_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = task_5.png; path = Image/task_5.png; sourceTree = "<group>"; };
@@ -1255,8 +1251,6 @@
 			isa = PBXGroup;
 			children = (
 				066FF9EC1ADD6567003BCB8E /* StatusCell.swift */,
-				066FF9ED1ADD6567003BCB8E /* TouchableScroolView.swift */,
-				066FF9EE1ADD6567003BCB8E /* TouchableScroolViewDelegate.swift */,
 				0667006B1AC93EF000714D54 /* NewsViewController.swift */,
 				06A108CD1AC9837000493A2A /* TitleCell.swift */,
 				06A108CF1AC9AF3600493A2A /* PickPicCell.swift */,
@@ -2507,7 +2501,6 @@
 				068477851ACF03E400F5B667 /* MoreCommentsCell.swift in Sources */,
 				0694E6511AB6CE72008ADF21 /* EMChatTimeCell.m in Sources */,
 				0694E6001AB6CE72008ADF21 /* PSTCollectionViewUpdateItem.m in Sources */,
-				066FF9F01ADD6567003BCB8E /* TouchableScroolView.swift in Sources */,
 				0694E5E81AB6CE72008ADF21 /* EMSDImageCache.m in Sources */,
 				0694E6011AB6CE72008ADF21 /* PSTGridLayoutInfo.m in Sources */,
 				0694E60D1AB6CE72008ADF21 /* WCAlertView.m in Sources */,
@@ -2577,7 +2570,6 @@
 				06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */,
 				06D86F081AD5194100C6A7D9 /* DeletePicViewController.swift in Sources */,
 				0694E6DB1AB7217B008ADF21 /* ChatTableViewController.swift in Sources */,
-				066FF9F11ADD6567003BCB8E /* TouchableScroolViewDelegate.swift in Sources */,
 				066E337A1AD3B3020062C31B /* My2Dcode.swift in Sources */,
 				0694E5F51AB6CE72008ADF21 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */,
