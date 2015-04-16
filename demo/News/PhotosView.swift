@@ -8,16 +8,16 @@
 
 import UIKit
 
-class PhotosView: UIViewController, UIScrollViewDelegate, TouchableScroolViewDelegate, UIActionSheetDelegate {
+class PhotosView: UIViewController, UIScrollViewDelegate,  UIActionSheetDelegate {
     var photosData = [NSDictionary]()
     var startIndex = 0
     
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var mainView: TouchableScroolView!
+    @IBOutlet weak var mainView: UIScrollView!
+    var lock = false
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
-        mainView.delegat = self
         if photosData.count < 2 {
             pageControl.hidden = true
         }
@@ -40,6 +40,10 @@ class PhotosView: UIViewController, UIScrollViewDelegate, TouchableScroolViewDel
                 mainView.addSubview(imageView)
             }
         }
+        let singleTap = UITapGestureRecognizer(target: self, action: "click")
+        mainView.addGestureRecognizer(singleTap)
+        let longTap = UILongPressGestureRecognizer(target: self, action: "longPress")
+        mainView.addGestureRecognizer(longTap)
 //        var click = UITapGestureRecognizer(
         // Do any additional setup after loading the view.
     }
@@ -56,14 +60,16 @@ class PhotosView: UIViewController, UIScrollViewDelegate, TouchableScroolViewDel
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     func longPress() {
-        var actionSheet = UIActionSheet()
-        actionSheet.delegate = self
-        actionSheet.addButtonWithTitle("保存图片")
-        actionSheet.addButtonWithTitle("分享图片")
-        actionSheet.addButtonWithTitle("取消")
-        actionSheet.cancelButtonIndex = 2
-        actionSheet.showInView(mainView)
-        
+        lock = !lock
+        if lock {
+            var actionSheet = UIActionSheet()
+            actionSheet.delegate = self
+            actionSheet.addButtonWithTitle("保存图片")
+            actionSheet.addButtonWithTitle("分享图片")
+            actionSheet.addButtonWithTitle("取消")
+            actionSheet.cancelButtonIndex = 2
+            actionSheet.showInView(mainView)
+        }
     }
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         
