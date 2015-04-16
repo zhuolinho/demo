@@ -329,6 +329,7 @@
 		0694E6D81AB6CE72008ADF21 /* tabbarSelectBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0694E5D71AB6CE72008ADF21 /* tabbarSelectBg.png */; };
 		0694E6D91AB6CE72008ADF21 /* tabbarSelectBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0694E5D81AB6CE72008ADF21 /* tabbarSelectBg@2x.png */; };
 		0694E6DB1AB7217B008ADF21 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0694E6DA1AB7217B008ADF21 /* ChatTableViewController.swift */; };
+		06973D851ADFDEAE007C3E0E /* MissionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06973D841ADFDEAE007C3E0E /* MissionDetailVC.swift */; };
 		069E56DA1ACA83B6008B3340 /* MainImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E56D91ACA83B5008B3340 /* MainImageCell.swift */; };
 		069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */; };
 		06A108CE1AC9837000493A2A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CD1AC9837000493A2A /* TitleCell.swift */; };
@@ -881,6 +882,7 @@
 		0694E5D71AB6CE72008ADF21 /* tabbarSelectBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbarSelectBg.png; sourceTree = "<group>"; };
 		0694E5D81AB6CE72008ADF21 /* tabbarSelectBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarSelectBg@2x.png"; sourceTree = "<group>"; };
 		0694E6DA1AB7217B008ADF21 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
+		06973D841ADFDEAE007C3E0E /* MissionDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionDetailVC.swift; sourceTree = "<group>"; };
 		069E56D91ACA83B5008B3340 /* MainImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainImageCell.swift; sourceTree = "<group>"; };
 		069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
 		06A108CD1AC9837000493A2A /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
@@ -1265,6 +1267,7 @@
 				068477821ACF03AF00F5B667 /* CommentCell.swift */,
 				068477841ACF03E400F5B667 /* MoreCommentsCell.swift */,
 				06C50D0B1AD039F100075F8D /* SloganCell.swift */,
+				06973D841ADFDEAE007C3E0E /* MissionDetailVC.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -2552,6 +2555,7 @@
 				0694E6041AB6CE72008ADF21 /* PSTGridLayoutSection.m in Sources */,
 				0694E61B1AB6CE72008ADF21 /* DXFaceView.m in Sources */,
 				0694E64C1AB6CE72008ADF21 /* EMChatImageBubbleView.m in Sources */,
+				06973D851ADFDEAE007C3E0E /* MissionDetailVC.swift in Sources */,
 				06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */,
 				0694E5ED1AB6CE72008ADF21 /* EMSDWebImageManager.m in Sources */,
 				0694E5EA1AB6CE72008ADF21 /* EMSDWebImageDecoder.m in Sources */,

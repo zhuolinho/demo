@@ -20,7 +20,6 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     let formatSever = NSDateFormatter()
     var mark = 0
-    var imageViewLock = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,12 +71,6 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         if tableView === viewTable {
             if indexPath.row == 0 {
                 let cell =  tableView.dequeueReusableCellWithIdentifier("ImageViewCell", forIndexPath: indexPath) as! UITableViewCell
-                if !imageViewLock {
-                    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 320, height: 265))
-                    imageView.tag = 1
-                    imageView.contentMode = .ScaleAspectFill
-                    cell.addSubview(imageView)
-                }
                 let imageView = cell.viewWithTag(1) as! UIImageView
                 if missions.count > mark {
                     let pics = missions[mark]["pics"] as! [NSDictionary]
@@ -90,7 +83,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                     }
                 }
                 else {
-                    imageView.image = UIImage(named: "DefaultAvatar")
+                    imageView.image = UIImage()
                 }
                 return cell
             }
@@ -262,14 +255,18 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             }
         }
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "MissionDetailVC" {
+            let vc = segue.destinationViewController as! MissionDetailVC
+            vc.mid = missions[mark]["id"] as! Int
+        }
     }
-    */
+
 
 }
