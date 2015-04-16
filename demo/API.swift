@@ -253,7 +253,7 @@ class API: NSObject {
         get(host + "getMyMissions.action?token=" + API.userInfo.token + "&start=\(skip)&limit=100")
     }
     func getMissionsAndEvidences(skip: Int) {
-        get(host + "getMissionsAndEvidences.action?token=" + API.userInfo.token + "&start=\(skip)&limit=10")
+        get(host + "getMissionsAndEvidences.action?token=" + API.userInfo.token + "&start=\(skip)&limit=5")
     }
     func deleteMission(id: Int) {
         get(host + "deleteMission.action?token=" + API.userInfo.token + "&id=\(id)")

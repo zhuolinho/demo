@@ -262,7 +262,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "MissionDetailVC" {
+        if segue.identifier == "MissionDetailVC" && missions.count > mark {
             let vc = segue.destinationViewController as! MissionDetailVC
             vc.mid = missions[mark]["id"] as! Int
         }
