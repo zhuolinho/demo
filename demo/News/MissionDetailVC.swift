@@ -8,13 +8,15 @@
 
 import UIKit
 
-class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var mid = -1
     var stuct = NSDictionary()
     var evidences = [NSDictionary]()
+    var missionComment = NSDictionary()
     let getMission = API()
     let getEvidences = API()
+    let getCommentsAndLikes = API()
     var buffer = 0
     var segmentCtrl = UISegmentedControl()
     var temp = [Int]()
@@ -27,6 +29,9 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
         else if segmentCtrl.selectedSegmentIndex == 0 {
             getMission.getMissionFromID(mid)
+        }
+        else {
+            getCommentsAndLikes.getMissionCommentsAndMissionLikes(mid)
         }
         dispatch_async(dispatch_get_main_queue(), {
             self.selfTableView.reloadData()
@@ -47,6 +52,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         view.addSubview(segmentCtrl)
         getMission.delegate = self
         getEvidences.delegate = self
+        getCommentsAndLikes.delegate = self
         selfTableView.dataSource = self
         selfTableView.delegate = self
         // Do any additional setup after loading the view.
@@ -61,10 +67,22 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             return 7
         }
         else if segmentCtrl.selectedSegmentIndex == 1 {
-            return 7 + (evidences[section]["numOfComment"] as! Int)
+            let comments = evidences[section]["comment"] as! [NSDictionary]
+            return 7 + comments.count
         }
         else {
-            return 0
+            if section == 0 {
+                return 2
+            }
+            else {
+                if missionComment["comment"] != nil {
+                    let comments = missionComment["comment"] as! [NSDictionary]
+                    return comments.count
+                }
+                else {
+                    return 0
+                }
+            }
         }
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -135,9 +153,21 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             else {
                 return 30
             }
-
         }
-        return 0
+        else {
+            if indexPath.section == 0 && indexPath.row == 0 {
+                return 30
+            }
+            else if indexPath.section == 0 && indexPath.row == 1 {
+                if missionComment["numOfLike"] != nil {
+                    if missionComment["numOfLike"] as! Int > 0 {
+                        return 50
+                    }
+                }
+                return 0
+            }
+            return 100
+        }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if segmentCtrl.selectedSegmentIndex == 0 && stuct["pics"] != nil {
@@ -158,6 +188,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as! MainImageCell
                 cell.countLabel.text = String(pics.count)
+                cell.countLabel.hidden = true
                 cell.photosData = pics
                 if pics.count > buffer {
                     let url =  pics[buffer]["url"] as! String
@@ -328,7 +359,67 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 return cell
             }
         }
+        else if segmentCtrl.selectedSegmentIndex == 2 && missionComment["location"] != nil {
+            if indexPath.section == 1 {
+                let comments = missionComment["comment"] as! [NSDictionary]
+                let cell = tableView.dequeueReusableCellWithIdentifier("CommentsCell", forIndexPath: indexPath) as! UITableViewCell
+                let avatarView = cell.viewWithTag(1) as! UIImageView
+                let nameLable = cell.viewWithTag(2) as! UILabel
+                let timeLabel = cell.viewWithTag(3) as! UILabel
+                let contentLabel = cell.viewWithTag(4) as! UILabel
+                let url = comments[indexPath.row]["avatar"] as! String
+                if PicDic.picDic[url] == nil {
+                    avatarView.image = UIImage()
+                }
+                else {
+                    avatarView.image = PicDic.picDic[url]
+                }
+                nameLable.text = comments[indexPath.row]["nickname"] as? String
+                timeLabel.text = comments[indexPath.row]["createTime"] as? String
+                contentLabel.text = comments[indexPath.row]["content"] as? String
+                avatarView.layer.cornerRadius = 25
+                avatarView.layer.masksToBounds = true
+                return cell
+            }
+            else {
+                if indexPath.row == 0 {
+                    let numOfLike = missionComment["numOfLike"] as! Int
+                    let numOfComment = missionComment["numOfComment"] as! Int
+                    let cell = tableView.dequeueReusableCellWithIdentifier("LikeCell", forIndexPath: indexPath) as! LikeCell
+                    cell.likeLabel.text = String(numOfLike)
+                    cell.commentLabel.text = String(numOfComment)
+                    cell.locationLabel.text = missionComment["location"] as? String
+                    return cell
+                }
+                else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("AvatarsCell", forIndexPath: indexPath) as! UITableViewCell
+                    let avatarCollect = cell.viewWithTag(2) as! UICollectionView
+                    avatarCollect.dataSource = self
+                    avatarCollect.reloadData()
+                    return cell
+                }
+            }
+        }
         return UITableViewCell()
+    }
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PickCollectionCell", forIndexPath: indexPath) as! UICollectionViewCell
+        cell.layer.cornerRadius = 20
+        cell.layer.masksToBounds = true
+        let imageView = cell.viewWithTag(1) as! UIImageView
+        let dataSource = missionComment["like"] as! [NSDictionary]
+        let url = dataSource[indexPath.row]["avatar"] as! String
+        if PicDic.picDic[url] == nil {
+            imageView.image = UIImage()
+        }
+        else {
+            imageView.image = PicDic.picDic[url]
+        }
+        return cell
+    }
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let like = missionComment["like"] as! [NSDictionary]
+        return like.count
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: view.bounds.width / 4 - 1, height: view.bounds.width / 4 - 1)
@@ -358,7 +449,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             return evidences.count
         }
         else {
-            return 0
+            return 2
         }
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
@@ -428,6 +519,37 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 })
 
             }
+        }
+        else if api === getCommentsAndLikes {
+            missionComment = data["result"] as! NSDictionary
+            if missionComment["like"] != nil {
+                var likesAndComments = missionComment["like"] as! [NSDictionary]
+                let comments = missionComment["comment"] as! [NSDictionary]
+                likesAndComments += comments
+                for item in likesAndComments {
+                    let url = item["avatar"] as! String
+                    if PicDic.picDic[url] == nil {
+                        let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                        let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                        let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                            if error == nil {
+                                var rawImage: UIImage? = UIImage(data: data)
+                                let img: UIImage? = rawImage
+                                if img != nil {
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        PicDic.picDic[url] = img
+                                        self.selfTableView.reloadData()
+                                    })
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+            dispatch_async(dispatch_get_main_queue(), {
+                self.selfTableView.reloadData()
+            })
         }
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
