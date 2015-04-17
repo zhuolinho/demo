@@ -280,7 +280,7 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfz-W0-4cc">
                                             <rect key="frame" x="8" y="5" width="20" height="20"/>
-                                            <state key="normal" image="task_6">
+                                            <state key="normal" image="task_5">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -797,7 +797,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fe6-TJ-FXE">
                                 <rect key="frame" x="0.0" y="-20" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleCell" rowHeight="10" id="eHW-Iw-rnk" customClass="TitleCell" customModule="demo" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -890,7 +890,7 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="HIt-oi-4wV" firstAttribute="top" secondItem="D24-2u-Kft" secondAttribute="topMargin" constant="-8" id="7zT-D6-sGw"/>
                                                                 <constraint firstItem="HIt-oi-4wV" firstAttribute="leading" secondItem="D24-2u-Kft" secondAttribute="leadingMargin" constant="-8" id="JZJ-v6-Bpr"/>
@@ -1153,7 +1153,7 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="8gl-bE-HhC" secondAttribute="bottom" constant="-8" id="69B-br-DRj"/>
                                                                 <constraint firstItem="8gl-bE-HhC" firstAttribute="top" secondItem="MMo-Sy-6iH" secondAttribute="topMargin" constant="-8" id="Sfj-1Y-hoC"/>
@@ -1193,7 +1193,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Labelfefhfieifheifhefiuhefiuehfuiqhieqheiuqhfqiulheiufhiqufhiuqfhfhqiuq" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8g-NH-uAR">
                                                     <rect key="frame" x="77" y="44" width="239" height="48"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulP-5D-1Ru">
@@ -2644,6 +2644,7 @@
         <image name="setting.png" width="425" height="425"/>
         <image name="share.png" width="425" height="425"/>
         <image name="task_15" width="21" height="29"/>
+        <image name="task_5" width="13" height="12"/>
         <image name="task_6" width="13" height="12"/>
         <image name="user_info1_06" width="56" height="56"/>
         <image name="user_info1_09" width="56" height="56"/>

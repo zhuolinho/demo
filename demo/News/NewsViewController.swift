@@ -21,11 +21,13 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         }
     }
     var requesMore = API()
-    var news = [NSDictionary]()
+    var news = [NSMutableDictionary]()
     var skip = -1
     var buffer = [Int]()
     var isRequesing = false
     var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    let setLike = API()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewa = UIView(frame: CGRect(x: view.bounds.width - 100, y: 40, width: 0, height: 0))
@@ -170,9 +172,11 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             }
             else if indexPath.row == 3 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("StatusCell", forIndexPath: indexPath) as! StatusCell
+                cell.superviseButton.tag = indexPath.section
+                cell.superviseButton.addTarget(self, action: "viceButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 let charge = stuct["charge"] as! Int
                 if type == "mission" {
-                    if cell.superviseButton.hidden {
+                    if stuct["myStatus"] as! Int == 0 {
                         cell.superviseButton.hidden = false
                     }
                     else {
@@ -224,6 +228,14 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 cell.likeLabel.text = String(numOfLike)
                 cell.commentLabel.text = String(numOfComment)
                 cell.locationLabel.text = stuct["location"] as? String
+                if stuct["ifLike"] as! Int == 1 {
+                    cell.likeButton.setImage(UIImage(named: "task_5"), forState: UIControlState.Normal)
+                }
+                else {
+                    cell.likeButton.setImage(UIImage(named: "task_6"), forState: UIControlState.Normal)
+                }
+                cell.likeButton.tag = indexPath.section
+                cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 return cell
             }
 //            else if indexPath.row > 6 && indexPath.row < 12 {
@@ -298,10 +310,46 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         else {
             vc.mid = sturt["mid"] as! Int
         }
-        navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row != 6 {
+            navigationController?.pushViewController(vc, animated: true)
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
+    func likeButtonClick(button: UIButton) {
+        let section = button.tag
+        var stuct = news[section]["struct"] as! NSMutableDictionary
+        let ifLike = stuct["ifLike"] as! Int
+        let id = stuct["id"] as! Int
+        if news[section]["type"] as! String == "mission" {
+            setLike.setMissionLike(id, ifLike: 1 - ifLike)
+        }
+        else {
+            setLike.setEvidenceLike(id, ifLike: 1 - ifLike)
+        }
+        if ifLike == 0 {
+            stuct["ifLike"] = 1
+            stuct["numOfLike"] = stuct["numOfLike"] as! Int + 1
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        }
+        else {
+            stuct["ifLike"] = 0
+            stuct["numOfLike"] = stuct["numOfLike"] as! Int - 1
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        }
+    }
+    func viceButtonClick(button: UIButton) {
+        var stuct = news[button.tag]["struct"] as! NSMutableDictionary
+        let id = stuct["id"] as! Int
+        setLike.setSupervisor(id)
+        stuct["myStatus"] = 1
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
+    }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         skip = -1
         isRequesing = false
@@ -335,9 +383,9 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             }
             var res = data["result"] as! NSArray
             if res.count > 0 {
-                var items = [NSDictionary]()
+                var items = [NSMutableDictionary]()
                 for it in res {
-                    items.append(it as! NSDictionary)
+                    items.append(it as! NSMutableDictionary)
                     buffer.append(0)
                     let stuct = it["struct"] as! NSDictionary
                     let avatar = ["url": stuct["avatar"] as! String]

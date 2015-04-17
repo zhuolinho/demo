@@ -257,6 +257,15 @@ class API: NSObject {
     func deleteMission(id: Int) {
         get(host + "deleteMission.action?token=" + API.userInfo.token + "&id=\(id)")
     }
+    func setMissionLike(id: Int, ifLike: Int) {
+        get(host + "setMissionLike.action?token=" + API.userInfo.token + "&id=\(id)&ifLike=\(ifLike)")
+    }
+    func setEvidenceLike(id: Int, ifLike: Int) {
+        get(host + "setEvidenceLike.action?token=" + API.userInfo.token + "&id=\(id)&ifLike=\(ifLike)")
+    }
+    func setSupervisor(mid: Int) {
+        get(host + "setSupervisor.action?token=" + API.userInfo.token + "&mid=\(mid)&myStatus=1")
+    }
     func getTransactionHistory(skip: Int) {
         get(host + "getPersonRMBHistory.action?token=\(API.userInfo.token)&limit=10&start=\(skip)")
     }
