@@ -11,15 +11,16 @@ import UIKit
 class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var mid = -1
-    var stuct = NSDictionary()
-    var evidences = [NSDictionary]()
-    var missionComment = NSDictionary()
+    var stuct = NSMutableDictionary()
+    var evidences = [NSMutableDictionary]()
+    var missionComment = NSMutableDictionary()
     let getMission = API()
     let getEvidences = API()
     let getCommentsAndLikes = API()
     var buffer = 0
     var segmentCtrl = UISegmentedControl()
     var temp = [Int]()
+    let setLike = API()
     
     @IBOutlet weak var selfTableView: UITableView!
     
@@ -42,6 +43,8 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         println(mid)
+        segmentCtrl.layer.cornerRadius = 8
+        segmentCtrl.layer.masksToBounds = true
         segmentCtrl = UISegmentedControl(items: ["任务", " 证据", "评论"])
         segmentCtrl.frame = CGRect(x: 0, y: 64, width: view.bounds.width, height: 35)
         segmentCtrl.tintColor = UIColor.orangeColor()
@@ -159,8 +162,9 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 return 30
             }
             else if indexPath.section == 0 && indexPath.row == 1 {
-                if missionComment["numOfLike"] != nil {
-                    if missionComment["numOfLike"] as! Int > 0 {
+                if missionComment["like"] != nil {
+                    let like = missionComment["like"] as! [NSDictionary]
+                    if like.count > 0 {
                         return 50
                     }
                 }
@@ -209,13 +213,16 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.pickCollectionView.tag = -1
                 cell.pickCollectionView.delegate = self
                 cell.dataSource = pics
-                cell.pickCollectionView.reloadData()
+                dispatch_async(dispatch_get_main_queue(), {
+                    cell.pickCollectionView.reloadData()
+                })
                 return cell
             }
             else if indexPath.row == 3 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("StatusCell", forIndexPath: indexPath) as! StatusCell
+                cell.superviseButton.addTarget(self, action: "viceButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 let charge = stuct["charge"] as! Int
-                if cell.superviseButton.hidden {
+                if stuct["myStatus"] as! Int == 0  {
                     cell.superviseButton.hidden = false
                 }
                 else {
@@ -262,6 +269,14 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.likeLabel.text = String(numOfLike)
                 cell.commentLabel.text = String(numOfComment)
                 cell.locationLabel.text = stuct["location"] as? String
+                if stuct["ifLike"] as! Int == 1 {
+                    cell.likeButton.setImage(UIImage(named: "task_5"), forState: UIControlState.Normal)
+                }
+                else {
+                    cell.likeButton.setImage(UIImage(named: "task_6"), forState: UIControlState.Normal)
+                }
+                cell.likeButton.tag = indexPath.section
+                cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 return cell
             }
         }
@@ -304,7 +319,9 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.pickCollectionView.tag = indexPath.section
                 cell.pickCollectionView.delegate = self
                 cell.dataSource = pics
-                cell.pickCollectionView.reloadData()
+                dispatch_async(dispatch_get_main_queue(), {
+                    cell.pickCollectionView.reloadData()
+                })
                 return cell
             }
             else if indexPath.row == 3 {
@@ -347,6 +364,14 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.likeLabel.text = String(numOfLike)
                 cell.commentLabel.text = String(numOfComment)
                 cell.locationLabel.text = evident["location"] as? String
+                if evident["ifLike"] as! Int == 1 {
+                    cell.likeButton.setImage(UIImage(named: "task_5"), forState: UIControlState.Normal)
+                }
+                else {
+                    cell.likeButton.setImage(UIImage(named: "task_6"), forState: UIControlState.Normal)
+                }
+                cell.likeButton.tag = indexPath.section
+                cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 return cell
             }
             else if indexPath.row > 6 {
@@ -389,13 +414,23 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     cell.likeLabel.text = String(numOfLike)
                     cell.commentLabel.text = String(numOfComment)
                     cell.locationLabel.text = missionComment["location"] as? String
+                    if missionComment["ifLike"] as! Int == 1 {
+                        cell.likeButton.setImage(UIImage(named: "task_5"), forState: UIControlState.Normal)
+                    }
+                    else {
+                        cell.likeButton.setImage(UIImage(named: "task_6"), forState: UIControlState.Normal)
+                    }
+                    cell.likeButton.tag = indexPath.section
+                    cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                     return cell
                 }
                 else {
                     let cell = tableView.dequeueReusableCellWithIdentifier("AvatarsCell", forIndexPath: indexPath) as! UITableViewCell
                     let avatarCollect = cell.viewWithTag(2) as! UICollectionView
                     avatarCollect.dataSource = self
-                    avatarCollect.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        avatarCollect.reloadData()
+                    })
                     return cell
                 }
             }
@@ -457,7 +492,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === getMission {
-            stuct = data["result"] as! NSDictionary
+            stuct = data["result"] as! NSMutableDictionary
             if stuct["avatar"] != nil {
                 let avatar = ["url": stuct["avatar"] as! String]
                 var pics = stuct["pics"] as! [NSDictionary]
@@ -488,7 +523,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             })
         }
         else if api === getEvidences {
-            evidences = data["result"] as! [NSDictionary]
+            evidences = data["result"] as! [NSMutableDictionary]
             for item in evidences {
                 let avatar = ["url": item["avatar"] as! String]
                 var pics = item["pics"] as! [NSDictionary]
@@ -521,7 +556,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             }
         }
         else if api === getCommentsAndLikes {
-            missionComment = data["result"] as! NSDictionary
+            missionComment = data["result"] as! NSMutableDictionary
             if missionComment["like"] != nil {
                 var likesAndComments = missionComment["like"] as! [NSDictionary]
                 let comments = missionComment["comment"] as! [NSDictionary]
@@ -555,6 +590,78 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    func likeButtonClick(button: UIButton) {
+        if segmentCtrl.selectedSegmentIndex == 1 {
+            var stu = evidences[button.tag]
+            let ifLike = stu["ifLike"] as! Int
+            setLike.setEvidenceLike(mid, ifLike: 1 - ifLike)
+            if ifLike == 0 {
+                stu["ifLike"] = 1
+                stu["numOfLike"] = stu["numOfLike"] as! Int + 1
+            }
+            else {
+                stu["ifLike"] = 0
+                stu["numOfLike"] = stu["numOfLike"] as! Int - 1
+            }
+        }
+        else if segmentCtrl.selectedSegmentIndex == 0 {
+            let ifLike = stuct["ifLike"] as! Int
+            setLike.setMissionLike(stuct["id"] as! Int, ifLike: 1 - ifLike)
+            if ifLike == 0 {
+                stuct["ifLike"] = 1
+                stuct["numOfLike"] = stuct["numOfLike"] as! Int + 1
+            }
+            else {
+                stuct["ifLike"] = 0
+                stuct["numOfLike"] = stuct["numOfLike"] as! Int - 1
+            }
+        }
+        else {
+            let ifLike = missionComment["ifLike"] as! Int
+            setLike.setMissionLike(mid, ifLike: 1 - ifLike)
+            if ifLike == 0 {
+                missionComment["ifLike"] = 1
+                missionComment["numOfLike"] = missionComment["numOfLike"] as! Int + 1
+            }
+            else {
+                missionComment["ifLike"] = 0
+                missionComment["numOfLike"] = missionComment["numOfLike"] as! Int - 1
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.selfTableView.reloadData()
+        })
+    }
+    func viceButtonClick(button: UIButton) {
+        setLike.setSupervisor(mid)
+        stuct["myStatus"] = 1
+        dispatch_async(dispatch_get_main_queue(), {
+            self.selfTableView.reloadData()
+        })
+    }
+//        if segmentCtrl.selectedSegmentIndex == 1 && indexPath.row > 6  {
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint", name: UIKeyboardWillShowNotification, object: nil)
+//            let myTextV1 = UITextView(frame: CGRect(x: 0, y: 0, width: 280, height: 40))
+//            myTextV1.layer.cornerRadius = 5
+//            myTextV1.layer.masksToBounds = true
+//            let fasongBut = UIButton(frame: CGRect(x: 280, y: 0, width: 40, height: 40))
+//            fasongBut.setTitle("确定", forState: UIControlState.Normal)
+//            fasongBut.backgroundColor = UIColor.orangeColor()
+//            fasongBut.addTarget(self, action: "pinglunQueding", forControlEvents: UIControlEvents.TouchUpInside)
+//            let mainView = UIView(frame: CGRectMake(0, 400, 320, 40))
+//            view.addSubview(mainView)
+//            mainView.addSubview(myTextV1)
+//            mainView.addSubview(fasongBut)
+//            myTextV1.becomeFirstResponder()
+//        }
+//    }
+//    func changeContentViewPoint() {
+//        
+//        
+//    }
+//    func pinglunQueding() {
+//        
+//    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
