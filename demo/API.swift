@@ -65,15 +65,14 @@ class API: NSObject {
     func getUsernameForHuanxin(uid: Int) {
         get(host + "getIndividual.action?uid=\(uid)")
     }
-    func getAvatarFrom(username: String) {
-        
-    }
 
     //Tutors
     func getEvidencesFromMid(mid: Int) {
         get(host + "getEvidencesFromMid.action?token=\(API.userInfo.token)&mid=\(mid)&start=0&limit=100")
     }
-    
+    func getMissionCommentsAndMissionLikes(mid: Int) {
+        get(host + "getMissionCommentsAndMissionLikes.action?token=\(API.userInfo.token)&mid=\(mid)&start=0&limit=100")
+    }
     
     func getTutorsListByFilter(lang: Int?, discount: Int?, iffree: Int?, start: Int?, limit: Int?) {
         var url: String = host + "getTeachers.action?"
