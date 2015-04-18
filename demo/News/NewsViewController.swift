@@ -145,6 +145,8 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as! MainImageCell
                 cell.countLabel.text = String(pics.count)
+                cell.countLabel.layer.cornerRadius = 3
+                cell.countLabel.layer.masksToBounds = true
                 cell.photosData = pics
                 if pics.count > buffer[indexPath.section] {
 //                    cell.userInteractionEnabled = true

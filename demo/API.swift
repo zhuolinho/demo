@@ -232,6 +232,14 @@ class API: NSObject {
         let data = ["token": API.userInfo.token, "missionTemplateID": "\(missionTemplateID)", "title": title, "content": content, "supervisor": supervisor, "slogan": slogan, "pics": pics, "picTimes": picTimes, "location": location, "rmb": "\(rmb)"]
         sendURLEncodedForm(action: "addMission.action", data: data, image: nil)
     }
+    func addEvidenceComment(id: Int, content: String) {
+        let data = ["token": API.userInfo.token, "content": content, "id": "\(id)"]
+        sendURLEncodedForm(action: "addEvidenceComment.action", data: data, image: nil)
+    }
+    func addMissionComment(mid: Int, content: String) {
+        let data = ["token": API.userInfo.token, "content": content, "id": "\(mid)"]
+        sendURLEncodedForm(action: "addMissionComment.action", data: data, image: nil)
+    }
     func setSchool(school: Int) {
         let data = ["token": API.userInfo.token, "school": "\(school)"]
         sendURLEncodedForm(action: "setSchool.action", data: data, image: nil)

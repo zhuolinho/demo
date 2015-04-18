@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol, SWTableViewCellDelegate, UIAlertViewDelegate {
+class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol, SWTableViewCellDelegate, UIAlertViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var viewTable: UITableView!
     
@@ -20,6 +20,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     let formatSever = NSDateFormatter()
     var mark = 0
+    var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         activity.hidesWhenStopped = true
         view.addSubview(activity)
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        imagePicker.delegate = self
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
@@ -134,13 +136,54 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     }
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
         if index == 0 {
-            println(cell.tag)
+            var changeAvatarActionSheet = UIActionSheet()
+            changeAvatarActionSheet.delegate = self
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+                changeAvatarActionSheet.addButtonWithTitle("拍摄照片")
+                changeAvatarActionSheet.addButtonWithTitle("图片库中选取")
+                changeAvatarActionSheet.addButtonWithTitle("取消")
+                changeAvatarActionSheet.cancelButtonIndex = 2
+            }
+            else {
+                changeAvatarActionSheet.addButtonWithTitle("图片库中选取")
+                changeAvatarActionSheet.addButtonWithTitle("取消")
+                changeAvatarActionSheet.cancelButtonIndex = 1
+            }
+            
+            changeAvatarActionSheet.showInView(view)
         }
         else {
             let alert = UIAlertView(title: "确认删除？", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确认")
             alert.tag = cell.tag
             alert.show()
         }
+    }
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            if buttonIndex == 0 {//拍照
+                //                imagePicker.allowsEditing = true;
+                imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
+                
+                self.presentViewController(imagePicker, animated:true, completion:nil)
+            }
+            if buttonIndex == 1 {//图片库
+                //                imagePicker.allowsEditing = true;
+                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+                
+                self.presentViewController(imagePicker, animated:true, completion:nil)
+            }
+        }
+        else {
+            if buttonIndex == 0 {//图片库
+                //                imagePicker.allowsEditing = true;
+                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+                
+                self.presentViewController(imagePicker, animated:true, completion:nil)
+            }
+        }
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        println(info)
     }
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex != alertView.cancelButtonIndex {
