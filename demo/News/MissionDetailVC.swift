@@ -21,6 +21,10 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     var segmentCtrl = UISegmentedControl()
     var temp = [Int]()
     let setLike = API()
+    let mainView = UIView()
+    let myTextV1 = UITextField()
+    let addEvidenceComment = API()
+    let addMissionComment = API()
     
     @IBOutlet weak var selfTableView: UITableView!
     
@@ -34,6 +38,8 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         else {
             getCommentsAndLikes.getMissionCommentsAndMissionLikes(mid)
         }
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
         dispatch_async(dispatch_get_main_queue(), {
             self.selfTableView.reloadData()
         })
@@ -53,17 +59,24 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         segmentCtrl.selectedSegmentIndex = 0
         segmentCtrlChange()
         view.addSubview(segmentCtrl)
+        setLike.delegate = self
         getMission.delegate = self
         getEvidences.delegate = self
         getCommentsAndLikes.delegate = self
         selfTableView.dataSource = self
         selfTableView.delegate = self
+        addEvidenceComment.delegate = self
+        addMissionComment.delegate = self
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmentCtrl.selectedSegmentIndex == 0 {
@@ -586,15 +599,59 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 self.selfTableView.reloadData()
             })
         }
+        else if api === setLike {
+            if data["result"] as? Int == 1 {
+                getCommentsAndLikes.getMissionCommentsAndMissionLikes(mid)
+            }
+        }
+        else if api === addEvidenceComment {
+            if data["result"] as? Int == 1 {
+                getEvidences.getEvidencesFromMid(mid)
+            }
+        }
+        else if api === addMissionComment {
+            if data["result"] as? Int == 1 {
+                getCommentsAndLikes.getMissionCommentsAndMissionLikes(mid)
+            }
+        }
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if (segmentCtrl.selectedSegmentIndex == 1 && indexPath.row > 5) || segmentCtrl.selectedSegmentIndex == 2 {
+            myTextV1.resignFirstResponder()
+            mainView.hidden = true
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint:", name: UIKeyboardWillShowNotification, object: nil)
+            myTextV1.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 40, height: 40)
+            myTextV1.borderStyle = UITextBorderStyle.RoundedRect
+            myTextV1.backgroundColor = UIColor.whiteColor()
+            let fasongBut = UIButton(frame: CGRect(x: view.bounds.width - 40, y: 0, width: 40, height: 40))
+            fasongBut.setTitle("确定", forState: UIControlState.Normal)
+            fasongBut.backgroundColor = UIColor.orangeColor()
+            fasongBut.addTarget(self, action: "pinglunQueding:", forControlEvents: UIControlEvents.TouchUpInside)
+            fasongBut.layer.cornerRadius = 5
+            fasongBut.layer.masksToBounds = true
+            mainView.frame = CGRectMake(0, self.view.bounds.height, self.view.bounds.width, 40)
+            mainView.addSubview(myTextV1)
+            mainView.addSubview(fasongBut)
+            mainView.hidden = false
+            view.addSubview(mainView)
+            myTextV1.text = ""
+            myTextV1.placeholder = "评论..."
+            myTextV1.becomeFirstResponder()
+            if segmentCtrl.selectedSegmentIndex == 1 {
+                fasongBut.tag = evidences[indexPath.section]["id"] as! Int
+            }
+        }
+        else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            myTextV1.resignFirstResponder()
+            mainView.hidden = true
+        }
     }
     func likeButtonClick(button: UIButton) {
         if segmentCtrl.selectedSegmentIndex == 1 {
             var stu = evidences[button.tag]
             let ifLike = stu["ifLike"] as! Int
-            setLike.setEvidenceLike(mid, ifLike: 1 - ifLike)
+            setLike.setEvidenceLike(stu["id"] as! Int, ifLike: 1 - ifLike)
             if ifLike == 0 {
                 stu["ifLike"] = 1
                 stu["numOfLike"] = stu["numOfLike"] as! Int + 1
@@ -639,29 +696,29 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             self.selfTableView.reloadData()
         })
     }
-//        if segmentCtrl.selectedSegmentIndex == 1 && indexPath.row > 6  {
-//            NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint", name: UIKeyboardWillShowNotification, object: nil)
-//            let myTextV1 = UITextView(frame: CGRect(x: 0, y: 0, width: 280, height: 40))
-//            myTextV1.layer.cornerRadius = 5
-//            myTextV1.layer.masksToBounds = true
-//            let fasongBut = UIButton(frame: CGRect(x: 280, y: 0, width: 40, height: 40))
-//            fasongBut.setTitle("确定", forState: UIControlState.Normal)
-//            fasongBut.backgroundColor = UIColor.orangeColor()
-//            fasongBut.addTarget(self, action: "pinglunQueding", forControlEvents: UIControlEvents.TouchUpInside)
-//            let mainView = UIView(frame: CGRectMake(0, 400, 320, 40))
-//            view.addSubview(mainView)
-//            mainView.addSubview(myTextV1)
-//            mainView.addSubview(fasongBut)
-//            myTextV1.becomeFirstResponder()
-//        }
-//    }
-//    func changeContentViewPoint() {
-//        
-//        
-//    }
-//    func pinglunQueding() {
-//        
-//    }
+
+    func changeContentViewPoint(notification: NSNotification) {
+        let value = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyBoardEndY = value.CGRectValue().origin.y
+        let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+        UIView.animateWithDuration(duration.doubleValue, animations: { () -> Void in
+            UIView.setAnimationBeginsFromCurrentState(true)
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: curve.integerValue)!)
+            self.mainView.center = CGPointMake(self.mainView.center.x, keyBoardEndY  - self.mainView.bounds.height / 2)
+        })
+    }
+    func pinglunQueding(button: UIButton) {
+        if segmentCtrl.selectedSegmentIndex == 1 {
+            addEvidenceComment.addEvidenceComment(button.tag, content: myTextV1.text)
+        }
+        else {
+            addMissionComment.addMissionComment(mid, content: myTextV1.text)
+        }
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
+        mainView.center = CGPointMake(mainView.center.x, view.bounds.height)
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
