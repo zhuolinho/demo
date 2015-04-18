@@ -21,6 +21,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     let formatSever = NSDateFormatter()
     var mark = 0
     var imagePicker = UIImagePickerController()
+    var temp = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         super.viewWillAppear(animated)
         activity.startAnimating()
         api1.getMyMissions(0)
+        navigationController!.tabBarItem.title = "任务"
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,9 +78,14 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                 let imageView = cell.viewWithTag(1) as! UIImageView
                 if missions.count > mark {
                     let pics = missions[mark]["pics"] as! [NSDictionary]
-                    let url = pics[0]["url"] as! String
-                    if PicDic.picDic[url] != nil {
-                        imageView.image = PicDic.picDic[url]
+                    if pics.count > 0 {
+                        let url = pics[0]["url"] as! String
+                        if PicDic.picDic[url] != nil {
+                            imageView.image = PicDic.picDic[url]
+                        }
+                        else {
+                            imageView.image = UIImage()
+                        }
                     }
                     else {
                         imageView.image = UIImage()
@@ -149,7 +156,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                 changeAvatarActionSheet.addButtonWithTitle("取消")
                 changeAvatarActionSheet.cancelButtonIndex = 1
             }
-            
+            temp = cell.tag
             changeAvatarActionSheet.showInView(view)
         }
         else {
@@ -183,7 +190,11 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         }
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        println(info)
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("NewEvidenceVC") as! NewEvidenceVC
+        vc.senderInfo = info
+        vc.missionInfo = missions[temp]
+        navigationController?.pushViewController(vc, animated: true)
     }
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex != alertView.cancelButtonIndex {
@@ -215,16 +226,21 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             let imageView = cell1!.viewWithTag(1) as! UIImageView
             if missions.count > mark {
                 let pics = missions[mark]["pics"] as! [NSDictionary]
-                let url = pics[0]["url"] as! String
-                if PicDic.picDic[url] != nil {
-                    imageView.image = PicDic.picDic[url]
+                if pics.count > 0 {
+                    let url = pics[0]["url"] as! String
+                    if PicDic.picDic[url] != nil {
+                        imageView.image = PicDic.picDic[url]
+                    }
+                    else {
+                        imageView.image = UIImage()
+                    }
                 }
                 else {
                     imageView.image = UIImage()
                 }
             }
             else {
-                imageView.image = UIImage(named: "DefaultAvatar")
+                imageView.image = UIImage()
             }
         }
         else {
