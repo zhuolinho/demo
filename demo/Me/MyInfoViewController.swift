@@ -47,6 +47,8 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
         }
         var avatarImage = UIImageView(frame: CGRect(x: self.view.bounds.width-95, y: 10, width: 60, height: 60))
         avatarImage.image = API.userInfo.profilePhoto
+        avatarImage.layer.cornerRadius = 30
+        avatarImage.layer.masksToBounds = true
         self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.addSubview(avatarImage)
     }
     override func didReceiveMemoryWarning() {

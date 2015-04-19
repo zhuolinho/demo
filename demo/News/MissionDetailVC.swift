@@ -350,7 +350,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 let formatSever = NSDateFormatter()
                 formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let formatCell = NSDateFormatter()
-                formatCell.dateFormat = "MM:dd HH:mm"
+                formatCell.dateFormat = "MM-dd HH:mm"
                 cell.timeLabel.text = formatCell.stringFromDate(formatSever.dateFromString(stuct["createTime"] as! String)!)
                 return cell
             }
