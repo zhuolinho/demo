@@ -39,7 +39,7 @@ class MeViewController: UITableViewController, APIProtocol {
         avatarView.image = API.userInfo.profilePhoto
         signLabel.text = API.userInfo.signature
         nameLabel.text = API.userInfo.nickname
-        genderLabel.text = API.userInfo.gender
+        genderLabel.text = API.userInfo.gender == "M" ? "男" : "女"
         phoneLabel.text = API.userInfo.phone
     }
     // MARK: - Table view data source
@@ -84,7 +84,7 @@ class MeViewController: UITableViewController, APIProtocol {
                                 self.avatarView.image = API.userInfo.profilePhoto
                                 self.signLabel.text = API.userInfo.signature
                                 self.nameLabel.text = API.userInfo.nickname
-                                self.genderLabel.text = API.userInfo.gender
+                                self.genderLabel.text = API.userInfo.gender == "M" ? "男" : "女"
                                 self.phoneLabel.text = API.userInfo.phone
                                 self.tableView.reloadData()
                             })

@@ -381,6 +381,7 @@ class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollec
                 self.navigationController?.interactivePopGestureRecognizer.enabled = true
                 let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
                 alert.show()
+                self.navigationController?.popViewControllerAnimated(true)
             })
             return
         }

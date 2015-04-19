@@ -89,6 +89,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             return 44
         }
     }
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        meneyTextField.resignFirstResponder()
+        sloganTF.resignFirstResponder()
+        picker.hidden = true
+        tableView.deselectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), animated: true)
+    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         meneyTextField.resignFirstResponder()
         sloganTF.resignFirstResponder()
@@ -307,6 +313,28 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                         apis[i].uploadPic(picArray[i])
                     }
                 }
+                else {
+                    var times = -1
+                    if timesLabel.text != "" {
+                        times = timesLabel.text!.toInt()!
+                    }
+                    let content = "我保证未来两周内要去\(times)次健身房"
+                    var slogan = "*"
+                    if sloganTF.text != "" {
+                        slogan = sloganTF.text
+                    }
+                    var rmb = 0
+                    if meneyTextField.text != "" {
+                        rmb = meneyTextField.text.toInt()!
+                    }
+                    var location = "*"
+                    if tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))?.detailTextLabel?.text != "" {
+                        location = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0))!.detailTextLabel!.text!
+                    }
+                    let pics = ""
+                    let picTimes = ""
+                    addMission.addMission(1, title: "任务详情－健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                }
             }
         }
         else if alertView.tag == 2 {
@@ -407,6 +435,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                 self.navigationController?.interactivePopGestureRecognizer.enabled = true
                 let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
                 alert.show()
+                self.navigationController?.popViewControllerAnimated(true)
             })
             return
         }

@@ -22,6 +22,8 @@ class ResignPhoneViewController: UIViewController, APIProtocol {
     var phone:String?
     var code :String?
     
+
+    @IBOutlet weak var pwdTF: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var codeButton: UIButton!
@@ -45,6 +47,7 @@ class ResignPhoneViewController: UIViewController, APIProtocol {
     @IBAction func touchDown1(sender: UIControl) {
         codeTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()
+        pwdTF.resignFirstResponder()
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         NSLog("\(errno)")
@@ -85,6 +88,7 @@ class ResignPhoneViewController: UIViewController, APIProtocol {
         nextButton.enabled  = false
         controllerState = RegistrationStep.SendAuthCode
         codeButton.setTitle("已发送", forState: UIControlState.Disabled)
+        self.navigationController?.interactivePopGestureRecognizer.enabled = false
         // Do any additional setup after loading the view.
     }
 
@@ -93,8 +97,20 @@ class ResignPhoneViewController: UIViewController, APIProtocol {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func nextButtonClick(sender: UIButton) {
+        if count(pwdTF.text) < 6 {
+            var alert = UIAlertView(title: "密码不能少于6位", message: nil, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+        else {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("ResignAccountViewController") as! ResignAccountViewController
+            vc.phone = phone
+            vc.passWord = pwdTF.text
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -102,10 +118,11 @@ class ResignPhoneViewController: UIViewController, APIProtocol {
         if var dest = segue.destinationViewController as? ResignAccountViewController {
             dest.phone = phone
             dest.code = code
+            dest.passWord = pwd
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    
+    */
 
 }

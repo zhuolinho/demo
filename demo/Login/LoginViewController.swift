@@ -56,6 +56,7 @@ class LoginViewController: UIViewController, APIProtocol {
         login.delegate = self
         refreshUserInfo.delegate = self
         self.navigationController?.navigationBarHidden = false
+        self.navigationController?.interactivePopGestureRecognizer.enabled = false
         // Do any additional setup after loading the view.
     }
 

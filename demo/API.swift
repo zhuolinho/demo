@@ -46,7 +46,7 @@ class API: NSObject {
         static var rmb = 0
         static var acceptNote = true
         static var signature = ""
-        static var wxID = "Jolin_H"
+        static var wxID = "Ass-Kick"
         static let host = "http://121.41.98.147:8080/anydo/api/"//"http://218.244.141.224:8080/yozaii2/api/"//
         static let imageHost = "http://121.41.98.147:8080/"//"http://218.244.141.224:8080"//
         static var imageCache = Dictionary<String, UIImage>()
@@ -133,9 +133,9 @@ class API: NSObject {
         let authInfo = ["username": user, "password": pass]
         sendURLEncodedForm(action: "auth.action", data: authInfo, image: nil)
     }
-    func register(username: String, phone p: String, password pass: String, authCode code: String) {
-        let d = ["nickname": username, "phone": p, "password": pass, "type": "0", "identification": "0", "code": code, "gender": "M"]
-        sendURLEncodedForm(action: "register.action", data: d, image: nil)
+    func register(username: String, phone p: String, password pass: String, gender: String, avatar: UIImage?, signature: String) {
+        let d = ["nickname": username, "phone": p, "password": pass, "type": "0", "identification": "0", "gender": gender, "sign": signature]
+        sendURLEncodedForm(action: "register.action", data: d, image: avatar)
     }
     func sendAuthCode(phoneNumber num: String) {
         let data = ["phone": num]
