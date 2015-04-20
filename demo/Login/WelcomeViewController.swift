@@ -17,9 +17,9 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        resignButton.layer.cornerRadius = 10
+        resignButton.layer.cornerRadius = 5
         resignButton.layer.masksToBounds = true
-        loginButton.layer.cornerRadius = 10
+        loginButton.layer.cornerRadius = 5
         loginButton.layer.masksToBounds = true
         scrollView1.delegate = self
         let width = self.view.bounds.width

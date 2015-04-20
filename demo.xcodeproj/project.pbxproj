@@ -38,6 +38,7 @@
 		06522ABE1AADB14400D67CAE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABD1AADB14400D67CAE /* CFNetwork.framework */; };
 		06522AC01AADB14B00D67CAE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */; };
 		065E2CD01ABD8AD0006207FE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */; };
+		065FB3F61AE5267600C43747 /* SystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065FB3F51AE5267600C43747 /* SystemCell.swift */; };
 		0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667006B1AC93EF000714D54 /* NewsViewController.swift */; };
 		066E337A1AD3B3020062C31B /* My2Dcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E33791AD3B3020062C31B /* My2Dcode.swift */; };
 		066E33801AD3B4080062C31B /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E337C1AD3B4080062C31B /* CIColorExtension.swift */; };
@@ -489,6 +490,7 @@
 		06522ABD1AADB14400D67CAE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		065FB3F51AE5267600C43747 /* SystemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemCell.swift; sourceTree = "<group>"; };
 		0667006B1AC93EF000714D54 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		066E33791AD3B3020062C31B /* My2Dcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = My2Dcode.swift; sourceTree = "<group>"; };
 		066E337C1AD3B4080062C31B /* CIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIColorExtension.swift; sourceTree = "<group>"; };
@@ -1245,6 +1247,7 @@
 				06F618EE1ABEA72300918389 /* ContactsViewController.swift */,
 				06EADEF21AC270D7003C0B27 /* ContactCell.swift */,
 				068BFFD21ADA04FC00CE6CC6 /* AddFriendTableVC.swift */,
+				065FB3F51AE5267600C43747 /* SystemCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2566,6 +2569,7 @@
 				0694E5FF1AB6CE72008ADF21 /* PSTCollectionViewLayout.m in Sources */,
 				06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */,
 				068AEBF51AAC7C8100F5B84C /* ResignPhoneViewController.swift in Sources */,
+				065FB3F61AE5267600C43747 /* SystemCell.swift in Sources */,
 				065E2CD01ABD8AD0006207FE /* ChatListCell.swift in Sources */,
 				0694E5E71AB6CE72008ADF21 /* DACircularProgressView.m in Sources */,
 				06BA9BD21AC823AE00F52391 /* ApplyViewController.m in Sources */,

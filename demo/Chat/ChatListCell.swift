@@ -31,6 +31,8 @@ class ChatListCell: UITableViewCell {
         let timeLabel = self.viewWithTag(3) as! UILabel
         let messageLabel = self.viewWithTag(2) as! UILabel
         let nameLabel = self.viewWithTag(1) as! UILabel
+        avatarView.layer.cornerRadius = 5
+        avatarView.layer.masksToBounds = true
         self.addSubview(avatarView)
         unreadLabel.backgroundColor = UIColor.redColor()
         unreadLabel.textAlignment = NSTextAlignment.Center
