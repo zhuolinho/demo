@@ -108,13 +108,17 @@ class AddFriendTableVC: UITableViewController, APIProtocol, UISearchBarDelegate 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
         // Configure the cell...
-        cell.textLabel?.text = friendInfo[0]["nickname"] as? String
+        let textLabel = cell.viewWithTag(1) as! UILabel
+        let imageView = cell.viewWithTag(2) as! UIImageView
+        textLabel.text = friendInfo[0]["nickname"] as? String
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
         let url = friendInfo[0]["avatar"] as! String
         if PicDic.picDic[url] == nil {
-            cell.imageView?.image = UIImage(named: "DefaultAvatar")
+            imageView.image = UIImage(named: "DefaultAvatar")
         }
         else {
-            cell.imageView?.image = PicDic.picDic[url]
+            imageView.image = PicDic.picDic[url]
         }
         return cell
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController, IChatManagerDelegate {
 
+    var buddyRequest = false
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = UIColor.orangeColor()
@@ -50,6 +51,28 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
             vc.tabBarItem.badgeValue = nil
             UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         }
+    }
+    func didReceiveBuddyRequest(username: String!, message: String!) {
+        if username == nil {
+            return
+        }
+        var messag = "你有一个好友申请"
+        var dic = NSMutableDictionary(dictionary: ["title": username, "username": username, "applyMessage": message, "applyStyle": "0"])
+        ApplyViewController.shareController().loadDataSourceFromLocalDB()
+        ApplyViewController.shareController().addNewApply(dic as [NSObject : AnyObject])
+        var notification = UILocalNotification()
+        notification.fireDate = NSDate()
+        notification.alertBody = messag//[NSString stringWithFormat:@"%@:%@", title, messageStr];
+        notification.alertAction = "打开"
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+        notification.soundName = UILocalNotificationDefaultSoundName
+        //发送通知
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.sharedApplication().applicationIconBadgeNumber += 1
+        if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
+            EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
+        }
+        buddyRequest = true
     }
     /*
     // MARK: - Navigation

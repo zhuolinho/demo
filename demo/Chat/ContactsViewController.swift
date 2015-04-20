@@ -57,6 +57,14 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
             return sortedDataSource.objectAtIndex(section-1).count
         }
     }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section > 0 {
+            return 60
+        }
+        else {
+            return 0
+        }
+    }
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if indexPath.section == 0 {
             return false
@@ -186,14 +194,14 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NewFriendsCell", forIndexPath: indexPath) as! UITableViewCell
-            if indexPath.row == 0 {
-                imageView.image = UIImage(named: "newFriends")
-                var label = view.viewWithTag(2) as! UILabel
-                label.text = "新的朋友"
-                cell.addSubview(imageView) 
-            }
-            return cell
+//            let cell = tableView.dequeueReusableCellWithIdentifier("NewFriendsCell", forIndexPath: indexPath) as! UITableViewCell
+//            if indexPath.row == 0 {
+//                imageView.image = UIImage(named: "newFriends")
+//                var label = view.viewWithTag(2) as! UILabel
+//                label.text = "新的朋友"
+//                cell.addSubview(imageView) 
+//            }
+            return UITableViewCell()
         }
         else{
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as! ContactCell
@@ -270,7 +278,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
 //    }
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]{
         var existTitles = NSMutableArray()
-        existTitles.addObject("?")
+//        existTitles.addObject("?")
         for(var i = 0; i < sectionTitles.count; i++){
             if(sortedDataSource.objectAtIndex(i).count > 0){
                 existTitles.addObject(sectionTitles.objectAtIndex(i))

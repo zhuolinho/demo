@@ -73,11 +73,18 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
-
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return conversations.count
+        if section == 0 {
+            return 3
+        }
+        else {
+            return conversations.count
+        }
     }
 
     func didUnreadMessagesCountChanged() {
@@ -89,66 +96,71 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         return "删除"
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as! ChatListCell
-        let row = indexPath.row
-        let conversation = conversations[row] as! EMConversation
-        var unreadCount = emChatListVC.unreadMessageCountByConversation(conversation)
-        let username = conversation.chatter
-        cell.time?.text = emChatListVC.lastMessageTimeByConversation(conversation)
-        cell.detailMsg?.text = emChatListVC.subTitleMessageByConversation(conversation)
-        cell.unreadLabel.text = "\(unreadCount)"
-        if unreadCount == 0{
-            cell.unreadLabel.hidden = true
-        }
-        else{
-            cell.unreadLabel.hidden = false
-        }
-        // Configure the cell...
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            let requestAvatarUrl = NSURL(string: "\(API.userInfo.host)getAvatarAndNicknameFromUid.action?userstr=\(username)") // No such API !!!!!!!!!!!!!
-            let request: NSURLRequest = NSURLRequest(URL: requestAvatarUrl!)
-            let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                if error == nil {
-                    var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
-                    if (jsonRaw != nil) {
-                        var jsonResult = jsonRaw as! NSDictionary
-                        if jsonResult.count > 0 {
-                            let result = jsonResult["result"] as! NSDictionary
-                            let urlWithComma = result["avatar"] as! String
-                            let nicknameWithComma = result["nickname"] as! String
-                            let url = urlWithComma.componentsSeparatedByString(",")[0]
-                            let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
-                            dispatch_async(dispatch_get_main_queue(), {
-                                cell.name?.text = nickname
-                                cell.imageURL = url
-                            })
-                            if PicDic.picDic[url] == nil {
-                                cell.avatarView.image = UIImage()
-                                let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                                let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                                    if error == nil {
-                                        var rawImage: UIImage? = UIImage(data: data)
-                                        let img: UIImage? = rawImage
-                                        if img != nil {
-                                            dispatch_async(dispatch_get_main_queue(), {
-                                                cell.avatarView.image = img!
-                                                PicDic.picDic[url] = img
-                                            })
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("ChatTabelCell", forIndexPath: indexPath) as! ChatListCell
+            let row = indexPath.row
+            let conversation = conversations[row] as! EMConversation
+            var unreadCount = emChatListVC.unreadMessageCountByConversation(conversation)
+            let username = conversation.chatter
+            cell.time?.text = emChatListVC.lastMessageTimeByConversation(conversation)
+            cell.detailMsg?.text = emChatListVC.subTitleMessageByConversation(conversation)
+            cell.unreadLabel.text = "\(unreadCount)"
+            if unreadCount == 0{
+                cell.unreadLabel.hidden = true
+            }
+            else{
+                cell.unreadLabel.hidden = false
+            }
+            // Configure the cell...
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                let requestAvatarUrl = NSURL(string: "\(API.userInfo.host)getAvatarAndNicknameFromUid.action?userstr=\(username)") // No such API !!!!!!!!!!!!!
+                let request: NSURLRequest = NSURLRequest(URL: requestAvatarUrl!)
+                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                    if error == nil {
+                        var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
+                        if (jsonRaw != nil) {
+                            var jsonResult = jsonRaw as! NSDictionary
+                            if jsonResult.count > 0 {
+                                let result = jsonResult["result"] as! NSDictionary
+                                let urlWithComma = result["avatar"] as! String
+                                let nicknameWithComma = result["nickname"] as! String
+                                let url = urlWithComma.componentsSeparatedByString(",")[0]
+                                let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    cell.name?.text = nickname
+                                    cell.imageURL = url
+                                })
+                                if PicDic.picDic[url] == nil {
+                                    cell.avatarView.image = UIImage()
+                                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                                        if error == nil {
+                                            var rawImage: UIImage? = UIImage(data: data)
+                                            let img: UIImage? = rawImage
+                                            if img != nil {
+                                                dispatch_async(dispatch_get_main_queue(), {
+                                                    cell.avatarView.image = img!
+                                                    PicDic.picDic[url] = img
+                                                })
+                                            }
+                                            else {
+                                                cell.avatarView.image = UIImage(named: "DefaultAvatar")
+                                            }
                                         }
                                         else {
                                             cell.avatarView.image = UIImage(named: "DefaultAvatar")
                                         }
-                                    }
-                                    else {
-                                        cell.avatarView.image = UIImage(named: "DefaultAvatar")
-                                    }
-                                })
+                                    })
+                                }
+                                else {
+                                    cell.avatarView.image = PicDic.picDic[url]
+                                }
                             }
                             else {
-                                cell.avatarView.image = PicDic.picDic[url]
+                                cell.avatarView.image = UIImage(named: "DefaultAvatar")
                             }
                         }
                         else {
@@ -158,23 +170,40 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
                     else {
                         cell.avatarView.image = UIImage(named: "DefaultAvatar")
                     }
-                }
-                else {
-                    cell.avatarView.image = UIImage(named: "DefaultAvatar")
-                }
+                })
             })
-        })
-        return cell
+            return cell
+        }
+        else {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("Coment", forIndexPath: indexPath) as! SystemCell
+                return cell
+            }
+            else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("MissionInfo", forIndexPath: indexPath) as! SystemCell
+                return cell
+            }
+            else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("Nonification", forIndexPath: indexPath) as! SystemCell
+                cell.unreadLabel.hidden = !(tabBarController as! MainTabBarController).buddyRequest
+                return cell
+            }
+        }
     }
 
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
-        return true
+        if indexPath.section == 1 {
+            return true
+        }
+        else {
+            return false
+        }
     }
-    */
+    
 
     /*
     // Override to support editing the table view.

@@ -12,7 +12,8 @@ class ApplyTableVC: ApplyViewController, ApplyFriendCellDelegate {
     var api = API()
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "好友申请"
+        title = "通知"
+        (tabBarController as! MainTabBarController).buddyRequest = false
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -46,7 +47,10 @@ class ApplyTableVC: ApplyViewController, ApplyFriendCellDelegate {
             cell = ApplyFriendCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ApplyFriendCell")
             cell!.selectionStyle = UITableViewCellSelectionStyle.None
             cell!.refuseButton.hidden = true
-            cell!.addButton.setTitle("接受", forState: UIControlState.Normal)
+            cell!.addButton.setTitle("同意", forState: UIControlState.Normal)
+            cell!.addButton.backgroundColor = UIColor.orangeColor()
+            cell!.addButton.layer.cornerRadius = 3
+            cell!.addButton.layer.masksToBounds = true
             cell!.delegate = self
         }
         if super.dataSource.count > indexPath.row {

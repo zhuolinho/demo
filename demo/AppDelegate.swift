@@ -87,15 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         UIApplication.sharedApplication().applicationIconBadgeNumber += 1
         
     }
-    func didReceiveBuddyRequest(username: String!, message: String!) {
-        if username == nil {
-            return
-        }
-        var messag = username + " 添加你喂好友"
-        var dic = NSMutableDictionary(dictionary: ["title": username, "username": username, "applyMessage": message, "applyStyle": "0"])
-        ApplyViewController.shareController().loadDataSourceFromLocalDB()
-        ApplyViewController.shareController().addNewApply(dic as [NSObject : AnyObject])
-    }
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
 //        EaseMob.sharedInstance().application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
         APService.registerDeviceToken(deviceToken)
@@ -196,8 +187,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         let userInfoDic: NSDictionary = NSDictionary(dictionary: ["token": API.userInfo.token])
         NSUserDefaults.standardUserDefaults().setObject(userInfoDic, forKey: "YoUserInfo")
         NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    
+    }    
 }
 
