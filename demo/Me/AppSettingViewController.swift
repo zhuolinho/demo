@@ -39,6 +39,9 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
         if buttonIndex == 0{
             API.userInfo.tokenValid = false
             API.userInfo.token = ""
+            let userInfoDic: NSDictionary = NSDictionary(dictionary: ["token": API.userInfo.token])
+            NSUserDefaults.standardUserDefaults().setObject(userInfoDic, forKey: "YoUserInfo")
+            NSUserDefaults.standardUserDefaults().synchronize()
             API.userInfo.profilePhoto = UIImage(named: "DefaultAvatar")
             API.userInfo.profilePhotoUrl = ""
             EaseMob.sharedInstance().chatManager.asyncLogoff()
