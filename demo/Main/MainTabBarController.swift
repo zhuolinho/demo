@@ -62,7 +62,6 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
         }
         var messag = "你有一个好友申请"
         var dic = NSDictionary(dictionary: ["title": username!, "username": username!, "applyMessage": mess, "applyStyle": "0"])
-        
         ApplyViewController.shareController().loadDataSourceFromLocalDB()
         ApplyViewController.shareController().addNewApply(dic as [NSObject : AnyObject])
         var notification = UILocalNotification()

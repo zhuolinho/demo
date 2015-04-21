@@ -308,8 +308,10 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         let sturt = news[indexPath.section]["struct"] as! NSDictionary
         if news[indexPath.section]["type"] as! String == "mission" {
             vc.mid = sturt["id"] as! Int
+            vc.initNum = 0
         }
         else {
+            vc.initNum = 1
             vc.mid = sturt["mid"] as! Int
         }
         if indexPath.row != 6 {

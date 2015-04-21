@@ -8,10 +8,13 @@
 
 import UIKit
 
-class ChatTableViewController: UITableViewController, IChatManagerDelegate {
+class ChatTableViewController: UITableViewController, IChatManagerDelegate, APIProtocol {
 
     var emChatListVC = ChatListViewController()
     var conversations = NSMutableArray()
+    let api = API()
+    var unreadCommentNum = 0
+    var unreadMissionNum = 0
     
     func refreshDataSource() {
         self.conversations = emChatListVC.loadDataSource()
@@ -43,13 +46,16 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         tableView.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
+        if unreadCommentNum == 0 || unreadMissionNum == 0 {
+            api.getMyInfo()
+        }
         self.refreshDataSource()
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         didUnreadMessagesCountChanged()
         EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
+        api.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -91,6 +97,9 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         self.refreshDataSource()
 //        self.setupUnreadMessageCount()
         
+    }
+    func didReceiveBuddyRequest(username: String!, message: String!) {
+        self.refreshDataSource()
     }
     override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
         return "删除"
@@ -177,10 +186,12 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         else {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("Coment", forIndexPath: indexPath) as! SystemCell
+                cell.unreadLabel.hidden = unreadCommentNum == 0
                 return cell
             }
             else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MissionInfo", forIndexPath: indexPath) as! SystemCell
+                cell.unreadLabel.hidden = unreadMissionNum == 0
                 return cell
             }
             else {
@@ -190,8 +201,15 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
             }
         }
     }
-
-
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            unreadCommentNum = 0
+        }
+        else if indexPath.section == 0 && indexPath.row == 1 {
+            unreadMissionNum = 0
+        }
+    }
     
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -204,7 +222,18 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate {
         }
     }
     
+    func didReceiveAPIErrorOf(api: API, errno: Int) {
+        println(errno)
+    }
 
+    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
+        let res = data["result"] as! NSDictionary
+        unreadCommentNum = res["unreadCommentNum"] as! Int
+        unreadMissionNum = res["unreadMissionNum"] as! Int
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
+    }
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

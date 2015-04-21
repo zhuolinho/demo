@@ -547,22 +547,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "demo/AppDelegate.swift"
-            timestampString = "451241436.989071"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "application(_:didReceiveRemoteNotification:fetchCompletionHandler:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "demo/Me/MyInfoViewController.swift"
             timestampString = "448116963.528875"
             startingColumnNumber = "9223372036854775807"
@@ -1087,11 +1071,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1183,11 +1167,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1199,11 +1183,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
             <Locations>
@@ -1247,11 +1231,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1263,11 +1247,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1279,11 +1263,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1311,11 +1295,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "479"
-            endingLineNumber = "479"
+            startingLineNumber = "481"
+            endingLineNumber = "481"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1327,11 +1311,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "478"
-            endingLineNumber = "478"
+            startingLineNumber = "480"
+            endingLineNumber = "480"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1455,11 +1439,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/Main/MainTabBarController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451292668.16104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "setupUnreadMessageCount()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1471,11 +1455,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/Main/MainTabBarController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451292668.16104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "setupUnreadMessageCount()"
             landmarkType = "5">
             <Locations>
@@ -1567,11 +1551,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1615,11 +1599,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/AppDelegate.swift"
-            timestampString = "451241436.989071"
+            timestampString = "451320389.767179"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2335,7 +2319,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "534"
@@ -2444,7 +2428,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "540"
@@ -2460,7 +2444,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
@@ -2476,7 +2460,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
@@ -2508,7 +2492,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "509"
@@ -2524,7 +2508,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "393"
@@ -2556,7 +2540,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "602"
@@ -2572,7 +2556,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -2588,7 +2572,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "456"
@@ -2620,11 +2604,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "likeButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2636,11 +2620,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "likeButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2652,11 +2636,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "390"
-            endingLineNumber = "390"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2684,7 +2668,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052440.827765"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "655"
@@ -2700,11 +2684,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451321457.076706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
             landmarkName = "viceButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2716,7 +2700,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "451052339.970022"
+            timestampString = "451321719.583964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "623"
@@ -2828,11 +2812,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/Chat/ChatTableViewController.swift"
-            timestampString = "451242089.938811"
+            timestampString = "451323185.051212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2844,11 +2828,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/Main/MainTabBarController.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451292668.16104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "didReceiveBuddyRequest(_:message:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2924,11 +2908,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/AppDelegate.swift"
-            timestampString = "451291818.238531"
+            timestampString = "451320389.767179"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "didReceiveAPIResponseOf(_:data:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "demo/AppDelegate.swift"
+            timestampString = "451320389.767179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "application(_:didReceiveRemoteNotification:fetchCompletionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "demo/AppDelegate.swift"
+            timestampString = "451320389.767179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "application(_:didReceiveRemoteNotification:fetchCompletionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "demo/AppDelegate.swift"
+            timestampString = "451320389.767179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "application(_:didReceiveRemoteNotification:fetchCompletionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "demo/Chat/ChatTableViewController.swift"
+            timestampString = "451320486.40215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "ChatTableViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "demo/Chat/ChatTableViewController.swift"
+            timestampString = "451323185.051212"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>

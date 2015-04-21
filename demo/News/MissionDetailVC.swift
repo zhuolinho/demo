@@ -25,6 +25,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     let myTextV1 = UITextField()
     let addEvidenceComment = API()
     let addMissionComment = API()
+    var initNum = 0
     
     @IBOutlet weak var selfTableView: UITableView!
     
@@ -48,7 +49,6 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(mid)
         segmentCtrl.layer.cornerRadius = 8
         segmentCtrl.layer.masksToBounds = true
         segmentCtrl = UISegmentedControl(items: ["任务", " 证据", "评论"])
@@ -56,7 +56,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         segmentCtrl.tintColor = UIColor.orangeColor()
         segmentCtrl.backgroundColor = UIColor.whiteColor()
         segmentCtrl.addTarget(self, action: "segmentCtrlChange", forControlEvents: UIControlEvents.ValueChanged)
-        segmentCtrl.selectedSegmentIndex = 0
+        segmentCtrl.selectedSegmentIndex = initNum
         segmentCtrlChange()
         view.addSubview(segmentCtrl)
         setLike.delegate = self
@@ -351,7 +351,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let formatCell = NSDateFormatter()
                 formatCell.dateFormat = "MM-dd HH:mm"
-                cell.timeLabel.text = formatCell.stringFromDate(formatSever.dateFromString(stuct["createTime"] as! String)!)
+                cell.timeLabel.text = formatCell.stringFromDate(formatSever.dateFromString(evident["createTime"] as! String)!)
                 return cell
             }
             else if indexPath.row == 4 {
