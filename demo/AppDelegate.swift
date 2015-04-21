@@ -96,12 +96,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
 //    }
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         APService.handleRemoteNotification(userInfo)
+        println("fuck")
+        if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
+            let message = (userInfo["aps"] as! NSDictionary)["alert"] as? String
+            let alert = UIAlertView(title: "新消息", message: message, delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
 //        EaseMob.sharedInstance().deviceManager.asyncPlayNewMessageSound()
 //        EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
     }
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         APService.handleRemoteNotification(userInfo)
         completionHandler(UIBackgroundFetchResult.NewData)
+        if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
+            let message = (userInfo["aps"] as! NSDictionary)["alert"] as? String
+            let alert = UIAlertView(title: "新消息", message: message, delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+            EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
+        }
+
 //        EaseMob.sharedInstance().deviceManager.asyncPlayNewMessageSound()
 //        EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
     }
