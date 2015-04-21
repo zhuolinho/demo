@@ -6,10 +6,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Main Navigation Controller-->
         <scene sceneID="a4z-JT-Ngm">
             <objects>
-                <navigationController id="Ik3-UC-5uA" sceneMemberID="viewController">
+                <navigationController id="Ik3-UC-5uA" customClass="MainNavigationController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OQy-bc-hA3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

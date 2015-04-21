@@ -52,12 +52,17 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
             UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         }
     }
-    func didReceiveBuddyRequest(username: String!, message: String!) {
+    func didReceiveBuddyRequest(username: String?, message: String?) {
         if username == nil {
             return
         }
+        var mess = "请求添加好友"
+        if message != nil {
+            mess = message!
+        }
         var messag = "你有一个好友申请"
-        var dic = NSMutableDictionary(dictionary: ["title": username, "username": username, "applyMessage": message, "applyStyle": "0"])
+        var dic = NSDictionary(dictionary: ["title": username!, "username": username!, "applyMessage": mess, "applyStyle": "0"])
+        
         ApplyViewController.shareController().loadDataSourceFromLocalDB()
         ApplyViewController.shareController().addNewApply(dic as [NSObject : AnyObject])
         var notification = UILocalNotification()

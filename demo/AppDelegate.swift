@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
 //        EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        NSLog("\(errno)")
+        API.userInfo.tokenValid = false
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         let res = data["result"] as! NSDictionary

@@ -46,7 +46,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        if (!API.userInfo.tokenValid && API.userInfo.token == ""){
+        if !API.userInfo.tokenValid && API.userInfo.token == "" {
             let mainStoryboard = UIStoryboard(name: "Login", bundle: nil)
             let auth = mainStoryboard.instantiateInitialViewController() as! UIViewController
             self.presentViewController(auth, animated: true, completion: nil)

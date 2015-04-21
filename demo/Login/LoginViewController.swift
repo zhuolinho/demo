@@ -30,6 +30,7 @@ class LoginViewController: UIViewController, APIProtocol {
             //println("don't repeatly login")
             return
         } else {
+            EaseMob.sharedInstance().chatManager.logoffWithError(nil)
             loginLock.lock()
             iflogining = true
             loginButton.enabled = false
@@ -159,6 +160,7 @@ class LoginViewController: UIViewController, APIProtocol {
                 else {
                     //EaseMob.sharedInstance().chatManager.registerNewAccount(API.userInfo.username, password: "123456", error: nil)
                     self.iflogining = false
+                    self.loginButton.enabled = true
                     var alert = UIAlertView(title: "提示", message: "对不起，暂时不能登录，请稍候重试", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 }
