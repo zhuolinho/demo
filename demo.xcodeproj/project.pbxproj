@@ -54,6 +54,7 @@
 		066EF6A71AC3B09D00200360 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066EF6A61AC3B09D00200360 /* Security.framework */; };
 		066FF9EF1ADD6567003BCB8E /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066FF9EC1ADD6567003BCB8E /* StatusCell.swift */; };
 		0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */; };
+		06717EF31AE8EF960098C8D8 /* CommentNotificationTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06717EF21AE8EF960098C8D8 /* CommentNotificationTableVC.swift */; };
 		068477731ACED13500F5B667 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068477721ACED13500F5B667 /* DetailCell.swift */; };
 		068477751ACED99B00F5B667 /* task_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 068477741ACED99B00F5B667 /* task_5.png */; };
 		068477771ACEDA0F00F5B667 /* moment1_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 068477761ACEDA0F00F5B667 /* moment1_06.png */; };
@@ -504,6 +505,7 @@
 		066EF6A61AC3B09D00200360 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		066FF9EC1ADD6567003BCB8E /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		06717EF21AE8EF960098C8D8 /* CommentNotificationTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentNotificationTableVC.swift; sourceTree = "<group>"; };
 		068477721ACED13500F5B667 /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		068477741ACED99B00F5B667 /* task_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = task_5.png; path = Image/task_5.png; sourceTree = "<group>"; };
 		068477761ACEDA0F00F5B667 /* moment1_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moment1_06.png; path = Image/moment1_06.png; sourceTree = "<group>"; };
@@ -1248,6 +1250,7 @@
 				06EADEF21AC270D7003C0B27 /* ContactCell.swift */,
 				068BFFD21ADA04FC00CE6CC6 /* AddFriendTableVC.swift */,
 				065FB3F51AE5267600C43747 /* SystemCell.swift */,
+				06717EF21AE8EF960098C8D8 /* CommentNotificationTableVC.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2524,6 +2527,7 @@
 				0648D1361AB4206C008B0F67 /* GenderSettingTableViewController.swift in Sources */,
 				06F618F51ABF0B5A00918389 /* ChineseToPinyin.m in Sources */,
 				063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */,
+				06717EF31AE8EF960098C8D8 /* CommentNotificationTableVC.swift in Sources */,
 				0694E5F21AB6CE72008ADF21 /* UIImage+EMGIF.m in Sources */,
 				0694E5F71AB6CE72008ADF21 /* UIView+EMWebCacheOperation.m in Sources */,
 				0694E65D1AB6CE72008ADF21 /* EMChooseViewController.m in Sources */,
