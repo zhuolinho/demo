@@ -620,10 +620,10 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             myTextV1.resignFirstResponder()
             mainView.hidden = true
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint:", name: UIKeyboardWillShowNotification, object: nil)
-            myTextV1.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 40, height: 40)
+            myTextV1.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 60, height: 40)
             myTextV1.borderStyle = UITextBorderStyle.RoundedRect
             myTextV1.backgroundColor = UIColor.whiteColor()
-            let fasongBut = UIButton(frame: CGRect(x: view.bounds.width - 40, y: 0, width: 40, height: 40))
+            let fasongBut = UIButton(frame: CGRect(x: view.bounds.width - 60, y: 0, width: 60, height: 40))
             fasongBut.setTitle("确定", forState: UIControlState.Normal)
             fasongBut.backgroundColor = UIColor.orangeColor()
             fasongBut.addTarget(self, action: "pinglunQueding:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -710,10 +710,14 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     func pinglunQueding(button: UIButton) {
         if segmentCtrl.selectedSegmentIndex == 1 {
-            addEvidenceComment.addEvidenceComment(button.tag, content: myTextV1.text)
+            if myTextV1.text != "" {
+                addEvidenceComment.addEvidenceComment(button.tag, content: myTextV1.text)
+            }
         }
         else {
-            addMissionComment.addMissionComment(mid, content: myTextV1.text)
+            if myTextV1.text != "" {
+                addMissionComment.addMissionComment(mid, content: myTextV1.text)
+            }
         }
         myTextV1.resignFirstResponder()
         mainView.hidden = true
