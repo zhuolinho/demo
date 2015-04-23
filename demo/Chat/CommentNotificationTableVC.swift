@@ -83,17 +83,9 @@ class CommentNotificationTableVC: UITableViewController, APIProtocol {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
-//        if news[indexPath.section]["type"] as! String == "mission" {
-            vc.mid = CommentNotification[indexPath.section]["mid"] as! Int
-            vc.initNum = 0
-//        }
-//        else {
-//            vc.initNum = 1
-//            vc.mid = sturt["mid"] as! Int
-//        }
-        if indexPath.row != 6 {
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        vc.mid = CommentNotification[indexPath.section]["mid"] as! Int
+        vc.initNum = CommentNotification[indexPath.section]["type"] as! Int
+        navigationController?.pushViewController(vc, animated: true)
 
     }
     
