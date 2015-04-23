@@ -334,6 +334,8 @@
 		069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */; };
 		06A108CE1AC9837000493A2A /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CD1AC9837000493A2A /* TitleCell.swift */; };
 		06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CF1AC9AF3600493A2A /* PickPicCell.swift */; };
+		06AB9C1F1AE9243A0039B09A /* MissionNotificationTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9C1E1AE9243A0039B09A /* MissionNotificationTableVC.swift */; };
+		06AB9C231AE92B8F0039B09A /* MissionNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */; };
 		06B5F18E1AD6F9780035D6DE /* SelectMissionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */; };
 		06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC41AC823A600F52391 /* InvitationManager.m */; };
 		06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC81AC823AE00F52391 /* AddFriendCell.m */; };
@@ -888,6 +890,8 @@
 		069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
 		06A108CD1AC9837000493A2A /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		06A108CF1AC9AF3600493A2A /* PickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickPicCell.swift; sourceTree = "<group>"; };
+		06AB9C1E1AE9243A0039B09A /* MissionNotificationTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionNotificationTableVC.swift; sourceTree = "<group>"; };
+		06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionNotificationCell.swift; sourceTree = "<group>"; };
 		06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMissionTableViewController.swift; sourceTree = "<group>"; };
 		06BA9BC31AC823A600F52391 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		06BA9BC41AC823A600F52391 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
@@ -1251,6 +1255,8 @@
 				068BFFD21ADA04FC00CE6CC6 /* AddFriendTableVC.swift */,
 				065FB3F51AE5267600C43747 /* SystemCell.swift */,
 				06717EF21AE8EF960098C8D8 /* CommentNotificationTableVC.swift */,
+				06AB9C1E1AE9243A0039B09A /* MissionNotificationTableVC.swift */,
+				06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2506,6 +2512,7 @@
 				06CF5C7B1AC70022003D46B8 /* FriendInfoViewController.swift in Sources */,
 				0694E6591AB6CE72008ADF21 /* EMSearchBar.m in Sources */,
 				0694E60F1AB6CE72008ADF21 /* NSDateFormatter+Category.m in Sources */,
+				06AB9C1F1AE9243A0039B09A /* MissionNotificationTableVC.swift in Sources */,
 				06CDBC9E1AE296D900A13245 /* NewEvidenceVC.swift in Sources */,
 				0694E5E51AB6CE72008ADF21 /* MWTapDetectingView.m in Sources */,
 				068477851ACF03E400F5B667 /* MoreCommentsCell.swift in Sources */,
@@ -2531,6 +2538,7 @@
 				0694E5F21AB6CE72008ADF21 /* UIImage+EMGIF.m in Sources */,
 				0694E5F71AB6CE72008ADF21 /* UIView+EMWebCacheOperation.m in Sources */,
 				0694E65D1AB6CE72008ADF21 /* EMChooseViewController.m in Sources */,
+				06AB9C231AE92B8F0039B09A /* MissionNotificationCell.swift in Sources */,
 				0694E6031AB6CE72008ADF21 /* PSTGridLayoutRow.m in Sources */,
 				064CE74F1ACFB19B00F51D06 /* MainNavigationController.swift in Sources */,
 				0694E6091AB6CE72008ADF21 /* SRSlimeView.m in Sources */,

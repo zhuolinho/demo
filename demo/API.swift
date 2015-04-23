@@ -231,6 +231,10 @@ class API: NSObject {
     func readCommentNotification(id: Int) {
         get(host + "readCommentNotification.action?token=\(API.userInfo.token)&id=\(id)")
     }
+    func readMissionNotification(id: Int) {
+        get(host + "readMissionNotification.action?token=\(API.userInfo.token)&id=\(id)")
+    }
+    
     func addMission(missionTemplateID: Int, title: String, content: String, supervisor: String, slogan: String, pics: String, picTimes: String, location: String, rmb: Int) {
         let data = ["token": API.userInfo.token, "missionTemplateID": "\(missionTemplateID)", "title": title, "content": content, "supervisor": supervisor, "slogan": slogan, "pics": pics, "picTimes": picTimes, "location": location, "rmb": "\(rmb)"]
         sendURLEncodedForm(action: "addMission.action", data: data, image: nil)
@@ -268,6 +272,9 @@ class API: NSObject {
     }
     func getCommentNotification(skip: Int) {
         get(host + "getCommentNotification.action?token=" + API.userInfo.token + "&start=\(skip)&limit=100")
+    }
+    func getNotification(skip: Int) {
+        get(host + "getNotification.action?token=" + API.userInfo.token + "&start=\(skip)&limit=100")
     }
     func getMissionsAndEvidences(skip: Int) {
         get(host + "getMissionsAndEvidences.action?token=" + API.userInfo.token + "&start=\(skip)&limit=5")
