@@ -143,6 +143,7 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate, APIP
                                     cell.imageURL = url
                                 })
                                 if PicDic.picDic[url] == nil {
+                                    cell.avatarView.image = UIImage()
                                     let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
                                     let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
                                     let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
