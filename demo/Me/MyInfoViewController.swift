@@ -42,8 +42,11 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
         if API.userInfo.gender ==  "M" {
             gender.text = "男"
         }
-        else{
+        else if API.userInfo.gender == "F" {
             gender.text = "女"
+        }
+        else {
+            gender.text = "未设置"
         }
         var avatarImage = UIImageView(frame: CGRect(x: self.view.bounds.width-95, y: 10, width: 60, height: 60))
         avatarImage.image = API.userInfo.profilePhoto

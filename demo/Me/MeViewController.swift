@@ -39,7 +39,15 @@ class MeViewController: UITableViewController, APIProtocol {
         avatarView.image = API.userInfo.profilePhoto
         signLabel.text = API.userInfo.signature
         nameLabel.text = API.userInfo.nickname
-        genderLabel.text = API.userInfo.gender == "M" ? "男" : "女"
+        if API.userInfo.gender == "M" {
+            genderLabel.text =  "男"
+        }
+        else if API.userInfo.gender == "F" {
+            genderLabel.text =  "女"
+        }
+        else {
+            genderLabel.text =  "未设置"
+        }
         phoneLabel.text = API.userInfo.phone
     }
     // MARK: - Table view data source
@@ -84,7 +92,15 @@ class MeViewController: UITableViewController, APIProtocol {
                                 self.avatarView.image = API.userInfo.profilePhoto
                                 self.signLabel.text = API.userInfo.signature
                                 self.nameLabel.text = API.userInfo.nickname
-                                self.genderLabel.text = API.userInfo.gender == "M" ? "男" : "女"
+                                if API.userInfo.gender == "M" {
+                                    self.genderLabel.text =  "男"
+                                }
+                                else if API.userInfo.gender == "F" {
+                                    self.genderLabel.text =  "女"
+                                }
+                                else {
+                                    self.genderLabel.text =  "未设置"
+                                }
                                 self.phoneLabel.text = API.userInfo.phone
                                 self.tableView.reloadData()
                             })

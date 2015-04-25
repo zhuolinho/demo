@@ -20,7 +20,7 @@ class GenderSettingTableViewController: UITableViewController,APIProtocol {
         if API.userInfo.gender == "M" {
             manButton.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
-        else{
+        else if API.userInfo.gender == "F"{
             femalButton.accessoryType = UITableViewCellAccessoryType.Checkmark
         }
         // Uncomment the following line to preserve selection between presentations
