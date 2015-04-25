@@ -129,14 +129,19 @@ class API: NSObject {
     }
     
     func login(username user: String, password pass: String){
-       
         let authInfo = ["username": user, "password": pass]
         sendURLEncodedForm(action: "auth.action", data: authInfo, image: nil)
     }
+    
     func register(username: String, phone p: String, password pass: String, gender: String, avatar: UIImage?, signature: String) {
         let d = ["nickname": username, "phone": p, "password": pass, "type": "0", "identification": "0", "gender": gender, "sign": signature]
         sendURLEncodedForm(action: "register.action", data: d, image: avatar)
     }
+    func authForWeixin(weixin: String, avatarURL: String, nickname: String, gender: String) {
+        let d = ["weixin": weixin, "avatarURL": avatarURL, "nickname": nickname, "gender": gender]
+        sendURLEncodedForm(action: "authForWeixin.action", data: d, image: nil)
+    }
+    
     func sendAuthCode(phoneNumber num: String) {
         let data = ["phone": num]
         sendURLEncodedForm(action: "sendAuthcode.action", data: data, image: nil)

@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		061304FE1AEAC52B007410DA /* ValuePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061304FD1AEAC52B007410DA /* ValuePass.swift */; };
+		061305021AEC116F007410DA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061305011AEC116F007410DA /* API.swift */; };
 		0615378C1AC946AA0046EEBE /* PicDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615378B1AC946AA0046EEBE /* PicDic.swift */; };
 		061AC2711ABD19B100C9FFE6 /* libEaseMobClientSDKLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 061AC26E1ABD19B100C9FFE6 /* libEaseMobClientSDKLite.a */; };
 		061AC2721ABD19B100C9FFE6 /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061AC2701ABD19B100C9FFE6 /* EaseMob.bundle */; };
 		06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */; };
-		06216D761AAC8D5200683C40 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D751AAC8D5200683C40 /* API.swift */; };
 		063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D03661AB31C4F005A1ED1 /* MeViewController.swift */; };
 		0647DE1C1AB47E55001737F9 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */; };
 		0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */; };
@@ -392,6 +392,7 @@
 
 /* Begin PBXFileReference section */
 		061304FD1AEAC52B007410DA /* ValuePass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePass.swift; sourceTree = "<group>"; };
+		061305011AEC116F007410DA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0615378B1AC946AA0046EEBE /* PicDic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicDic.swift; sourceTree = "<group>"; };
 		061AC2141ABD19B100C9FFE6 /* IChatManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IChatManagerDelegate.h; sourceTree = "<group>"; };
 		061AC2161ABD19B100C9FFE6 /* EMChatManagerBuddyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatManagerBuddyDelegate.h; sourceTree = "<group>"; };
@@ -475,7 +476,6 @@
 		061AC26E1ABD19B100C9FFE6 /* libEaseMobClientSDKLite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDKLite.a; sourceTree = "<group>"; };
 		061AC2701ABD19B100C9FFE6 /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
 		06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPwdViewController.swift; sourceTree = "<group>"; };
-		06216D751AAC8D5200683C40 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		063D03661AB31C4F005A1ED1 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DefaultAvatar.png; path = Image/DefaultAvatar.png; sourceTree = "<group>"; };
 		0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NickNameSettingViewController.swift; sourceTree = "<group>"; };
@@ -2156,7 +2156,6 @@
 				069F73D31AB1F53F00D73AA8 /* Me */,
 				068AEBED1AAC6C0F00F5B84C /* Login */,
 				06CD92471AA877E10026C3E7 /* AppDelegate.swift */,
-				06216D751AAC8D5200683C40 /* API.swift */,
 				06CD924B1AA877E10026C3E7 /* Main.storyboard */,
 				06CD924E1AA877E10026C3E7 /* Images.xcassets */,
 				06CD92501AA877E10026C3E7 /* LaunchScreen.xib */,
@@ -2209,6 +2208,7 @@
 		06CF5C791AC70022003D46B8 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				061305011AEC116F007410DA /* API.swift */,
 				0615378B1AC946AA0046EEBE /* PicDic.swift */,
 				064CE74A1ACFAB5C00F51D06 /* MainTabBarController.swift */,
 				064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */,
@@ -2650,7 +2650,6 @@
 				0694E5E91AB6CE72008ADF21 /* EMSDWebImageCompat.m in Sources */,
 				0694E65C1AB6CE72008ADF21 /* BaseViewController.m in Sources */,
 				0694E6131AB6CE72008ADF21 /* ChatListCell.m in Sources */,
-				06216D761AAC8D5200683C40 /* API.swift in Sources */,
 				0694E5F01AB6CE72008ADF21 /* NSData+EMImageContentType.m in Sources */,
 				0694E5DD1AB6CE72008ADF21 /* MBProgressHUD+Add.m in Sources */,
 				06EE1DF11ACE7F1600050893 /* PhotosView.swift in Sources */,
@@ -2676,6 +2675,7 @@
 				06E85D7A1ADC316500640E08 /* ApplyTableVC.swift in Sources */,
 				0694E6601AB6CE72008ADF21 /* XHMessageTextView.m in Sources */,
 				0694E6531AB6CE72008ADF21 /* EMChatViewCell.m in Sources */,
+				061305021AEC116F007410DA /* API.swift in Sources */,
 				0694E6551AB6CE72008ADF21 /* MessageModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

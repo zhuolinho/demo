@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ValuePass {
-    func wxLogin(b:Bool)
+    func wxLogin(dict: NSDictionary)
 }

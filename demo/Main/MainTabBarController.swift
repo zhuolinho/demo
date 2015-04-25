@@ -85,7 +85,7 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
             getAccessTokenWithCode(aresp.code)
         }
         else {
-            delegat?.wxLogin(false)
+            delegat?.wxLogin(NSDictionary())
         }
     }
     func getAccessTokenWithCode(code: NSString) {
@@ -100,11 +100,11 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
                         self.getUserInfoWithAccessToken(dict["access_token"] as! NSString, andOpenId: dict["openid"] as! NSString)
                     }
                     else {
-                        self.delegat?.wxLogin(false)
+                        self.delegat?.wxLogin(NSDictionary())
                     }
                 }
                 else {
-                    self.delegat?.wxLogin(false)
+                    self.delegat?.wxLogin(NSDictionary())
                 }
             })
         })
@@ -120,14 +120,14 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
                     let dict = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
                     if dict["errcode"] == nil {
                         println(dict)
-                        self.delegat?.wxLogin(true)
+                        self.delegat?.wxLogin(dict)
                     }
                     else {
-                        self.delegat?.wxLogin(false)
+                        self.delegat?.wxLogin(NSDictionary())
                     }
                 }
                 else {
-                    self.delegat?.wxLogin(false)
+                    self.delegat?.wxLogin(NSDictionary())
                 }
             })
         })

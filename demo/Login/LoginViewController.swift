@@ -60,11 +60,32 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
             login.login(username: usrName.text, password: pwd.text)
         }
     }
-    func wxLogin(b: Bool) {
-        if b == true {
-            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    func wxLogin(dict: NSDictionary) {
+        if dict["openid"] != nil {
+            if iflogining {
+                //println("don't repeatly login")
+                return
+            } else {
+                EaseMob.sharedInstance().chatManager.logoffWithError(nil)
+                loginLock.lock()
+                iflogining = true
+                loginButton.enabled = false
+                loginLock.unlock()
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                var gender = "N"
+                if dict["sex"] as! Int == 1 {
+                    gender = "M"
+                }
+                else if dict["sex"] as! Int == 2 {
+                    gender = "F"
+                }
+                login.authForWeixin(dict["openid"] as! String, avatarURL: dict["headimgurl"] as! String, nickname: dict["nickname"] as! String, gender: gender)
+            }
+            
         }
         else {
+            let alert = UIAlertView(title: "登录失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
             wxButton.enabled = true
         }
     }
@@ -87,6 +108,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
         NSLog("\(errno)")
         iflogining = false
         loginButton.enabled = true
+        wxButton.enabled = true
         var alert = UIAlertView(title: "提示", message: "对不起，暂时不能登录，请稍候重试", delegate: nil, cancelButtonTitle: "OK")
         alert.show()
     }
@@ -102,6 +124,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
                 //YoLock.sharedInstance().lock.unlock()
                 iflogining = false
                 loginButton.enabled = true
+                wxButton.enabled = true
             }
             else {
                 API.userInfo.token = res["token"] as! String
@@ -114,6 +137,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
                     self.cancelLock.unlock()
                     iflogining = false
                     loginButton.enabled = true
+                    wxButton.enabled = true
                     return
                 }
                 refreshUserInfo.getMyInfo()
@@ -128,6 +152,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
                 self.cancelLock.unlock()
                 iflogining = false
                 loginButton.enabled = true
+                wxButton.enabled = true
                 return
             }
             cancelLock.unlock()
@@ -167,17 +192,20 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
                         self.cancelLock.unlock()
                         self.iflogining = false
                         self.loginButton.enabled = true
+                        self.wxButton.enabled = true
                         return
                     }
                     self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                     self.cancelLock.unlock()
                     self.iflogining = false
                     self.loginButton.enabled = true
+                    self.wxButton.enabled = true
                 }
                 else {
                     //EaseMob.sharedInstance().chatManager.registerNewAccount(API.userInfo.username, password: "123456", error: nil)
                     self.iflogining = false
                     self.loginButton.enabled = true
+                    self.wxButton.enabled = true
                     var alert = UIAlertView(title: "提示", message: "对不起，暂时不能登录，请稍候重试", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 }
