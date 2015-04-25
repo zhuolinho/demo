@@ -10,12 +10,15 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDeviceManagerDelegate, APIProtocol {
+class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDeviceManagerDelegate, APIProtocol, WXApiDelegate {
     
     var window: UIWindow?
     var checkToken = API()
+    static var root: MainTabBarController?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        AppDelegate.root = window?.rootViewController as? MainTabBarController
+        WXApi.registerApp("wx81be35fa8a88655e")
         EaseMob.sharedInstance().registerSDKWithAppKey("action#actiontech", apnsCertName: "actionShen")
         EaseMob.sharedInstance().deviceManager.addDelegate(self, onQueue: nil)
         EaseMob.sharedInstance().chatManager.removeDelegate(self)
@@ -96,7 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
 //    }
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         APService.handleRemoteNotification(userInfo)
-        println("fuck")
         if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
             let message = (userInfo["aps"] as! NSDictionary)["alert"] as? String
             let alert = UIAlertView(title: "新消息", message: message, delegate: nil, cancelButtonTitle: "确定")
@@ -118,6 +120,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
 //        EaseMob.sharedInstance().deviceManager.asyncPlayNewMessageSound()
 //        EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
     }
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return WXApi.handleOpenURL(url, delegate: self)
+    }
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return WXApi.handleOpenURL(url, delegate: self)
+    }
+    func onResp(resp: BaseResp!) {
+        AppDelegate.root!.getWeiXinCodeFinishedWithResp(resp)
+    }
+    
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         API.userInfo.tokenValid = false
     }

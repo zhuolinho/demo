@@ -11,6 +11,7 @@ import UIKit
 class MainTabBarController: UITabBarController, IChatManagerDelegate {
 
     var buddyRequest = false
+    var delegat: ValuePass?
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = UIColor.orangeColor()
@@ -77,6 +78,60 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
             EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
         }
         buddyRequest = true
+    }
+    func getWeiXinCodeFinishedWithResp(resp: BaseResp) {
+        if resp.errCode == 0 {
+            let aresp = resp as! SendAuthResp
+            getAccessTokenWithCode(aresp.code)
+        }
+        else {
+            delegat?.wxLogin(false)
+        }
+    }
+    func getAccessTokenWithCode(code: NSString) {
+        let url = NSURL(string: "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx81be35fa8a88655e&secret=ce32fd443da71497366f896e5bd6423a&code=\(code)&grant_type=authorization_code")
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            let dataStr = NSString(contentsOfURL: url!, encoding: NSUTF8StringEncoding, error: nil)
+            let data = dataStr?.dataUsingEncoding(NSUTF8StringEncoding)
+            dispatch_async(dispatch_get_main_queue(), {
+                if data != nil {
+                    let dict = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+                    if dict["errcode"] == nil {
+                        self.getUserInfoWithAccessToken(dict["access_token"] as! NSString, andOpenId: dict["openid"] as! NSString)
+                    }
+                    else {
+                        self.delegat?.wxLogin(false)
+                    }
+                }
+                else {
+                    self.delegat?.wxLogin(false)
+                }
+            })
+        })
+        
+    }
+    func getUserInfoWithAccessToken(accessToken: NSString, andOpenId: NSString) {
+        let url = NSURL(string: "https://api.weixin.qq.com/sns/userinfo?access_token=\(accessToken)&openid=\(andOpenId)")
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            let dataStr = NSString(contentsOfURL: url!, encoding: NSUTF8StringEncoding, error: nil)
+            let data = dataStr?.dataUsingEncoding(NSUTF8StringEncoding)
+            dispatch_async(dispatch_get_main_queue(), {
+                if data != nil {
+                    let dict = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+                    if dict["errcode"] == nil {
+                        println(dict)
+                        self.delegat?.wxLogin(true)
+                    }
+                    else {
+                        self.delegat?.wxLogin(false)
+                    }
+                }
+                else {
+                    self.delegat?.wxLogin(false)
+                }
+            })
+        })
+
     }
     /*
     // MARK: - Navigation

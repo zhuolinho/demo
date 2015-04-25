@@ -16,7 +16,7 @@
 #import "ChatViewController.h"
 #import "ChineseToPinyin.h"
 //#import "IChatManagerSettingOptions.h"
-//#import "WXApi.h"
+#import "WXApi.h"
 //#import "WeiboSDK.h"
 #import "APService.h"
 //#import "AppDelegating.h"
