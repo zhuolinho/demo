@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, APIProtocol {
+class LoginViewController: UIViewController, APIProtocol, ValuePass {
     
     var login = API()
     var refreshUserInfo = API()
@@ -18,12 +18,20 @@ class LoginViewController: UIViewController, APIProtocol {
     var cancelLock = NSLock()
     var loginLock = NSLock()
 
+    @IBOutlet weak var wxButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var usrName: UITextField!
     @IBOutlet weak var pwd: UITextField!
     @IBAction func touchDown(sender: AnyObject) {
         usrName.resignFirstResponder()
         pwd.resignFirstResponder()
+    }
+    @IBAction func wxButtonClick(sender: UIButton) {
+        let req = SendAuthReq()
+        req.scope = "snsapi_userinfo"
+        req.state = "123"
+        WXApi.sendReq(req)
+        wxButton.enabled = false
     }
     @IBAction func loginButtonClick(sender: UIButton) {
         if iflogining {
@@ -52,15 +60,24 @@ class LoginViewController: UIViewController, APIProtocol {
             login.login(username: usrName.text, password: pwd.text)
         }
     }
+    func wxLogin(b: Bool) {
+        if b == true {
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        else {
+            wxButton.enabled = true
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         login.delegate = self
         refreshUserInfo.delegate = self
         self.navigationController?.navigationBarHidden = false
         self.navigationController?.interactivePopGestureRecognizer.enabled = false
+        AppDelegate.root?.delegat = self
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

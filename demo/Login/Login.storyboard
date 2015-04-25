@@ -39,9 +39,9 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9Q-JE-4Er">
                                 <rect key="frame" x="173" y="518" width="131" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.53725490196078429" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="oaR-Nu-TrV"/>
+                                    <constraint firstAttribute="height" constant="40" id="oaR-Nu-TrV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="登录"/>
@@ -50,10 +50,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="od1-UQ-r5i">
-                                <rect key="frame" x="16" y="518" width="128" height="30"/>
+                                <rect key="frame" x="16" y="508" width="128" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="aN4-3T-jEY"/>
+                                    <constraint firstAttribute="height" constant="40" id="aN4-3T-jEY"/>
                                 </constraints>
                                 <state key="normal" title="注册">
                                     <color key="titleColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
@@ -400,6 +400,9 @@
                                 <state key="normal" image="login_16">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="wxButtonClick:" destination="bGl-Iw-x6a" eventType="touchUpInside" id="VVU-7M-Del"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="微信一键登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lA-cI-lr8">
                                 <rect key="frame" x="132" y="410" width="102" height="21"/>
@@ -439,6 +442,7 @@
                         <outlet property="loginButton" destination="aui-7h-ttx" id="SQJ-cn-0Da"/>
                         <outlet property="pwd" destination="A9s-uz-QY7" id="Qjd-vi-87s"/>
                         <outlet property="usrName" destination="bjQ-iY-Y8j" id="s9K-xm-IJB"/>
+                        <outlet property="wxButton" destination="keM-OG-F9M" id="Q3o-ic-L63"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qNU-R0-4ya" userLabel="First Responder" sceneMemberID="firstResponder"/>
