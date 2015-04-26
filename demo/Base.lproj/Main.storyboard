@@ -1394,6 +1394,112 @@
             </objects>
             <point key="canvasLocation" x="3790" y="931"/>
         </scene>
+        <!--邀请-->
+        <scene sceneID="22r-kV-Anw">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="BAL-jI-MQQ" customClass="InviteViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3e4-np-QzD"/>
+                        <viewControllerLayoutGuide type="bottom" id="TSP-66-PrR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jto-5Y-hwq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4M-xY-HWP">
+                                <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.53725490200000003" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="tpr-2n-ury"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="立即邀请">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="inviteButtonClick:" destination="BAL-jI-MQQ" eventType="touchUpInside" id="iGg-6k-Cs1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSJ-T2-1Sl">
+                                <rect key="frame" x="0.0" y="64" width="320" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="p9K-nq-cod"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="邀请所有好友">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="allButtonClick:" destination="BAL-jI-MQQ" eventType="touchUpInside" id="YDQ-6q-gnA"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FOi-ch-fDf">
+                                <rect key="frame" x="0.0" y="124" width="320" height="508"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="InviteCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteCell" id="Yj3-uV-tBI" customClass="InviteCell" customModule="demo" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yj3-uV-tBI" id="jqg-D0-7bw">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7g-3l-LQ8">
+                                                    <rect key="frame" x="43" y="8" width="264" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7g-QV-dy7">
+                                                    <rect key="frame" x="43" y="30" width="264" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YsJ-Cp-cD6">
+                                                    <rect key="frame" x="8" y="16" width="27" height="27"/>
+                                                    <state key="normal" image="invite1_21">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="buttonClick:" destination="BAL-jI-MQQ" eventType="touchUpInside" id="JIq-IL-t3f"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="f7g-3l-LQ8" id="R7H-j2-U3o"/>
+                                            <outlet property="numLabel" destination="D7g-QV-dy7" id="eQt-ge-kfK"/>
+                                            <outlet property="selectButton" destination="YsJ-Cp-cD6" id="abS-yg-eDX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sSJ-T2-1Sl" firstAttribute="top" secondItem="3e4-np-QzD" secondAttribute="bottom" id="0uD-kB-yT1"/>
+                            <constraint firstItem="FOi-ch-fDf" firstAttribute="top" secondItem="sSJ-T2-1Sl" secondAttribute="bottom" id="8Dx-Y9-iZL"/>
+                            <constraint firstItem="m4M-xY-HWP" firstAttribute="leading" secondItem="jto-5Y-hwq" secondAttribute="leading" id="8r8-Fm-Kft"/>
+                            <constraint firstAttribute="trailing" secondItem="FOi-ch-fDf" secondAttribute="trailing" id="DOv-yU-c6T"/>
+                            <constraint firstItem="m4M-xY-HWP" firstAttribute="bottom" secondItem="jto-5Y-hwq" secondAttribute="bottomMargin" id="VqK-k4-zB0"/>
+                            <constraint firstAttribute="trailing" secondItem="m4M-xY-HWP" secondAttribute="trailing" id="kMD-5F-6hc"/>
+                            <constraint firstItem="m4M-xY-HWP" firstAttribute="top" secondItem="FOi-ch-fDf" secondAttribute="bottom" id="sRG-ze-ra9"/>
+                            <constraint firstAttribute="trailing" secondItem="sSJ-T2-1Sl" secondAttribute="trailing" id="tsn-Gl-VKa"/>
+                            <constraint firstItem="sSJ-T2-1Sl" firstAttribute="leading" secondItem="jto-5Y-hwq" secondAttribute="leading" id="xEb-y9-c22"/>
+                            <constraint firstItem="FOi-ch-fDf" firstAttribute="leading" secondItem="jto-5Y-hwq" secondAttribute="leading" id="zby-2W-gJL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="邀请" id="shH-kS-7Xs"/>
+                    <connections>
+                        <outlet property="tableView" destination="FOi-ch-fDf" id="RTA-wt-UcT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uAo-xv-OQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4223" y="931"/>
+        </scene>
         <!--发布证据-->
         <scene sceneID="2GA-sE-Xlj">
             <objects>
@@ -2102,7 +2208,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="jSh-GS-lY9" secondAttribute="centerX" id="KAG-bs-9aN"/>
                         </constraints>
@@ -2224,6 +2330,9 @@
                                                     <state key="normal" backgroundImage="join_us.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="BAL-jI-MQQ" kind="push" id="uyT-j9-paK"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJk-mc-ZaJ">
                                                     <rect key="frame" x="211" y="1" width="94" height="94"/>
@@ -2738,7 +2847,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Y0A-kQ-h2g" secondAttribute="centerX" id="3ud-Ld-8Jb"/>
                         </constraints>
@@ -3054,6 +3163,7 @@
         <image name="charge.png" width="425" height="425"/>
         <image name="friend-list2_03" width="24" height="23"/>
         <image name="friend-list2_06" width="28" height="28"/>
+        <image name="invite1_21" width="27" height="27"/>
         <image name="join_us.png" width="425" height="425"/>
         <image name="me" width="21" height="22"/>
         <image name="me11_35" width="25" height="24"/>

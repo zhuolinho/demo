@@ -370,6 +370,9 @@
 		06CD92521AA877E10026C3E7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06CD92501AA877E10026C3E7 /* LaunchScreen.xib */; };
 		06CD925E1AA877E10026C3E7 /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD925D1AA877E10026C3E7 /* demoTests.swift */; };
 		06CDBC9E1AE296D900A13245 /* NewEvidenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CDBC9D1AE296D900A13245 /* NewEvidenceVC.swift */; };
+		06CEB3BE1AECF5B400A57E66 /* SwiftContactTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB3BD1AECF5B400A57E66 /* SwiftContactTool.swift */; };
+		06CEB3C21AED37A100A57E66 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB3C11AED37A000A57E66 /* InviteViewController.swift */; };
+		06CEB3C41AED3D9E00A57E66 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CEB3C31AED3D9E00A57E66 /* InviteCell.swift */; };
 		06CF5C7B1AC70022003D46B8 /* FriendInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF5C7A1AC70022003D46B8 /* FriendInfoViewController.swift */; };
 		06D86F081AD5194100C6A7D9 /* DeletePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D86F071AD5194100C6A7D9 /* DeletePicViewController.swift */; };
 		06E85D7A1ADC316500640E08 /* ApplyTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E85D791ADC316500640E08 /* ApplyTableVC.swift */; };
@@ -943,6 +946,9 @@
 		06CD925C1AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD925D1AA877E10026C3E7 /* demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoTests.swift; sourceTree = "<group>"; };
 		06CDBC9D1AE296D900A13245 /* NewEvidenceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEvidenceVC.swift; sourceTree = "<group>"; };
+		06CEB3BD1AECF5B400A57E66 /* SwiftContactTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftContactTool.swift; sourceTree = "<group>"; };
+		06CEB3C11AED37A000A57E66 /* InviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		06CEB3C31AED3D9E00A57E66 /* InviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteCell.swift; sourceTree = "<group>"; };
 		06CF5C7A1AC70022003D46B8 /* FriendInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendInfoViewController.swift; path = ../Main/FriendInfoViewController.swift; sourceTree = "<group>"; };
 		06D86F071AD5194100C6A7D9 /* DeletePicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePicViewController.swift; sourceTree = "<group>"; };
 		06E85D791ADC316500640E08 /* ApplyTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyTableVC.swift; sourceTree = "<group>"; };
@@ -2070,6 +2076,8 @@
 		069F73D31AB1F53F00D73AA8 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				06CEB3BD1AECF5B400A57E66 /* SwiftContactTool.swift */,
+				06CEB3C31AED3D9E00A57E66 /* InviteCell.swift */,
 				066E33831AD3C2ED0062C31B /* ViewController.swift */,
 				069F73DA1AB1FDE700D73AA8 /* AppSettingViewController.swift */,
 				0670BDAB1AB2C678001E4664 /* MyInfoViewController.swift */,
@@ -2078,6 +2086,7 @@
 				063D03661AB31C4F005A1ED1 /* MeViewController.swift */,
 				0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */,
 				066E33791AD3B3020062C31B /* My2Dcode.swift */,
+				06CEB3C11AED37A000A57E66 /* InviteViewController.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -2536,8 +2545,10 @@
 				069BB7511AEA6AE100113E81 /* SWLongPressGestureRecognizer.h in Sources */,
 				069BB7521AEA6AE100113E81 /* SWLongPressGestureRecognizer.m in Sources */,
 				069BB7531AEA6AE100113E81 /* SWTableViewCell.h in Sources */,
+				06CEB3BE1AECF5B400A57E66 /* SwiftContactTool.swift in Sources */,
 				069BB7541AEA6AE100113E81 /* SWTableViewCell.m in Sources */,
 				069BB7551AEA6AE100113E81 /* SWUtilityButtonTapGestureRecognizer.h in Sources */,
+				06CEB3C21AED37A100A57E66 /* InviteViewController.swift in Sources */,
 				069BB7561AEA6AE100113E81 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				069BB7571AEA6AE100113E81 /* SWUtilityButtonView.h in Sources */,
 				069BB7581AEA6AE100113E81 /* SWUtilityButtonView.m in Sources */,
@@ -2644,6 +2655,7 @@
 				066E33801AD3B4080062C31B /* CIColorExtension.swift in Sources */,
 				0694E65E1AB6CE72008ADF21 /* EMNavigationController.m in Sources */,
 				06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */,
+				06CEB3C41AED3D9E00A57E66 /* InviteCell.swift in Sources */,
 				0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */,
 				0694E6101AB6CE72008ADF21 /* UIResponder+Router.m in Sources */,
 				0694E60E1AB6CE72008ADF21 /* NSDate+Category.m in Sources */,
