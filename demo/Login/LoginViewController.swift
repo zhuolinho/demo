@@ -79,7 +79,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
                 else if dict["sex"] as! Int == 2 {
                     gender = "F"
                 }
-                login.authForWeixin(dict["openid"] as! String, avatarURL: dict["headimgurl"] as! String, nickname: dict["nickname"] as! String, gender: gender)
+                login.authForWeixin(dict["openid"] as! String, avatarURL: (dict["headimgurl"] as! String + "132"), nickname: dict["nickname"] as! String, gender: gender)
             }
             
         }

@@ -30,7 +30,9 @@ class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var picCollection: UICollectionView!
     @IBOutlet weak var sloganTF: UITextField!
     @IBOutlet weak var locationLabel: UILabel!
-    
+    @IBAction func backButtonClick(sender: UIBarButtonItem) {
+        navigationController?.popViewControllerAnimated(true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         println(missionInfo)
@@ -53,7 +55,9 @@ class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollec
         picCollection.dataSource = self
         imagePicker.delegate = self
         addEvidence.delegate = self
-        imagePickerController(UIImagePickerController(), didFinishPickingMediaWithInfo: senderInfo)
+        if senderInfo[UIImagePickerControllerOriginalImage] != nil {
+            imagePickerController(UIImagePickerController(), didFinishPickingMediaWithInfo: senderInfo)
+        }
         activity.frame.origin = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2 - 64)
         activity.hidesWhenStopped = true
         view.addSubview(activity)
@@ -139,6 +143,9 @@ class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollec
             else {
                 return (view.bounds.width - 60) / 4
             }
+        }
+        else if indexPath.section == 0 && indexPath.row == 0 {
+            return 60
         }
         else {
             return 44
