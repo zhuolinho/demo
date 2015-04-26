@@ -8,10 +8,12 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController, IChatManagerDelegate {
+class MainTabBarController: UITabBarController, IChatManagerDelegate, APIProtocol {
 
     var buddyRequest = false
     var delegat: ValuePass?
+    let api = API()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = UIColor.orangeColor()
@@ -20,7 +22,21 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
         if UIApplication.sharedApplication().applicationIconBadgeNumber != 0 {
             vc.tabBarItem.badgeValue = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
         }
+        api.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent) {
+    }
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        api.getMyMissions(0)
+    }
+    override func motionCancelled(motion: UIEventSubtype, withEvent event: UIEvent) {
+        println("cancel")
     }
     
     func didFinishedReceiveOfflineCmdMessages(offlineCmdMessages: [AnyObject]!) {
@@ -119,7 +135,6 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
                 if data != nil {
                     let dict = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
                     if dict["errcode"] == nil {
-                        println(dict)
                         self.delegat?.wxLogin(dict)
                     }
                     else {
@@ -133,6 +148,20 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate {
         })
 
     }
+    
+    func didReceiveAPIErrorOf(api: API, errno: Int) {
+        println(errno)
+    }
+    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
+        let res = data["result"] as! [NSDictionary]
+        if res.count > 0 {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("fuckyou") as! UINavigationController
+            let missionsVC = vc.topViewController as! SelectMissionTableViewController
+            missionsVC.missions = res
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
