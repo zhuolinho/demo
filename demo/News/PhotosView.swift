@@ -72,7 +72,22 @@ class PhotosView: UIViewController, UIScrollViewDelegate,  UIActionSheetDelegate
         }
     }
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
-        
+        if buttonIndex == 0 {
+            let url = photosData[pageControl.currentPage]["url"] as! String
+            if PicDic.picDic[url] != nil {
+                UIImageWriteToSavedPhotosAlbum(PicDic.picDic[url], self, "image:didFinishSavingWithError:contextInfo:", nil)
+            }
+        }
+    }
+    func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
+        if error != nil {
+            let alert = UIAlertView(title: "保存失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
+        else {
+            let alert = UIAlertView(title: "保存成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
     }
     /*
     // MARK: - Navigation

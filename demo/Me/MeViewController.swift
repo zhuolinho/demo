@@ -15,6 +15,7 @@ class MeViewController: UITableViewController, APIProtocol {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarView: UIImageView!
+    @IBOutlet weak var rmbLabel: UILabel!
     let api = API()
     
     override func viewDidLoad() {
@@ -36,6 +37,7 @@ class MeViewController: UITableViewController, APIProtocol {
         if !API.userInfo.tokenValid {
             api.getMyInfo()
         }
+        rmbLabel.text = String(API.userInfo.rmb)
         avatarView.image = API.userInfo.profilePhoto
         signLabel.text = API.userInfo.signature
         nameLabel.text = API.userInfo.nickname
@@ -77,6 +79,8 @@ class MeViewController: UITableViewController, APIProtocol {
             API.userInfo.gender = res["gender"] as! String
             API.userInfo.profilePhotoUrl = res["avatar"] as! String
             API.userInfo.signature = res["sign"] as! String
+            API.userInfo.weixin = res["weixin"] as! String
+            API.userInfo.rmb = res["rmb"] as! Int
             if !API.userInfo.profilePhotoUrl.isEmpty {
                 let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
                 let request: NSURLRequest = NSURLRequest(URL: url!)

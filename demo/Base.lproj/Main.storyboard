@@ -501,7 +501,7 @@
         <scene sceneID="C10-ku-fT4">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="acd-X1-dJQ" customClass="MissionNotificationTableVC" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="wuM-cq-Kyu">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="wuM-cq-Kyu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -519,7 +519,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDj-jd-YZL">
-                                            <rect key="frame" x="58" y="19" width="254" height="21"/>
+                                            <rect key="frame" x="58" y="23" width="254" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -530,10 +530,19 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5p-Dl-Ygj">
+                                            <rect key="frame" x="0.0" y="59" width="320" height="1"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="dDj-jd-YZL" firstAttribute="trailing" secondItem="tp7-52-wEE" secondAttribute="trailingMargin" id="6Xe-l1-fv0"/>
+                                        <constraint firstItem="Q5p-Dl-Ygj" firstAttribute="leading" secondItem="tp7-52-wEE" secondAttribute="leading" id="NcP-r5-y4V"/>
                                         <constraint firstItem="zaG-vq-gHT" firstAttribute="leading" secondItem="tp7-52-wEE" secondAttribute="leading" constant="10" id="PTn-5K-Wuq"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q5p-Dl-Ygj" secondAttribute="trailing" id="j7l-rE-aeL"/>
                                         <constraint firstItem="9fi-kc-HVg" firstAttribute="trailing" secondItem="tp7-52-wEE" secondAttribute="trailingMargin" id="pkW-Gv-ar8"/>
                                         <constraint firstItem="dDj-jd-YZL" firstAttribute="leading" secondItem="zaG-vq-gHT" secondAttribute="trailing" constant="8" id="sJB-Cd-H2o"/>
                                     </constraints>
@@ -2410,6 +2419,7 @@
                         <outlet property="genderLabel" destination="YrN-OQ-HtC" id="AhW-9w-V0Z"/>
                         <outlet property="nameLabel" destination="CFc-DW-L93" id="rXQ-Cu-Rog"/>
                         <outlet property="phoneLabel" destination="PMc-Z4-PbF" id="LFl-EA-3nS"/>
+                        <outlet property="rmbLabel" destination="XEq-64-89d" id="SJI-gS-WHa"/>
                         <outlet property="signLabel" destination="6az-v9-e16" id="tMz-aY-4Mq"/>
                     </connections>
                 </tableViewController>

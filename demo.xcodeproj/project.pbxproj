@@ -28,6 +28,7 @@
 		064CE7411ACFA50700F51D06 /* about_us.png in Resources */ = {isa = PBXBuildFile; fileRef = 064CE7401ACFA50600F51D06 /* about_us.png */; };
 		064CE74B1ACFAB5C00F51D06 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064CE74A1ACFAB5C00F51D06 /* MainTabBarController.swift */; };
 		064CE74F1ACFB19B00F51D06 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */; };
+		06520F3C1AEE10E8009434C0 /* FriendlyTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06520F3B1AEE10E8009434C0 /* FriendlyTime.swift */; };
 		06522AAF1AADAEC700D67CAE /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522AAD1AADAEC700D67CAE /* libPushSDK.a */; };
 		06522AB01AADAEC700D67CAE /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06522AAE1AADAEC700D67CAE /* PushConfig.plist */; };
 		06522AB21AADB04E00D67CAE /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522AB11AADB04D00D67CAE /* libstdc++.6.dylib */; };
@@ -494,6 +495,7 @@
 		064CE7401ACFA50600F51D06 /* about_us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = about_us.png; path = Image/about_us.png; sourceTree = "<group>"; };
 		064CE74A1ACFAB5C00F51D06 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		06520F3B1AEE10E8009434C0 /* FriendlyTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendlyTime.swift; sourceTree = "<group>"; };
 		06522AAC1AADAEC700D67CAE /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		06522AAD1AADAEC700D67CAE /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		06522AAE1AADAEC700D67CAE /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -2222,6 +2224,7 @@
 				064CE74A1ACFAB5C00F51D06 /* MainTabBarController.swift */,
 				064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */,
 				061304FD1AEAC52B007410DA /* ValuePass.swift */,
+				06520F3B1AEE10E8009434C0 /* FriendlyTime.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2633,6 +2636,7 @@
 				0670BDAC1AB2C678001E4664 /* MyInfoViewController.swift in Sources */,
 				06C677AD1AD250F000D23FF7 /* NewSportController.swift in Sources */,
 				0694E64F1AB6CE72008ADF21 /* EMChatVideoBubbleView.m in Sources */,
+				06520F3C1AEE10E8009434C0 /* FriendlyTime.swift in Sources */,
 				061304FE1AEAC52B007410DA /* ValuePass.swift in Sources */,
 				0694E5E31AB6CE72008ADF21 /* MWPhotoBrowser.m in Sources */,
 				06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */,
