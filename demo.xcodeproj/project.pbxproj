@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060B575A1AEE5D77000FD7CC /* ChangePWDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060B57591AEE5D77000FD7CC /* ChangePWDViewController.swift */; };
 		061304FE1AEAC52B007410DA /* ValuePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061304FD1AEAC52B007410DA /* ValuePass.swift */; };
 		061305021AEC116F007410DA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061305011AEC116F007410DA /* API.swift */; };
 		0615378C1AC946AA0046EEBE /* PicDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615378B1AC946AA0046EEBE /* PicDic.swift */; };
@@ -395,6 +396,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		060B57591AEE5D77000FD7CC /* ChangePWDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePWDViewController.swift; sourceTree = "<group>"; };
 		061304FD1AEAC52B007410DA /* ValuePass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePass.swift; sourceTree = "<group>"; };
 		061305011AEC116F007410DA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0615378B1AC946AA0046EEBE /* PicDic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicDic.swift; sourceTree = "<group>"; };
@@ -2089,6 +2091,7 @@
 				0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */,
 				066E33791AD3B3020062C31B /* My2Dcode.swift */,
 				06CEB3C11AED37A000A57E66 /* InviteViewController.swift */,
+				060B57591AEE5D77000FD7CC /* ChangePWDViewController.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -2622,6 +2625,7 @@
 				0694E6581AB6CE72008ADF21 /* BaseTableViewCell.m in Sources */,
 				0694E5F61AB6CE72008ADF21 /* UIImageView+EMWebCache.m in Sources */,
 				0694E5F91AB6CE72008ADF21 /* PSTCollectionView.m in Sources */,
+				060B575A1AEE5D77000FD7CC /* ChangePWDViewController.swift in Sources */,
 				0694E5FC1AB6CE72008ADF21 /* PSTCollectionViewData.m in Sources */,
 				0694E61F1AB6CE72008ADF21 /* DXChatBarMoreView.m in Sources */,
 				0694E5EC1AB6CE72008ADF21 /* EMSDWebImageDownloaderOperation.m in Sources */,

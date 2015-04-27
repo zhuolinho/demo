@@ -76,6 +76,8 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             if indexPath.row == 0 {
                 let cell =  tableView.dequeueReusableCellWithIdentifier("ImageViewCell", forIndexPath: indexPath) as! UITableViewCell
                 let imageView = cell.viewWithTag(1) as! UIImageView
+                let markView = cell.viewWithTag(2) as! UIImageView
+                markView.hidden = true
                 if missions.count > mark {
                     let pics = missions[mark]["pics"] as! [NSDictionary]
                     if pics.count > 0 {
@@ -89,6 +91,17 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                     }
                     else {
                         imageView.image = UIImage()
+                    }
+                    if missions[mark]["status"] as! Int == 2 {
+                        markView.hidden = false
+                        markView.image = UIImage(named: "mission1_13")
+                    }
+                    else if missions[mark]["status"] as! Int == 3 {
+                        markView.hidden = false
+                        markView.image = UIImage(named: "mission1_14")
+                    }
+                    else {
+                        markView.hidden = true
                     }
                 }
                 else {
@@ -224,6 +237,8 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             chargeLabel.text = String(charge)
             let cell1 = viewTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
             let imageView = cell1!.viewWithTag(1) as! UIImageView
+            let markView = cell1?.viewWithTag(2) as! UIImageView
+            markView.hidden = true
             if missions.count > mark {
                 let pics = missions[mark]["pics"] as! [NSDictionary]
                 if pics.count > 0 {
@@ -237,6 +252,17 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                 }
                 else {
                     imageView.image = UIImage()
+                }
+                if missions[mark]["status"] as! Int == 2 {
+                    markView.hidden = false
+                    markView.image = UIImage(named: "mission1_13")
+                }
+                else if missions[mark]["status"] as! Int == 3 {
+                    markView.hidden = false
+                    markView.image = UIImage(named: "mission1_14")
+                }
+                else {
+                    markView.hidden = true
                 }
             }
             else {
@@ -260,6 +286,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === api1 {
             let res = data["result"] as! [NSDictionary]
+            println(res)
             missions.removeAll(keepCapacity: true)
             for item in res {
                 missions.append(item)

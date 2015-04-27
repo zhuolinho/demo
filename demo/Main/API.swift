@@ -153,7 +153,8 @@ class API: NSObject {
         sendURLEncodedForm(action: "checkAuthcode.action", data: data, image: nil)
     }
     func findPassword(phone: String) {
-        get(host + "findPassword.action?phone=" + phone)
+        let data = ["phone": phone]
+        sendURLEncodedForm(action: "findPassword.action", data: data, image: nil)
     }
     //Me
     func setNotePreference(accept: Bool) {
@@ -283,8 +284,8 @@ class API: NSObject {
     func getNotification(skip: Int) {
         get(host + "getNotification.action?token=" + API.userInfo.token + "&start=\(skip)&limit=100")
     }
-    func getMissionsAndEvidences(skip: Int) {
-        get(host + "getMissionsAndEvidences.action?token=" + API.userInfo.token + "&start=\(skip)&limit=5")
+    func getMissionsAndEvidences(skip: Int, ifMyFriend: Int) {
+        get(host + "getMissionsAndEvidences.action?token=" + API.userInfo.token + "&start=\(skip)&limit=5&ifMyFriend=\(ifMyFriend)")
     }
     func deleteMission(id: Int) {
         get(host + "deleteMission.action?token=" + API.userInfo.token + "&id=\(id)")
