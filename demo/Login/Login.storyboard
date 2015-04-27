@@ -462,18 +462,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpK-ci-fNi">
-                                <rect key="frame" x="90" y="116" width="153" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <rect key="frame" x="47" y="148" width="227" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyg-CR-Hfp">
-                                <rect key="frame" x="115" y="263" width="60" height="30"/>
-                                <state key="normal" title="找回密码">
+                                <rect key="frame" x="60" y="272" width="200" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="找回密码" backgroundImage="mobile_11">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="findButtonClick:" destination="EUN-BN-Sth" eventType="touchUpInside" id="Nog-PL-Z2m"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="dpK-ci-fNi" secondAttribute="centerX" id="BTh-0g-CV9"/>
                             <constraint firstAttribute="centerX" secondItem="oyg-CR-Hfp" secondAttribute="centerX" id="fHw-Lg-Lpx"/>
@@ -484,6 +489,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="忘记密码" id="5Uc-dX-fop"/>
                     <connections>
+                        <outlet property="findButton" destination="oyg-CR-Hfp" id="sdp-UG-MUz"/>
                         <outlet property="phoneTextField" destination="dpK-ci-fNi" id="cHk-eF-x9X"/>
                     </connections>
                 </viewController>

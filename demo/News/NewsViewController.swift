@@ -11,6 +11,7 @@ import UIKit
 class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     var viewa = UIView()
+    var ifMyFriend = 1
     @IBOutlet weak var titleButton: UIButton!
     @IBAction func filterClick(sender: UIBarButtonItem) {
         if viewa.hidden {
@@ -30,9 +31,19 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewa = UIView(frame: CGRect(x: view.bounds.width - 100, y: 40, width: 0, height: 0))
-        navigationController?.navigationBar.addSubview(viewa)
+        viewa = UIView(frame: CGRect(x: view.bounds.width - 105, y: 64, width: 92, height: 86))
+        view.addSubview(viewa)
         viewa.addSubview(UIImageView(image: UIImage(named: "moment1_07")))
+        let button1 = UIButton(frame: CGRect(x: 10, y: 17, width: 73, height: 25))
+        button1.titleLabel?.textColor = UIColor.whiteColor()
+        button1.setTitle("我的好友", forState: UIControlState.Normal)
+        viewa.addSubview(button1)
+        button1.addTarget(self, action: "button1Click", forControlEvents: UIControlEvents.TouchUpInside)
+        let button2 = UIButton(frame: CGRect(x: 10, y: 55, width: 73, height: 25))
+        button2.titleLabel?.textColor = UIColor.whiteColor()
+        button2.setTitle("我的监督", forState: UIControlState.Normal)
+        button2.addTarget(self, action: "button2Click", forControlEvents: UIControlEvents.TouchUpInside)
+        viewa.addSubview(button2)
         requesMore.delegate = self
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: "refreshing", forControlEvents: UIControlEvents.ValueChanged)
@@ -56,7 +67,9 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         super.viewWillAppear(animated)
         viewa.hidden = true
     }
-    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        viewa.frame = CGRect(x: view.bounds.width - 105, y: tableView.contentOffset.y + 64, width: 92, height: 86)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -273,7 +286,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 dispatch_async(dispatch_get_main_queue(), {
                     self.activity.startAnimating()
                 })
-                requesMore.getMissionsAndEvidences(skip)
+                requesMore.getMissionsAndEvidences(skip, ifMyFriend: ifMyFriend)
                 isRequesing = true
             }
         }
@@ -295,9 +308,11 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     func refreshing() {
         if !isRequesing {
             if refreshControl?.refreshing == false {
-                self.tableView.setContentOffset(CGPointMake(0, -60), animated: true)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.setContentOffset(CGPointMake(0, -60), animated: false)
+                })
             }
-            requesMore.getMissionsAndEvidences(0)
+            requesMore.getMissionsAndEvidences(0, ifMyFriend: ifMyFriend)
             skip = 0
             isRequesing = true
         }
@@ -432,6 +447,14 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 skip = -1
             }
         }
+    }
+    func button1Click() {
+        ifMyFriend = 1
+        refreshing()
+    }
+    func button2Click() {
+        ifMyFriend = 0
+        refreshing()
     }
     /*
     // Override to support conditional editing of the table view.
