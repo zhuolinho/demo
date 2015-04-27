@@ -46,7 +46,7 @@ class API: NSObject {
         static var rmb = 0
         static var acceptNote = true
         static var signature = ""
-        static var wxID = "Ass-Kick"
+        static var weixin = "*"
         static let host = "http://121.41.98.147:8080/anydo/api/"//"http://218.244.141.224:8080/yozaii2/api/"//
         static let imageHost = "http://121.41.98.147:8080/"//"http://218.244.141.224:8080"//
         static var imageCache = Dictionary<String, UIImage>()
@@ -141,7 +141,9 @@ class API: NSObject {
         let d = ["weixin": weixin, "avatarURL": avatarURL, "nickname": nickname, "gender": gender]
         sendURLEncodedForm(action: "authForWeixin.action", data: d, image: nil)
     }
-    
+    func setWeixin(weixin: String) {
+        get(host + "setWeixin.action?token=\(API.userInfo.token)&weixin=\(weixin)")
+    }
     func sendAuthCode(phoneNumber num: String) {
         let data = ["phone": num]
         sendURLEncodedForm(action: "sendAuthcode.action", data: data, image: nil)

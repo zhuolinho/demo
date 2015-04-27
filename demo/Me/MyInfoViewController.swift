@@ -8,20 +8,23 @@
 
 import UIKit
 
-class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValuePass {
 
     @IBOutlet weak var nickName: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var wxID: UILabel!
     @IBOutlet weak var sign: UILabel!
     @IBOutlet weak var gender: UILabel!
-    var api = API()
+    var api1 = API()
+    var api2 = API()
     var imagePicker = UIImagePickerController()
     var profilePhoto = UIImage()
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        api.delegate = self
+        api1.delegate = self
+        api2.delegate = self
+        AppDelegate.root?.delegat = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -32,7 +35,13 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
         super.viewWillAppear(animated)
         nickName.text = API.userInfo.nickname
         userName.text = API.userInfo.username
-        wxID.text = API.userInfo.wxID
+        if API.userInfo.weixin == "*" {
+            wxID.text = "未绑定"
+        }
+        else {
+            wxID.text = "已绑定"
+        }
+        
         if API.userInfo.signature == "" {
             sign.text = "未设置"
         }
@@ -81,6 +90,12 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
             
             changeAvatarActionSheet.showInView(self.tableView)
         }
+        else if section == 2 && row == 0 && API.userInfo.weixin == "*" {
+            let req = SendAuthReq()
+            req.scope = "snsapi_userinfo"
+            req.state = "123"
+            WXApi.sendReq(req)
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
@@ -125,22 +140,62 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
         profilePhoto = API.userInfo.profilePhoto!
         API.userInfo.profilePhoto = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext();
-        api.setAvatar()
+        api1.setAvatar()
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        let photoUrl = data["result"] as! NSString //sss
-        API.userInfo.profilePhotoUrl = photoUrl as String
-        dispatch_async(dispatch_get_main_queue(), {
-            self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        })
+        if api === api1 {
+            let photoUrl = data["result"] as! NSString //sss
+            API.userInfo.profilePhotoUrl = photoUrl as String
+            dispatch_async(dispatch_get_main_queue(), {
+                self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
+        else {
+            if data["result"] as! Int == 1 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "绑定成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                    API.userInfo.weixin = "ok"
+                    self.wxID.text = "已绑定"
+                })
+                
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "绑定失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+            }
+        }
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        let alert = UIAlertView(title: "上传失败", message: "", delegate: nil, cancelButtonTitle: "确定")
-        alert.show()
-        API.userInfo.profilePhoto = profilePhoto
-        dispatch_async(dispatch_get_main_queue(), {
-            self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        })
+        if api === api1 {
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertView(title: "上传失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            })
+            API.userInfo.profilePhoto = profilePhoto
+            dispatch_async(dispatch_get_main_queue(), {
+                self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertView(title: "绑定失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            })
+        }
+    }
+    func wxLogin(dict: NSDictionary) {
+        if dict["openid"] != nil {
+            api2.setWeixin(dict["openid"] as! String)
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertView(title: "绑定失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            })
+        }
     }
     // MARK: - Table view data source
 

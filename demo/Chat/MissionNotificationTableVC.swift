@@ -99,7 +99,7 @@ class MissionNotificationTableVC: UITableViewController, APIProtocol {
             avatarView.image = PicDic.picDic[notifications[indexPath.section]["avatar"] as! String]
         }
         contentLabel.text = notifications[indexPath.section]["content"] as? String
-        timeLabel.text = notifications[indexPath.section]["createTime"] as? String
+        timeLabel.text = friendlyTime(notifications[indexPath.section]["createTime"] as! String)
         
         if notifications[indexPath.section]["readFlag"] as! Int == 1 {
             cell.unreadLabel.hidden = true

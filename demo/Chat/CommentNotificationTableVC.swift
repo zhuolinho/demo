@@ -84,7 +84,12 @@ class CommentNotificationTableVC: UITableViewController, APIProtocol {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
         vc.mid = CommentNotification[indexPath.section]["mid"] as! Int
-        vc.initNum = CommentNotification[indexPath.section]["type"] as! Int
+        if CommentNotification[indexPath.section]["type"] as! String == "mission" {
+            vc.initNum = 0
+        }
+        else {
+            vc.initNum = 1
+        }
         navigationController?.pushViewController(vc, animated: true)
 
     }
@@ -116,7 +121,7 @@ class CommentNotificationTableVC: UITableViewController, APIProtocol {
         }
         nicknameLabel.text = CommentNotification[indexPath.section]["nickname"] as? String
         content.text = CommentNotification[indexPath.section]["content"] as? String
-        timeLabel.text = CommentNotification[indexPath.section]["createTime"] as? String
+        timeLabel.text = friendlyTime(CommentNotification[indexPath.section]["createTime"] as! String)
         // Configure the cell...
 
         return cell

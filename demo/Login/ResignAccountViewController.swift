@@ -144,6 +144,7 @@ class ResignAccountViewController: UIViewController, APIProtocol, UIActionSheetD
             API.userInfo.rmb = res["rmb"] as! Int
             API.userInfo.id = res["uid"] as! Int
             API.userInfo.profilePhotoUrl = res["avatar"] as! String
+            API.userInfo.weixin = res["weixin"] as! String
             API.userInfo.profilePhoto = avatar
             API.userInfo.signature = pwdConfirm.text
             

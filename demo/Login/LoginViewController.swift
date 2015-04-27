@@ -166,6 +166,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
             API.userInfo.profilePhotoUrl = res["avatar"] as! String
             API.userInfo.signature = res["sign"] as! String
             API.userInfo.phone = res["phone"] as! String
+            API.userInfo.weixin = res["weixin"] as! String
             if !API.userInfo.profilePhotoUrl.isEmpty {
                 let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
                 let request: NSURLRequest = NSURLRequest(URL: url!)

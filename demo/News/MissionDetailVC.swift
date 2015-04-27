@@ -191,7 +191,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             let pics = stuct["pics"] as! [NSDictionary]
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as! TitleCell
-                cell.timeLabel.text = stuct["createTime"] as? String
+                cell.timeLabel.text = friendlyTime(stuct["createTime"] as! String)
                 cell.nameLabel.text = stuct["nickname"] as? String
                 let url = stuct["avatar"] as! String
                 if PicDic.picDic[url] != nil {
@@ -298,7 +298,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             let pics = evident["pics"] as! [NSDictionary]
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as! TitleCell
-                cell.timeLabel.text = evident["createTime"] as? String
+                cell.timeLabel.text = friendlyTime(evident["createTime"] as! String)
                 cell.nameLabel.text = evident["nickname"] as? String
                 let url = evident["avatar"] as! String
                 if PicDic.picDic[url] != nil {
@@ -413,7 +413,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     avatarView.image = PicDic.picDic[url]
                 }
                 nameLable.text = comments[indexPath.row]["nickname"] as? String
-                timeLabel.text = comments[indexPath.row]["createTime"] as? String
+                timeLabel.text = friendlyTime(comments[indexPath.row]["createTime"] as! String)
                 contentLabel.text = comments[indexPath.row]["content"] as? String
                 avatarView.layer.cornerRadius = 25
                 avatarView.layer.masksToBounds = true

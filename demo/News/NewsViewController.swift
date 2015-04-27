@@ -131,7 +131,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             let comments = stuct["comment"] as! [NSDictionary]
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("TitleCell", forIndexPath: indexPath) as! TitleCell
-                cell.timeLabel.text = stuct["createTime"] as? String
+                cell.timeLabel.text = friendlyTime(stuct["createTime"] as! String)
                 cell.nameLabel.text = stuct["nickname"] as? String
                 let url = stuct["avatar"] as! String
                 if PicDic.picDic[url] != nil {
