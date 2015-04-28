@@ -9,4 +9,5 @@
 import Foundation
 struct PicDic {
     static var picDic = Dictionary<String, UIImage>()
+    static var friendDic = Dictionary<String, Dictionary<String, String>>()
 }

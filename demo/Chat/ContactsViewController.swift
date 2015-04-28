@@ -127,36 +127,53 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
         }
         for buddy in contactsSource{
             var info = ["username": buddy.username, "nickname": "*", "avatarURL": ""]
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                let requestAvatarUrl = NSURL(string: "\(API.userInfo.host)getAvatarAndNicknameFromUid.action?userstr=\(buddy.username)") // No such API !!!!!!!!!!!!!
-                let request: NSURLRequest = NSURLRequest(URL: requestAvatarUrl!)
-                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error == nil {
-                        var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
-                        if (jsonRaw != nil) {
-                            var jsonResult = jsonRaw as! NSDictionary
-                            if jsonResult.count > 0 {
-                                let result = jsonResult["result"] as! NSDictionary
-                                let urlWithComma = result["avatar"] as! String
-                                let nicknameWithComma = result["nickname"] as! String
-                                let url = urlWithComma.componentsSeparatedByString(",")[0]
-                                let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
-                                dispatch_async(dispatch_get_main_queue(), {
-                                    info.updateValue(nickname, forKey: "nickname")
-                                    info.updateValue(url, forKey: "avatarURL")
-                                    self.dataSource.addObject(info)
-                                    if(self.dataSource.count == self.contactsSource.count)
-                                    {
-                                        self.sortedDataSource.addObjectsFromArray(self.sortDataSource(self.dataSource) as [AnyObject])
-                                        self.tableView.reloadData()
-                                    }
-                                })
-                            }
-                        } 
+            if PicDic.friendDic[buddy.username] == nil {
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    let requestAvatarUrl = NSURL(string: "\(API.userInfo.host)getAvatarAndNicknameFromUid.action?userstr=\(buddy.username)") // No such API !!!!!!!!!!!!!
+                    let request: NSURLRequest = NSURLRequest(URL: requestAvatarUrl!)
+                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                        if error == nil {
+                            var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
+                            if (jsonRaw != nil) {
+                                var jsonResult = jsonRaw as! NSDictionary
+                                if jsonResult.count > 0 {
+                                    let result = jsonResult["result"] as! NSDictionary
+                                    let urlWithComma = result["avatar"] as! String
+                                    let nicknameWithComma = result["nickname"] as! String
+                                    let url = urlWithComma.componentsSeparatedByString(",")[0]
+                                    let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        info.updateValue(nickname, forKey: "nickname")
+                                        info.updateValue(url, forKey: "avatarURL")
+                                        PicDic.friendDic[buddy.username] = ["nickname": nickname, "avatarURL": url]
+                                        self.dataSource.addObject(info)
+                                        if(self.dataSource.count == self.contactsSource.count)
+                                        {
+                                            self.sortedDataSource.addObjectsFromArray(self.sortDataSource(self.dataSource) as [AnyObject])
+                                            self.tableView.reloadData()
+                                        }
+                                    })
+                                }
+                            } 
+                        }
+                    })
+                })
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let nickname = PicDic.friendDic[buddy.username]!["nickname"]
+                    let url = PicDic.friendDic[buddy.username]!["avatarURL"]
+                    info.updateValue(nickname, forKey: "nickname")
+                    info.updateValue(url, forKey: "avatarURL")
+                    self.dataSource.addObject(info)
+                    if(self.dataSource.count == self.contactsSource.count)
+                    {
+                        self.sortedDataSource.addObjectsFromArray(self.sortDataSource(self.dataSource) as [AnyObject])
+                        self.tableView.reloadData()
                     }
                 })
-            })
+            }
         }
     }
     func sortDataSource(dataArray: NSMutableArray) -> NSArray{

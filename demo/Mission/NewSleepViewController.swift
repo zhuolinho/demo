@@ -11,7 +11,7 @@ import AssetsLibrary
 import CoreLocation
 import MapKit
 
-class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate {
+class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate {
     
     @IBOutlet weak var sloganTF: UITextField!
     @IBOutlet weak var picCollection: UICollectionView!
@@ -63,7 +63,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         locationManger.startUpdatingLocation()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
@@ -118,7 +118,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     }
     // MARK: - Table view data source
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return 24
     }
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -174,7 +174,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             let vc = storyboard?.instantiateViewControllerWithIdentifier("DeletePicViewController") as! DeletePicViewController
             vc.image = picArray[indexPath.row]
             vc.title = String(indexPath.row + 1) + "/" + String(picArray.count)
-//            vc.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "删除", style: UIBarButtonItemStyle.Done, target: self, action: "deletePic: indexPath.row")
+            //            vc.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "删除", style: UIBarButtonItemStyle.Done, target: self, action: "deletePic: indexPath.row")
             vc.navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "删除", style: UIBarButtonItemStyle.Done, target: self, action: "deletePic"), animated: true)
             deleteRow = indexPath.row
             navigationController?.pushViewController(vc, animated: true)
@@ -183,13 +183,13 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             if buttonIndex == 0 {//拍照
-//                imagePicker.allowsEditing = true;
+                //                imagePicker.allowsEditing = true;
                 imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
                 
                 self.presentViewController(imagePicker, animated:true, completion:nil)
             }
             if buttonIndex == 1 {//图片库
-//                imagePicker.allowsEditing = true;
+                //                imagePicker.allowsEditing = true;
                 imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
                 
                 self.presentViewController(imagePicker, animated:true, completion:nil)
@@ -197,7 +197,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         }
         else {
             if buttonIndex == 0 {//图片库
-//                imagePicker.allowsEditing = true;
+                //                imagePicker.allowsEditing = true;
                 imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
                 
                 self.presentViewController(imagePicker, animated:true, completion:nil)
@@ -241,7 +241,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     self.picDate.append("*")
                 }
                 }, failureBlock: { (error) -> Void in
-                println(error)
+                    println(error)
             })
         }
         else {
@@ -310,7 +310,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     self.navigationController?.interactivePopGestureRecognizer.enabled = false
                 })
                 if picArray.count > 0 {
-                        for i in 0...picArray.count - 1 {
+                    for i in 0...picArray.count - 1 {
                         apis[i].uploadPic(picArray[i])
                     }
                 }
@@ -319,7 +319,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     if timesLabel.text != "" {
                         times = timesLabel.text!.toInt()!
                     }
-                    let content = "我保证未来两周内要去\(times)次健身房"
+                    let content = "我保证未来两周内要\(times)点前起床"
                     var slogan = "*"
                     if sloganTF.text != "" {
                         slogan = sloganTF.text
@@ -334,7 +334,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     }
                     let pics = ""
                     let picTimes = ""
-                    addMission.addMission(1, title: "任务详情－健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                    addMission.addMission(1, title: "任务详情－早睡早起", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
                 }
             }
         }
@@ -365,7 +365,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                 if timesLabel.text != "" {
                     times = timesLabel.text!.toInt()!
                 }
-                let content = "我保证未来两周内要去\(times)次健身房"
+                let content = "我保证未来两周内要\(times)点前起床"
                 var slogan = "*"
                 if sloganTF.text != "" {
                     slogan = sloganTF.text
@@ -396,7 +396,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     pics = "*"
                     picTimes = "*"
                 }
-                addMission.addMission(1, title: "任务详情－健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                addMission.addMission(1, title: "任务详情－早睡早起", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -458,7 +458,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         if timesLabel.text != "" {
             times = timesLabel.text!.toInt()!
         }
-        let content = "我保证未来两周内要去\(times)次健身房"
+        let content = "我保证未来两周内要\(times)点前起床"
         var slogan = "*"
         if sloganTF.text != "" {
             slogan = sloganTF.text
@@ -489,61 +489,61 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             pics = "*"
             picTimes = "*"
         }
-        addMission.addMission(1, title: "任务详情－健身运动", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+        addMission.addMission(1, title: "任务详情－早睡早起", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
-        return cell
+    let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
+    
+    // Configure the cell...
+    
+    return cell
     }
     */
-
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    // Return NO if you do not want the specified item to be editable.
+    return true
     }
     */
-
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    if editingStyle == .Delete {
+    // Delete the row from the data source
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    } else if editingStyle == .Insert {
+    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
     }
     */
-
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
     }
     */
-
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
+    // Return NO if you do not want the item to be re-orderable.
+    return true
     }
     */
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

@@ -286,7 +286,6 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === api1 {
             let res = data["result"] as! [NSDictionary]
-            println(res)
             missions.removeAll(keepCapacity: true)
             for item in res {
                 missions.append(item)

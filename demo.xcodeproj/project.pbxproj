@@ -29,6 +29,7 @@
 		064CE7411ACFA50700F51D06 /* about_us.png in Resources */ = {isa = PBXBuildFile; fileRef = 064CE7401ACFA50600F51D06 /* about_us.png */; };
 		064CE74B1ACFAB5C00F51D06 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064CE74A1ACFAB5C00F51D06 /* MainTabBarController.swift */; };
 		064CE74F1ACFB19B00F51D06 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */; };
+		064D99EB1AEF2C6D00508BE9 /* NewSleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D99EA1AEF2C6D00508BE9 /* NewSleepViewController.swift */; };
 		06520F3C1AEE10E8009434C0 /* FriendlyTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06520F3B1AEE10E8009434C0 /* FriendlyTime.swift */; };
 		06522AAF1AADAEC700D67CAE /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522AAD1AADAEC700D67CAE /* libPushSDK.a */; };
 		06522AB01AADAEC700D67CAE /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06522AAE1AADAEC700D67CAE /* PushConfig.plist */; };
@@ -497,6 +498,7 @@
 		064CE7401ACFA50600F51D06 /* about_us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = about_us.png; path = Image/about_us.png; sourceTree = "<group>"; };
 		064CE74A1ACFAB5C00F51D06 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		064D99EA1AEF2C6D00508BE9 /* NewSleepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSleepViewController.swift; sourceTree = "<group>"; };
 		06520F3B1AEE10E8009434C0 /* FriendlyTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendlyTime.swift; sourceTree = "<group>"; };
 		06522AAC1AADAEC700D67CAE /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		06522AAD1AADAEC700D67CAE /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
@@ -2106,6 +2108,7 @@
 				06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */,
 				06BFF7321ADE5C0C00FD1CCF /* MissionCell.swift */,
 				06CDBC9D1AE296D900A13245 /* NewEvidenceVC.swift */,
+				064D99EA1AEF2C6D00508BE9 /* NewSleepViewController.swift */,
 			);
 			path = Mission;
 			sourceTree = "<group>";
@@ -2555,6 +2558,7 @@
 				069BB7541AEA6AE100113E81 /* SWTableViewCell.m in Sources */,
 				069BB7551AEA6AE100113E81 /* SWUtilityButtonTapGestureRecognizer.h in Sources */,
 				06CEB3C21AED37A100A57E66 /* InviteViewController.swift in Sources */,
+				064D99EB1AEF2C6D00508BE9 /* NewSleepViewController.swift in Sources */,
 				069BB7561AEA6AE100113E81 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				069BB7571AEA6AE100113E81 /* SWUtilityButtonView.h in Sources */,
 				069BB7581AEA6AE100113E81 /* SWUtilityButtonView.m in Sources */,
