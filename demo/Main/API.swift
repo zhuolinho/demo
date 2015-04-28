@@ -215,12 +215,6 @@ class API: NSObject {
         let d = ["token": API.userInfo.token, "rmb": String(rmb), "money": String(price), "coupon": String(coupon), "WIDid": tag]
         get(host + "checkMission.action?token=\(API.userInfo.token)&tid=\(tid)&rmb=\(rmb)&money=\(price)&coupon=\(coupon)&WIDid=\(tag)")
     }
-    func spendMoney(tid: Int, rmb: Int, coupon: Int) {
-        get(host + "addMission.action?token=\(API.userInfo.token)&tid=\(tid)&rmb=\(rmb)&coupon=\(coupon)")
-    }
-    func spendFreeCourseMoney(tid: Int) {
-        get(host + "addFreeMission.action?token=\(API.userInfo.token)&tid=\(tid)")
-    }
     func setAvatar() {
         let d = ["token": API.userInfo.token]
         sendURLEncodedForm(action: "setAvatar.action", data: d, image: API.userInfo.profilePhoto)

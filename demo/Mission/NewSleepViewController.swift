@@ -11,7 +11,7 @@ import AssetsLibrary
 import CoreLocation
 import MapKit
 
-class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate {
+class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate, StringsPass {
     
     @IBOutlet weak var sloganTF: UITextField!
     @IBOutlet weak var picCollection: UICollectionView!
@@ -28,6 +28,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
     var url = Dictionary<Int, String>()
     var addMission = API()
     var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    var supervisor = "*"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +68,17 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if supervisor == "*" {
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))?.detailTextLabel?.text = "未邀请"
+        }
+        else {
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))?.detailTextLabel?.text = "已邀请"
+        }
+    }
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         timesLabel.text = String(row)
     }
@@ -113,6 +125,11 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
             picker.hidden = true
             if indexPath.section == 0 && indexPath.row == 4 {
                 self.locationManger.startUpdatingLocation()
+            }
+            else if indexPath.section == 1 && indexPath.row == 0 {
+                let vc = storyboard?.instantiateViewControllerWithIdentifier("SupervisorViewController") as! SupervisorViewController
+                vc.delegate = self
+                navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
@@ -262,7 +279,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
         var geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (array,error) -> Void in
-            if array.count > 0 {
+            if array != nil && array.count > 0 {
                 let placemarks = array as! [CLPlacemark]
                 var placemark: CLPlacemark?
                 placemark = placemarks[0]
@@ -281,7 +298,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
     }
     func commitButtonClick() {
         if timesLabel.text == "" {
-            let alert = UIAlertView(title: "请输入次数", message: "", delegate: nil, cancelButtonTitle: "确认")
+            let alert = UIAlertView(title: "请输入时间", message: "", delegate: nil, cancelButtonTitle: "确认")
             alert.show()
             return
         }
@@ -334,7 +351,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
                     }
                     let pics = ""
                     let picTimes = ""
-                    addMission.addMission(1, title: "任务详情－早睡早起", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                    addMission.addMission(1, title: "早睡早起", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
                 }
             }
         }
@@ -396,7 +413,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
                     pics = "*"
                     picTimes = "*"
                 }
-                addMission.addMission(1, title: "任务详情－早睡早起", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                addMission.addMission(1, title: "早睡早起", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -489,7 +506,11 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
             pics = "*"
             picTimes = "*"
         }
-        addMission.addMission(1, title: "任务详情－早睡早起", content: content, supervisor: "*", slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+        addMission.addMission(1, title: "早睡早起", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+    }
+    
+    func strings(visor: String) {
+        supervisor = visor
     }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

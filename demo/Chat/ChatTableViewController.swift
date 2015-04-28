@@ -123,51 +123,57 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate, APIP
                 cell.unreadLabel.hidden = false
             }
             // Configure the cell...
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                let requestAvatarUrl = NSURL(string: "\(API.userInfo.host)getAvatarAndNicknameFromUid.action?userstr=\(username)") // No such API !!!!!!!!!!!!!
-                let request: NSURLRequest = NSURLRequest(URL: requestAvatarUrl!)
-                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error == nil {
-                        var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
-                        if (jsonRaw != nil) {
-                            var jsonResult = jsonRaw as! NSDictionary
-                            if jsonResult.count > 0 {
-                                let result = jsonResult["result"] as! NSDictionary
-                                let urlWithComma = result["avatar"] as! String
-                                let nicknameWithComma = result["nickname"] as! String
-                                let url = urlWithComma.componentsSeparatedByString(",")[0]
-                                let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
-                                dispatch_async(dispatch_get_main_queue(), {
-                                    cell.name?.text = nickname
-                                    cell.imageURL = url
-                                })
-                                if PicDic.picDic[url] == nil {
-                                    cell.avatarView.image = UIImage()
-                                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                                        if error == nil {
-                                            var rawImage: UIImage? = UIImage(data: data)
-                                            let img: UIImage? = rawImage
-                                            if img != nil {
-                                                dispatch_async(dispatch_get_main_queue(), {
-                                                    cell.avatarView.image = img!
-                                                    PicDic.picDic[url] = img
-                                                })
+            if PicDic.friendDic[username] == nil {
+                dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    let requestAvatarUrl = NSURL(string: "\(API.userInfo.host)getAvatarAndNicknameFromUid.action?userstr=\(username)") // No such API !!!!!!!!!!!!!
+                    let request: NSURLRequest = NSURLRequest(URL: requestAvatarUrl!)
+                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                        if error == nil {
+                            var jsonRaw: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
+                            if (jsonRaw != nil) {
+                                var jsonResult = jsonRaw as! NSDictionary
+                                if jsonResult.count > 0 {
+                                    let result = jsonResult["result"] as! NSDictionary
+                                    let urlWithComma = result["avatar"] as! String
+                                    let nicknameWithComma = result["nickname"] as! String
+                                    let url = urlWithComma.componentsSeparatedByString(",")[0]
+                                    let nickname = nicknameWithComma.componentsSeparatedByString(",")[0]
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        cell.name?.text = nickname
+                                        cell.imageURL = url
+                                        PicDic.friendDic[username] = ["nickname": nickname, "avatarURL": url]
+                                    })
+                                    if PicDic.picDic[url] == nil {
+                                        cell.avatarView.image = UIImage()
+                                        let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                                        let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                                        let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                                        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                                            if error == nil {
+                                                var rawImage: UIImage? = UIImage(data: data)
+                                                let img: UIImage? = rawImage
+                                                if img != nil {
+                                                    dispatch_async(dispatch_get_main_queue(), {
+                                                        cell.avatarView.image = img!
+                                                        PicDic.picDic[url] = img
+                                                    })
+                                                }
+                                                else {
+                                                    cell.avatarView.image = UIImage(named: "DefaultAvatar")
+                                                }
                                             }
                                             else {
                                                 cell.avatarView.image = UIImage(named: "DefaultAvatar")
                                             }
-                                        }
-                                        else {
-                                            cell.avatarView.image = UIImage(named: "DefaultAvatar")
-                                        }
-                                    })
+                                        })
+                                    }
+                                    else {
+                                        cell.avatarView.image = PicDic.picDic[url]
+                                    }
                                 }
                                 else {
-                                    cell.avatarView.image = PicDic.picDic[url]
+                                    cell.avatarView.image = UIImage(named: "DefaultAvatar")
                                 }
                             }
                             else {
@@ -177,12 +183,40 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate, APIP
                         else {
                             cell.avatarView.image = UIImage(named: "DefaultAvatar")
                         }
-                    }
-                    else {
-                        cell.avatarView.image = UIImage(named: "DefaultAvatar")
-                    }
+                    })
                 })
-            })
+            }
+            else {
+                let url = PicDic.friendDic[username]!["avatarURL"]!
+                cell.name?.text = PicDic.friendDic[username]!["nickname"]
+                if PicDic.picDic[url] == nil {
+                    cell.avatarView.image = UIImage()
+                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                        if error == nil {
+                            var rawImage: UIImage? = UIImage(data: data)
+                            let img: UIImage? = rawImage
+                            if img != nil {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    cell.avatarView.image = img!
+                                    PicDic.picDic[url] = img
+                                })
+                            }
+                            else {
+                                cell.avatarView.image = UIImage(named: "DefaultAvatar")
+                            }
+                        }
+                        else {
+                            cell.avatarView.image = UIImage(named: "DefaultAvatar")
+                        }
+                    })
+                }
+                else {
+                    cell.avatarView.image = PicDic.picDic[url]
+                }
+            }
             return cell
         }
         else {
