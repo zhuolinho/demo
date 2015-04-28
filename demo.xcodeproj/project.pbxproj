@@ -15,7 +15,6 @@
 		061AC2721ABD19B100C9FFE6 /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061AC2701ABD19B100C9FFE6 /* EaseMob.bundle */; };
 		06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */; };
 		063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D03661AB31C4F005A1ED1 /* MeViewController.swift */; };
-		0647DE1C1AB47E55001737F9 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */; };
 		0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */; };
 		0648D1361AB4206C008B0F67 /* GenderSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */; };
 		0648D1381AB42F58008B0F67 /* SignatureSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */; };
@@ -30,6 +29,7 @@
 		064CE74B1ACFAB5C00F51D06 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064CE74A1ACFAB5C00F51D06 /* MainTabBarController.swift */; };
 		064CE74F1ACFB19B00F51D06 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */; };
 		064D99EB1AEF2C6D00508BE9 /* NewSleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D99EA1AEF2C6D00508BE9 /* NewSleepViewController.swift */; };
+		064E8BBE1AEFDBA500BD296D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 064E8BBD1AEFDBA500BD296D /* Images.xcassets */; };
 		06520F3C1AEE10E8009434C0 /* FriendlyTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06520F3B1AEE10E8009434C0 /* FriendlyTime.swift */; };
 		06522AAF1AADAEC700D67CAE /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522AAD1AADAEC700D67CAE /* libPushSDK.a */; };
 		06522AB01AADAEC700D67CAE /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06522AAE1AADAEC700D67CAE /* PushConfig.plist */; };
@@ -355,6 +355,10 @@
 		06AB9C1F1AE9243A0039B09A /* MissionNotificationTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9C1E1AE9243A0039B09A /* MissionNotificationTableVC.swift */; };
 		06AB9C231AE92B8F0039B09A /* MissionNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */; };
 		06B5F18E1AD6F9780035D6DE /* SelectMissionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */; };
+		06B680DB1AEF7F9400A73A88 /* SupervisorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680DA1AEF7F9400A73A88 /* SupervisorViewController.swift */; };
+		06B680DD1AEF88DC00A73A88 /* StringsPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680DC1AEF88DC00A73A88 /* StringsPass.swift */; };
+		06B680DF1AEF998700A73A88 /* SupervisorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680DE1AEF998700A73A88 /* SupervisorCell.swift */; };
+		06B680E11AEFD43800A73A88 /* NewKeepFitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680E01AEFD43800A73A88 /* NewKeepFitViewController.swift */; };
 		06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC41AC823A600F52391 /* InvitationManager.m */; };
 		06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC81AC823AE00F52391 /* AddFriendCell.m */; };
 		06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCA1AC823AE00F52391 /* AddFriendViewController.m */; };
@@ -369,7 +373,6 @@
 		06C677B61AD26CD600D23FF7 /* ANNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C677B51AD26CD600D23FF7 /* ANNViewController.swift */; };
 		06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD92471AA877E10026C3E7 /* AppDelegate.swift */; };
 		06CD924D1AA877E10026C3E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924B1AA877E10026C3E7 /* Main.storyboard */; };
-		06CD924F1AA877E10026C3E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924E1AA877E10026C3E7 /* Images.xcassets */; };
 		06CD92521AA877E10026C3E7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06CD92501AA877E10026C3E7 /* LaunchScreen.xib */; };
 		06CD925E1AA877E10026C3E7 /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD925D1AA877E10026C3E7 /* demoTests.swift */; };
 		06CDBC9E1AE296D900A13245 /* NewEvidenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CDBC9D1AE296D900A13245 /* NewEvidenceVC.swift */; };
@@ -484,7 +487,6 @@
 		061AC2701ABD19B100C9FFE6 /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
 		06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPwdViewController.swift; sourceTree = "<group>"; };
 		063D03661AB31C4F005A1ED1 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
-		0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DefaultAvatar.png; path = Image/DefaultAvatar.png; sourceTree = "<group>"; };
 		0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NickNameSettingViewController.swift; sourceTree = "<group>"; };
 		0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderSettingTableViewController.swift; sourceTree = "<group>"; };
 		0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureSettingViewController.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 		064CE74A1ACFAB5C00F51D06 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		064D99EA1AEF2C6D00508BE9 /* NewSleepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSleepViewController.swift; sourceTree = "<group>"; };
+		064E8BBD1AEFDBA500BD296D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
 		06520F3B1AEE10E8009434C0 /* FriendlyTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendlyTime.swift; sourceTree = "<group>"; };
 		06522AAC1AADAEC700D67CAE /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		06522AAD1AADAEC700D67CAE /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
@@ -927,6 +930,10 @@
 		06AB9C1E1AE9243A0039B09A /* MissionNotificationTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionNotificationTableVC.swift; sourceTree = "<group>"; };
 		06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionNotificationCell.swift; sourceTree = "<group>"; };
 		06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMissionTableViewController.swift; sourceTree = "<group>"; };
+		06B680DA1AEF7F9400A73A88 /* SupervisorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisorViewController.swift; sourceTree = "<group>"; };
+		06B680DC1AEF88DC00A73A88 /* StringsPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsPass.swift; sourceTree = "<group>"; };
+		06B680DE1AEF998700A73A88 /* SupervisorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisorCell.swift; sourceTree = "<group>"; };
+		06B680E01AEFD43800A73A88 /* NewKeepFitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewKeepFitViewController.swift; sourceTree = "<group>"; };
 		06BA9BC31AC823A600F52391 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		06BA9BC41AC823A600F52391 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		06BA9BC71AC823AE00F52391 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
@@ -946,7 +953,6 @@
 		06CD92461AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD92471AA877E10026C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06CD924C1AA877E10026C3E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		06CD924E1AA877E10026C3E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		06CD92511AA877E10026C3E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		06CD92571AA877E10026C3E7 /* demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CD925C1AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2109,6 +2115,9 @@
 				06BFF7321ADE5C0C00FD1CCF /* MissionCell.swift */,
 				06CDBC9D1AE296D900A13245 /* NewEvidenceVC.swift */,
 				064D99EA1AEF2C6D00508BE9 /* NewSleepViewController.swift */,
+				06B680DA1AEF7F9400A73A88 /* SupervisorViewController.swift */,
+				06B680DE1AEF998700A73A88 /* SupervisorCell.swift */,
+				06B680E01AEFD43800A73A88 /* NewKeepFitViewController.swift */,
 			);
 			path = Mission;
 			sourceTree = "<group>";
@@ -2173,8 +2182,8 @@
 				069F73D31AB1F53F00D73AA8 /* Me */,
 				068AEBED1AAC6C0F00F5B84C /* Login */,
 				06CD92471AA877E10026C3E7 /* AppDelegate.swift */,
+				064E8BBD1AEFDBA500BD296D /* Images.xcassets */,
 				06CD924B1AA877E10026C3E7 /* Main.storyboard */,
-				06CD924E1AA877E10026C3E7 /* Images.xcassets */,
 				06CD92501AA877E10026C3E7 /* LaunchScreen.xib */,
 				06CD92451AA877E10026C3E7 /* Supporting Files */,
 			);
@@ -2197,7 +2206,6 @@
 				0684777C1ACF022400F5B667 /* moment1_12.png */,
 				064CE73A1ACF958A00F51D06 /* charge.png */,
 				0684777D1ACF022400F5B667 /* moment1_13.png */,
-				0647DE1B1AB47E55001737F9 /* DefaultAvatar.png */,
 				068477801ACF02E100F5B667 /* moment1_05.png */,
 				068477781ACEDA1800F5B667 /* task_6.png */,
 				06F618F01ABEB83E00918389 /* newFriends@2x.png */,
@@ -2231,6 +2239,7 @@
 				064CE74E1ACFB19B00F51D06 /* MainNavigationController.swift */,
 				061304FD1AEAC52B007410DA /* ValuePass.swift */,
 				06520F3B1AEE10E8009434C0 /* FriendlyTime.swift */,
+				06B680DC1AEF88DC00A73A88 /* StringsPass.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2391,7 +2400,6 @@
 				0694E6971AB6CE72008ADF21 /* VoiceSearchFeedback020.png in Resources */,
 				0694E6C91AB6CE72008ADF21 /* titleBar@2x.png in Resources */,
 				0694E6451AB6CE72008ADF21 /* chatBar_more_photo.png in Resources */,
-				0647DE1C1AB47E55001737F9 /* DefaultAvatar.png in Resources */,
 				0694E63E1AB6CE72008ADF21 /* chatBar_more_camera@2x.png in Resources */,
 				0694E6D51AB6CE72008ADF21 /* tabbar_settingHL@2x.png in Resources */,
 				0694E62C1AB6CE72008ADF21 /* chatBar_moreSelected@2x.png in Resources */,
@@ -2462,6 +2470,7 @@
 				0694E6D41AB6CE72008ADF21 /* tabbar_settingHL.png in Resources */,
 				0694E63B1AB6CE72008ADF21 /* chatBar_colorMore_video@2x.png in Resources */,
 				0694E6381AB6CE72008ADF21 /* chatBar_colorMore_locationSelected@2x.png in Resources */,
+				064E8BBE1AEFDBA500BD296D /* Images.xcassets in Resources */,
 				06CD92521AA877E10026C3E7 /* LaunchScreen.xib in Resources */,
 				061AC2721ABD19B100C9FFE6 /* EaseMob.bundle in Resources */,
 				0694E62D1AB6CE72008ADF21 /* chatBar_record.png in Resources */,
@@ -2479,7 +2488,6 @@
 				0694E6781AB6CE72008ADF21 /* VoiceSearchFeedback004@2x.png in Resources */,
 				068477771ACEDA0F00F5B667 /* moment1_06.png in Resources */,
 				0694E62E1AB6CE72008ADF21 /* chatBar_record@2x.png in Resources */,
-				06CD924F1AA877E10026C3E7 /* Images.xcassets in Resources */,
 				0694E6D91AB6CE72008ADF21 /* tabbarSelectBg@2x.png in Resources */,
 				0694E63D1AB6CE72008ADF21 /* chatBar_more_camera.png in Resources */,
 				0694E6C31AB6CE72008ADF21 /* chat_sender_bg@2x.png in Resources */,
@@ -2573,6 +2581,7 @@
 				0694E6151AB6CE72008ADF21 /* ChatSendHelper.m in Sources */,
 				069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */,
 				0694E6521AB6CE72008ADF21 /* EMChatViewBaseCell.m in Sources */,
+				06B680DF1AEF998700A73A88 /* SupervisorCell.swift in Sources */,
 				0694E5F81AB6CE72008ADF21 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				0694E5F11AB6CE72008ADF21 /* UIButton+EMWebCache.m in Sources */,
 				0694E65B1AB6CE72008ADF21 /* EMRemarkImageView.m in Sources */,
@@ -2638,6 +2647,7 @@
 				0694E61B1AB6CE72008ADF21 /* DXFaceView.m in Sources */,
 				0694E64C1AB6CE72008ADF21 /* EMChatImageBubbleView.m in Sources */,
 				06973D851ADFDEAE007C3E0E /* MissionDetailVC.swift in Sources */,
+				06B680DD1AEF88DC00A73A88 /* StringsPass.swift in Sources */,
 				06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */,
 				0694E5ED1AB6CE72008ADF21 /* EMSDWebImageManager.m in Sources */,
 				0694E5EA1AB6CE72008ADF21 /* EMSDWebImageDecoder.m in Sources */,
@@ -2651,6 +2661,7 @@
 				0694E5FF1AB6CE72008ADF21 /* PSTCollectionViewLayout.m in Sources */,
 				06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */,
 				068AEBF51AAC7C8100F5B84C /* ResignPhoneViewController.swift in Sources */,
+				06B680E11AEFD43800A73A88 /* NewKeepFitViewController.swift in Sources */,
 				065FB3F61AE5267600C43747 /* SystemCell.swift in Sources */,
 				065E2CD01ABD8AD0006207FE /* ChatListCell.swift in Sources */,
 				0694E5E71AB6CE72008ADF21 /* DACircularProgressView.m in Sources */,
@@ -2664,6 +2675,7 @@
 				0694E5F51AB6CE72008ADF21 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */,
 				068AEBF11AAC6C0F00F5B84C /* WelcomeViewController.swift in Sources */,
+				06B680DB1AEF7F9400A73A88 /* SupervisorViewController.swift in Sources */,
 				066E33801AD3B4080062C31B /* CIColorExtension.swift in Sources */,
 				0694E65E1AB6CE72008ADF21 /* EMNavigationController.m in Sources */,
 				06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */,

@@ -458,7 +458,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let dataSource = missionComment["like"] as! [NSDictionary]
         let url = dataSource[indexPath.row]["avatar"] as! String
         if PicDic.picDic[url] == nil {
-            imageView.image = UIImage()
+            imageView.image = UIImage(named: "DefaultAvatar")
         }
         else {
             imageView.image = PicDic.picDic[url]
