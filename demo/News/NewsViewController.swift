@@ -207,7 +207,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                     formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
                     let endTime = formatSever.dateFromString(stuct["endTime"] as! String)
                     let hour = Int(endTime!.timeIntervalSinceNow / 3600)
-                    if hour < 0 {
+                    if hour <= 0 {
                         cell.timeLabel.text = "已完成"
                     }
                     else {
@@ -451,10 +451,12 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     func button1Click() {
         ifMyFriend = 1
         refreshing()
+        viewa.hidden = true
     }
     func button2Click() {
         ifMyFriend = 0
         refreshing()
+        viewa.hidden = true
     }
     /*
     // Override to support conditional editing of the table view.

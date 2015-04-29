@@ -232,7 +232,7 @@ class ContactsViewController: UITableViewController, IChatManagerDelegate {
                 var url = buddy!.objectForKey("avatarURL") as! String
                 cell.avatarURL = url
                 if PicDic.picDic[url] == nil {
-                    cell.avatar = UIImage()
+                    cell.avatar = UIImage(named: "DefaultAvatar")
                     let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
                     let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
                     let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!

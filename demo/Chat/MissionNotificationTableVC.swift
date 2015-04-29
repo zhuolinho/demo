@@ -91,12 +91,19 @@ class MissionNotificationTableVC: UITableViewController, APIProtocol {
         let avatarView = cell.viewWithTag(1) as! UIImageView
         let contentLabel = cell.viewWithTag(2) as! UILabel
         let timeLabel = cell.viewWithTag(3) as! UILabel
-        
-        if PicDic.picDic[notifications[indexPath.section]["avatar"] as! String] == nil {
-            avatarView.image = UIImage(named: "DefaultAvatar")
+        if notifications[indexPath.section]["type"] as! Int == 0 {
+            avatarView.image = UIImage(named: "message-comment1_06")
+        }
+        else if notifications[indexPath.section]["type"] as! Int == 3 {
+            avatarView.image = UIImage(named: "message-comment111_03")
         }
         else {
-            avatarView.image = PicDic.picDic[notifications[indexPath.section]["avatar"] as! String]
+            if PicDic.picDic[notifications[indexPath.section]["avatar"] as! String] == nil {
+                avatarView.image = UIImage(named: "DefaultAvatar")
+            }
+            else {
+                avatarView.image = PicDic.picDic[notifications[indexPath.section]["avatar"] as! String]
+            }
         }
         contentLabel.text = notifications[indexPath.section]["content"] as? String
         timeLabel.text = friendlyTime(notifications[indexPath.section]["createTime"] as! String)
@@ -112,13 +119,22 @@ class MissionNotificationTableVC: UITableViewController, APIProtocol {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println(notifications[indexPath.section])
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         setRead.readMissionNotification(notifications[indexPath.section]["id"] as! Int)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! MissionNotificationCell
         cell.unreadLabel.hidden = true
         if notifications[indexPath.section]["type"] as! Int == 1 {
             let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
+            vc.mid = notifications[indexPath.section]["mid"] as! Int
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else if notifications[indexPath.section]["type"] as! Int == 0 {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("MyVoteViewController") as! MyVoteViewController
+            vc.mid = notifications[indexPath.section]["mid"] as! Int
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else if notifications[indexPath.section]["type"] as! Int == 2 {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("OtherVoteViewController") as! OtherVoteViewController
             vc.mid = notifications[indexPath.section]["mid"] as! Int
             navigationController?.pushViewController(vc, animated: true)
         }
