@@ -287,6 +287,9 @@ class API: NSObject {
     func setMissionLike(id: Int, ifLike: Int) {
         get(host + "setMissionLike.action?token=" + API.userInfo.token + "&id=\(id)&ifLike=\(ifLike)")
     }
+    func addVoteForMission(mid: Int, decision: Int) {
+        get(host + "addVoteForMission.action?token=" + API.userInfo.token + "&mid=\(mid)&decision=\(decision)")
+    }
     func setEvidenceLike(id: Int, ifLike: Int) {
         get(host + "setEvidenceLike.action?token=" + API.userInfo.token + "&id=\(id)&ifLike=\(ifLike)")
     }

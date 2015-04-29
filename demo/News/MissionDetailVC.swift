@@ -251,7 +251,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let endTime = formatSever.dateFromString(stuct["endTime"] as! String)
                 let hour = Int(endTime!.timeIntervalSinceNow / 3600)
-                if hour < 0 {
+                if hour <= 0 {
                     cell.timeLabel.text = "已完成"
                 }
                 else {
@@ -407,7 +407,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 let contentLabel = cell.viewWithTag(4) as! UILabel
                 let url = comments[indexPath.row]["avatar"] as! String
                 if PicDic.picDic[url] == nil {
-                    avatarView.image = UIImage()
+                    avatarView.image = UIImage(named: "DefaultAvatar")
                 }
                 else {
                     avatarView.image = PicDic.picDic[url]

@@ -121,10 +121,12 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                     let endTime = formatSever.dateFromString(missions[mark]["endTime"] as! String)
                     let hour = Int(endTime!.timeIntervalSinceNow / 3600)
                     let charge = missions[mark]["charge"] as! Int
-                    if hour < 0 {
+                    if hour <= 0 {
+                        cell.backgroundColor = UIColor.lightGrayColor()
                         timeLabel.text = "已完成"
                     }
                     else {
+                        cell.backgroundColor = UIColor.orangeColor()
                         timeLabel.text = "\(hour / 24)天\(hour % 24)小时"
                     }
                     chargeLabel.text = String(charge)
@@ -228,7 +230,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             let endTime = formatSever.dateFromString(missions[indexPath.row]["endTime"] as! String)
             let charge = missions[indexPath.row]["charge"] as! Int
             let hour = Int(endTime!.timeIntervalSinceNow / 3600)
-            if hour < 0 {
+            if hour <= 0 {
                 timeLabel.text = "已完成"
             }
             else {

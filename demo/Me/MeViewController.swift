@@ -93,6 +93,7 @@ class MeViewController: UITableViewController, APIProtocol {
                             dispatch_async(dispatch_get_main_queue(), {
                                 PicDic.picDic[API.userInfo.profilePhotoUrl] = avatar
                                 API.userInfo.profilePhoto = avatar!
+                                self.rmbLabel.text = String(API.userInfo.rmb)
                                 self.avatarView.image = API.userInfo.profilePhoto
                                 self.signLabel.text = API.userInfo.signature
                                 self.nameLabel.text = API.userInfo.nickname

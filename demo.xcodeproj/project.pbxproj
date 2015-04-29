@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0600D9891AF135C80034B7B0 /* OtherVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600D9881AF135C80034B7B0 /* OtherVoteViewController.swift */; };
 		060B575A1AEE5D77000FD7CC /* ChangePWDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060B57591AEE5D77000FD7CC /* ChangePWDViewController.swift */; };
 		061304FE1AEAC52B007410DA /* ValuePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061304FD1AEAC52B007410DA /* ValuePass.swift */; };
 		061305021AEC116F007410DA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061305011AEC116F007410DA /* API.swift */; };
@@ -354,6 +355,7 @@
 		06A108D01AC9AF3600493A2A /* PickPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A108CF1AC9AF3600493A2A /* PickPicCell.swift */; };
 		06AB9C1F1AE9243A0039B09A /* MissionNotificationTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9C1E1AE9243A0039B09A /* MissionNotificationTableVC.swift */; };
 		06AB9C231AE92B8F0039B09A /* MissionNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */; };
+		06AC8A271AF087A700AB08AA /* MyVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC8A261AF087A700AB08AA /* MyVoteViewController.swift */; };
 		06B5F18E1AD6F9780035D6DE /* SelectMissionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */; };
 		06B680DB1AEF7F9400A73A88 /* SupervisorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680DA1AEF7F9400A73A88 /* SupervisorViewController.swift */; };
 		06B680DD1AEF88DC00A73A88 /* StringsPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680DC1AEF88DC00A73A88 /* StringsPass.swift */; };
@@ -400,6 +402,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0600D9881AF135C80034B7B0 /* OtherVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherVoteViewController.swift; sourceTree = "<group>"; };
 		060B57591AEE5D77000FD7CC /* ChangePWDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePWDViewController.swift; sourceTree = "<group>"; };
 		061304FD1AEAC52B007410DA /* ValuePass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePass.swift; sourceTree = "<group>"; };
 		061305011AEC116F007410DA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -929,6 +932,7 @@
 		06A108CF1AC9AF3600493A2A /* PickPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickPicCell.swift; sourceTree = "<group>"; };
 		06AB9C1E1AE9243A0039B09A /* MissionNotificationTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionNotificationTableVC.swift; sourceTree = "<group>"; };
 		06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionNotificationCell.swift; sourceTree = "<group>"; };
+		06AC8A261AF087A700AB08AA /* MyVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVoteViewController.swift; sourceTree = "<group>"; };
 		06B5F18D1AD6F9780035D6DE /* SelectMissionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMissionTableViewController.swift; sourceTree = "<group>"; };
 		06B680DA1AEF7F9400A73A88 /* SupervisorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisorViewController.swift; sourceTree = "<group>"; };
 		06B680DC1AEF88DC00A73A88 /* StringsPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsPass.swift; sourceTree = "<group>"; };
@@ -1283,6 +1287,8 @@
 				06717EF21AE8EF960098C8D8 /* CommentNotificationTableVC.swift */,
 				06AB9C1E1AE9243A0039B09A /* MissionNotificationTableVC.swift */,
 				06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */,
+				06AC8A261AF087A700AB08AA /* MyVoteViewController.swift */,
+				0600D9881AF135C80034B7B0 /* OtherVoteViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2590,6 +2596,7 @@
 				06CF5C7B1AC70022003D46B8 /* FriendInfoViewController.swift in Sources */,
 				0694E6591AB6CE72008ADF21 /* EMSearchBar.m in Sources */,
 				0694E60F1AB6CE72008ADF21 /* NSDateFormatter+Category.m in Sources */,
+				0600D9891AF135C80034B7B0 /* OtherVoteViewController.swift in Sources */,
 				06AB9C1F1AE9243A0039B09A /* MissionNotificationTableVC.swift in Sources */,
 				06CDBC9E1AE296D900A13245 /* NewEvidenceVC.swift in Sources */,
 				0694E5E51AB6CE72008ADF21 /* MWTapDetectingView.m in Sources */,
@@ -2598,6 +2605,7 @@
 				0694E6001AB6CE72008ADF21 /* PSTCollectionViewUpdateItem.m in Sources */,
 				0694E5E81AB6CE72008ADF21 /* EMSDImageCache.m in Sources */,
 				0694E6011AB6CE72008ADF21 /* PSTGridLayoutInfo.m in Sources */,
+				06AC8A271AF087A700AB08AA /* MyVoteViewController.swift in Sources */,
 				0694E60D1AB6CE72008ADF21 /* WCAlertView.m in Sources */,
 				0694E5F31AB6CE72008ADF21 /* UIImage+EMMultiFormat.m in Sources */,
 				06C677B61AD26CD600D23FF7 /* ANNViewController.swift in Sources */,

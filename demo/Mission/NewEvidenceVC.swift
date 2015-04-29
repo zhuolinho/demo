@@ -35,7 +35,7 @@ class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollec
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(missionInfo)
+        self.locationManger.startUpdatingLocation()
         navigationController?.title = "发布证据"
         let blankView = UIView(frame: CGRectZero)
         tableView.tableFooterView = blankView
