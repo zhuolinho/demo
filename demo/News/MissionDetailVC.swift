@@ -478,14 +478,24 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             let pics = stuct["pics"] as! [NSDictionary]
             let url = pics[indexPath.row]["url"] as! String
             let cell = selfTableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! MainImageCell
-            cell.mainImageView.image = PicDic.picDic[url]
+            if PicDic.picDic[url] != nil {
+                cell.mainImageView.image = PicDic.picDic[url]
+            }
+            else {
+                cell.mainImageView.image = UIImage(named: "noimage2")
+            }
             buffer = indexPath.row
         }
         else {
             let pics = evidences[collectionView.tag]["pics"] as! [NSDictionary]
             let url = pics[indexPath.row]["url"] as! String
             let cell = selfTableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: collectionView.tag)) as! MainImageCell
-            cell.mainImageView.image = PicDic.picDic[url]
+            if PicDic.picDic[url] != nil {
+                cell.mainImageView.image = PicDic.picDic[url]
+            }
+            else {
+                cell.mainImageView.image = UIImage(named: "noimage2")
+            }
             temp[collectionView.tag] = indexPath.row
         }
     }

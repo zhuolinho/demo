@@ -18,6 +18,9 @@ class MeViewController: UITableViewController, APIProtocol {
     @IBOutlet weak var rmbLabel: UILabel!
     let api = API()
     
+    @IBAction func shareButtonClick(sender: UIButton) {
+        RespImageContent(UIImage())
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         api.delegate = self

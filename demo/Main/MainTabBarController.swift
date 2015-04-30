@@ -96,7 +96,7 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate, APIProtoco
         buddyRequest = true
     }
     func getWeiXinCodeFinishedWithResp(resp: BaseResp) {
-        if resp.errCode == 0 {
+        if resp.isKindOfClass(SendAuthResp) && resp.errCode == 0 {
             let aresp = resp as! SendAuthResp
             getAccessTokenWithCode(aresp.code)
         }
