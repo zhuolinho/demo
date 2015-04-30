@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
     static var root: MainTabBarController?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        PicDic.picDic["*"] = UIImage(named: "DefaultAvatar")
         AppDelegate.root = window?.rootViewController as? MainTabBarController
         WXApi.registerApp("wx81be35fa8a88655e")
         EaseMob.sharedInstance().registerSDKWithAppKey("action#actiontech", apnsCertName: "actionShen")

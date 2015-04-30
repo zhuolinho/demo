@@ -32,7 +32,7 @@ class PhotosView: UIViewController, UIScrollViewDelegate,  UIActionSheetDelegate
                 var imageView = UIImageView(frame: CGRect(x: CGFloat(i) * view.bounds.width + 10, y: 0, width: view.bounds.width - 20, height: view.bounds.height))
                 imageView.contentMode = UIViewContentMode.ScaleAspectFit
                 if PicDic.picDic[url] == nil {
-                    imageView.image = UIImage()
+                    imageView.image = UIImage(named: "noimage2")
                 }
                 else {
                     imageView.image = PicDic.picDic[url]

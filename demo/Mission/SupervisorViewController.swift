@@ -284,6 +284,14 @@ class SupervisorViewController: UIViewController, UITableViewDataSource, UITable
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SupervisorCell
+        mark[indexPath] = !mark[indexPath]!
+        if mark[indexPath]! {
+            cell.selectButton.setImage(UIImage(named: "invite1_27"), forState: UIControlState.Normal)
+        }
+        else {
+            cell.selectButton.setImage(UIImage(named: "invite1_21"), forState: UIControlState.Normal)
+        }
     }
     /*
     // MARK: - Navigation

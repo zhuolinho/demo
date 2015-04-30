@@ -213,11 +213,11 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                         cell.mainImageView.image = PicDic.picDic[url]
                     }
                     else {
-                        cell.mainImageView.image = UIImage()
+                        cell.mainImageView.image = UIImage(named: "noimage2")
                     }
                 }
                 else {
-                    cell.mainImageView.image = UIImage()
+                    cell.mainImageView.image = UIImage(named: "noimage1")
                 }
                 return cell
             }
@@ -319,11 +319,11 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                         cell.mainImageView.image = PicDic.picDic[url]
                     }
                     else {
-                        cell.mainImageView.image = UIImage()
+                        cell.mainImageView.image = UIImage(named: "noimage2")
                     }
                 }
                 else {
-                    cell.mainImageView.image = UIImage()
+                    cell.mainImageView.image = UIImage(named: "noimage1")
                 }
                 return cell
             }

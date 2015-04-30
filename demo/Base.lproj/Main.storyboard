@@ -745,9 +745,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1Y-CZ-N8f">
-                                <rect key="frame" x="102" y="148" width="117" height="117"/>
-                                <state key="normal" title="健身运动" backgroundImage="new_task1_03">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1Y-CZ-N8f">
+                                <rect key="frame" x="98" y="148" width="126" height="107"/>
+                                <state key="normal" image="task_03">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -755,9 +755,9 @@
                                     <segue destination="HqB-vv-JAd" kind="push" id="64E-wz-fJD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m98-7Q-hTw">
-                                <rect key="frame" x="102" y="438" width="117" height="117"/>
-                                <state key="normal" title="减肥塑身" backgroundImage="new_task1_03">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m98-7Q-hTw">
+                                <rect key="frame" x="103" y="355" width="126" height="100"/>
+                                <state key="normal" image="task_08">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -774,9 +774,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eat-UU-WnC">
-                                <rect key="frame" x="102" y="298" width="117" height="117"/>
-                                <state key="normal" title="早睡早起" backgroundImage="new_task1_03">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eat-UU-WnC">
+                                <rect key="frame" x="158" y="235" width="126" height="97"/>
+                                <state key="normal" image="task_06">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -784,14 +784,39 @@
                                     <segue destination="buA-Tt-daA" kind="push" id="jRr-Ct-KUH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="健身运动" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q55-2o-yiP">
+                                <rect key="frame" x="126" y="263" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.92941176469999998" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="早睡早起" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etW-1u-LWi">
+                                <rect key="frame" x="126" y="401" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.92941176469999998" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="每日早餐" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTK-5r-Cui">
+                                <rect key="frame" x="126" y="473" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.92941176469999998" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="m98-7Q-hTw" secondAttribute="centerX" id="3Ie-an-WlN"/>
+                            <constraint firstItem="etW-1u-LWi" firstAttribute="top" secondItem="Eat-UU-WnC" secondAttribute="bottom" id="CD4-uO-KLC"/>
+                            <constraint firstItem="q55-2o-yiP" firstAttribute="top" secondItem="g1Y-CZ-N8f" secondAttribute="bottom" id="T6a-YP-x4z"/>
+                            <constraint firstAttribute="centerX" secondItem="etW-1u-LWi" secondAttribute="centerX" id="byE-8C-TDJ"/>
+                            <constraint firstItem="g1Y-CZ-N8f" firstAttribute="top" secondItem="yYU-YF-YcX" secondAttribute="bottom" constant="26" id="c2l-c9-LkH"/>
+                            <constraint firstAttribute="centerX" secondItem="q55-2o-yiP" secondAttribute="centerX" id="ctd-z4-IEp"/>
                             <constraint firstItem="Eat-UU-WnC" firstAttribute="top" secondItem="g1Y-CZ-N8f" secondAttribute="bottom" constant="33" id="eRX-Pu-pI1"/>
+                            <constraint firstItem="WTK-5r-Cui" firstAttribute="top" secondItem="m98-7Q-hTw" secondAttribute="bottom" id="g6J-Br-lzs"/>
                             <constraint firstAttribute="centerX" secondItem="g1Y-CZ-N8f" secondAttribute="centerX" id="gA7-Kw-bzA"/>
                             <constraint firstItem="m98-7Q-hTw" firstAttribute="top" secondItem="Eat-UU-WnC" secondAttribute="bottom" constant="33" id="qtA-sF-dAe"/>
                             <constraint firstAttribute="centerX" secondItem="yYU-YF-YcX" secondAttribute="centerX" id="wBi-Xf-Smr"/>
+                            <constraint firstAttribute="centerX" secondItem="WTK-5r-Cui" secondAttribute="centerX" id="wbe-Wa-gFP"/>
                             <constraint firstAttribute="centerX" secondItem="Eat-UU-WnC" secondAttribute="centerX" id="xVg-pb-gq2"/>
                         </constraints>
                     </view>
@@ -1694,6 +1719,36 @@
             </objects>
             <point key="canvasLocation" x="2960" y="2846"/>
         </scene>
+        <!--关于我们-->
+        <scene sceneID="ENl-sN-HgN">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="Ece-R6-tzO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ihh-io-CPP"/>
+                        <viewControllerLayoutGuide type="bottom" id="ODW-cl-EU0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G2d-1i-2BP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutUs" translatesAutoresizingMaskIntoConstraints="NO" id="7lS-Zr-Iip">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7lS-Zr-Iip" firstAttribute="top" secondItem="Ihh-io-CPP" secondAttribute="bottom" id="BuA-P8-gNo"/>
+                            <constraint firstAttribute="bottom" secondItem="7lS-Zr-Iip" secondAttribute="bottom" id="EI6-Mg-wlK"/>
+                            <constraint firstItem="7lS-Zr-Iip" firstAttribute="leading" secondItem="G2d-1i-2BP" secondAttribute="leading" id="hNU-Jk-QON"/>
+                            <constraint firstAttribute="trailing" secondItem="7lS-Zr-Iip" secondAttribute="trailing" id="qsN-2s-Mlt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="关于我们" id="SYv-yd-IzO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4sW-E5-tow" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4223" y="2189"/>
+        </scene>
         <!--发布证据-->
         <scene sceneID="2GA-sE-Xlj">
             <objects>
@@ -2548,6 +2603,9 @@
                                                     <state key="normal" backgroundImage="about_us.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="Ece-R6-tzO" kind="push" id="hFR-BZ-MD9"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1k-w7-3gF">
                                                     <rect key="frame" x="262" y="154" width="30" height="30"/>
@@ -2816,18 +2874,6 @@
                         <sections>
                             <tableViewSection headerTitle="" id="jyE-vx-ne0">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Rtm-0F-MHj">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rtm-0F-MHj" id="cbZ-8r-m5D">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fSe-2x-PbQ">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSe-2x-PbQ" id="b7X-D7-V3U">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="rEe-R7-cfS" style="IBUITableViewCellStyleDefault" id="qBD-yu-xM9">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qBD-yu-xM9" id="RTT-GR-t70">
@@ -4153,6 +4199,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AboutUs" width="640" height="1036"/>
         <image name="about_us.png" width="425" height="425"/>
         <image name="ccccc" width="84" height="55"/>
         <image name="charge.png" width="425" height="425"/>
@@ -4177,7 +4224,6 @@
         <image name="moment1_06" width="27" height="27"/>
         <image name="moment1_12" width="14" height="12"/>
         <image name="moment1_13" width="12" height="12"/>
-        <image name="new_task1_03" width="117" height="117"/>
         <image name="new_task_03" width="39" height="39"/>
         <image name="new_task_07" width="86" height="86"/>
         <image name="new_task_11" width="14" height="18"/>
@@ -4185,6 +4231,9 @@
         <image name="new_task_19" width="16" height="23"/>
         <image name="setting.png" width="425" height="425"/>
         <image name="share.png" width="425" height="425"/>
+        <image name="task_03" width="126" height="107"/>
+        <image name="task_06" width="126" height="97"/>
+        <image name="task_08" width="126" height="100"/>
         <image name="task_15" width="21" height="29"/>
         <image name="task_5" width="13" height="12"/>
         <image name="task_6" width="13" height="12"/>
