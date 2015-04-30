@@ -86,11 +86,11 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                             imageView.image = PicDic.picDic[url]
                         }
                         else {
-                            imageView.image = UIImage()
+                            imageView.image = UIImage(named: "noimage2")
                         }
                     }
                     else {
-                        imageView.image = UIImage()
+                        imageView.image = UIImage(named: "noimage1")
                     }
                     if missions[mark]["status"] as! Int == 2 {
                         markView.hidden = false
@@ -249,11 +249,11 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                         imageView.image = PicDic.picDic[url]
                     }
                     else {
-                        imageView.image = UIImage()
+                        imageView.image = UIImage(named: "noimage2")
                     }
                 }
                 else {
-                    imageView.image = UIImage()
+                    imageView.image = UIImage(named: "noimage1")
                 }
                 if missions[mark]["status"] as! Int == 2 {
                     markView.hidden = false

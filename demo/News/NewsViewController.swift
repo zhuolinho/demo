@@ -157,7 +157,13 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             }
             else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MainImageCell", forIndexPath: indexPath) as! MainImageCell
-                cell.countLabel.text = String(pics.count)
+                if pics.count > 0 {
+                    cell.countLabel.text = String(pics.count)
+                    cell.countLabel.hidden = false
+                }
+                else {
+                    cell.countLabel.hidden = true
+                }
                 cell.countLabel.layer.cornerRadius = 3
                 cell.countLabel.layer.masksToBounds = true
                 cell.photosData = pics
@@ -168,12 +174,12 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                         cell.mainImageView.image = PicDic.picDic[url]
                     }
                     else {
-                        cell.mainImageView.image = UIImage()
+                        cell.mainImageView.image = UIImage(named: "noimage2")
                     }
                 }
                 else {
 //                    cell.userInteractionEnabled = false
-                    cell.mainImageView.image = UIImage()
+                    cell.mainImageView.image = UIImage(named: "noimage1")
                 }
                 return cell
             }

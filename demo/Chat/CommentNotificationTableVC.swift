@@ -113,8 +113,11 @@ class CommentNotificationTableVC: UITableViewController, APIProtocol {
         else {
             avatar.image = PicDic.picDic[CommentNotification[indexPath.section]["avatar"] as! String]
         }
-        if PicDic.picDic[CommentNotification[indexPath.section]["pic"] as! String] == nil {
-            missionImage.image = UIImage()
+        if CommentNotification[indexPath.section]["pic"] as! String == "" {
+            missionImage.image = UIImage(named: "noimage1")
+        }
+        else if PicDic.picDic[CommentNotification[indexPath.section]["pic"] as! String] == nil {
+            missionImage.image = UIImage(named: "noimage2")
         }
         else {
             missionImage.image = PicDic.picDic[CommentNotification[indexPath.section]["pic"] as! String]

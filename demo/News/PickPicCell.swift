@@ -34,7 +34,7 @@ class PickPicCell: UITableViewCell, UICollectionViewDataSource {
         let imageView = cell.viewWithTag(1) as! UIImageView
         let url = dataSource[indexPath.row]["url"] as! String
         if PicDic.picDic[url] == nil {
-            imageView.image = UIImage()
+            imageView.image = UIImage(named: "noimage2")
         }
         else {
             imageView.image = PicDic.picDic[url]
