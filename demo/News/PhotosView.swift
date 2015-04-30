@@ -78,6 +78,12 @@ class PhotosView: UIViewController, UIScrollViewDelegate,  UIActionSheetDelegate
                 UIImageWriteToSavedPhotosAlbum(PicDic.picDic[url], self, "image:didFinishSavingWithError:contextInfo:", nil)
             }
         }
+        else if buttonIndex == 1 {
+            let url = photosData[pageControl.currentPage]["url"] as! String
+            if PicDic.picDic[url] != nil {
+//                RespImageContent(PicDic.picDic[url]!, url)
+            }
+        }
     }
     func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
         if error != nil {
