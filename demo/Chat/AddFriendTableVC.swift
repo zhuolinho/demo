@@ -83,6 +83,7 @@ class AddFriendTableVC: UITableViewController, APIProtocol, UISearchBarDelegate 
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         let res = data["result"] as! NSDictionary
+        friendInfo.removeAll(keepCapacity: true)
         friendInfo.append(res)
         let url = res["avatar"] as! String
         if PicDic.picDic[url] == nil {

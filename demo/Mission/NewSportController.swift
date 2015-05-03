@@ -11,7 +11,7 @@ import AssetsLibrary
 import CoreLocation
 import MapKit
 
-class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate, StringsPass {
+class NewSportController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate, StringsPass, UITextFieldDelegate {
     
     @IBOutlet weak var sloganTF: UITextField!
     @IBOutlet weak var picCollection: UICollectionView!
@@ -62,11 +62,18 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         activity.hidesWhenStopped = true
         view.addSubview(activity)
         locationManger.startUpdatingLocation()
+        sloganTF.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        picker.hidden = true
+        return true
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -11,7 +11,7 @@ import AssetsLibrary
 import CoreLocation
 import MapKit
 
-class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate, StringsPass {
+class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate, StringsPass, UITextFieldDelegate {
     
     @IBOutlet weak var sloganTF: UITextField!
     @IBOutlet weak var picCollection: UICollectionView!
@@ -62,6 +62,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
         activity.hidesWhenStopped = true
         view.addSubview(activity)
         locationManger.startUpdatingLocation()
+        sloganTF.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -79,8 +80,14 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
         }
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        picker.hidden = true
+        return true
+    }
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        timesLabel.text = String(row)
+        timesLabel.text = String(row + 6)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -135,13 +142,13 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
     }
     // MARK: - Table view data source
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 24
+        return 5
     }
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return String(row)
+        return String(row + 6)
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if picArray.count >= 8 {

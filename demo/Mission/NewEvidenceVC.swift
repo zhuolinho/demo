@@ -11,7 +11,7 @@ import AssetsLibrary
 import CoreLocation
 import MapKit
 
-class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate  {
+class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, APIProtocol, UIAlertViewDelegate, UITextFieldDelegate {
     
     var senderInfo = [NSObject : AnyObject]()
     var missionInfo = NSDictionary()
@@ -55,6 +55,7 @@ class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollec
         picCollection.dataSource = self
         imagePicker.delegate = self
         addEvidence.delegate = self
+        sloganTF.delegate = self
         if senderInfo[UIImagePickerControllerOriginalImage] != nil {
             imagePickerController(UIImagePickerController(), didFinishPickingMediaWithInfo: senderInfo)
         }
@@ -70,6 +71,10 @@ class NewEvidenceVC: UITableViewController, UICollectionViewDataSource, UICollec
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         sloganTF.resignFirstResponder()
