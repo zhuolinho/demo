@@ -335,7 +335,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             vc.initNum = 1
             vc.mid = sturt["mid"] as! Int
         }
-        if indexPath.row != 6 {
+        if indexPath.row != 6 && indexPath.row != 1 {
             navigationController?.pushViewController(vc, animated: true)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

@@ -8,12 +8,14 @@
 
 import UIKit
 
-class ApplyTableVC: ApplyViewController, ApplyFriendCellDelegate {
+class ApplyTableVC: ApplyViewController, ApplyFriendCellDelegate, APIProtocol {
     var api = API()
+    var rowDidSelect = -1
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "通知"
         (tabBarController as! MainTabBarController).buddyRequest = false
+        api.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -129,6 +131,37 @@ class ApplyTableVC: ApplyViewController, ApplyFriendCellDelegate {
     func applyCellAddFriendAtIndexPath(indexPath: NSIndexPath!) {
         if indexPath.row < super.dataSource.count {
             let entity = super.dataSource[indexPath.row] as! ApplyEntity
+//            var error = AutoreleasingUnsafeMutablePointer<EMError?>()
+//            EaseMob.sharedInstance().chatManager.acceptBuddyRequest(entity.applicantUsername, error: error)
+//            if error == nil {
+//                self.dataSource.removeObject(entity)
+//                var loginInfo = EaseMob.sharedInstance().chatManager.loginInfo as NSDictionary
+//                var loginUsername = loginInfo.objectForKey(kSDKUsername) as! String
+//                InvitationManager.sharedInstance().removeInvitation(entity, loginUser: loginUsername)
+//                self.tableView.reloadData()
+                rowDidSelect = indexPath.row
+                api.addFriend(entity.applicantUsername)
+//            }
+//            else{
+//                let alert = UIAlertView(title: "网络错误", message: "", delegate: nil, cancelButtonTitle: "确定")
+//                alert.show()
+//            }
+        }
+        else {
+            println("fuckyou")
+        }
+    }
+    func applyCellRefuseFriendAtIndexPath(indexPath: NSIndexPath!) {
+    }
+    
+    func didReceiveAPIErrorOf(api: API, errno: Int) {
+        let alert = UIAlertView(title: "网络错误", message: "", delegate: nil, cancelButtonTitle: "确定")
+        alert.show()
+    }
+    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
+        let res = data["result"] as! Int
+        if res == 1 {
+            let entity = super.dataSource[rowDidSelect] as! ApplyEntity
             var error = AutoreleasingUnsafeMutablePointer<EMError?>()
             EaseMob.sharedInstance().chatManager.acceptBuddyRequest(entity.applicantUsername, error: error)
             if error == nil {
@@ -136,19 +169,16 @@ class ApplyTableVC: ApplyViewController, ApplyFriendCellDelegate {
                 var loginInfo = EaseMob.sharedInstance().chatManager.loginInfo as NSDictionary
                 var loginUsername = loginInfo.objectForKey(kSDKUsername) as! String
                 InvitationManager.sharedInstance().removeInvitation(entity, loginUser: loginUsername)
-                self.tableView.reloadData()
-                api.addFriend(entity.applicantUsername)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
             }
             else{
                 let alert = UIAlertView(title: "网络错误", message: "", delegate: nil, cancelButtonTitle: "确定")
                 alert.show()
             }
+
         }
-        else {
-            println("fuckyou")
-        }
-    }
-    func applyCellRefuseFriendAtIndexPath(indexPath: NSIndexPath!) {
     }
     /*
     // Override to support conditional editing of the table view.
