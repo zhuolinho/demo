@@ -18,10 +18,6 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate, APIProtoco
         super.viewDidLoad()
         tabBar.tintColor = UIColor.orangeColor()
         EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
-        let vc = self.viewControllers![2] as! UIViewController
-        if UIApplication.sharedApplication().applicationIconBadgeNumber != 0 {
-            vc.tabBarItem.badgeValue = String(UIApplication.sharedApplication().applicationIconBadgeNumber)
-        }
         api.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -48,6 +44,9 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate, APIProtoco
         // Dispose of any resources that can be recreated.
     }
     func didUnreadMessagesCountChanged() {
+        setupUnreadMessageCount()
+    }
+    func didUpdateConversationList(conversationList: [AnyObject]!) {
         setupUnreadMessageCount()
     }
     func setupUnreadMessageCount() {
@@ -89,9 +88,11 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate, APIProtoco
         notification.soundName = UILocalNotificationDefaultSoundName
         //发送通知
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        UIApplication.sharedApplication().applicationIconBadgeNumber += 1
         if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
             EaseMob.sharedInstance().deviceManager.asyncPlayVibration()
+        }
+        else {
+            UIApplication.sharedApplication().applicationIconBadgeNumber += 1
         }
         buddyRequest = true
     }

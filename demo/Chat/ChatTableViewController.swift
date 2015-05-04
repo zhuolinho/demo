@@ -51,11 +51,10 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate, APIP
         if unreadCommentNum == 0 || unreadMissionNum == 0 {
             api.getMyInfo()
         }
-        self.refreshDataSource()
+        refreshDataSource()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        didUnreadMessagesCountChanged()
         EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
         api.delegate = self
         // Uncomment the following line to preserve selection between presentations
