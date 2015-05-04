@@ -21,6 +21,25 @@ class MeViewController: UITableViewController, APIProtocol {
     @IBAction func shareButtonClick(sender: UIButton) {
         RespImageContent(UIImage())
     }
+    @IBAction func inviteButtonClick(sender: UIButton) {
+//        let resp = SendMessageToWXReq()
+//        resp.text = "https://itunes.apple.com/cn/app/meng-huan-xi-you/id940547441"
+//        resp.bText = true
+//        resp.scene = 0
+//        WXApi.sendReq(resp)
+        let message = WXMediaMessage()
+        message.title = "千万别下载这游戏"
+        message.description = "这种炒冷饭的作品也能登顶？国产手游什么时候才能雄起？"
+        message.setThumbImage(UIImage(named: "DefaultAvatar"))
+        let ext = WXWebpageObject()
+        ext.webpageUrl = "https://itunes.apple.com/cn/app/meng-huan-xi-you/id940547441"
+        message.mediaObject = ext
+        let rep = SendMessageToWXReq()
+        rep.bText = false
+        rep.message = message
+        rep.scene = 0
+        WXApi.sendReq(rep)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         api.delegate = self
