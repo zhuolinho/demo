@@ -152,7 +152,7 @@ class MyVoteViewController: UIViewController, APIProtocol, UITableViewDataSource
                 let endTime = formatSever.dateFromString(res["endTime"] as! String)
                 let hour = Int(endTime!.timeIntervalSinceNow / 3600)
                 let charge = res["charge"] as! Int
-                if hour <= 0 {
+                if res["status"] as! Int != 1 && res["status"] as! Int != 0 {
                     cell.backgroundColor = UIColor.lightGrayColor()
                     timeLabel.text = "已完成"
                 }

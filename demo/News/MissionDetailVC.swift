@@ -251,7 +251,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let endTime = formatSever.dateFromString(stuct["endTime"] as! String)
                 let hour = Int(endTime!.timeIntervalSinceNow / 3600)
-                if hour <= 0 {
+                if stuct["status"] as! Int != 1 && stuct["status"] as! Int != 0 {
                     cell.timeLabel.text = "已完成"
                 }
                 else {
@@ -343,6 +343,12 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.superviseButton.hidden = true
                 cell.lockImageView.hidden = true
                 cell.evidentState.hidden = false
+                if evident["status"] as! Int != 1 && evident["status"] as! Int != 0 {
+                    cell.evidentState.text = "已完成"
+                }
+                else {
+                    cell.evidentState.text = "进行中"
+                }
                 cell.wtfLabel.text = "任务状态"
                 cell.backgroundColor = UIColor.blackColor()
                 cell.typeLabel.text = "证据拍摄时间"

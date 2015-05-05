@@ -179,6 +179,9 @@ class API: NSObject {
         let tokenData = ["token": API.userInfo.token]
         get(host + "getMyInfo.action?token=" + API.userInfo.token)
     }
+    func getMyMissionsUidAndTitle() {
+        get(host + "getMyMissionsUidAndTitle.action?token=" + API.userInfo.token)
+    }
     func setNickname(name: String) {
         let d = ["token": API.userInfo.token, "nickname": name]
         sendURLEncodedForm(action: "setNickname.action", data: d, image: nil)
