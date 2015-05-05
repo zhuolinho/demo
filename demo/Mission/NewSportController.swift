@@ -86,7 +86,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         }
     }
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        timesLabel.text = String(row)
+        if row < 7 {
+            timesLabel.text = String(row + 2)
+        }
+        else {
+            timesLabel.text = "9+"
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -141,13 +146,18 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     }
     // MARK: - Table view data source
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return 8
     }
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return String(row)
+        if row < 7 {
+            return String(row + 2)
+        }
+        else {
+            return "9+"
+        }
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if picArray.count >= 8 {

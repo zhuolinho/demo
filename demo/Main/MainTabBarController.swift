@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate, APIProtoco
     override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent) {
     }
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
-        api.getMyMissions(0)
+        api.getMyMissionsUidAndTitle()
     }
     override func motionCancelled(motion: UIEventSubtype, withEvent event: UIEvent) {
         println("cancel")
@@ -155,10 +155,16 @@ class MainTabBarController: UITabBarController, IChatManagerDelegate, APIProtoco
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         let res = data["result"] as! [NSDictionary]
-        if res.count > 0 {
+        var temp = [NSDictionary]()
+        for item in res {
+            if item["id"] as! Int != -1 {
+                temp.append(item)
+            }
+        }
+        if temp.count > 0 {
             let vc = storyboard?.instantiateViewControllerWithIdentifier("fuckyou") as! UINavigationController
             let missionsVC = vc.topViewController as! SelectMissionTableViewController
-            missionsVC.missions = res
+            missionsVC.missions = temp
             self.presentViewController(vc, animated: true, completion: nil)
         }
     }

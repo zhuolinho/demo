@@ -121,7 +121,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                     let endTime = formatSever.dateFromString(missions[mark]["endTime"] as! String)
                     let hour = Int(endTime!.timeIntervalSinceNow / 3600)
                     let charge = missions[mark]["charge"] as! Int
-                    if hour <= 0 {
+                    if missions[mark]["status"] as! Int != 1 && missions[mark]["status"] as! Int != 0 {
                         cell.backgroundColor = UIColor.lightGrayColor()
                         timeLabel.text = "已完成"
                     }
@@ -139,9 +139,11 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             if indexPath.row < missions.count {
                 var rightButtons = [UIButton]()
                 let addButton = UIButton()
-                addButton.setImage(UIImage(named: "addButton"), forState: UIControlState.Normal)
-                addButton.backgroundColor = UIColor.clearColor()
-                rightButtons.append(addButton)
+                if missions[indexPath.row]["status"] as! Int == 0 || missions[indexPath.row]["status"] as! Int == 1 {
+                    addButton.setImage(UIImage(named: "addButton"), forState: UIControlState.Normal)
+                    addButton.backgroundColor = UIColor.clearColor()
+                    rightButtons.append(addButton)
+                }
                 let deleteButton = UIButton()
                 deleteButton.setImage(UIImage(named: "deleteButton"), forState: UIControlState.Normal)
                 deleteButton.backgroundColor = UIColor.clearColor()
@@ -157,7 +159,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         }
     }
     func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
-        if index == 0 {
+        if index == 0 && (missions[cell.tag]["status"] as! Int == 0 || missions[cell.tag]["status"] as! Int == 1) {
             var changeAvatarActionSheet = UIActionSheet()
             changeAvatarActionSheet.delegate = self
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -230,11 +232,13 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             let endTime = formatSever.dateFromString(missions[indexPath.row]["endTime"] as! String)
             let charge = missions[indexPath.row]["charge"] as! Int
             let hour = Int(endTime!.timeIntervalSinceNow / 3600)
-            if hour <= 0 {
+            if missions[mark]["status"] as! Int != 1 && missions[mark]["status"] as! Int != 0 {
                 timeLabel.text = "已完成"
+                cell?.backgroundColor = UIColor.lightGrayColor()
             }
             else {
                 timeLabel.text = "\(hour / 24)天\(hour % 24)小时"
+                cell?.backgroundColor = UIColor.orangeColor()
             }
             chargeLabel.text = String(charge)
             let cell1 = viewTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
