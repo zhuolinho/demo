@@ -154,7 +154,6 @@ class SupervisorViewController: UIViewController, UITableViewDataSource, UITable
         dataSource.removeAllObjects()
         contactsSource.removeAllObjects()
         sortedDataSource.removeAllObjects()
-        
         var buddy:EMBuddy
         for buddy in buddyList {
             if buddy.followState.value != eEMBuddyFollowState_NotFollowed.value {

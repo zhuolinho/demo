@@ -240,12 +240,12 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 }
                 else {
                     cell.superviseButton.hidden = true
-                    cell.wtfLabel.text = "已监督"
+                    cell.wtfLabel.text = "监督中"
                     cell.lockImageView.hidden = false
                     cell.evidentState.hidden = true
                 }
                 cell.backgroundColor = UIColor.orangeColor()
-                cell.typeLabel.text = "任务剩余时间"
+                cell.typeLabel.text = "距离任务结束"
                 cell.meneyLabel.text = String(charge)
                 let formatSever = NSDateFormatter()
                 formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"

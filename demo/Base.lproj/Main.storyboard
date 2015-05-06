@@ -785,7 +785,7 @@
                                     <segue destination="buA-Tt-daA" kind="push" id="jRr-Ct-KUH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="健身运动" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q55-2o-yiP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="运动减肥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q55-2o-yiP">
                                 <rect key="frame" x="126" y="263" width="68" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.92941176469999998" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -797,7 +797,7 @@
                                 <color key="textColor" red="0.92941176469999998" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="每日早餐" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTK-5r-Cui">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="早餐打卡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTK-5r-Cui">
                                 <rect key="frame" x="126" y="473" width="68" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.92941176469999998" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -844,14 +844,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="任务详情－健身运动" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mr-kG-9lp">
-                                            <rect key="frame" x="8" y="8" width="153" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="16" y="8" width="153" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我保证未来两周内要去3次健身房。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-K8-KCQ">
-                                            <rect key="frame" x="8" y="33" width="265" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="为了告别癌症，我保证两周内每天不晚于10点起床。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-K8-KCQ">
+                                            <rect key="frame" x="16" y="34" width="294" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -873,8 +873,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我保证未来两周内要9点钟起床。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWi-4f-YYK">
-                                            <rect key="frame" x="20" y="33" width="265" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <rect key="frame" x="20" y="33" width="300" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -921,7 +921,7 @@
             </objects>
             <point key="canvasLocation" x="1314" y="2846"/>
         </scene>
-        <!--新建健身运动-->
+        <!--新建减肥运动-->
         <scene sceneID="7p9-sr-0vu">
             <objects>
                 <tableViewController id="HqB-vv-JAd" customClass="NewSportController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -971,7 +971,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ca-ck-DuV" id="PLL-GK-N9a">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我保证未来两周内要去___次健身房/球场/游泳池" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70I-Ze-jEQ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="迈开腿！两周内我保证运动___次，求监督！" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70I-Ze-jEQ">
                                                     <rect key="frame" x="12" y="11" width="361" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -985,7 +985,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGY-Ki-4oD">
-                                                    <rect key="frame" x="153" y="11" width="21" height="21"/>
+                                                    <rect key="frame" x="181" y="11" width="21" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1121,7 +1121,7 @@
                             <outlet property="delegate" destination="HqB-vv-JAd" id="K0Z-zP-zjs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="新建健身运动" id="iCf-uj-khh"/>
+                    <navigationItem key="navigationItem" title="新建减肥运动" id="iCf-uj-khh"/>
                     <connections>
                         <outlet property="meneyTextField" destination="bkj-yL-2WA" id="4xY-G0-DyM"/>
                         <outlet property="picCollection" destination="s1O-bn-TQk" id="24j-Sb-gkc"/>
@@ -1790,7 +1790,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4pT-mv-mXL" id="dzJ-RM-Kgi">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="上传证据，证明你的毅力！" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3CU-Bh-CEo">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="留完证据，再说点什么吧～" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3CU-Bh-CEo">
                                                     <rect key="frame" x="15" y="0.0" width="305" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1882,7 +1882,7 @@
                             <outlet property="delegate" destination="sdb-5M-HqO" id="IuF-aY-kjn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="发布证据" id="nnP-mG-E6A">
+                    <navigationItem key="navigationItem" title="晒证据" id="nnP-mG-E6A">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="6Gg-9K-3mw">
                             <connections>
                                 <action selector="backButtonClick:" destination="sdb-5M-HqO" id="iGW-rE-eDd"/>
@@ -2482,7 +2482,7 @@
         <scene sceneID="yjm-GC-Wh4">
             <objects>
                 <tableViewController id="3wD-1a-O04" customClass="MeViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1mV-XQ-kSi">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1mV-XQ-kSi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -2560,49 +2560,53 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Vp-l4-wcS" id="Udq-tR-lWN">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ck-EF-HfO">
-                                                    <rect key="frame" x="0.0" y="2" width="91" height="91"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ck-EF-HfO">
+                                                    <rect key="frame" x="0.0" y="2" width="84" height="84"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="9Ck-EF-HfO" secondAttribute="height" multiplier="1:1" id="C0n-dn-eLK"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="charge.png">
+                                                    <state key="normal" image="me1_03">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <segue destination="Icr-UV-Dba" kind="push" id="nTP-lA-aFv"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bk1-2X-wOS">
-                                                    <rect key="frame" x="104" y="2" width="99" height="90"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bk1-2X-wOS">
+                                                    <rect key="frame" x="104" y="2" width="85" height="85"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Bk1-2X-wOS" secondAttribute="height" multiplier="1:1" constant="1" id="tgT-zS-shS"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="join_us.png">
+                                                    <state key="normal" image="me1_05">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="inviteButtonClick:" destination="3wD-1a-O04" eventType="touchUpInside" id="ywc-1O-RpC"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJk-mc-ZaJ">
-                                                    <rect key="frame" x="211" y="1" width="94" height="94"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJk-mc-ZaJ">
+                                                    <rect key="frame" x="211" y="1" width="85" height="84"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="oJk-mc-ZaJ" secondAttribute="height" multiplier="1:1" id="pqm-Ci-VFz"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="setting.png">
+                                                    <state key="normal" image="me1_16">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <segue destination="7TE-MJ-DC4" kind="push" id="me2-jA-SnP"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwl-4f-Qiu">
-                                                    <rect key="frame" x="104" y="108" width="102" height="102"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwl-4f-Qiu">
+                                                    <rect key="frame" x="104" y="108" width="85" height="85"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="uwl-4f-Qiu" secondAttribute="height" multiplier="1:1" id="1d5-iA-AdS"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="about_us.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="18"/>
+                                                    <state key="normal" image="me1_15">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
                                                         <segue destination="Ece-R6-tzO" kind="push" id="hFR-BZ-MD9"/>
@@ -2614,23 +2618,58 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uy8-03-qxD">
-                                                    <rect key="frame" x="8" y="109" width="88" height="96"/>
-                                                    <state key="normal" backgroundImage="share.png">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uy8-03-qxD">
+                                                    <rect key="frame" x="8" y="109" width="84" height="96"/>
+                                                    <state key="normal" image="me1_13">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="shareButtonClick:" destination="3wD-1a-O04" eventType="touchUpInside" id="ZXE-fU-gSv"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="充值" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsN-UR-nVX">
+                                                    <rect key="frame" x="25" y="80" width="34" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="邀请好友加入" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t71-Eh-QK9">
+                                                    <rect key="frame" x="101" y="80" width="90" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="设置" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bZ-Gt-V8j">
+                                                    <rect key="frame" x="236" y="80" width="34" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="分享到朋友圈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b49-6w-F1g">
+                                                    <rect key="frame" x="5" y="199" width="90" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="关于我们" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x35-R7-VFu">
+                                                    <rect key="frame" x="101" y="199" width="90" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Uy8-03-qxD" firstAttribute="centerX" secondItem="9Ck-EF-HfO" secondAttribute="centerX" id="0Aa-Ad-G7b"/>
                                                 <constraint firstItem="a1k-w7-3gF" firstAttribute="centerX" secondItem="oJk-mc-ZaJ" secondAttribute="centerX" id="0R0-rR-e7u"/>
+                                                <constraint firstItem="Uy8-03-qxD" firstAttribute="centerX" secondItem="b49-6w-F1g" secondAttribute="centerX" id="2OQ-60-cSn"/>
                                                 <constraint firstItem="uwl-4f-Qiu" firstAttribute="centerX" secondItem="Bk1-2X-wOS" secondAttribute="centerX" id="2mw-vo-ev5"/>
+                                                <constraint firstItem="x35-R7-VFu" firstAttribute="centerY" secondItem="b49-6w-F1g" secondAttribute="centerY" id="76Q-4e-MnV"/>
                                                 <constraint firstItem="Uy8-03-qxD" firstAttribute="height" secondItem="uwl-4f-Qiu" secondAttribute="height" id="9g7-iZ-dDN"/>
                                                 <constraint firstItem="a1k-w7-3gF" firstAttribute="top" secondItem="oJk-mc-ZaJ" secondAttribute="bottom" id="Eb9-Lh-yYc"/>
+                                                <constraint firstItem="t71-Eh-QK9" firstAttribute="centerX" secondItem="Bk1-2X-wOS" secondAttribute="centerX" constant="-0.5" id="Fab-uP-DsP"/>
                                                 <constraint firstItem="a1k-w7-3gF" firstAttribute="height" secondItem="uwl-4f-Qiu" secondAttribute="height" id="HZ2-xe-bhI"/>
+                                                <constraint firstItem="oJk-mc-ZaJ" firstAttribute="centerX" secondItem="5bZ-Gt-V8j" secondAttribute="centerX" constant="0.5" id="HgY-Sp-UDi"/>
                                                 <constraint firstItem="9Ck-EF-HfO" firstAttribute="width" secondItem="Bk1-2X-wOS" secondAttribute="width" id="Idd-wB-X5a"/>
                                                 <constraint firstItem="Bk1-2X-wOS" firstAttribute="width" secondItem="oJk-mc-ZaJ" secondAttribute="width" id="M6s-93-rCF"/>
                                                 <constraint firstItem="a1k-w7-3gF" firstAttribute="width" secondItem="uwl-4f-Qiu" secondAttribute="width" id="Maf-fh-8gQ"/>
@@ -2641,9 +2680,15 @@
                                                 <constraint firstAttribute="trailing" secondItem="oJk-mc-ZaJ" secondAttribute="trailing" id="ZEd-NT-7r1"/>
                                                 <constraint firstAttribute="centerX" secondItem="Bk1-2X-wOS" secondAttribute="centerX" id="adW-Si-kJE"/>
                                                 <constraint firstItem="Bk1-2X-wOS" firstAttribute="leading" secondItem="9Ck-EF-HfO" secondAttribute="trailing" id="c4V-4X-Wdz"/>
+                                                <constraint firstItem="x35-R7-VFu" firstAttribute="centerX" secondItem="uwl-4f-Qiu" secondAttribute="centerX" constant="-0.5" id="dvR-p5-zc2"/>
+                                                <constraint firstItem="AsN-UR-nVX" firstAttribute="centerX" secondItem="9Ck-EF-HfO" secondAttribute="centerX" id="dyr-AD-E4v"/>
                                                 <constraint firstItem="Uy8-03-qxD" firstAttribute="top" secondItem="9Ck-EF-HfO" secondAttribute="bottom" id="gcK-W5-Ybl"/>
                                                 <constraint firstItem="uwl-4f-Qiu" firstAttribute="top" secondItem="Bk1-2X-wOS" secondAttribute="bottom" id="ixT-Kg-gkl"/>
+                                                <constraint firstItem="AsN-UR-nVX" firstAttribute="top" secondItem="9Ck-EF-HfO" secondAttribute="bottom" constant="-10" id="jpw-kF-Fd0"/>
+                                                <constraint firstItem="t71-Eh-QK9" firstAttribute="centerY" secondItem="5bZ-Gt-V8j" secondAttribute="centerY" id="msR-tM-y5O"/>
                                                 <constraint firstItem="uwl-4f-Qiu" firstAttribute="width" secondItem="Bk1-2X-wOS" secondAttribute="width" id="rqm-IU-mHK"/>
+                                                <constraint firstItem="b49-6w-F1g" firstAttribute="top" secondItem="Uy8-03-qxD" secondAttribute="bottom" constant="-10" id="tTD-3V-3em"/>
+                                                <constraint firstItem="t71-Eh-QK9" firstAttribute="centerY" secondItem="AsN-UR-nVX" secondAttribute="centerY" id="vxl-1b-v8g"/>
                                                 <constraint firstItem="Uy8-03-qxD" firstAttribute="width" secondItem="uwl-4f-Qiu" secondAttribute="width" id="wAX-e2-s6V"/>
                                                 <constraint firstItem="9Ck-EF-HfO" firstAttribute="top" secondItem="Udq-tR-lWN" secondAttribute="topMargin" constant="-8" id="wBI-d9-eO0"/>
                                             </constraints>
@@ -3251,7 +3296,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="任务剩余时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKB-hP-TFI">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="距离任务结束" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKB-hP-TFI">
                                                     <rect key="frame" x="8" y="0.0" width="82" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3286,9 +3331,9 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxd-5v-XNX">
-                                                    <rect key="frame" x="20" y="22" width="300" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="为了告别癌症，我保证两周内每天不晚于10点起床。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxd-5v-XNX">
+                                                    <rect key="frame" x="20" y="25" width="301" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -3520,15 +3565,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wsw-nx-N7m" id="gr2-Gt-hdB">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我保证未来两周内要___点前起床" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvV-Wr-0a7">
-                                                    <rect key="frame" x="15" y="11" width="264" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="为了告别癌症，我保证两周内每天不晚于___点起床。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvV-Wr-0a7">
+                                                    <rect key="frame" x="12" y="11" width="330" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsB-eE-XXz">
-                                                    <rect key="frame" x="171" y="11" width="20" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="246" y="11" width="20" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -3788,7 +3833,7 @@
             </objects>
             <point key="canvasLocation" x="3372" y="931"/>
         </scene>
-        <!--新建每天早餐-->
+        <!--新建早餐打卡-->
         <scene sceneID="l6G-qd-gGl">
             <objects>
                 <tableViewController id="XWb-2d-IR4" customClass="NewKeepFitViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -3838,9 +3883,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GB4-Ah-aiW" id="nLz-W7-VJf">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我保证未来两周内要每天吃早餐" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iF0-qH-vNj">
-                                                    <rect key="frame" x="15" y="11" width="264" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我决定用晒早餐来迎接每个健康早晨，一周为期！" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iF0-qH-vNj">
+                                                    <rect key="frame" x="12" y="11" width="374" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -3988,7 +4033,7 @@
                             <outlet property="delegate" destination="XWb-2d-IR4" id="xlG-zr-NCK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="新建每天早餐" id="n6n-iP-eck"/>
+                    <navigationItem key="navigationItem" title="新建早餐打卡" id="n6n-iP-eck"/>
                     <connections>
                         <outlet property="meneyTextField" destination="ipl-Pm-xQf" id="a60-pt-yzw"/>
                         <outlet property="picCollection" destination="L2i-gc-wxZ" id="0pe-CX-Yxy"/>
@@ -4204,15 +4249,17 @@
     </scenes>
     <resources>
         <image name="AboutUs" width="640" height="1036"/>
-        <image name="about_us.png" width="425" height="425"/>
         <image name="ccccc" width="84" height="55"/>
-        <image name="charge.png" width="425" height="425"/>
         <image name="friend-list2_03" width="24" height="23"/>
         <image name="friend-list2_06" width="28" height="28"/>
         <image name="invite1_21" width="27" height="27"/>
-        <image name="join_us.png" width="425" height="425"/>
         <image name="me" width="21" height="22"/>
         <image name="me11_35" width="25" height="24"/>
+        <image name="me1_03" width="84" height="84"/>
+        <image name="me1_05" width="85" height="85"/>
+        <image name="me1_13" width="84" height="84"/>
+        <image name="me1_15" width="85" height="85"/>
+        <image name="me1_16" width="85" height="84"/>
         <image name="me_06" width="10" height="14"/>
         <image name="me_13" width="13" height="11"/>
         <image name="me_18" width="26" height="26"/>
@@ -4233,8 +4280,6 @@
         <image name="new_task_11" width="14" height="18"/>
         <image name="new_task_13" width="333" height="64"/>
         <image name="new_task_19" width="16" height="23"/>
-        <image name="setting.png" width="425" height="425"/>
-        <image name="share.png" width="425" height="425"/>
         <image name="task_03" width="126" height="107"/>
         <image name="task_06" width="126" height="97"/>
         <image name="task_08" width="126" height="100"/>
@@ -4252,8 +4297,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="UJs-ZU-hfv"/>
-        <segue reference="1vo-T2-KlF"/>
         <segue reference="40z-gd-eJ2"/>
         <segue reference="AgV-5s-fC9"/>
+        <segue reference="1vo-T2-KlF"/>
     </inferredMetricsTieBreakers>
 </document>
