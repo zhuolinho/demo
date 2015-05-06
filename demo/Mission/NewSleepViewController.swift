@@ -343,7 +343,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
                     if timesLabel.text != "" {
                         times = timesLabel.text!.toInt()!
                     }
-                    let content = "为了告别癌症，我保证两周内每天不晚于\(times)点起床。"
+                    let content = "为了告别懒癌，我保证两周内每天不晚于\(times)点起床。"
                     var slogan = "*"
                     if sloganTF.text != "" {
                         slogan = sloganTF.text
@@ -389,7 +389,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
                 if timesLabel.text != "" {
                     times = timesLabel.text!.toInt()!
                 }
-                let content = "为了告别癌症，我保证两周内每天不晚于\(times)点起床。"
+                let content = "为了告别懒癌，我保证两周内每天不晚于\(times)点起床。"
                 var slogan = "*"
                 if sloganTF.text != "" {
                     slogan = sloganTF.text
@@ -507,7 +507,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
         if timesLabel.text != "" {
             times = timesLabel.text!.toInt()!
         }
-        let content = "为了告别癌症，我保证两周内每天不晚于\(times)点起床。"
+        let content = "为了告别懒癌，我保证两周内每天不晚于\(times)点起床。"
         var slogan = "*"
         if sloganTF.text != "" {
             slogan = sloganTF.text

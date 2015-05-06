@@ -80,6 +80,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmentCtrl.selectedSegmentIndex == 0 {
+//            let comments = stuct["comment"] as! [NSDictionary]
             return 7
         }
         else if segmentCtrl.selectedSegmentIndex == 1 {
@@ -290,6 +291,16 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 }
                 cell.likeButton.tag = indexPath.section
                 cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+                cell.commentButton.addTarget(self, action: "commentButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+                return cell
+            }
+            else if indexPath.row > 6 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
+                let comments = stuct["comment"] as! [NSDictionary]
+                let comment = comments[indexPath.row - 7]
+                let nickname = comment["nickname"] as! String
+                let content = comment["content"] as! String
+                cell.commentLabel.text = nickname + "：" + content
                 return cell
             }
         }
@@ -391,6 +402,8 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 }
                 cell.likeButton.tag = indexPath.section
                 cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+                cell.commentButton.tag = indexPath.section
+                cell.commentButton.addTarget(self, action: "commentButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 return cell
             }
             else if indexPath.row > 6 {
@@ -441,6 +454,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     }
                     cell.likeButton.tag = indexPath.section
                     cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+                    cell.commentButton.addTarget(self, action: "commentButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                     return cell
                 }
                 else {
@@ -627,12 +641,42 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
         else if api === addMissionComment {
             if data["result"] as? Int == 1 {
-                getCommentsAndLikes.getMissionCommentsAndMissionLikes(mid)
+                if segmentCtrl.selectedSegmentIndex == 2 {
+                    getCommentsAndLikes.getMissionCommentsAndMissionLikes(mid)
+                }
+                else if segmentCtrl.selectedSegmentIndex == 0 {
+                    getMission.getMissionFromID(mid)
+                }
             }
         }
     }
+    func commentButtonClick(button: UIButton) {
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint:", name: UIKeyboardWillShowNotification, object: nil)
+        myTextV1.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 60, height: 40)
+        myTextV1.borderStyle = UITextBorderStyle.RoundedRect
+        myTextV1.backgroundColor = UIColor.whiteColor()
+        let fasongBut = UIButton(frame: CGRect(x: view.bounds.width - 60, y: 0, width: 60, height: 40))
+        fasongBut.setTitle("确定", forState: UIControlState.Normal)
+        fasongBut.backgroundColor = UIColor.orangeColor()
+        fasongBut.addTarget(self, action: "pinglunQueding:", forControlEvents: UIControlEvents.TouchUpInside)
+        fasongBut.layer.cornerRadius = 5
+        fasongBut.layer.masksToBounds = true
+        mainView.frame = CGRectMake(0, self.view.bounds.height, self.view.bounds.width, 40)
+        mainView.addSubview(myTextV1)
+        mainView.addSubview(fasongBut)
+        mainView.hidden = false
+        view.addSubview(mainView)
+        myTextV1.text = ""
+        myTextV1.placeholder = "评论..."
+        myTextV1.becomeFirstResponder()
+        if segmentCtrl.selectedSegmentIndex == 1 {
+            fasongBut.tag = evidences[button.tag]["id"] as! Int
+        }
+    }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (segmentCtrl.selectedSegmentIndex == 1 && indexPath.row > 5) || segmentCtrl.selectedSegmentIndex == 2 {
+        if (segmentCtrl.selectedSegmentIndex == 1 && indexPath.row > 6) || (segmentCtrl.selectedSegmentIndex == 2 && indexPath.section == 1) {
             myTextV1.resignFirstResponder()
             mainView.hidden = true
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint:", name: UIKeyboardWillShowNotification, object: nil)

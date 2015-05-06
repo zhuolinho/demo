@@ -94,11 +94,11 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                     }
                     if missions[mark]["status"] as! Int == 2 {
                         markView.hidden = false
-                        markView.image = UIImage(named: "mission1_13")
+                        markView.image = UIImage(named: "v_03")
                     }
                     else if missions[mark]["status"] as! Int == 3 {
                         markView.hidden = false
-                        markView.image = UIImage(named: "mission1_14")
+                        markView.image = UIImage(named: "mission12_03")
                     }
                     else {
                         markView.hidden = true
@@ -261,11 +261,11 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                 }
                 if missions[mark]["status"] as! Int == 2 {
                     markView.hidden = false
-                    markView.image = UIImage(named: "mission1_13")
+                    markView.image = UIImage(named: "v_03")
                 }
                 else if missions[mark]["status"] as! Int == 3 {
                     markView.hidden = false
-                    markView.image = UIImage(named: "mission1_14")
+                    markView.image = UIImage(named: "mission12_03")
                 }
                 else {
                     markView.hidden = true
