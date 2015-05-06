@@ -36,12 +36,12 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         viewa.addSubview(UIImageView(image: UIImage(named: "moment1_07")))
         let button1 = UIButton(frame: CGRect(x: 10, y: 17, width: 73, height: 25))
         button1.titleLabel?.textColor = UIColor.whiteColor()
-        button1.setTitle("我的好友", forState: UIControlState.Normal)
+        button1.setTitle("好友动态", forState: UIControlState.Normal)
         viewa.addSubview(button1)
         button1.addTarget(self, action: "button1Click", forControlEvents: UIControlEvents.TouchUpInside)
         let button2 = UIButton(frame: CGRect(x: 10, y: 55, width: 73, height: 25))
         button2.titleLabel?.textColor = UIColor.whiteColor()
-        button2.setTitle("我的监督", forState: UIControlState.Normal)
+        button2.setTitle("我在监督", forState: UIControlState.Normal)
         button2.addTarget(self, action: "button2Click", forControlEvents: UIControlEvents.TouchUpInside)
         viewa.addSubview(button2)
         requesMore.delegate = self
@@ -202,12 +202,12 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                     }
                     else {
                         cell.superviseButton.hidden = true
-                        cell.wtfLabel.text = "已监督"
+                        cell.wtfLabel.text = "监督中"
                         cell.lockImageView.hidden = false
                         cell.evidentState.hidden = true
                     }
                     cell.backgroundColor = UIColor.orangeColor()
-                    cell.typeLabel.text = "任务剩余时间"
+                    cell.typeLabel.text = "距离任务结束"
                     cell.meneyLabel.text = String(charge)
                     let formatSever = NSDateFormatter()
                     formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"

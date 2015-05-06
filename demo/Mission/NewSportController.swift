@@ -348,11 +348,11 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     }
                 }
                 else {
-                    var times = -1
+                    var times = ""
                     if timesLabel.text != "" {
-                        times = timesLabel.text!.toInt()!
+                        times = timesLabel.text!
                     }
-                    let content = "我保证未来两周内要去\(times)次健身房"
+                    let content = "迈开腿！两周内我保证运动\(times)次，求监督！"
                     var slogan = "*"
                     if sloganTF.text != "" {
                         slogan = sloganTF.text
@@ -367,7 +367,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     }
                     let pics = ""
                     let picTimes = ""
-                    addMission.addMission(1, title: "健身运动", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                    addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
                 }
             }
         }
@@ -394,11 +394,11 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         }
         else if alertView.tag == 3 {
             if buttonIndex == 1 {
-                var times = -1
+                var times = ""
                 if timesLabel.text != "" {
-                    times = timesLabel.text!.toInt()!
+                    times = timesLabel.text!
                 }
-                let content = "我保证未来两周内要去\(times)次健身房"
+                let content = "迈开腿！两周内我保证运动\(times)次，求监督！"
                 var slogan = "*"
                 if sloganTF.text != "" {
                     slogan = sloganTF.text
@@ -429,7 +429,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     pics = "*"
                     picTimes = "*"
                 }
-                addMission.addMission(1, title: "健身运动", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -462,16 +462,40 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === addMission {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.activity.stopAnimating()
-                self.navigationController?.navigationBar.userInteractionEnabled = true
-                self.view.userInteractionEnabled = true
-                self.navigationController?.interactivePopGestureRecognizer.enabled = true
-                let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
-                alert.show()
-                self.navigationController?.popViewControllerAnimated(true)
-            })
-            return
+            let res = data["result"] as! Int
+            if res == 1 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+                return
+            }
+            else if res == -3{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "任务重复", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+                return
+            }
+            else if res == -2 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "金额不足", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+            }
         }
         for i in 0...7 {
             if api === apis[i] {
@@ -487,11 +511,11 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                 break
             }
         }
-        var times = -1
+        var times = ""
         if timesLabel.text != "" {
-            times = timesLabel.text!.toInt()!
+            times = timesLabel.text!
         }
-        let content = "我保证未来两周内要去\(times)次健身房"
+        let content = "迈开腿！两周内我保证运动\(times)次，求监督！"
         var slogan = "*"
         if sloganTF.text != "" {
             slogan = sloganTF.text
@@ -522,7 +546,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             pics = "*"
             picTimes = "*"
         }
-        addMission.addMission(1, title: "健身运动", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+        addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
     }
     
     func strings(visor: String) {

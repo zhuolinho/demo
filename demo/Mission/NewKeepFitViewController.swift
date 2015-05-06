@@ -341,7 +341,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
                     if timesLabel.text != "" {
                         times = timesLabel.text!.toInt()!
                     }
-                    let content = "我保证未来两周内要每天吃早餐"
+                    let content = "我决定用晒早餐来迎接每个健康早晨，一周为期！"
                     var slogan = "*"
                     if sloganTF.text != "" {
                         slogan = sloganTF.text
@@ -356,7 +356,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
                     }
                     let pics = ""
                     let picTimes = ""
-                    addMission.addMission(3, title: "每天早餐", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                    addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
                 }
             }
         }
@@ -387,7 +387,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
                 if timesLabel.text != "" {
                     times = timesLabel.text!.toInt()!
                 }
-                let content = "我保证未来两周内要每天吃早餐"
+                let content = "我决定用晒早餐来迎接每个健康早晨，一周为期！"
                 var slogan = "*"
                 if sloganTF.text != "" {
                     slogan = sloganTF.text
@@ -418,7 +418,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
                     pics = "*"
                     picTimes = "*"
                 }
-                addMission.addMission(3, title: "每天早餐", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -451,16 +451,41 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === addMission {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.activity.stopAnimating()
-                self.navigationController?.navigationBar.userInteractionEnabled = true
-                self.view.userInteractionEnabled = true
-                self.navigationController?.interactivePopGestureRecognizer.enabled = true
-                let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
-                alert.show()
-                self.navigationController?.popViewControllerAnimated(true)
-            })
-            return
+            let res = data["result"] as! Int
+            if res == 1 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+                return
+            }
+            else if res == -3{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "任务重复", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+                return
+            }
+            else if res == -2 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "金额不足", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+                return
+            }
         }
         for i in 0...7 {
             if api === apis[i] {
@@ -480,7 +505,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
         if timesLabel.text != "" {
             times = timesLabel.text!.toInt()!
         }
-        let content = "我保证未来两周内要每天吃早餐"
+        let content = "我决定用晒早餐来迎接每个健康早晨，一周为期！"
         var slogan = "*"
         if sloganTF.text != "" {
             slogan = sloganTF.text
@@ -511,7 +536,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
             pics = "*"
             picTimes = "*"
         }
-        addMission.addMission(3, title: "每天早餐", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+        addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
     }
     
     func strings(visor: String) {

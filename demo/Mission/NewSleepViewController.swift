@@ -343,7 +343,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
                     if timesLabel.text != "" {
                         times = timesLabel.text!.toInt()!
                     }
-                    let content = "我保证未来两周内要\(times)点前起床"
+                    let content = "为了告别癌症，我保证两周内每天不晚于\(times)点起床。"
                     var slogan = "*"
                     if sloganTF.text != "" {
                         slogan = sloganTF.text
@@ -389,7 +389,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
                 if timesLabel.text != "" {
                     times = timesLabel.text!.toInt()!
                 }
-                let content = "我保证未来两周内要\(times)点前起床"
+                let content = "为了告别癌症，我保证两周内每天不晚于\(times)点起床。"
                 var slogan = "*"
                 if sloganTF.text != "" {
                     slogan = sloganTF.text
@@ -453,16 +453,41 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === addMission {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.activity.stopAnimating()
-                self.navigationController?.navigationBar.userInteractionEnabled = true
-                self.view.userInteractionEnabled = true
-                self.navigationController?.interactivePopGestureRecognizer.enabled = true
-                let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
-                alert.show()
-                self.navigationController?.popViewControllerAnimated(true)
-            })
-            return
+            let res = data["result"] as! Int
+            if res == 1 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "发布成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+                return
+            }
+            else if res == -3{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "任务重复", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+                return
+            }
+            else if res == -2 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activity.stopAnimating()
+                    self.navigationController?.navigationBar.userInteractionEnabled = true
+                    self.view.userInteractionEnabled = true
+                    self.navigationController?.interactivePopGestureRecognizer.enabled = true
+                    let alert = UIAlertView(title: "金额不足", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+                return
+            }
         }
         for i in 0...7 {
             if api === apis[i] {
@@ -482,7 +507,7 @@ class NewSleepViewController: UITableViewController, UIPickerViewDataSource, UIP
         if timesLabel.text != "" {
             times = timesLabel.text!.toInt()!
         }
-        let content = "我保证未来两周内要\(times)点前起床"
+        let content = "为了告别癌症，我保证两周内每天不晚于\(times)点起床。"
         var slogan = "*"
         if sloganTF.text != "" {
             slogan = sloganTF.text
