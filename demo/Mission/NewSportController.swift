@@ -90,7 +90,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             timesLabel.text = String(row + 2)
         }
         else {
-            timesLabel.text = "9+"
+            timesLabel.text = "9＋"
         }
     }
     override func didReceiveMemoryWarning() {
@@ -156,7 +156,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             return String(row + 2)
         }
         else {
-            return "9+"
+            return "9＋"
         }
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -352,7 +352,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     if timesLabel.text != "" {
                         times = timesLabel.text!
                     }
-                    let content = "迈开腿！两周内我保证运动\(times)次，求监督！"
+                    let content = "迈开腿！两周内我保证运动" + times + "次，求监督！"
                     var slogan = "*"
                     if sloganTF.text != "" {
                         slogan = sloganTF.text
@@ -398,7 +398,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                 if timesLabel.text != "" {
                     times = timesLabel.text!
                 }
-                let content = "迈开腿！两周内我保证运动\(times)次，求监督！"
+                let content = "迈开腿！两周内我保证运动" + times + "次，求监督！"
                 var slogan = "*"
                 if sloganTF.text != "" {
                     slogan = sloganTF.text
@@ -515,7 +515,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         if timesLabel.text != "" {
             times = timesLabel.text!
         }
-        let content = "迈开腿！两周内我保证运动\(times)次，求监督！"
+        let content = "迈开腿！两周内我保证运动" + times + "次，求监督！"
         var slogan = "*"
         if sloganTF.text != "" {
             slogan = sloganTF.text
