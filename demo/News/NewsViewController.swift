@@ -8,12 +8,15 @@
 
 import UIKit
 
-class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UITextFieldDelegate {
     
     var viewa = UIView()
     var ifMyFriend = 1
+    var temp = CGFloat(0)
     @IBOutlet weak var titleButton: UIButton!
     @IBAction func filterClick(sender: UIBarButtonItem) {
+        mainView.hidden = true
+        myTextV1.resignFirstResponder()
         if viewa.hidden {
             viewa.hidden = false
         }
@@ -28,9 +31,13 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     var isRequesing = false
     var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     let setLike = API()
+    let mainView = UIView()
+    let myTextV1 = UITextField()
+    let addComment = API()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        myTextV1.delegate = self
         viewa = UIView(frame: CGRect(x: view.bounds.width - 105, y: 64, width: 92, height: 86))
         view.addSubview(viewa)
         viewa.addSubview(UIImageView(image: UIImage(named: "moment1_07")))
@@ -52,6 +59,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         titleButton.addTarget(self, action: "refreshing", forControlEvents: UIControlEvents.TouchDownRepeat)
         activity.hidesWhenStopped = true
         self.tableView.tableFooterView = activity
+        addComment.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -66,15 +74,22 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         viewa.hidden = true
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
     }
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         viewa.frame = CGRect(x: view.bounds.width - 105, y: tableView.contentOffset.y + 64, width: 92, height: 86)
+        mainView.frame = CGRect(x: 0, y: tableView.contentOffset.y + temp - 40, width: view.bounds.width, height: 40)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        mainView.hidden = true
+        return true
+    }
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
@@ -255,6 +270,8 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 cell.likeLabel.text = String(numOfLike)
                 cell.commentLabel.text = String(numOfComment)
                 cell.locationLabel.text = stuct["location"] as? String
+                cell.commentButton.tag = indexPath.section
+                cell.commentButton.addTarget(self, action: "commentButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 if stuct["ifLike"] as! Int == 1 {
                     cell.likeButton.setImage(UIImage(named: "task_5"), forState: UIControlState.Normal)
                 }
@@ -331,17 +348,23 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         viewa.hidden = true
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
         let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
         let sturt = news[indexPath.section]["struct"] as! NSDictionary
-        if news[indexPath.section]["type"] as! String == "mission" {
+        if news[indexPath.section]["type"] as! String == "mission" && indexPath.row != 6 {
             vc.mid = sturt["id"] as! Int
             vc.initNum = 0
+        }
+        else if news[indexPath.section]["type"] as! String == "mission" && indexPath.row == 6 {
+            vc.mid = sturt["id"] as! Int
+            vc.initNum = 2
         }
         else {
             vc.initNum = 1
             vc.mid = sturt["mid"] as! Int
         }
-        if indexPath.row != 6 && indexPath.row != 1 {
+        if indexPath.row != 1 {
             navigationController?.pushViewController(vc, animated: true)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -470,6 +493,69 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         refreshing()
         viewa.hidden = true
     }
+    func commentButtonClick(button: UIButton) {
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint:", name: UIKeyboardWillShowNotification, object: nil)
+        myTextV1.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 60, height: 40)
+        myTextV1.borderStyle = UITextBorderStyle.RoundedRect
+        myTextV1.backgroundColor = UIColor.whiteColor()
+        let fasongBut = UIButton(frame: CGRect(x: view.bounds.width - 60, y: 0, width: 60, height: 40))
+        fasongBut.setTitle("确定", forState: UIControlState.Normal)
+        fasongBut.backgroundColor = UIColor.orangeColor()
+        fasongBut.addTarget(self, action: "pinglunQueding:", forControlEvents: UIControlEvents.TouchUpInside)
+        fasongBut.layer.cornerRadius = 5
+        fasongBut.layer.masksToBounds = true
+        mainView.frame = CGRectMake(0, self.view.bounds.height + tableView.contentOffset.y, self.view.bounds.width, 40)
+        mainView.addSubview(myTextV1)
+        mainView.addSubview(fasongBut)
+        mainView.hidden = false
+        view.addSubview(mainView)
+        myTextV1.text = ""
+        myTextV1.placeholder = "评论..."
+        myTextV1.becomeFirstResponder()
+//        if news[button.tag]["type"] as! String == "mission" {
+        fasongBut.tag = button.tag
+//        }
+//        else {
+//            fasongBut.tag = -((news[button.tag]["struct"] as! NSDictionary)["id"] as! Int)
+//        }
+    }
+    func changeContentViewPoint(notification: NSNotification) {
+        let value = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyBoardEndY = value.CGRectValue().origin.y
+        let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+        UIView.animateWithDuration(duration.doubleValue, animations: { () -> Void in
+            UIView.setAnimationBeginsFromCurrentState(true)
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: curve.integerValue)!)
+            self.mainView.center = CGPointMake(self.mainView.center.x, self.tableView.contentOffset.y + keyBoardEndY  - self.mainView.bounds.height / 2)
+            
+            self.temp = keyBoardEndY
+        })
+    }
+    func pinglunQueding(button: UIButton) {
+        var stuct = news[button.tag]["struct"] as! NSMutableDictionary
+        let id = stuct["id"] as! Int
+        if news[button.tag]["type"] as! String == "mission" {
+            if myTextV1.text != "" {
+                addComment.addMissionComment(id, content: myTextV1.text)
+            }
+        }
+        else {
+            if myTextV1.text != "" {
+                addComment.addEvidenceComment(id, content: myTextV1.text)
+            }
+        }
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
+        mainView.center = CGPointMake(mainView.center.x, view.bounds.height)
+        stuct["numOfComment"] = stuct["numOfComment"] as! Int + 1
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
