@@ -42,6 +42,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
             loginLock.lock()
             iflogining = true
             loginButton.enabled = false
+            wxButton.enabled = false
             loginLock.unlock()
         }
         
@@ -50,6 +51,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
             alert.show()
             iflogining = false
             loginButton.enabled = true
+            wxButton.enabled = true
         }
         else {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
