@@ -94,7 +94,7 @@ class MissionNotificationTableVC: UITableViewController, APIProtocol {
         if notifications[indexPath.section]["type"] as! Int == 0 {
             avatarView.image = UIImage(named: "message-comment1_06")
         }
-        else if notifications[indexPath.section]["type"] as! Int == 3 {
+        else if notifications[indexPath.section]["type"] as! Int == 3 || notifications[indexPath.section]["type"] as! Int == 11 {
             avatarView.image = UIImage(named: "message-comment111_03")
         }
         else {
@@ -135,6 +135,26 @@ class MissionNotificationTableVC: UITableViewController, APIProtocol {
         }
         else if notifications[indexPath.section]["type"] as! Int == 2 {
             let vc = storyboard?.instantiateViewControllerWithIdentifier("OtherVoteViewController") as! OtherVoteViewController
+            vc.mid = notifications[indexPath.section]["mid"] as! Int
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else if notifications[indexPath.section]["type"] as! Int == 3 {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("MyResultViewController") as! MyResultViewController
+            vc.mid = notifications[indexPath.section]["mid"] as! Int
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else if notifications[indexPath.section]["type"] as! Int == 6 {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("OtherResultViewController") as! OtherResultViewController
+            vc.mid = notifications[indexPath.section]["mid"] as! Int
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else if notifications[indexPath.section]["type"] as! Int == 11 {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("MySuccessViewController") as! MySuccessViewController
+            vc.mid = notifications[indexPath.section]["mid"] as! Int
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else if notifications[indexPath.section]["type"] as! Int == 5 {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("OtherSuccessViewController") as! OtherSuccessViewController
             vc.mid = notifications[indexPath.section]["mid"] as! Int
             navigationController?.pushViewController(vc, animated: true)
         }

@@ -361,6 +361,11 @@
 		06B680DD1AEF88DC00A73A88 /* StringsPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680DC1AEF88DC00A73A88 /* StringsPass.swift */; };
 		06B680DF1AEF998700A73A88 /* SupervisorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680DE1AEF998700A73A88 /* SupervisorCell.swift */; };
 		06B680E11AEFD43800A73A88 /* NewKeepFitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B680E01AEFD43800A73A88 /* NewKeepFitViewController.swift */; };
+		06B729851AFE4CC80030B6D3 /* MyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B729841AFE4CC80030B6D3 /* MyResultViewController.swift */; };
+		06B729871AFE51B10030B6D3 /* OtherResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B729861AFE51B10030B6D3 /* OtherResultViewController.swift */; };
+		06B729891AFE5E110030B6D3 /* MySuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B729881AFE5E110030B6D3 /* MySuccessViewController.swift */; };
+		06B7298B1AFE5E920030B6D3 /* OtherSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B7298A1AFE5E920030B6D3 /* OtherSuccessViewController.swift */; };
+		06B7298D1AFF989E0030B6D3 /* RewardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B7298C1AFF989E0030B6D3 /* RewardTableViewController.swift */; };
 		06BA9BC51AC823A600F52391 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC41AC823A600F52391 /* InvitationManager.m */; };
 		06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BC81AC823AE00F52391 /* AddFriendCell.m */; };
 		06BA9BD01AC823AE00F52391 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCA1AC823AE00F52391 /* AddFriendViewController.m */; };
@@ -939,6 +944,11 @@
 		06B680DC1AEF88DC00A73A88 /* StringsPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsPass.swift; sourceTree = "<group>"; };
 		06B680DE1AEF998700A73A88 /* SupervisorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisorCell.swift; sourceTree = "<group>"; };
 		06B680E01AEFD43800A73A88 /* NewKeepFitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewKeepFitViewController.swift; sourceTree = "<group>"; };
+		06B729841AFE4CC80030B6D3 /* MyResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyResultViewController.swift; sourceTree = "<group>"; };
+		06B729861AFE51B10030B6D3 /* OtherResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherResultViewController.swift; sourceTree = "<group>"; };
+		06B729881AFE5E110030B6D3 /* MySuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySuccessViewController.swift; sourceTree = "<group>"; };
+		06B7298A1AFE5E920030B6D3 /* OtherSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherSuccessViewController.swift; sourceTree = "<group>"; };
+		06B7298C1AFF989E0030B6D3 /* RewardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardTableViewController.swift; sourceTree = "<group>"; };
 		06BA9BC31AC823A600F52391 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		06BA9BC41AC823A600F52391 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		06BA9BC71AC823AE00F52391 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendCell.h; sourceTree = "<group>"; };
@@ -1291,6 +1301,11 @@
 				06AB9C221AE92B8F0039B09A /* MissionNotificationCell.swift */,
 				06AC8A261AF087A700AB08AA /* MyVoteViewController.swift */,
 				0600D9881AF135C80034B7B0 /* OtherVoteViewController.swift */,
+				06B729841AFE4CC80030B6D3 /* MyResultViewController.swift */,
+				06B729861AFE51B10030B6D3 /* OtherResultViewController.swift */,
+				06B729881AFE5E110030B6D3 /* MySuccessViewController.swift */,
+				06B7298A1AFE5E920030B6D3 /* OtherSuccessViewController.swift */,
+				06B7298C1AFF989E0030B6D3 /* RewardTableViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2591,6 +2606,7 @@
 				069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */,
 				0694E6521AB6CE72008ADF21 /* EMChatViewBaseCell.m in Sources */,
 				06B680DF1AEF998700A73A88 /* SupervisorCell.swift in Sources */,
+				06B729851AFE4CC80030B6D3 /* MyResultViewController.swift in Sources */,
 				0694E5F81AB6CE72008ADF21 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				0694E5F11AB6CE72008ADF21 /* UIButton+EMWebCache.m in Sources */,
 				0694E65B1AB6CE72008ADF21 /* EMRemarkImageView.m in Sources */,
@@ -2624,9 +2640,11 @@
 				0648D1361AB4206C008B0F67 /* GenderSettingTableViewController.swift in Sources */,
 				06F618F51ABF0B5A00918389 /* ChineseToPinyin.m in Sources */,
 				063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */,
+				06B729871AFE51B10030B6D3 /* OtherResultViewController.swift in Sources */,
 				06717EF31AE8EF960098C8D8 /* CommentNotificationTableVC.swift in Sources */,
 				0694E5F21AB6CE72008ADF21 /* UIImage+EMGIF.m in Sources */,
 				0694E5F71AB6CE72008ADF21 /* UIView+EMWebCacheOperation.m in Sources */,
+				06B7298D1AFF989E0030B6D3 /* RewardTableViewController.swift in Sources */,
 				0694E65D1AB6CE72008ADF21 /* EMChooseViewController.m in Sources */,
 				06AB9C231AE92B8F0039B09A /* MissionNotificationCell.swift in Sources */,
 				0694E6031AB6CE72008ADF21 /* PSTGridLayoutRow.m in Sources */,
@@ -2654,6 +2672,7 @@
 				0694E5FC1AB6CE72008ADF21 /* PSTCollectionViewData.m in Sources */,
 				0694E61F1AB6CE72008ADF21 /* DXChatBarMoreView.m in Sources */,
 				0694E5EC1AB6CE72008ADF21 /* EMSDWebImageDownloaderOperation.m in Sources */,
+				06B729891AFE5E110030B6D3 /* MySuccessViewController.swift in Sources */,
 				06BFF72F1ADE111A00FD1CCF /* MyMissionsVC.swift in Sources */,
 				0694E6041AB6CE72008ADF21 /* PSTGridLayoutSection.m in Sources */,
 				0694E61B1AB6CE72008ADF21 /* DXFaceView.m in Sources */,
@@ -2688,6 +2707,7 @@
 				0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */,
 				068AEBF11AAC6C0F00F5B84C /* WelcomeViewController.swift in Sources */,
 				06B680DB1AEF7F9400A73A88 /* SupervisorViewController.swift in Sources */,
+				06B7298B1AFE5E920030B6D3 /* OtherSuccessViewController.swift in Sources */,
 				066E33801AD3B4080062C31B /* CIColorExtension.swift in Sources */,
 				0694E65E1AB6CE72008ADF21 /* EMNavigationController.m in Sources */,
 				06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */,
