@@ -61,7 +61,12 @@ class MeViewController: UITableViewController, APIProtocol {
         }
         rmbLabel.text = String(API.userInfo.rmb)
         avatarView.image = API.userInfo.profilePhoto
-        signLabel.text = API.userInfo.signature
+        if API.userInfo.signature == "" || API.userInfo.signature == "*" {
+            signLabel.text = "点击此处添加帅帅的签名！"
+        }
+        else {
+            signLabel.text = API.userInfo.signature
+        }
         nameLabel.text = API.userInfo.nickname
         if API.userInfo.gender == "M" {
             genderLabel.text =  "男"
@@ -117,7 +122,12 @@ class MeViewController: UITableViewController, APIProtocol {
                                 API.userInfo.profilePhoto = avatar!
                                 self.rmbLabel.text = String(API.userInfo.rmb)
                                 self.avatarView.image = API.userInfo.profilePhoto
-                                self.signLabel.text = API.userInfo.signature
+                                if API.userInfo.signature == "" || API.userInfo.signature == "*" {
+                                    self.signLabel.text = "点击此处添加帅帅的签名！"
+                                }
+                                else {
+                                    self.signLabel.text = API.userInfo.signature
+                                }
                                 self.nameLabel.text = API.userInfo.nickname
                                 if API.userInfo.gender == "M" {
                                     self.genderLabel.text =  "男"

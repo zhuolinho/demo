@@ -317,6 +317,9 @@ class API: NSObject {
     func getMissionFromID(mid: Int) {
         get(host + "getMissionFromID.action?token=" + API.userInfo.token + "&id=\(mid)")
     }
+    func getMissionFromIDForStatic(mid: Int) {
+        get(host + "getMissionFromIDForStatic.action?token=" + API.userInfo.token + "&id=\(mid)")
+    }
     func getCourses() {
         get(host + "getTopicTypes.action?token=" + API.userInfo.token)
     }

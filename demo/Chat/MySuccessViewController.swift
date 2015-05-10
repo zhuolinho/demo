@@ -1,38 +1,30 @@
 //
-//  MyVoteViewController.swift
+//  MySuccessViewController.swift
 //  demo
 //
-//  Created by HoJolin on 15/4/29.
+//  Created by HoJolin on 15/5/9.
 //  Copyright (c) 2015年 CBC. All rights reserved.
 //
 
 import UIKit
 
-class MyVoteViewController: UIViewController, APIProtocol, UITableViewDataSource, UITableViewDelegate {
+class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var viewTable: UITableView!
-    @IBOutlet weak var evidenceLabel: UILabel!
-    @IBOutlet weak var likeLabel: UILabel!
-    @IBOutlet weak var backLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    
     var mid = -1
-    let api = API()
+    let api1 = API()
     var res = NSDictionary()
     let formatSever = NSDateFormatter()
+    @IBOutlet weak var missionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        api.delegate = self
-        api.getMissionFromID(mid)
-        navigationItem.title = "任务总结"
+        api1.delegate = self
+        api1.getMissionFromIDForStatic(mid)
+        navigationItem.title = "任务判定"
         viewTable.dataSource = self
         viewTable.delegate = self
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        backLabel.layer.cornerRadius = 5
-        backLabel.layer.masksToBounds = true
-        
         // Do any additional setup after loading the view.
     }
 
@@ -41,66 +33,15 @@ class MyVoteViewController: UIViewController, APIProtocol, UITableViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
-    func didReceiveAPIErrorOf(api: API, errno: Int) {
-        println(errno)
-    }
-    
     func reload() {
         dispatch_async(dispatch_get_main_queue(), {
-            let endTime = self.formatSever.dateFromString(self.res["endTime"] as! String)
-            let hour = Int((endTime!.timeIntervalSinceNow + 24 * 3600) / 3600)
-            self.timeLabel.text = "距离投票截止还有\(hour)小时"
             self.viewTable.reloadData()
-            self.commentLabel.text = String(self.res["totalNumOfComment"] as! Int)
-            self.likeLabel.text = String(self.res["totalNumOfLike"] as! Int)
-            self.evidenceLabel.text = String(self.res["numOfEvidence"] as! Int)
-            let frontLabel = UILabel(frame: CGRect(x: Int(self.view.bounds.width / 2 - 150), y: 526, width: (24 - hour) * 300 / 24, height: 21))
-            frontLabel.layer.cornerRadius = 5
-            frontLabel.layer.masksToBounds = true
-            frontLabel.backgroundColor = UIColor.orangeColor()
-            self.view.addSubview(frontLabel)
-            
+            self.missionLabel.text = self.res["title"] as? String
         })
     }
     
-    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        res = data["result"] as! NSDictionary
-        if res["achievement"] != nil {
-            var pics = res["pics"] as! [NSDictionary]
-            if pics.count > 0 {
-                let url = pics[0]["url"] as! String
-                if PicDic.picDic[url] == nil {
-                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                        if error == nil {
-                            var rawImage: UIImage? = UIImage(data: data)
-                            let img: UIImage? = rawImage
-                            if img != nil {
-                                dispatch_async(dispatch_get_main_queue(), {
-                                    PicDic.picDic[url] = img
-                                    self.viewTable.reloadData()
-                                })
-                            }
-                        }
-                    })
-                }
-            }
-            reload()
-        }
-    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 265
-        }
-        else {
-            return 55
-        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -109,7 +50,7 @@ class MyVoteViewController: UIViewController, APIProtocol, UITableViewDataSource
             let imageView = cell.viewWithTag(1) as! UIImageView
             let markView = cell.viewWithTag(2) as! UIImageView
             markView.hidden = true
-            if res["achievement"] != nil {
+            if res["username"] != nil {
                 let pics = res["pics"] as! [NSDictionary]
                 if pics.count > 0 {
                     let url = pics[0]["url"] as! String
@@ -144,7 +85,7 @@ class MyVoteViewController: UIViewController, APIProtocol, UITableViewDataSource
             let cell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as! UITableViewCell
             let timeLabel = cell.viewWithTag(1) as! UILabel
             let chargeLabel = cell.viewWithTag(2) as! UILabel
-            if res["achievement"] == nil {
+            if res["username"] == nil {
                 timeLabel.text = ""
                 chargeLabel.text = ""
             }
@@ -164,9 +105,53 @@ class MyVoteViewController: UIViewController, APIProtocol, UITableViewDataSource
             }
             return cell
         }
-
+        
     }
     
+    func didReceiveAPIErrorOf(api: API, errno: Int) {
+        println(errno)
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 265
+        }
+        else {
+            return 55
+        }
+    }
+    
+    
+    func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
+        if api === api1 {
+            res = data["result"] as! NSDictionary
+            if res["achievement"] != nil {
+                var pics = res["pics"] as! [NSDictionary]
+                if pics.count > 0 {
+                    let url = pics[0]["url"] as! String
+                    if PicDic.picDic[url] == nil {
+                        let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                        let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                        let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                            if error == nil {
+                                var rawImage: UIImage? = UIImage(data: data)
+                                let img: UIImage? = rawImage
+                                if img != nil {
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        PicDic.picDic[url] = img
+                                        self.viewTable.reloadData()
+                                    })
+                                }
+                            }
+                        })
+                    }
+                }
+                reload()
+            }
+        }
+    }
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
         vc.mid = mid

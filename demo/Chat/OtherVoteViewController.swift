@@ -163,11 +163,11 @@ class OtherVoteViewController: UIViewController, APIProtocol, UITableViewDataSou
                 }
                 if res["status"] as! Int == 2 {
                     markView.hidden = false
-                    markView.image = UIImage(named: "mission1_13")
+                    markView.image = UIImage(named: "v_03")
                 }
                 else if res["status"] as! Int == 3 {
                     markView.hidden = false
-                    markView.image = UIImage(named: "mission1_14")
+                    markView.image = UIImage(named: "mission12_03")
                 }
                 else {
                     markView.hidden = true

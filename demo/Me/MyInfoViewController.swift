@@ -42,10 +42,10 @@ class MyInfoViewController: UITableViewController, UIActionSheetDelegate, APIPro
             wxID.text = "已绑定"
         }
         
-        if API.userInfo.signature == "" {
-            sign.text = "未设置"
+        if API.userInfo.signature == "" || API.userInfo.signature == "*" {
+            sign.text = "点击此处添加帅帅的签名！"
         }
-        else{
+        else {
             sign.text = API.userInfo.signature
         }
         if API.userInfo.gender ==  "M" {
