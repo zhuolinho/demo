@@ -30,6 +30,7 @@ class OtherSuccessViewController: UIViewController, APIProtocol, UITableViewDele
         viewTable.dataSource = self
         viewTable.delegate = self
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
         againButton.layer.cornerRadius = 3
         againButton.layer.masksToBounds = true
         // Do any additional setup after loading the view.
@@ -132,7 +133,7 @@ class OtherSuccessViewController: UIViewController, APIProtocol, UITableViewDele
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === api1 {
             res = data["result"] as! NSDictionary
-            if res["achievement"] != nil {
+            if res["username"] != nil {
                 var pics = res["pics"] as! [NSDictionary]
                 if pics.count > 0 {
                     let url = pics[0]["url"] as! String

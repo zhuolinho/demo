@@ -45,6 +45,7 @@ class OtherVoteViewController: UIViewController, APIProtocol, UITableViewDataSou
         viewTable.dataSource = self
         viewTable.delegate = self
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
         yesButton.layer.cornerRadius = 3
         noButton.layer.cornerRadius = 3
         yesButton.layer.masksToBounds = true
