@@ -30,6 +30,7 @@ class MyVoteViewController: UIViewController, APIProtocol, UITableViewDataSource
         viewTable.dataSource = self
         viewTable.delegate = self
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
         backLabel.layer.cornerRadius = 5
         backLabel.layer.masksToBounds = true
         

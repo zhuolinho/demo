@@ -8,8 +8,10 @@
 
 import UIKit
 
-class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSource, UITableViewDelegate {
+class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSource, UITableViewDelegate ,UICollectionViewDataSource {
 
+    @IBOutlet weak var noCollection: UICollectionView!
+    @IBOutlet weak var yesCollecttion: UICollectionView!
     @IBOutlet weak var viewTable: UITableView!
     var mid = -1
     let api1 = API()
@@ -17,6 +19,14 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
     let formatSever = NSDateFormatter()
     @IBOutlet weak var missionLabel: UILabel!
     @IBOutlet weak var backgroundView: UIScrollView!
+    @IBOutlet weak var payButton: UIButton!
+    @IBOutlet weak var againButton: UIButton!
+    @IBAction func againButtonClick(sender: UIButton) {
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("SelectNewMission") as! UIViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func payButtonClick(sender: UIButton) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +36,17 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
         viewTable.dataSource = self
         viewTable.delegate = self
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
         backgroundView.contentSize = CGSize(width: 0, height: 700)
-        let button = UIButton(frame: CGRect(x: 160, y: 650, width: 50, height: 30))
-        button.backgroundColor = UIColor.greenColor()
-        backgroundView.addSubview(button)
+        yesCollecttion.dataSource = self
+        noCollection.dataSource = self
+        againButton.layer.cornerRadius = 3
+        againButton.layer.masksToBounds = true
+        payButton.layer.cornerRadius = 3
+        payButton.layer.masksToBounds = true
+//        let button = UIButton(frame: CGRect(x: 160, y: 650, width: 50, height: 30))
+//        button.backgroundColor = UIColor.greenColor()
+//        backgroundView.addSubview(button)
         // Do any additional setup after loading the view.
     }
 
@@ -38,10 +55,52 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
         // Dispose of any resources that can be recreated.
     }
     
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let vote = res["vote"] as! NSDictionary
+        var dataSource = [String]()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PickCollectionCell", forIndexPath: indexPath) as! UICollectionViewCell
+        cell.layer.cornerRadius = 20
+        cell.layer.masksToBounds = true
+        let imageView = cell.viewWithTag(1) as! UIImageView
+        if collectionView === yesCollecttion {
+            dataSource = vote["yesVote"] as! [String]
+        }
+        else {
+            dataSource = vote["noVote"] as! [String]
+        }
+        let url = dataSource[indexPath.row]
+        if PicDic.picDic[url] == nil {
+            imageView.image = UIImage(named: "DefaultAvatar")
+        }
+        else {
+            imageView.image = PicDic.picDic[url]
+        }
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if res["username"] != nil {
+            let vote = res["vote"] as! NSDictionary
+            if collectionView === yesCollecttion {
+                let yesVote = vote["yesVote"] as! [String]
+                return yesVote.count
+            }
+            else {
+                let noVote = vote["noVote"] as! [String]
+                return noVote.count
+            }
+        }
+        else {
+            return 0
+        }
+    }
+    
     func reload() {
         dispatch_async(dispatch_get_main_queue(), {
             self.viewTable.reloadData()
             self.missionLabel.text = self.res["title"] as? String
+            self.yesCollecttion.reloadData()
+            self.noCollection.reloadData()
         })
     }
     
@@ -130,7 +189,7 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
         if api === api1 {
             res = data["result"] as! NSDictionary
-            if res["achievement"] != nil {
+            if res["username"] != nil {
                 var pics = res["pics"] as! [NSDictionary]
                 if pics.count > 0 {
                     let url = pics[0]["url"] as! String
@@ -153,6 +212,47 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
                     }
                 }
                 reload()
+                let vote = res["vote"] as! NSDictionary
+                let yesVote = vote["yesVote"] as! [String]
+                for url in yesVote {
+                    if PicDic.picDic[url] == nil {
+                        let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                        let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                        let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                            if error == nil {
+                                var rawImage: UIImage? = UIImage(data: data)
+                                let img: UIImage? = rawImage
+                                if img != nil {
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        PicDic.picDic[url] = img
+                                        self.yesCollecttion.reloadData()
+                                    })
+                                }
+                            }
+                        })
+                    }
+                }
+                let noVote = vote["noVote"] as! [String]
+                for url in noVote {
+                    if PicDic.picDic[url] == nil {
+                        let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                        let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                        let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                            if error == nil {
+                                var rawImage: UIImage? = UIImage(data: data)
+                                let img: UIImage? = rawImage
+                                if img != nil {
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        PicDic.picDic[url] = img
+                                        self.noCollection.reloadData()
+                                    })
+                                }
+                            }
+                        })
+                    }
+                }
             }
         }
     }
