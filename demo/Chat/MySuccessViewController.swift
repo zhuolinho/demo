@@ -16,6 +16,7 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
     var res = NSDictionary()
     let formatSever = NSDateFormatter()
     @IBOutlet weak var missionLabel: UILabel!
+    @IBOutlet weak var backgroundView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,10 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
         viewTable.dataSource = self
         viewTable.delegate = self
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        backgroundView.contentSize = CGSize(width: 0, height: 700)
+        let button = UIButton(frame: CGRect(x: 160, y: 650, width: 50, height: 30))
+        button.backgroundColor = UIColor.greenColor()
+        backgroundView.addSubview(button)
         // Do any additional setup after loading the view.
     }
 
