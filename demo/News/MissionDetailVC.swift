@@ -249,7 +249,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.typeLabel.text = "距离任务结束"
                 cell.meneyLabel.text = String(charge)
                 let formatSever = NSDateFormatter()
-                formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
+                formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
                 formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let endTime = formatSever.dateFromString(stuct["endTime"] as! String)
                 let hour = Int(endTime!.timeIntervalSinceNow / 3600)

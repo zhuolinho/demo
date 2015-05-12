@@ -11,7 +11,7 @@ import Foundation
 func friendlyTime(dateTime: String) -> String {
     
     let dateFormatter = NSDateFormatter()
-    dateFormatter.locale = NSLocale(localeIdentifier: "zh_CN")
+    dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
     dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd HH:mm:ss")
     if let date = dateFormatter.dateFromString(dateTime) {
         let delta = NSDate().timeIntervalSinceDate(date)

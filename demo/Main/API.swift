@@ -317,6 +317,9 @@ class API: NSObject {
     func getMissionFromID(mid: Int) {
         get(host + "getMissionFromID.action?token=" + API.userInfo.token + "&id=\(mid)")
     }
+    func sendMoneyForMission(mid: Int, percentage: Int) {
+        get(host + "sendMoneyForMission.action?token=" + API.userInfo.token + "&id=\(mid)&percentage=\(percentage)")
+    }
     func getMissionFromIDForStatic(mid: Int) {
         get(host + "getMissionFromIDForStatic.action?token=" + API.userInfo.token + "&id=\(mid)")
     }
