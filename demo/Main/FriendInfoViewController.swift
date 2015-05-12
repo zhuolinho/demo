@@ -182,7 +182,7 @@ class FriendInfoViewController: UITableViewController, APIProtocol, UIAlertViewD
                 contents.append(content)
                 let createTime = item["createTime"] as! String
                 let formatSever = NSDateFormatter()
-                formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
+                formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
                 formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 createTimes.append(formatSever.dateFromString(createTime)!)
             }

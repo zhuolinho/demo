@@ -8,13 +8,15 @@
 
 import UIKit
 
-class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSource, UITableViewDelegate ,UICollectionViewDataSource {
+class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSource, UITableViewDelegate ,UICollectionViewDataSource, UIActionSheetDelegate {
 
+    @IBOutlet weak var detailButton: UIButton!
     @IBOutlet weak var noCollection: UICollectionView!
     @IBOutlet weak var yesCollecttion: UICollectionView!
     @IBOutlet weak var viewTable: UITableView!
     var mid = -1
     let api1 = API()
+    let api2 = API()
     var res = NSDictionary()
     let formatSever = NSDateFormatter()
     @IBOutlet weak var missionLabel: UILabel!
@@ -26,24 +28,51 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
         navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func payButtonClick(sender: UIButton) {
+        let actionSheet = UIActionSheet()
+        actionSheet.delegate = self
+        actionSheet.addButtonWithTitle("打赏30%")
+        actionSheet.addButtonWithTitle("打赏60%")
+        actionSheet.addButtonWithTitle("打赏100%")
+        actionSheet.addButtonWithTitle("取消")
+        actionSheet.cancelButtonIndex = 3
+        actionSheet.showInView(view)
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex != actionSheet.cancelButtonIndex {
+            var percentage = 0
+            if buttonIndex == 0 {
+                percentage = 30
+            }
+            else if buttonIndex == 1 {
+                percentage = 60
+            }
+            else if buttonIndex == 2 {
+                percentage = 100
+            }
+            api2.sendMoneyForMission(mid, percentage: percentage)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         api1.delegate = self
+        api2.delegate = self
         api1.getMissionFromIDForStatic(mid)
         navigationItem.title = "任务判定"
         viewTable.dataSource = self
         viewTable.delegate = self
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
-        backgroundView.contentSize = CGSize(width: 0, height: 700)
+        formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
+        backgroundView.contentSize = CGSize(width: 0, height: 672)
         yesCollecttion.dataSource = self
         noCollection.dataSource = self
         againButton.layer.cornerRadius = 3
         againButton.layer.masksToBounds = true
         payButton.layer.cornerRadius = 3
         payButton.layer.masksToBounds = true
+        detailButton.hidden = true
+        payButton.enabled = false
 //        let button = UIButton(frame: CGRect(x: 160, y: 650, width: 50, height: 30))
 //        button.backgroundColor = UIColor.greenColor()
 //        backgroundView.addSubview(button)
@@ -101,6 +130,14 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
             self.missionLabel.text = self.res["title"] as? String
             self.yesCollecttion.reloadData()
             self.noCollection.reloadData()
+            if self.res["ifReward"] as! Int == 1 {
+                self.detailButton.hidden = false
+                self.payButton.enabled = false
+            }
+            else {
+                self.detailButton.hidden = true
+                self.payButton.enabled = true
+            }
         })
     }
     
@@ -173,7 +210,12 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
     }
     
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        println(errno)
+        if api === api2 {
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertView(title: "打赏失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            })
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -255,6 +297,28 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
                 }
             }
         }
+        else {
+            let res = data["result"] as! Int
+            if res == 1 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "打赏成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                    self.api1.getMissionFromIDForStatic(self.mid)
+                })
+            }
+            else if res == -2 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "金币不足", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "打赏失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+            }
+        }
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -263,14 +327,19 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let vc = segue.destinationViewController as! RewardTableViewController
+        vc.myTitle = res["title"] as! String
+        vc.nickname = res["nickname"] as! String
+        vc.avatar = res["avatar"] as! String
+        vc.reward = res["reward"] as! [NSDictionary]
     }
-    */
+    
 
 }

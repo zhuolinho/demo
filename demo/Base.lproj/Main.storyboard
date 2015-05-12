@@ -4910,7 +4910,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAA-84-Cuq">
-                                        <rect key="frame" x="8" y="542" width="120" height="40"/>
+                                        <rect key="frame" x="13" y="490" width="120" height="40"/>
                                         <color key="backgroundColor" red="0.92941176469999998" green="0.46274509800000002" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Yuq-GT-xDQ"/>
@@ -5061,6 +5061,15 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snK-vc-3b8">
+                                        <rect key="frame" x="28" y="538" width="90" height="30"/>
+                                        <state key="normal" title="查看赏金详情">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="kVn-lz-eBX" kind="push" id="QjK-cW-vxh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="vZJ-gz-lJd" firstAttribute="leading" secondItem="idD-wz-KUD" secondAttribute="leading" id="1Ob-Rp-SVt"/>
@@ -5075,11 +5084,13 @@
                                     <constraint firstAttribute="centerX" secondItem="RAA-84-Cuq" secondAttribute="centerX" constant="92" id="E3n-Mq-kG7"/>
                                     <constraint firstItem="idD-wz-KUD" firstAttribute="leading" secondItem="KRc-pN-A1E" secondAttribute="leading" id="Fvw-4E-jgB"/>
                                     <constraint firstAttribute="centerX" secondItem="XFn-Uq-HHB" secondAttribute="centerX" id="GYX-kM-CjR"/>
+                                    <constraint firstItem="snK-vc-3b8" firstAttribute="centerX" secondItem="RAA-84-Cuq" secondAttribute="centerX" id="He6-Q8-fc9"/>
                                     <constraint firstAttribute="centerX" secondItem="V0D-Jj-lHP" secondAttribute="centerX" constant="-92" id="Knf-dR-ApS"/>
                                     <constraint firstItem="fyh-gW-P8d" firstAttribute="top" secondItem="zPn-K5-Vce" secondAttribute="bottom" constant="-29" id="Pcf-K3-9Pp"/>
                                     <constraint firstAttribute="centerX" secondItem="Fdb-gx-8pv" secondAttribute="centerX" id="QHu-vW-e9Z"/>
                                     <constraint firstItem="RAA-84-Cuq" firstAttribute="top" secondItem="yYM-iX-Zcm" secondAttribute="bottom" constant="20" id="TzY-fW-ufA"/>
                                     <constraint firstItem="fyh-gW-P8d" firstAttribute="top" secondItem="Fdb-gx-8pv" secondAttribute="bottom" constant="8" id="aHA-BA-pLu"/>
+                                    <constraint firstItem="snK-vc-3b8" firstAttribute="top" secondItem="RAA-84-Cuq" secondAttribute="bottom" constant="4" id="bDs-Ja-VUG"/>
                                     <constraint firstItem="idD-wz-KUD" firstAttribute="top" secondItem="fyh-gW-P8d" secondAttribute="bottom" constant="8" id="cjJ-MK-aKZ"/>
                                     <constraint firstItem="jJW-4w-90l" firstAttribute="top" secondItem="KRc-pN-A1E" secondAttribute="bottom" id="e9N-8O-JaN"/>
                                     <constraint firstItem="sHD-uy-sgL" firstAttribute="leading" secondItem="EFZ-Y0-PFt" secondAttribute="leading" id="ecn-yZ-1y2"/>
@@ -5105,6 +5116,7 @@
                     <connections>
                         <outlet property="againButton" destination="V0D-Jj-lHP" id="vRP-ce-BQQ"/>
                         <outlet property="backgroundView" destination="7Md-vA-7mX" id="DNB-qY-sEJ"/>
+                        <outlet property="detailButton" destination="snK-vc-3b8" id="YTw-n1-mk8"/>
                         <outlet property="missionLabel" destination="zPn-K5-Vce" id="I3I-La-DHB"/>
                         <outlet property="noCollection" destination="XFn-Uq-HHB" id="QUI-OU-EJ3"/>
                         <outlet property="payButton" destination="RAA-84-Cuq" id="m4x-JS-45S"/>
@@ -5273,6 +5285,6 @@
         <segue reference="0oX-79-igO"/>
         <segue reference="1vo-T2-KlF"/>
         <segue reference="Aow-fW-Ryq"/>
-        <segue reference="Eih-kJ-OVJ"/>
+        <segue reference="QjK-cW-vxh"/>
     </inferredMetricsTieBreakers>
 </document>

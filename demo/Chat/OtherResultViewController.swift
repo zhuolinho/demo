@@ -31,7 +31,7 @@ class OtherResultViewController: UIViewController, APIProtocol, UITableViewDeleg
         viewTable.dataSource = self
         viewTable.delegate = self
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
+        formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
         againButton.layer.cornerRadius = 3
         againButton.layer.masksToBounds = true
         againButton.enabled = false

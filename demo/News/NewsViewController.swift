@@ -226,7 +226,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                     cell.meneyLabel.text = String(charge)
                     let formatSever = NSDateFormatter()
                     formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
+                    formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
                     let endTime = formatSever.dateFromString(stuct["endTime"] as! String)
                     let hour = Int(endTime!.timeIntervalSinceNow / 3600)
                     if stuct["status"] as! Int != 1 && stuct["status"] as! Int != 0 {
@@ -252,8 +252,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                     cell.meneyLabel.text = String(charge)
                     let formatSever = NSDateFormatter()
                     formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
-                    println(formatSever.dateFromString(stuct["createTime"] as! String))
+                    formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
                     let formatCell = NSDateFormatter()
                     formatCell.dateFormat = "MM-dd HH:mm"
                     cell.timeLabel.text = formatCell.stringFromDate(formatSever.dateFromString(stuct["createTime"] as! String)!)

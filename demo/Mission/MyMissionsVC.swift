@@ -37,7 +37,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         activity.hidesWhenStopped = true
         view.addSubview(activity)
         formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        formatSever.locale = NSLocale(localeIdentifier: "zh_CN")
+        formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
         imagePicker.delegate = self
         // Do any additional setup after loading the view.
     }
