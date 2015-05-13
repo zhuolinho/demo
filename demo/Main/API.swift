@@ -287,6 +287,9 @@ class API: NSObject {
     func deleteMission(id: Int) {
         get(host + "deleteMission.action?token=" + API.userInfo.token + "&id=\(id)")
     }
+    func addRMB(rmb: String) {
+        get(host + "addRMB.action?token=" + API.userInfo.token + "&rmb=\(rmb)")
+    }
     func setMissionLike(id: Int, ifLike: Int) {
         get(host + "setMissionLike.action?token=" + API.userInfo.token + "&id=\(id)&ifLike=\(ifLike)")
     }

@@ -125,8 +125,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         return WXApi.handleOpenURL(url, delegate: self)
     }
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        return WXApi.handleOpenURL(url, delegate: self)
+        if url.scheme == "wx81be35fa8a88655e" {
+            return WXApi.handleOpenURL(url, delegate: self)
+        }
+        else {
+            println(url)
+            AlipaySDK.defaultService().processOrderWithPaymentResult(url, standbyCallback: { (resultDic) -> Void in
+            })
+            if url.host == "platformapi" {
+                AlipaySDK.defaultService().processAuthResult(url, standbyCallback: { (resultDic) -> Void in
+                    println(resultDic)
+                })
+            }
+            return true
+        }
     }
+    
     func onResp(resp: BaseResp!) {
         AppDelegate.root!.getWeiXinCodeFinishedWithResp(resp)
     }
