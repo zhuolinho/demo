@@ -24,3 +24,5 @@
 #import "ApplyFriendCell.h"
 #import "InvitationManager.h"
 #import "SWTableViewCell.h"
+#import "Order.h"
+#import <AlipaySDK/AlipaySDK.h>
