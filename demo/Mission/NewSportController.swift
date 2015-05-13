@@ -239,7 +239,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let newSize = CGSize(width: view.bounds.width * 2, height: chosenImage.size.height / chosenImage.size.width * view.bounds.width * 2)
+        let newSize = CGSize(width: 640, height: chosenImage.size.height / chosenImage.size.width * 640)
         UIGraphicsBeginImageContext(newSize)
         chosenImage.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
         let editedImage = UIGraphicsGetImageFromCurrentImageContext()

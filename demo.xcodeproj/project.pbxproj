@@ -373,6 +373,11 @@
 		06BA9BD21AC823AE00F52391 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA9BCE1AC823AE00F52391 /* ApplyViewController.m */; };
 		06BFF72F1ADE111A00FD1CCF /* MyMissionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */; };
 		06BFF7331ADE5C0C00FD1CCF /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BFF7321ADE5C0C00FD1CCF /* MissionCell.swift */; };
+		06C25D5B1B02F77E00338CE3 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C25D5A1B02F77E00338CE3 /* AlipaySDK.framework */; };
+		06C25D5D1B02FC0600338CE3 /* MyRMBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C25D5C1B02FC0600338CE3 /* MyRMBViewController.swift */; };
+		06C25D5F1B03396200338CE3 /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C25D5E1B03396200338CE3 /* ChargeViewController.swift */; };
+		06C25D631B033E3C00338CE3 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06C25D601B033E3C00338CE3 /* AlipaySDK.bundle */; };
+		06C25D641B033E3C00338CE3 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C25D621B033E3C00338CE3 /* Order.m */; };
 		06C50D0C1AD039F100075F8D /* SloganCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C50D0B1AD039F100075F8D /* SloganCell.swift */; };
 		06C677AD1AD250F000D23FF7 /* NewSportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C677AC1AD250F000D23FF7 /* NewSportController.swift */; };
 		06C677AE1AD26B2600D23FF7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D22B1AB20A3D00708337 /* CoreLocation.framework */; };
@@ -961,6 +966,12 @@
 		06BA9BCE1AC823AE00F52391 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		06BFF72E1ADE111A00FD1CCF /* MyMissionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMissionsVC.swift; sourceTree = "<group>"; };
 		06BFF7321ADE5C0C00FD1CCF /* MissionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
+		06C25D5A1B02F77E00338CE3 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = AliSDK/AlipaySDK.framework; sourceTree = "<group>"; };
+		06C25D5C1B02FC0600338CE3 /* MyRMBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRMBViewController.swift; sourceTree = "<group>"; };
+		06C25D5E1B03396200338CE3 /* ChargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeViewController.swift; sourceTree = "<group>"; };
+		06C25D601B033E3C00338CE3 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AlipaySDK.bundle; path = AliSDK/AlipaySDK.bundle; sourceTree = "<group>"; };
+		06C25D611B033E3C00338CE3 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Order.h; path = AliSDK/Order.h; sourceTree = "<group>"; };
+		06C25D621B033E3C00338CE3 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Order.m; path = AliSDK/Order.m; sourceTree = "<group>"; };
 		06C50D0B1AD039F100075F8D /* SloganCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SloganCell.swift; sourceTree = "<group>"; };
 		06C677AC1AD250F000D23FF7 /* NewSportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSportController.swift; sourceTree = "<group>"; };
 		06C677B51AD26CD600D23FF7 /* ANNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANNViewController.swift; sourceTree = "<group>"; };
@@ -997,6 +1008,7 @@
 				06522ABA1AADB12A00D67CAE /* libz.dylib in Frameworks */,
 				066EF6A11AC3B07800200360 /* SystemConfiguration.framework in Frameworks */,
 				06C677AF1AD26B2E00D23FF7 /* MapKit.framework in Frameworks */,
+				06C25D5B1B02F77E00338CE3 /* AlipaySDK.framework in Frameworks */,
 				06C677AE1AD26B2600D23FF7 /* CoreLocation.framework in Frameworks */,
 				066EF6A71AC3B09D00200360 /* Security.framework in Frameworks */,
 				066EF6A51AC3B09600200360 /* UIKit.framework in Frameworks */,
@@ -2123,6 +2135,8 @@
 				066E33791AD3B3020062C31B /* My2Dcode.swift */,
 				06CEB3C11AED37A000A57E66 /* InviteViewController.swift */,
 				060B57591AEE5D77000FD7CC /* ChangePWDViewController.swift */,
+				06C25D5C1B02FC0600338CE3 /* MyRMBViewController.swift */,
+				06C25D5E1B03396200338CE3 /* ChargeViewController.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -2169,9 +2183,21 @@
 			path = FriendApply;
 			sourceTree = "<group>";
 		};
+		06C25D651B033E5100338CE3 /* AliSDK */ = {
+			isa = PBXGroup;
+			children = (
+				06C25D5A1B02F77E00338CE3 /* AlipaySDK.framework */,
+				06C25D601B033E3C00338CE3 /* AlipaySDK.bundle */,
+				06C25D611B033E3C00338CE3 /* Order.h */,
+				06C25D621B033E3C00338CE3 /* Order.m */,
+			);
+			name = AliSDK;
+			sourceTree = "<group>";
+		};
 		06CD92391AA877E10026C3E7 = {
 			isa = PBXGroup;
 			children = (
+				06C25D651B033E5100338CE3 /* AliSDK */,
 				069BB7601AEA6BCA00113E81 /* WeChatSDK_1.5 */,
 				069BB7591AEA6B0F00113E81 /* PodFiles */,
 				06828F691AEA5CBD00D02ED5 /* demo-Bridging-Header.h */,
@@ -2548,6 +2574,7 @@
 				0694E6861AB6CE72008ADF21 /* VoiceSearchFeedback011@2x.png in Resources */,
 				0694E69F1AB6CE72008ADF21 /* chatBar_more_face@2x.png in Resources */,
 				0694E6A51AB6CE72008ADF21 /* chat_location_annotation_someone@2x.png in Resources */,
+				06C25D631B033E3C00338CE3 /* AlipaySDK.bundle in Resources */,
 				0694E69C1AB6CE72008ADF21 /* chatBar_more_cardSelected.png in Resources */,
 				0694E69E1AB6CE72008ADF21 /* chatBar_more_face.png in Resources */,
 				0694E6831AB6CE72008ADF21 /* VoiceSearchFeedback010.png in Resources */,
@@ -2596,6 +2623,7 @@
 				069BB7581AEA6AE100113E81 /* SWUtilityButtonView.m in Sources */,
 				0694E64D1AB6CE72008ADF21 /* EMChatLocationBubbleView.m in Sources */,
 				06BA9BCF1AC823AE00F52391 /* AddFriendCell.m in Sources */,
+				06C25D5D1B02FC0600338CE3 /* MyRMBViewController.swift in Sources */,
 				0694E5E61AB6CE72008ADF21 /* MWZoomingScrollView.m in Sources */,
 				0648D1381AB42F58008B0F67 /* SignatureSettingViewController.swift in Sources */,
 				0694E5E41AB6CE72008ADF21 /* MWTapDetectingImageView.m in Sources */,
@@ -2606,6 +2634,7 @@
 				069F73DB1AB1FDE700D73AA8 /* AppSettingViewController.swift in Sources */,
 				0694E6521AB6CE72008ADF21 /* EMChatViewBaseCell.m in Sources */,
 				06B680DF1AEF998700A73A88 /* SupervisorCell.swift in Sources */,
+				06C25D5F1B03396200338CE3 /* ChargeViewController.swift in Sources */,
 				06B729851AFE4CC80030B6D3 /* MyResultViewController.swift in Sources */,
 				0694E5F81AB6CE72008ADF21 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				0694E5F11AB6CE72008ADF21 /* UIButton+EMWebCache.m in Sources */,
@@ -2734,6 +2763,7 @@
 				0694E6081AB6CE72008ADF21 /* SRRefreshView.m in Sources */,
 				068BFFD31ADA04FC00CE6CC6 /* AddFriendTableVC.swift in Sources */,
 				069E56DA1ACA83B6008B3340 /* MainImageCell.swift in Sources */,
+				06C25D641B033E3C00338CE3 /* Order.m in Sources */,
 				0615378C1AC946AA0046EEBE /* PicDic.swift in Sources */,
 				068477831ACF03AF00F5B667 /* CommentCell.swift in Sources */,
 				0694E64E1AB6CE72008ADF21 /* EMChatTextBubbleView.m in Sources */,
@@ -2869,6 +2899,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliSDK",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -2898,6 +2932,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliSDK",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

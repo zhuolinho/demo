@@ -253,8 +253,11 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let endTime = formatSever.dateFromString(stuct["endTime"] as! String)
                 let hour = Int(endTime!.timeIntervalSinceNow / 3600)
-                if stuct["status"] as! Int != 1 && stuct["status"] as! Int != 0 {
+                if stuct["status"] as! Int == -1 || stuct["status"] as! Int == 2 {
                     cell.timeLabel.text = "已完成"
+                }
+                else if stuct["status"] as! Int == 3 {
+                    cell.timeLabel.text = "未成功"
                 }
                 else {
                     cell.timeLabel.text = "\(hour / 24)天\(hour % 24)小时"
@@ -355,8 +358,11 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.superviseButton.hidden = true
                 cell.lockImageView.hidden = true
                 cell.evidentState.hidden = false
-                if evident["status"] as! Int != 1 && evident["status"] as! Int != 0 {
+                if evident["status"] as! Int == -1 || evident["status"] as! Int == 2  {
                     cell.evidentState.text = "已完成"
+                }
+                else if evident["status"] as! Int == 3 {
+                    cell.evidentState.text = "未成功"
                 }
                 else {
                     cell.evidentState.text = "进行中"

@@ -1725,7 +1725,7 @@
         <!--充值-->
         <scene sceneID="uaq-Jz-U6t">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Ie2-rx-fBI" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Ie2-rx-fBI" customClass="MyRMBViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4cO-rQ-RsT"/>
                         <viewControllerLayoutGuide type="bottom" id="sOg-ld-vLm"/>
@@ -1779,6 +1779,9 @@
                     <navigationItem key="navigationItem" title="充值" id="pf6-ER-ivY">
                         <barButtonItem key="backBarButtonItem" title="返回" id="I5W-LW-cAW"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="rmbLabel" destination="oVv-rV-t2z" id="YoX-jU-W9d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2o-EB-eHY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1817,7 +1820,7 @@
         <!--充值-->
         <scene sceneID="ezT-ej-NTF">
             <objects>
-                <viewController id="H9X-gT-oUC" sceneMemberID="viewController">
+                <viewController id="H9X-gT-oUC" customClass="ChargeViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zCd-fB-Y0f"/>
                         <viewControllerLayoutGuide type="bottom" id="vxK-ED-LEw"/>
@@ -1854,6 +1857,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="chargeButtonClick:" destination="H9X-gT-oUC" eventType="touchUpInside" id="82d-Ay-9LS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
@@ -1865,6 +1871,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="充值" id="Rk7-Te-42c"/>
+                    <connections>
+                        <outlet property="moneyTF" destination="RH4-Ku-cPt" id="toT-tP-CG1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0CR-Ym-5Ip" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
