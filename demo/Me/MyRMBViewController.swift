@@ -13,10 +13,14 @@ class MyRMBViewController: UIViewController {
     @IBOutlet weak var rmbLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        rmbLabel.text = String(API.userInfo.rmb)
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        rmbLabel.text = String(API.userInfo.rmb)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
