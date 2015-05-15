@@ -10,10 +10,12 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDeviceManagerDelegate, APIProtocol, WXApiDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDeviceManagerDelegate, APIProtocol, WXApiDelegate, UIAlertViewDelegate {
     
     var window: UIWindow?
     var checkToken = API()
+    var fee = ""
+    let addRMB = API()
     static var root: MainTabBarController?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         EaseMob.sharedInstance().chatManager.removeDelegate(self)
         EaseMob.sharedInstance().chatManager.addDelegate(self, delegateQueue: nil)
         checkToken.delegate = self
+        addRMB.delegate = self
         let userPreference: NSDictionary? = (NSUserDefaults.standardUserDefaults().objectForKey("YoUserInfo") as? NSDictionary)
         if userPreference != nil {
             let token: String = userPreference!["token"] as! String
@@ -129,8 +132,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
             return WXApi.handleOpenURL(url, delegate: self)
         }
         else {
-            println(url)
             AlipaySDK.defaultService().processOrderWithPaymentResult(url, standbyCallback: { (resultDic) -> Void in
+                if resultDic["resultStatus"] as! String == "9000" {
+                    let strRange1 =  resultDic["result"]!.stringValue.rangeOfString("&total_fee=\"")
+                    let strRange2 =  resultDic["result"]!.stringValue.rangeOfString("\"&notify_url=")
+                    if strRange1 != nil && strRange2 != nil {
+                        self.fee = resultDic["result"]!.stringValue[Range(start: strRange1!.endIndex, end: strRange2!.startIndex)]
+                        self.addRMB.addRMB(self.fee)
+                    }
+                }
+                else {
+                    let alert = UIAlertView(title: "充值失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                }
             })
             if url.host == "platformapi" {
                 AlipaySDK.defaultService().processAuthResult(url, standbyCallback: { (resultDic) -> Void in
@@ -145,58 +159,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IChatManagerDelegate, IDe
         AppDelegate.root!.getWeiXinCodeFinishedWithResp(resp)
     }
     
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        addRMB.addRMB(fee)
+    }
+    
     func didReceiveAPIErrorOf(api: API, errno: Int) {
-        API.userInfo.tokenValid = false
+        if api === checkToken {
+            API.userInfo.tokenValid = false
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertView(title: "充值失败", message: "", delegate: self, cancelButtonTitle: "重试")
+                alert.show()
+            })
+        }
     }
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        let res = data["result"] as! NSDictionary
-        if res.count > 0 {
-            API.userInfo.username = res["username"] as! String
-            API.userInfo.nickname = res["nickname"] as! String
-            API.userInfo.phone = res["phone"] as! String
-            API.userInfo.gender = res["gender"] as! String
-            API.userInfo.profilePhotoUrl = res["avatar"] as! String
-            API.userInfo.signature = res["sign"] as! String
-            API.userInfo.id = res["uid"] as! Int
-            API.userInfo.rmb = res["rmb"] as! Int
-            API.userInfo.weixin = res["weixin"] as! String
-            
-            if !API.userInfo.profilePhotoUrl.isEmpty {
-                let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
-                let request: NSURLRequest = NSURLRequest(URL: url!)
-                let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                    if error == nil {
-                        let img: UIImage? = UIImage(data: data)
-                        let avatar: UIImage? = img
-                        if avatar != nil {
-                            dispatch_async(dispatch_get_main_queue(), {
-                                PicDic.picDic[API.userInfo.profilePhotoUrl] = avatar
-                                API.userInfo.profilePhoto = avatar!
-                            })
+        if api === checkToken {
+            let res = data["result"] as! NSDictionary
+            if res.count > 0 {
+                API.userInfo.username = res["username"] as! String
+                API.userInfo.nickname = res["nickname"] as! String
+                API.userInfo.phone = res["phone"] as! String
+                API.userInfo.gender = res["gender"] as! String
+                API.userInfo.profilePhotoUrl = res["avatar"] as! String
+                API.userInfo.signature = res["sign"] as! String
+                API.userInfo.id = res["uid"] as! Int
+                API.userInfo.rmb = res["rmb"] as! Int
+                API.userInfo.weixin = res["weixin"] as! String
+                
+                if !API.userInfo.profilePhotoUrl.isEmpty {
+                    let url = NSURL(string: (API.userInfo.imageHost + API.userInfo.profilePhotoUrl))
+                    let request: NSURLRequest = NSURLRequest(URL: url!)
+                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                        if error == nil {
+                            let img: UIImage? = UIImage(data: data)
+                            let avatar: UIImage? = img
+                            if avatar != nil {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    PicDic.picDic[API.userInfo.profilePhotoUrl] = avatar
+                                    API.userInfo.profilePhoto = avatar!
+                                })
+                            }
                         }
+                    })
+                }
+                EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
+                    (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
+                    if (error == nil) {
+                        API.userInfo.tokenValid = true
                     }
+                    else {
+                        API.userInfo.tokenValid = false
+                        EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.phone, password: "123456", completion: {
+                            (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
+                            if (error == nil) {
+                                API.userInfo.tokenValid = true
+                            }
+                            else {
+                                EaseMob.sharedInstance().chatManager.registerNewAccount(API.userInfo.username, password: "123456", error: nil)
+                            }
+                            }, onQueue: nil)
+                    }
+                    }, onQueue: nil)
+                APService.setTags([API.userInfo.username], alias: API.userInfo.username, callbackSelector: nil, target: self)
+            }
+        }
+        else {
+            let res = data["result"] as! Int
+            if res > 0 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    API.userInfo.rmb = res
+                    let alert = UIAlertView(title: "充值成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
                 })
             }
-            EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.username, password: "123456", completion: {
-                (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-                if (error == nil) {
-                    API.userInfo.tokenValid = true
-                }
-                else {
-                    API.userInfo.tokenValid = false
-                    EaseMob.sharedInstance().chatManager.asyncLoginWithUsername(API.userInfo.phone, password: "123456", completion: {
-                        (loginInfo: [NSObject : AnyObject]!, error: EMError!) -> Void in
-                        if (error == nil) {
-                            API.userInfo.tokenValid = true
-                        }
-                        else {
-                            EaseMob.sharedInstance().chatManager.registerNewAccount(API.userInfo.username, password: "123456", error: nil)
-                        }
-                        }, onQueue: nil)
-                }
-                }, onQueue: nil)
-            APService.setTags([API.userInfo.username], alias: API.userInfo.username, callbackSelector: nil, target: self)
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "充值失败", message: "", delegate: self, cancelButtonTitle: "重试")
+                    alert.show()
+                })
+            }
         }
     }
     func applicationWillResignActive(application: UIApplication) {

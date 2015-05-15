@@ -32,6 +32,8 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
         req.state = "123"
         WXApi.sendReq(req)
         wxButton.enabled = false
+        let alert = UIAlertView(title: "你现在在使用微信登录，无需设置密码", message: "", delegate: nil, cancelButtonTitle: "确定")
+        alert.show()
     }
     @IBAction func loginButtonClick(sender: UIButton) {
         if iflogining {

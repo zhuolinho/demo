@@ -356,7 +356,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
                     }
                     let pics = ""
                     let picTimes = ""
-                    addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                    addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: 7)
                 }
             }
         }
@@ -418,7 +418,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
                     pics = "*"
                     picTimes = "*"
                 }
-                addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: 7)
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -536,7 +536,7 @@ class NewKeepFitViewController: UITableViewController, UIPickerViewDataSource, U
             pics = "*"
             picTimes = "*"
         }
-        addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+        addMission.addMission(3, title: "早餐打卡", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: 7)
     }
     
     func strings(visor: String) {

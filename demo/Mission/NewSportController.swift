@@ -367,7 +367,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     }
                     let pics = ""
                     let picTimes = ""
-                    addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                    if times == "9＋" {
+                        addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: 9)
+                    }
+                    else {
+                        addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: times.toInt()!)
+                    }
                 }
             }
         }
@@ -429,7 +434,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
                     pics = "*"
                     picTimes = "*"
                 }
-                addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+                if times == "9＋" {
+                    addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: 9)
+                }
+                else {
+                    addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: times.toInt()!)
+                }
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -546,7 +556,12 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             pics = "*"
             picTimes = "*"
         }
-        addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb)
+        if times == "9＋" {
+            addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: 9)
+        }
+        else {
+            addMission.addMission(1, title: "运动减肥", content: content, supervisor: supervisor, slogan: slogan, pics: pics, picTimes: picTimes, location: location, rmb: rmb, numOfDuty: times.toInt()!)
+        }
     }
     
     func strings(visor: String) {
