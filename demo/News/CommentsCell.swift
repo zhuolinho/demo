@@ -1,16 +1,15 @@
 //
-//  CommentCell.swift
+//  CommentsCell.swift
 //  demo
 //
-//  Created by HoJolin on 15/4/4.
+//  Created by HoJolin on 15/5/15.
 //  Copyright (c) 2015年 CBC. All rights reserved.
 //
 
 import UIKit
 
-class CommentCell: UITableViewCell {
+class CommentsCell: UITableViewCell {
 
-    @IBOutlet weak var commentLabel: UILabel!
     var username = ""
     var nickname = ""
     

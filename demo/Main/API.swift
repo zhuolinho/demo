@@ -240,20 +240,20 @@ class API: NSObject {
         get(host + "readMissionNotification.action?token=\(API.userInfo.token)&id=\(id)")
     }
     
-    func addMission(missionTemplateID: Int, title: String, content: String, supervisor: String, slogan: String, pics: String, picTimes: String, location: String, rmb: Int) {
-        let data = ["token": API.userInfo.token, "missionTemplateID": "\(missionTemplateID)", "title": title, "content": content, "supervisor": supervisor, "slogan": slogan, "pics": pics, "picTimes": picTimes, "location": location, "rmb": "\(rmb)"]
+    func addMission(missionTemplateID: Int, title: String, content: String, supervisor: String, slogan: String, pics: String, picTimes: String, location: String, rmb: Int, numOfDuty: Int) {
+        let data = ["token": API.userInfo.token, "missionTemplateID": "\(missionTemplateID)", "title": title, "content": content, "supervisor": supervisor, "slogan": slogan, "pics": pics, "picTimes": picTimes, "location": location, "rmb": "\(rmb)", "numOfDuty": "\(numOfDuty)"]
         sendURLEncodedForm(action: "addMission.action", data: data, image: nil)
     }
     func addEvidence(mid: Int, slogan: String, pics: String, picTimes: String, location: String) {
         let data = ["token": API.userInfo.token, "slogan": slogan, "pics": pics, "picTimes": picTimes, "location": location, "mid": "\(mid)"]
         sendURLEncodedForm(action: "addEvidence.action", data: data, image: nil)
     }
-    func addEvidenceComment(id: Int, content: String) {
-        let data = ["token": API.userInfo.token, "content": content, "id": "\(id)"]
+    func addEvidenceComment(id: Int, content: String, talkerUsername: String) {
+        let data = ["token": API.userInfo.token, "content": content, "id": "\(id)", "talkerUsername": talkerUsername]
         sendURLEncodedForm(action: "addEvidenceComment.action", data: data, image: nil)
     }
-    func addMissionComment(mid: Int, content: String) {
-        let data = ["token": API.userInfo.token, "content": content, "id": "\(mid)"]
+    func addMissionComment(mid: Int, content: String, talkerUsername: String) {
+        let data = ["token": API.userInfo.token, "content": content, "id": "\(mid)", "talkerUsername": talkerUsername]
         sendURLEncodedForm(action: "addMissionComment.action", data: data, image: nil)
     }
     func setSchool(school: Int) {

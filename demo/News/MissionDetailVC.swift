@@ -26,6 +26,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     let addEvidenceComment = API()
     let addMissionComment = API()
     var initNum = 0
+    var talkerUsername = "*"
     
     @IBOutlet weak var selfTableView: UITableView!
     
@@ -420,14 +421,20 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 let comment = comments[indexPath.row - 7]
                 let nickname = comment["nickname"] as! String
                 let content = comment["content"] as! String
-                cell.commentLabel.text = nickname + "：" + content
+                var talkerNickname = ""
+                if comment["talkerNickname"] as! String != "*" {
+                    talkerNickname = "回复" + (comment["talkerNickname"] as! String)
+                }
+                cell.username = comment["username"] as! String
+                cell.nickname = comment["nickname"] as! String
+                cell.commentLabel.text = nickname + talkerNickname + "：" + content
                 return cell
             }
         }
         else if segmentCtrl.selectedSegmentIndex == 2 && missionComment["location"] != nil {
             if indexPath.section == 1 {
                 let comments = missionComment["comment"] as! [NSDictionary]
-                let cell = tableView.dequeueReusableCellWithIdentifier("CommentsCell", forIndexPath: indexPath) as! UITableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("CommentsCell", forIndexPath: indexPath) as! CommentsCell
                 let avatarView = cell.viewWithTag(1) as! UIImageView
                 let nameLable = cell.viewWithTag(2) as! UILabel
                 let timeLabel = cell.viewWithTag(3) as! UILabel
@@ -439,7 +446,14 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 else {
                     avatarView.image = PicDic.picDic[url]
                 }
-                nameLable.text = comments[indexPath.row]["nickname"] as? String
+                if comments[indexPath.row]["talkerNickname"] as! String != "*" {
+                    nameLable.text = (comments[indexPath.row]["nickname"] as! String) + "回复" + (comments[indexPath.row]["talkerNickname"] as! String)
+                }
+                else {
+                    nameLable.text = (comments[indexPath.row]["nickname"] as! String)
+                }
+                cell.username = comments[indexPath.row]["username"] as! String
+                cell.nickname = comments[indexPath.row]["nickname"] as! String
                 timeLabel.text = friendlyTime(comments[indexPath.row]["createTime"] as! String)
                 contentLabel.text = comments[indexPath.row]["content"] as? String
                 avatarView.layer.cornerRadius = 25
@@ -659,6 +673,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     func commentButtonClick(button: UIButton) {
+        talkerUsername = "*"
         myTextV1.resignFirstResponder()
         mainView.hidden = true
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint:", name: UIKeyboardWillShowNotification, object: nil)
@@ -703,7 +718,16 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             mainView.hidden = false
             view.addSubview(mainView)
             myTextV1.text = ""
-            myTextV1.placeholder = "评论..."
+            if segmentCtrl.selectedSegmentIndex == 1{
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! CommentCell
+                talkerUsername = cell.username
+                myTextV1.placeholder = "回复" + cell.nickname + "："
+            }
+            else {
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! CommentsCell
+                talkerUsername = cell.username
+                myTextV1.placeholder = "回复" + cell.nickname + "："
+            }
             myTextV1.becomeFirstResponder()
             if segmentCtrl.selectedSegmentIndex == 1 {
                 fasongBut.tag = evidences[indexPath.section]["id"] as! Int
@@ -758,11 +782,17 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         })
     }
     func viceButtonClick(button: UIButton) {
-        setLike.setSupervisor(mid)
-        stuct["myStatus"] = 1
-        dispatch_async(dispatch_get_main_queue(), {
-            self.selfTableView.reloadData()
-        })
+        if stuct["status"] as! Int == 1 || stuct["status"] as! Int == 0 {
+            setLike.setSupervisor(mid)
+            stuct["myStatus"] = 1
+            dispatch_async(dispatch_get_main_queue(), {
+                self.selfTableView.reloadData()
+            })
+        }
+        else {
+            let alert = UIAlertView(title: "任务已结束", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
     }
 
     func changeContentViewPoint(notification: NSNotification) {
@@ -779,12 +809,12 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     func pinglunQueding(button: UIButton) {
         if segmentCtrl.selectedSegmentIndex == 1 {
             if myTextV1.text != "" {
-                addEvidenceComment.addEvidenceComment(button.tag, content: myTextV1.text)
+                addEvidenceComment.addEvidenceComment(button.tag, content: myTextV1.text, talkerUsername: talkerUsername)
             }
         }
         else {
             if myTextV1.text != "" {
-                addMissionComment.addMissionComment(mid, content: myTextV1.text)
+                addMissionComment.addMissionComment(mid, content: myTextV1.text, talkerUsername: talkerUsername)
             }
         }
         myTextV1.resignFirstResponder()

@@ -30,6 +30,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     var buffer = [Int]()
     var isRequesing = false
     var activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    var myActivity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     let setLike = API()
     let mainView = UIView()
     let myTextV1 = UITextField()
@@ -55,11 +56,13 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: "refreshing", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
-        refreshing()
         titleButton.addTarget(self, action: "refreshing", forControlEvents: UIControlEvents.TouchDownRepeat)
         activity.hidesWhenStopped = true
         self.tableView.tableFooterView = activity
         addComment.delegate = self
+        myActivity.frame.origin = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2 - 32)
+        view.addSubview(myActivity)
+        myActivity.hidesWhenStopped = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -76,10 +79,13 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         viewa.hidden = true
         myTextV1.resignFirstResponder()
         mainView.hidden = true
+        ifMyFriend = 1
+        refreshing()
     }
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         viewa.frame = CGRect(x: view.bounds.width - 105, y: tableView.contentOffset.y + 64, width: 92, height: 86)
         mainView.frame = CGRect(x: 0, y: tableView.contentOffset.y + temp - 40, width: view.bounds.width, height: 40)
+        myActivity.frame.origin = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2 - 32 + tableView.contentOffset.y)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -347,6 +353,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             if refreshControl?.refreshing == false {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableView.setContentOffset(CGPointMake(0, -60), animated: false)
+                    self.myActivity.startAnimating()
                 })
             }
             requesMore.getMissionsAndEvidences(0, ifMyFriend: ifMyFriend)
@@ -405,12 +412,18 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
     }
     func viceButtonClick(button: UIButton) {
         var stuct = news[button.tag]["struct"] as! NSMutableDictionary
-        let id = stuct["id"] as! Int
-        setLike.setSupervisor(id)
-        stuct["myStatus"] = 1
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-        })
+        if stuct["status"] as! Int == 0 || stuct["status"] as! Int == 1 {
+            let id = stuct["id"] as! Int
+            setLike.setSupervisor(id)
+            stuct["myStatus"] = 1
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        }
+        else {
+            let alert = UIAlertView(title: "任务已结束", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
     }
     func didReceiveAPIErrorOf(api: API, errno: Int) {
         skip = -1
@@ -437,6 +450,9 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 }
                 if self.activity.isAnimating() {
                     self.activity.stopAnimating()
+                }
+                if self.myActivity.isAnimating() {
+                    self.myActivity.stopAnimating()
                 }
             })
             if skip == 0 {
@@ -547,12 +563,12 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         let id = stuct["id"] as! Int
         if news[button.tag]["type"] as! String == "mission" {
             if myTextV1.text != "" {
-                addComment.addMissionComment(id, content: myTextV1.text)
+                addComment.addMissionComment(id, content: myTextV1.text, talkerUsername: "*")
             }
         }
         else {
             if myTextV1.text != "" {
-                addComment.addEvidenceComment(id, content: myTextV1.text)
+                addComment.addEvidenceComment(id, content: myTextV1.text, talkerUsername: "*")
             }
         }
         myTextV1.resignFirstResponder()

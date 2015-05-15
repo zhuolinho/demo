@@ -8,11 +8,17 @@
 
 import UIKit
 
-class CommentNotificationTableVC: UITableViewController, APIProtocol {
+class CommentNotificationTableVC: UITableViewController, APIProtocol, UITextFieldDelegate {
 
     let api = API()
     var CommentNotification = [NSDictionary]()
     let markRead = API()
+    var type = 0
+    var talkerUsername = "*"
+    let mainView = UIView()
+    let myTextV1 = UITextField()
+    let addComment = API()
+    var temp = CGFloat(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +26,8 @@ class CommentNotificationTableVC: UITableViewController, APIProtocol {
         api.getCommentNotification(0)
         let blankView = UIView()
         tableView.tableFooterView = blankView
+        addComment.delegate = self
+        myTextV1.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,6 +42,16 @@ class CommentNotificationTableVC: UITableViewController, APIProtocol {
         // Dispose of any resources that can be recreated.
     }
 
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        mainView.frame = CGRect(x: 0, y: tableView.contentOffset.y + temp - 40, width: view.bounds.width, height: 40)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        mainView.hidden = true
+        return true
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -49,52 +67,125 @@ class CommentNotificationTableVC: UITableViewController, APIProtocol {
     }
 
     func didReceiveAPIResponseOf(api: API, data: NSDictionary) {
-        CommentNotification = data["result"] as! [NSDictionary]
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-        })
-        for item in CommentNotification {
-            markRead.readCommentNotification(item["id"] as! Int)
-            let avatar = item["avatar"] as! String
-            var pics = [String]()
-            pics.append(avatar)
-            pics.append(item["pic"] as! String)
-            for url in pics {
-                if PicDic.picDic[url] == nil {
-                    let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
-                    let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
-                    let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
-                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                        if error == nil {
-                            var rawImage: UIImage? = UIImage(data: data)
-                            let img: UIImage? = rawImage
-                            if img != nil {
-                                dispatch_async(dispatch_get_main_queue(), {
-                                    PicDic.picDic[url] = img
-                                    self.tableView.reloadData()
-                                })
+        if api === addComment {
+            let res = data["result"] as! Int
+            if res == 1 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "评论成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertView(title: "评论失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                })
+            }
+        }
+        else {
+            CommentNotification = data["result"] as! [NSDictionary]
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+            for item in CommentNotification {
+                markRead.readCommentNotification(item["id"] as! Int)
+                let avatar = item["avatar"] as! String
+                var pics = [String]()
+                pics.append(avatar)
+                pics.append(item["pic"] as! String)
+                for url in pics {
+                    if PicDic.picDic[url] == nil {
+                        let remoteUrl = NSURL(string: (API.userInfo.imageHost + url))
+                        let request: NSURLRequest = NSURLRequest(URL: remoteUrl!)
+                        let urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)!
+                        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                            if error == nil {
+                                var rawImage: UIImage? = UIImage(data: data)
+                                let img: UIImage? = rawImage
+                                if img != nil {
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        PicDic.picDic[url] = img
+                                        self.tableView.reloadData()
+                                    })
+                                }
                             }
-                        }
-                    })
+                        })
+                    }
                 }
             }
         }
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
-        vc.mid = CommentNotification[indexPath.section]["mid"] as! Int
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeContentViewPoint:", name: UIKeyboardWillShowNotification, object: nil)
+        myTextV1.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 60, height: 40)
+        myTextV1.borderStyle = UITextBorderStyle.RoundedRect
+        myTextV1.backgroundColor = UIColor.whiteColor()
+        let fasongBut = UIButton(frame: CGRect(x: view.bounds.width - 60, y: 0, width: 60, height: 40))
+        fasongBut.setTitle("确定", forState: UIControlState.Normal)
+        fasongBut.backgroundColor = UIColor.orangeColor()
+        fasongBut.addTarget(self, action: "pinglunQueding:", forControlEvents: UIControlEvents.TouchUpInside)
+        fasongBut.layer.cornerRadius = 5
+        fasongBut.layer.masksToBounds = true
+        mainView.frame = CGRectMake(0, self.view.bounds.height + tableView.contentOffset.y, self.view.bounds.width, 40)
+        mainView.addSubview(myTextV1)
+        mainView.addSubview(fasongBut)
+        mainView.hidden = false
+        view.addSubview(mainView)
+        myTextV1.text = ""
+        myTextV1.placeholder = "回复" + (CommentNotification[indexPath.section]["nickname"] as! String) + "："
+        myTextV1.becomeFirstResponder()
         if CommentNotification[indexPath.section]["type"] as! String == "mission" {
-            vc.initNum = 0
+            type = 0
+            talkerUsername = CommentNotification[indexPath.section]["username"] as! String
+            fasongBut.tag = CommentNotification[indexPath.section]["mid"] as! Int
         }
         else {
-            vc.initNum = 1
+            type = 1
+            talkerUsername = CommentNotification[indexPath.section]["username"] as! String
+            fasongBut.tag = CommentNotification[indexPath.section]["eid"] as! Int
         }
-        navigationController?.pushViewController(vc, animated: true)
 
     }
     
+    func changeContentViewPoint(notification: NSNotification) {
+        let value = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyBoardEndY = value.CGRectValue().origin.y
+        let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+        UIView.animateWithDuration(duration.doubleValue, animations: { () -> Void in
+            UIView.setAnimationBeginsFromCurrentState(true)
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: curve.integerValue)!)
+            self.mainView.center = CGPointMake(self.mainView.center.x, self.tableView.contentOffset.y + keyBoardEndY  - self.mainView.bounds.height / 2)
+            
+            self.temp = keyBoardEndY
+        })
+    }
+    
+    func pinglunQueding(button: UIButton) {
+        if type == 1 {
+            if myTextV1.text != "" {
+                addComment.addEvidenceComment(button.tag, content: myTextV1.text, talkerUsername: talkerUsername)
+            }
+        }
+        else {
+            if myTextV1.text != "" {
+                addComment.addMissionComment(button.tag, content: myTextV1.text, talkerUsername: talkerUsername)
+            }
+        }
+        myTextV1.resignFirstResponder()
+        mainView.hidden = true
+        mainView.center = CGPointMake(mainView.center.x, view.bounds.height)
+    }
+    
     func didReceiveAPIErrorOf(api: API, errno: Int) {
+        if api === addComment {
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertView(title: "评论失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            })
+        }
         println(errno)
     }
     

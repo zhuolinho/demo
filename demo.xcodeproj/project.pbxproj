@@ -44,6 +44,7 @@
 		06522AC01AADB14B00D67CAE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */; };
 		065E2CD01ABD8AD0006207FE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */; };
 		065FB3F61AE5267600C43747 /* SystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065FB3F51AE5267600C43747 /* SystemCell.swift */; };
+		06652F871B06162100ADC6CD /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06652F861B06162100ADC6CD /* CommentsCell.swift */; };
 		0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667006B1AC93EF000714D54 /* NewsViewController.swift */; };
 		066E337A1AD3B3020062C31B /* My2Dcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E33791AD3B3020062C31B /* My2Dcode.swift */; };
 		066E33801AD3B4080062C31B /* CIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E337C1AD3B4080062C31B /* CIColorExtension.swift */; };
@@ -541,6 +542,7 @@
 		06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		065FB3F51AE5267600C43747 /* SystemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemCell.swift; sourceTree = "<group>"; };
+		06652F861B06162100ADC6CD /* CommentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		0667006B1AC93EF000714D54 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		066E33791AD3B3020062C31B /* My2Dcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = My2Dcode.swift; sourceTree = "<group>"; };
 		066E337C1AD3B4080062C31B /* CIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIColorExtension.swift; sourceTree = "<group>"; };
@@ -1447,6 +1449,7 @@
 				068477841ACF03E400F5B667 /* MoreCommentsCell.swift */,
 				06C50D0B1AD039F100075F8D /* SloganCell.swift */,
 				06973D841ADFDEAE007C3E0E /* MissionDetailVC.swift */,
+				06652F861B06162100ADC6CD /* CommentsCell.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -2851,6 +2854,7 @@
 				069BB7501AEA6AE100113E81 /* SWCellScrollView.m in Sources */,
 				069BB7511AEA6AE100113E81 /* SWLongPressGestureRecognizer.h in Sources */,
 				069BB7521AEA6AE100113E81 /* SWLongPressGestureRecognizer.m in Sources */,
+				06652F871B06162100ADC6CD /* CommentsCell.swift in Sources */,
 				069BB7531AEA6AE100113E81 /* SWTableViewCell.h in Sources */,
 				06C25E501B036D4100338CE3 /* base64.m in Sources */,
 				06CEB3BE1AECF5B400A57E66 /* SwiftContactTool.swift in Sources */,
