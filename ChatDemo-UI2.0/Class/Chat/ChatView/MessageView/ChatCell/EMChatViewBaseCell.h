@@ -28,6 +28,8 @@
 
 extern NSString *const kRouterEventChatHeadImageTapEventName;
 
+@protocol wtfButtonDelegate;
+
 @interface EMChatViewBaseCell : UITableViewCell
 {
     UIImageView *_headImageView;
@@ -38,11 +40,15 @@ extern NSString *const kRouterEventChatHeadImageTapEventName;
     MessageModel *_messageModel;
 }
 
+@property (nonatomic) id<wtfButtonDelegate> delegate;
+
 @property (nonatomic, strong) MessageModel *messageModel;
 
 @property (nonatomic, strong) UIImageView *headImageView;       //头像
 @property (nonatomic, strong) UILabel *nameLabel;               //姓名（暂时不支持显示）
 @property (nonatomic, strong) EMChatBaseBubbleView *bubbleView;   //内容区域
+
+@property (nonatomic, strong) UIButton *wtfButton;
 
 - (id)initWithMessageModel:(MessageModel *)model reuseIdentifier:(NSString *)reuseIdentifier;
 
@@ -51,5 +57,11 @@ extern NSString *const kRouterEventChatHeadImageTapEventName;
 + (NSString *)cellIdentifierForMessageModel:(MessageModel *)model;
 
 + (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withObject:(MessageModel *)model;
+
+@end
+
+@protocol wtfButtonDelegate <NSObject>
+
+- (void) wtfButtonClick;
 
 @end

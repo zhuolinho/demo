@@ -22,6 +22,7 @@ class FriendInfoViewController: UITableViewController, APIProtocol, UIAlertViewD
     var contents = [String]()
     var titles = [String]()
     var charges = [Int]()
+    var exten = false
 //    @IBAction func chatButtonClick(sender: UIBarButtonItem) {
 //        var chatVC = ChatViewController()
 //        chatVC.chatter = userName
@@ -118,6 +119,9 @@ class FriendInfoViewController: UITableViewController, APIProtocol, UIAlertViewD
                 chatButton.userInteractionEnabled = false
                 attentButton.imageView?.image = UIImage(named: "user_info1_06")
                 chatButton.imageView?.image = UIImage(named: "user_info1_09")
+            }
+            if exten {
+                chatButton.userInteractionEnabled = false
             }
             return cell
         }
@@ -239,7 +243,6 @@ class FriendInfoViewController: UITableViewController, APIProtocol, UIAlertViewD
             chatVC.myHeadUrl = API.userInfo.imageHost + API.userInfo.profilePhotoUrl
             chatVC.friendHeadUrl = API.userInfo.imageHost + avatarURL
             chatVC.navigationItem.title = nickName
-            println(self.navigationController?.viewControllers)
         }
     }
 }

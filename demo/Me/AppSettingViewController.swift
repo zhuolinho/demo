@@ -33,6 +33,14 @@ class AppSettingViewController: UITableViewController, UIAlertViewDelegate {
                 alert.show()
             }
         }
+        else if API.userInfo.username != API.userInfo.phone {
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("ChangePWDViewController") as! ChangePWDViewController
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else {
+            let alert = UIAlertView(title: "使用微信登录无需设置密码", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {

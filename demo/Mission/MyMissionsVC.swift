@@ -99,7 +99,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                     }
                     else if missions[mark]["status"] as! Int == 3 {
                         markView.hidden = false
-                        markView.image = UIImage(named: "mission12_03")
+                        markView.image = UIImage(named: "stamp1")
                     }
                     else {
                         markView.hidden = true
@@ -266,7 +266,7 @@ class MyMissionsVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                 }
                 else if missions[mark]["status"] as! Int == 3 {
                     markView.hidden = false
-                    markView.image = UIImage(named: "mission12_03")
+                    markView.image = UIImage(named: "stamp1")
                 }
                 else {
                     markView.hidden = true

@@ -42,8 +42,19 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
         [self.contentView addSubview:_nameLabel];
         
         [self setupSubviewsForMessageModel:model];
+        
+        _wtfButton = [[UIButton alloc] initWithFrame:CGRectMake(HEAD_PADDING, CELLPADDING, HEAD_SIZE, HEAD_SIZE)];
+        [_wtfButton addTarget:self action:@selector(wtf) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_wtfButton];
     }
     return self;
+}
+
+-(void)wtf
+{
+    if (_delegate) {
+        [_delegate wtfButtonClick];
+    }
 }
 
 -(void)layoutSubviews
@@ -72,7 +83,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     
     _nameLabel.hidden = !messageModel.isChatGroup;
     
-    UIImage *placeholderImage = [UIImage imageNamed:@"chatListCellHead"];
+    UIImage *placeholderImage = [UIImage imageNamed:@"DefaultAvatar"];
     [self.headImageView sd_setImageWithURL:_messageModel.headImageURL placeholderImage:placeholderImage];
 }
 

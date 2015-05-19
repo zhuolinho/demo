@@ -138,7 +138,7 @@
         cell = [[AddFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
+    cell.imageView.image = [UIImage imageNamed:@"DefaultAvatar"];
     cell.textLabel.text = [self.dataSource objectAtIndex:indexPath.row];
     
     return cell;

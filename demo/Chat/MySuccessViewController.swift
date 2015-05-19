@@ -171,7 +171,7 @@ class MySuccessViewController: UIViewController, APIProtocol, UITableViewDataSou
                 }
                 else if res["status"] as! Int == 3 {
                     markView.hidden = false
-                    markView.image = UIImage(named: "mission12_03")
+                    markView.image = UIImage(named: "stamp1")
                 }
                 else {
                     markView.hidden = true

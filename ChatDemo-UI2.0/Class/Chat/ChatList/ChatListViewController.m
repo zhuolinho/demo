@@ -147,7 +147,7 @@
             EMConversation *conversation = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
             cell.name = conversation.chatter;
             if (!conversation.isGroup) {
-                cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+                cell.placeholderImage = [UIImage imageNamed:@"DefaultAvatar"];
             }
             else{
                 NSString *imageName = @"groupPublicHeader";
@@ -299,7 +299,7 @@
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     cell.name = conversation.chatter;
-    cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+    cell.placeholderImage = [UIImage imageNamed:@"DefaultAvatar"];
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     cell.time = [self lastMessageTimeByConversation:conversation];
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
