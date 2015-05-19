@@ -44,6 +44,7 @@
 		06522AC01AADB14B00D67CAE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */; };
 		065E2CD01ABD8AD0006207FE /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */; };
 		065FB3F61AE5267600C43747 /* SystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065FB3F51AE5267600C43747 /* SystemCell.swift */; };
+		066033051B0B6B2100E79063 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 066033031B0B6B2100E79063 /* Main.storyboard */; };
 		06652F871B06162100ADC6CD /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06652F861B06162100ADC6CD /* CommentsCell.swift */; };
 		0667006C1AC93EF000714D54 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0667006B1AC93EF000714D54 /* NewsViewController.swift */; };
 		066E337A1AD3B3020062C31B /* My2Dcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E33791AD3B3020062C31B /* My2Dcode.swift */; };
@@ -396,7 +397,6 @@
 		06C677AF1AD26B2E00D23FF7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685D22D1AB20A4800708337 /* MapKit.framework */; };
 		06C677B61AD26CD600D23FF7 /* ANNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C677B51AD26CD600D23FF7 /* ANNViewController.swift */; };
 		06CD92481AA877E10026C3E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD92471AA877E10026C3E7 /* AppDelegate.swift */; };
-		06CD924D1AA877E10026C3E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06CD924B1AA877E10026C3E7 /* Main.storyboard */; };
 		06CD92521AA877E10026C3E7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06CD92501AA877E10026C3E7 /* LaunchScreen.xib */; };
 		06CD925E1AA877E10026C3E7 /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD925D1AA877E10026C3E7 /* demoTests.swift */; };
 		06CDBC9E1AE296D900A13245 /* NewEvidenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CDBC9D1AE296D900A13245 /* NewEvidenceVC.swift */; };
@@ -542,6 +542,7 @@
 		06522ABF1AADB14B00D67CAE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		065E2CCF1ABD8AD0006207FE /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		065FB3F51AE5267600C43747 /* SystemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemCell.swift; sourceTree = "<group>"; };
+		066033041B0B6B2100E79063 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06652F861B06162100ADC6CD /* CommentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		0667006B1AC93EF000714D54 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		066E33791AD3B3020062C31B /* My2Dcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = My2Dcode.swift; sourceTree = "<group>"; };
@@ -1088,7 +1089,6 @@
 		06CD92421AA877E10026C3E7 /* demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CD92461AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD92471AA877E10026C3E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		06CD924C1AA877E10026C3E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06CD92511AA877E10026C3E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		06CD92571AA877E10026C3E7 /* demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CD925C1AA877E10026C3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2474,7 +2474,7 @@
 				068AEBED1AAC6C0F00F5B84C /* Login */,
 				06CD92471AA877E10026C3E7 /* AppDelegate.swift */,
 				064E8BBD1AEFDBA500BD296D /* Images.xcassets */,
-				06CD924B1AA877E10026C3E7 /* Main.storyboard */,
+				066033031B0B6B2100E79063 /* Main.storyboard */,
 				06CD92501AA877E10026C3E7 /* LaunchScreen.xib */,
 				06CD92451AA877E10026C3E7 /* Supporting Files */,
 			);
@@ -2719,7 +2719,6 @@
 				0694E66E1AB6CE72008ADF21 /* chatFire_audioPlaying2@2x.png in Resources */,
 				0694E6441AB6CE72008ADF21 /* chatBar_more_locationSelected@2x.png in Resources */,
 				0694E6B61AB6CE72008ADF21 /* chat_receiver_bg.png in Resources */,
-				06CD924D1AA877E10026C3E7 /* Main.storyboard in Resources */,
 				0694E6321AB6CE72008ADF21 /* chatBar_recordSelected@2x.png in Resources */,
 				0694E6731AB6CE72008ADF21 /* VoiceSearchFeedback002.png in Resources */,
 				0694E6D61AB6CE72008ADF21 /* tabbarBackground.png in Resources */,
@@ -2817,6 +2816,7 @@
 				0694E69F1AB6CE72008ADF21 /* chatBar_more_face@2x.png in Resources */,
 				0694E6A51AB6CE72008ADF21 /* chat_location_annotation_someone@2x.png in Resources */,
 				06C25DEA1B036CD200338CE3 /* AlipaySDK.bundle in Resources */,
+				066033051B0B6B2100E79063 /* Main.storyboard in Resources */,
 				0694E69C1AB6CE72008ADF21 /* chatBar_more_cardSelected.png in Resources */,
 				0694E69E1AB6CE72008ADF21 /* chatBar_more_face.png in Resources */,
 				0694E6831AB6CE72008ADF21 /* VoiceSearchFeedback010.png in Resources */,
@@ -3049,10 +3049,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		06CD924B1AA877E10026C3E7 /* Main.storyboard */ = {
+		066033031B0B6B2100E79063 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				06CD924C1AA877E10026C3E7 /* Base */,
+				066033041B0B6B2100E79063 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

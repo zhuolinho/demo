@@ -14,15 +14,27 @@
 #import "EaseMobHeaders.h"
 #import "EaseMob.h"
 
+@protocol ChatViewControllerDelegate;
+
 @interface ChatViewController : UIViewController
+
+@property (nonatomic) id<ChatViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) NSString *chatter;
 @property (nonatomic, strong) NSString *myHeadUrl;
 @property (nonatomic, strong) NSString *friendHeadUrl;
+@property (nonatomic, strong) NSString *nickname;
+@property (nonatomic, strong) NSString *url;
 @property (nonatomic) BOOL buyCourseRightNow;
 
 - (instancetype)initWithChatter:(NSString *)chatter;
 
 - (instancetype)initWithGroup:(EMGroup *)chatGroup;
+
+@end
+
+@protocol ChatViewControllerDelegate <NSObject>
+
+- (void) wtfButtonClick:(NSString *)username nickname:(NSString*)nickname url:(NSString *)url;
 
 @end

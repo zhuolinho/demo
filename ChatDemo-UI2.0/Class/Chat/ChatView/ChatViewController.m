@@ -33,7 +33,7 @@
 
 #define KPageCount 20
 
-@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRRefreshDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, IDeviceManagerDelegate>
+@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRRefreshDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, IDeviceManagerDelegate, wtfButtonDelegate>
 {
     UIMenuController *_menuController;
     UIMenuItem *_copyMenuItem;
@@ -356,7 +356,7 @@
                 model.headImageURL = [[NSURL alloc] initWithString:_friendHeadUrl];
             }
             cell.messageModel = model;
-            
+            cell.delegate = self;
             return cell;
         }
     }
@@ -1082,6 +1082,12 @@
     } else {
         // 使用扬声器播放
         [[EaseMob sharedInstance].deviceManager switchAudioOutputDevice:eAudioOutputDevice_speaker];
+    }
+}
+
+- (void) wtfButtonClick {
+    if (_delegate) {
+        [_delegate wtfButtonClick:_chatter nickname:_nickname url:_url];
     }
 }
 

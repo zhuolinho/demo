@@ -40,7 +40,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
         commitButton.titleLabel?.textColor = UIColor.whiteColor()
         commitButton.addTarget(self, action: "commitButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(commitButton)
-        picker = UIPickerView(frame: CGRect(x: 0, y: view.bounds.height - 286, width: view.bounds.width, height: 162))
+        picker = UIPickerView(frame: CGRect(x: 0, y: view.bounds.height - 226, width: view.bounds.width, height: 162))
         picker.backgroundColor = UIColor.whiteColor()
         picker.dataSource = self
         picker.delegate = self

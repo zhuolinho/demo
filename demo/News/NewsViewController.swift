@@ -362,25 +362,27 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         }
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        viewa.hidden = true
-        myTextV1.resignFirstResponder()
-        mainView.hidden = true
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
-        let sturt = news[indexPath.section]["struct"] as! NSDictionary
-        if news[indexPath.section]["type"] as! String == "mission" && indexPath.row != 6 {
-            vc.mid = sturt["id"] as! Int
-            vc.initNum = 0
-        }
-        else if news[indexPath.section]["type"] as! String == "mission" && indexPath.row == 6 {
-            vc.mid = sturt["id"] as! Int
-            vc.initNum = 2
-        }
-        else {
-            vc.initNum = 1
-            vc.mid = sturt["mid"] as! Int
-        }
-        if indexPath.row != 1 {
-            navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row != 6 {
+            viewa.hidden = true
+            myTextV1.resignFirstResponder()
+            mainView.hidden = true
+            let vc = storyboard?.instantiateViewControllerWithIdentifier("MissionDetailVC") as! MissionDetailVC
+            let sturt = news[indexPath.section]["struct"] as! NSDictionary
+            if news[indexPath.section]["type"] as! String == "mission" && indexPath.row != 6 {
+                vc.mid = sturt["id"] as! Int
+                vc.initNum = 0
+            }
+            else if news[indexPath.section]["type"] as! String == "mission" && indexPath.row == 6 {
+                vc.mid = sturt["id"] as! Int
+                vc.initNum = 2
+            }
+            else {
+                vc.initNum = 1
+                vc.mid = sturt["mid"] as! Int
+            }
+            if indexPath.row != 1 {
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

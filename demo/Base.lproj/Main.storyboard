@@ -250,19 +250,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="888" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="In3-vO-TA2">
-                                            <rect key="frame" x="27" y="5" width="24" height="21"/>
+                                            <rect key="frame" x="32" y="6" width="24" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75A-FO-BfM">
-                                            <rect key="frame" x="48" y="5" width="20" height="20"/>
+                                            <rect key="frame" x="60" y="5" width="20" height="20"/>
                                             <state key="normal" image="moment1_13">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8t-ED-bhS">
-                                            <rect key="frame" x="93" y="5" width="20" height="20"/>
+                                            <rect key="frame" x="112" y="5" width="20" height="20"/>
                                             <state key="normal" image="moment1_12">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -286,7 +286,7 @@
                                             </state>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="222" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzP-RL-olW">
-                                            <rect key="frame" x="69" y="5" width="23" height="21"/>
+                                            <rect key="frame" x="84" y="5" width="24" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1406,19 +1406,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="888" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eb5-Va-WfH">
-                                                    <rect key="frame" x="27" y="5" width="24" height="21"/>
+                                                    <rect key="frame" x="32" y="5" width="24" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIf-D3-FOO">
-                                                    <rect key="frame" x="48" y="5" width="20" height="20"/>
+                                                    <rect key="frame" x="60" y="5" width="20" height="20"/>
                                                     <state key="normal" image="moment1_13">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuy-EC-CPh">
-                                                    <rect key="frame" x="93" y="5" width="20" height="20"/>
+                                                    <rect key="frame" x="112" y="5" width="20" height="20"/>
                                                     <state key="normal" image="moment1_12">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1442,7 +1442,7 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="222" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8As-nd-YEe">
-                                                    <rect key="frame" x="69" y="5" width="23" height="21"/>
+                                                    <rect key="frame" x="84" y="5" width="23" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -3065,9 +3065,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="xXt-Qn-2Cu" kind="push" id="9RB-ew-pPd"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -3549,7 +3546,7 @@
         <!--修改密码-->
         <scene sceneID="Fvk-Dc-7bO">
             <objects>
-                <viewController id="xXt-Qn-2Cu" customClass="ChangePWDViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePWDViewController" id="xXt-Qn-2Cu" customClass="ChangePWDViewController" customModule="demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bY8-0e-0uu"/>
                         <viewControllerLayoutGuide type="bottom" id="re8-qa-4IS"/>
@@ -5033,7 +5030,7 @@
                                             <constraint firstAttribute="width" constant="320" id="PFv-C8-Qaf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHD-uy-sgL">
@@ -5044,7 +5041,7 @@
                                             <constraint firstAttribute="height" constant="1" id="er1-5b-eey"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYM-iX-Zcm">
@@ -5055,7 +5052,7 @@
                                             <constraint firstAttribute="height" constant="1" id="j91-fh-DFV"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="失败" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZJ-gz-lJd">
@@ -5265,8 +5262,8 @@
         <image name="moment1_03-1" width="84" height="56"/>
         <image name="moment1_05" width="11" height="15"/>
         <image name="moment1_06" width="27" height="27"/>
-        <image name="moment1_12" width="14" height="12"/>
-        <image name="moment1_13" width="12" height="12"/>
+        <image name="moment1_12" width="22" height="18"/>
+        <image name="moment1_13" width="19" height="18"/>
         <image name="new_task_03" width="39" height="39"/>
         <image name="new_task_07" width="86" height="86"/>
         <image name="new_task_11" width="14" height="18"/>
@@ -5276,8 +5273,8 @@
         <image name="task_06" width="126" height="97"/>
         <image name="task_08" width="126" height="100"/>
         <image name="task_15" width="21" height="29"/>
-        <image name="task_5" width="13" height="12"/>
-        <image name="task_6" width="13" height="12"/>
+        <image name="task_5" width="20" height="18"/>
+        <image name="task_6" width="20" height="18"/>
         <image name="topup_03" width="122" height="122"/>
         <image name="topup_07" width="376" height="49"/>
         <image name="user_info1_06" width="56" height="56"/>
@@ -5290,10 +5287,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="UJs-ZU-hfv"/>
+        <segue reference="1vo-T2-KlF"/>
         <segue reference="AgV-5s-fC9"/>
         <segue reference="0oX-79-igO"/>
-        <segue reference="1vo-T2-KlF"/>
-        <segue reference="Aow-fW-Ryq"/>
         <segue reference="QjK-cW-vxh"/>
     </inferredMetricsTieBreakers>
 </document>

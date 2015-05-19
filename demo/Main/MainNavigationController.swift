@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainNavigationController: UINavigationController {
+class MainNavigationController: UINavigationController, ChatViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,21 @@ class MainNavigationController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
+    func wtfButtonClick(username: String!, nickname: String!, url: String!) {
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("FriendInfoViewController") as! FriendInfoViewController
+        vc.isFriend = true
+        vc.nickName = nickname
+        vc.userName = username
+        if PicDic.picDic[url] != nil {
+            vc.avatar = PicDic.picDic[url]
+        }
+        else {
+            vc.avatar = UIImage(named: "DefaultAvatar")
+        }
+        vc.avatarURL = url
+        vc.exten = true
+        pushViewController(vc, animated: true)
+    }
 
     /*
     // MARK: - Navigation

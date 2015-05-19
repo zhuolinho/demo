@@ -308,7 +308,10 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate, APIP
             chatVC.myHeadUrl = API.userInfo.imageHost + API.userInfo.profilePhotoUrl
             chatVC.friendHeadUrl = API.userInfo.imageHost + cell.imageURL
             chatVC.buyCourseRightNow = false
+            chatVC.nickname = cell.name?.text
+            chatVC.url = cell.imageURL
             chatVC.navigationItem.title = (sender as! ChatListCell).name?.text
+            chatVC.delegate = navigationController as! MainNavigationController
             conversation.markAllMessagesAsRead(true)
         }
     }
