@@ -16,6 +16,7 @@
 		061AC2721ABD19B100C9FFE6 /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061AC2701ABD19B100C9FFE6 /* EaseMob.bundle */; };
 		06216D741AAC841E00683C40 /* ForgetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */; };
 		063D03671AB31C4F005A1ED1 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D03661AB31C4F005A1ED1 /* MeViewController.swift */; };
+		0642248A1B0C7B8E001240CE /* DrawRMBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064224891B0C7B8E001240CE /* DrawRMBViewController.swift */; };
 		0648D1341AB3FCE0008B0F67 /* NickNameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */; };
 		0648D1361AB4206C008B0F67 /* GenderSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */; };
 		0648D1381AB42F58008B0F67 /* SignatureSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */; };
@@ -513,6 +514,7 @@
 		061AC2701ABD19B100C9FFE6 /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
 		06216D731AAC841E00683C40 /* ForgetPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPwdViewController.swift; sourceTree = "<group>"; };
 		063D03661AB31C4F005A1ED1 /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		064224891B0C7B8E001240CE /* DrawRMBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawRMBViewController.swift; sourceTree = "<group>"; };
 		0648D1331AB3FCE0008B0F67 /* NickNameSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NickNameSettingViewController.swift; sourceTree = "<group>"; };
 		0648D1351AB4206C008B0F67 /* GenderSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderSettingTableViewController.swift; sourceTree = "<group>"; };
 		0648D1371AB42F58008B0F67 /* SignatureSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureSettingViewController.swift; sourceTree = "<group>"; };
@@ -2250,6 +2252,7 @@
 				060B57591AEE5D77000FD7CC /* ChangePWDViewController.swift */,
 				06C25D5C1B02FC0600338CE3 /* MyRMBViewController.swift */,
 				06C25D5E1B03396200338CE3 /* ChargeViewController.swift */,
+				064224891B0C7B8E001240CE /* DrawRMBViewController.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -2871,6 +2874,7 @@
 				06C25D5D1B02FC0600338CE3 /* MyRMBViewController.swift in Sources */,
 				0694E5E61AB6CE72008ADF21 /* MWZoomingScrollView.m in Sources */,
 				0648D1381AB42F58008B0F67 /* SignatureSettingViewController.swift in Sources */,
+				0642248A1B0C7B8E001240CE /* DrawRMBViewController.swift in Sources */,
 				0694E5E41AB6CE72008ADF21 /* MWTapDetectingImageView.m in Sources */,
 				06C25E511B036D4100338CE3 /* DataSigner.m in Sources */,
 				0694E65F1AB6CE72008ADF21 /* EMSearchDisplayController.m in Sources */,

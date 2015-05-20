@@ -290,6 +290,12 @@ class API: NSObject {
     func addRMB(rmb: String) {
         get(host + "addRMB.action?token=" + API.userInfo.token + "&rmb=\(rmb)")
     }
+    
+    func addWithdrawRequest(rmb: Int, accountInfo: String) {
+        let d = ["token": API.userInfo.token, "rmb": String(rmb), "accountInfo": accountInfo]
+        sendURLEncodedForm(action: "addWithdrawRequest.action", data: d, image: nil)
+    }
+    
     func setMissionLike(id: Int, ifLike: Int) {
         get(host + "setMissionLike.action?token=" + API.userInfo.token + "&id=\(id)&ifLike=\(ifLike)")
     }
