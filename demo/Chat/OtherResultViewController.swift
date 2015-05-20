@@ -8,8 +8,19 @@
 
 import UIKit
 
-class OtherResultViewController: UIViewController, APIProtocol, UITableViewDelegate, UITableViewDataSource {
+class OtherResultViewController: UIViewController, APIProtocol, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
 
+    @IBAction func shareButtonClick(sender: AnyObject) {
+        if res["shareUrl"] != nil {
+            let actionSheet = UIActionSheet()
+            actionSheet.delegate = self
+            actionSheet.addButtonWithTitle("分享给微信好友")
+            actionSheet.addButtonWithTitle("分享到朋友圈")
+            actionSheet.addButtonWithTitle("取消")
+            actionSheet.cancelButtonIndex = 2
+            actionSheet.showInView(view)
+        }
+    }
     @IBOutlet weak var viewTable: UITableView!
     var mid = -1
     let api1 = API()
@@ -184,5 +195,47 @@ class OtherResultViewController: UIViewController, APIProtocol, UITableViewDeleg
         vc.reward = res["reward"] as! [NSDictionary]
     }
     
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 0 {
+            let message = WXMediaMessage()
+            message.title = "“从今天起，我要开启一项新挑战！想看我如何完成挑战？来监督我吧！”"
+            message.description = "求监督是国内首款集社交、游戏与习惯养成与一身的软件，用好友的力量督促你一直进步，让成长变得更简单。\n在这里，坚持不再是一件孤独的事。"
+            //            let pics = res["pics"] as! [NSDictionary]
+            //            if pics.count > 0 {
+            //                let url = pics[0]["url"] as! String
+            //                if PicDic.picDic[url] != nil {
+            //                    message.setThumbImage(PicDic.picDic[url])
+            //                }
+            //                else {
+            //                    message.setThumbImage(UIImage(named: "noimage2"))
+            //                }
+            //            }
+            //            else {
+            //                message.setThumbImage(UIImage(named: "noimage1"))
+            //            }
+            message.setThumbImage(UIImage(named: "logo"))
+            let ext = WXWebpageObject()
+            ext.webpageUrl = res["shareUrl"] as! String
+            message.mediaObject = ext
+            let rep = SendMessageToWXReq()
+            rep.bText = false
+            rep.message = message
+            rep.scene = 0
+            WXApi.sendReq(rep)
+        }
+        else if buttonIndex == 1 {
+            let message = WXMediaMessage()
+            message.title = "“从今天起，我要开启一项新挑战！想看我如何完成挑战？来监督我吧！”"
+            message.setThumbImage(UIImage(named: "logo"))
+            let ext = WXWebpageObject()
+            ext.webpageUrl = res["shareUrl"] as! String
+            message.mediaObject = ext
+            let rep = SendMessageToWXReq()
+            rep.bText = false
+            rep.message = message
+            rep.scene = 1
+            WXApi.sendReq(rep)
+        }
+    }
 
 }

@@ -19,7 +19,17 @@ class MeViewController: UITableViewController, APIProtocol {
     let api = API()
     
     @IBAction func shareButtonClick(sender: UIButton) {
-        RespImageContent(UIImage())
+        let message = WXMediaMessage()
+        message.title = "厌倦了拖延症、想让勤奋小人打倒懒惰小人，让好友间的互动变成前进源动力，让养成良好生活习惯变得毫不费劲，让互相监督变得刺激有趣好玩——求监督能让你和好友两周内收获更美好的你。"
+        message.setThumbImage(UIImage(named: "logo"))
+        let ext = WXWebpageObject()
+        ext.webpageUrl = "http://actiontech.me"
+        message.mediaObject = ext
+        let rep = SendMessageToWXReq()
+        rep.bText = false
+        rep.message = message
+        rep.scene = 1
+        WXApi.sendReq(rep)
     }
     @IBAction func inviteButtonClick(sender: UIButton) {
 //        let resp = SendMessageToWXReq()
@@ -28,11 +38,11 @@ class MeViewController: UITableViewController, APIProtocol {
 //        resp.scene = 0
 //        WXApi.sendReq(resp)
         let message = WXMediaMessage()
-        message.title = "千万别下载这游戏"
-        message.description = "这种炒冷饭的作品也能登顶？国产手游什么时候才能雄起？"
-        message.setThumbImage(UIImage(named: "DefaultAvatar"))
+        message.title = "求监督"
+        message.description = "厌倦了拖延症、想让勤奋小人打倒懒惰小人，让好友间的互动变成前进源动力，让养成良好生活习惯变得毫不费劲，让互相监督变得刺激有趣好玩——求监督能让你和好友两周内收获更美好的你。"
+        message.setThumbImage(UIImage(named: "logo"))
         let ext = WXWebpageObject()
-        ext.webpageUrl = "https://itunes.apple.com/cn/app/meng-huan-xi-you/id940547441"
+        ext.webpageUrl = "http://actiontech.me"
         message.mediaObject = ext
         let rep = SendMessageToWXReq()
         rep.bText = false

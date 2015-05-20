@@ -319,7 +319,7 @@ class NewSportController: UITableViewController, UIPickerViewDataSource, UIPicke
             return
         }
         if meneyTextField.text.toInt() == nil || meneyTextField.text.toInt() < 0 {
-            let alert = UIAlertView(title: "请输入金额", message: "", delegate: nil, cancelButtonTitle: "确认")
+            let alert = UIAlertView(title: "请输入正确的金额", message: "", delegate: nil, cancelButtonTitle: "确认")
             alert.show()
             return
         }
