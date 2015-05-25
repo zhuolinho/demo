@@ -23,7 +23,7 @@ class MeViewController: UITableViewController, APIProtocol {
         message.title = "厌倦了拖延症、想让勤奋小人打倒懒惰小人，让好友间的互动变成前进源动力，让养成良好生活习惯变得毫不费劲，让互相监督变得刺激有趣好玩——求监督能让你和好友两周内收获更美好的你。"
         message.setThumbImage(UIImage(named: "logo"))
         let ext = WXWebpageObject()
-        ext.webpageUrl = "http://actiontech.me"
+        ext.webpageUrl = "http://121.41.98.147:8080/zhu/src/intro.jsp"
         message.mediaObject = ext
         let rep = SendMessageToWXReq()
         rep.bText = false
@@ -42,7 +42,7 @@ class MeViewController: UITableViewController, APIProtocol {
         message.description = "厌倦了拖延症、想让勤奋小人打倒懒惰小人，让好友间的互动变成前进源动力，让养成良好生活习惯变得毫不费劲，让互相监督变得刺激有趣好玩——求监督能让你和好友两周内收获更美好的你。"
         message.setThumbImage(UIImage(named: "logo"))
         let ext = WXWebpageObject()
-        ext.webpageUrl = "http://actiontech.me"
+        ext.webpageUrl = "http://121.41.98.147:8080/zhu/src/intro.jsp"
         message.mediaObject = ext
         let rep = SendMessageToWXReq()
         rep.bText = false

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UITextFieldDelegate {
+class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UITextFieldDelegate, UIActionSheetDelegate {
     
     var viewa = UIView()
     var ifMyFriend = 1
@@ -63,6 +63,7 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         myActivity.frame.origin = CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2 - 32)
         view.addSubview(myActivity)
         myActivity.hidesWhenStopped = true
+        refreshing()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -79,8 +80,10 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
         viewa.hidden = true
         myTextV1.resignFirstResponder()
         mainView.hidden = true
-        ifMyFriend = 1
-        refreshing()
+        if ifMyFriend == 0 {
+            ifMyFriend = 1
+            refreshing()
+        }
     }
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         viewa.frame = CGRect(x: view.bounds.width - 105, y: tableView.contentOffset.y + 64, width: 92, height: 86)
@@ -294,6 +297,8 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                 }
                 cell.likeButton.tag = indexPath.section
                 cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+                cell.shareButton.tag = indexPath.section
+                cell.shareButton.addTarget(self, action: "shareButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 return cell
             }
 //            else if indexPath.row > 6 && indexPath.row < 12 {
@@ -581,6 +586,80 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
             self.tableView.reloadData()
         })
     }
+    
+    func shareButtonClick(button: UIButton) {
+        let actionSheet = UIActionSheet()
+        actionSheet.delegate = self
+        actionSheet.addButtonWithTitle("分享给微信好友")
+        actionSheet.addButtonWithTitle("分享到朋友圈")
+        actionSheet.addButtonWithTitle("取消")
+        actionSheet.cancelButtonIndex = 2
+        actionSheet.tag = button.tag
+        actionSheet.showInView(view)
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        let stuct = news[actionSheet.tag]["struct"] as! NSDictionary
+        if news[actionSheet.tag]["type"] as! String == "mission" {
+            if buttonIndex == 0 {
+                let message = WXMediaMessage()
+                message.title = "“从今天起，我要开启一项新挑战！想看我如何完成挑战？来监督我吧！”"
+                message.description = "求监督是国内首款集社交、游戏与习惯养成与一身的软件，用好友的力量督促你一直进步，让成长变得更简单。\n在这里，坚持不再是一件孤独的事。"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = stuct["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 0
+                WXApi.sendReq(rep)
+            }
+            else if buttonIndex == 1 {
+                let message = WXMediaMessage()
+                message.title = "“从今天起，我要开启一项新挑战！想看我如何完成挑战？来监督我吧！”"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = stuct["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 1
+                WXApi.sendReq(rep)
+            }
+        }
+        else {
+            if buttonIndex == 0 {
+                let message = WXMediaMessage()
+                message.title = "我在【求监督】晒了一条新证据，感觉离成为成功人士越来越近了。快来围观我的奋斗历程吧！"
+                message.description = "求监督是国内首款集社交、游戏与习惯养成与一身的软件，用好友的力量督促你一直进步，让成长变得更简单。\n在这里，坚持不再是一件孤独的事。"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = stuct["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 0
+                WXApi.sendReq(rep)
+            }
+            else if buttonIndex == 1 {
+                let message = WXMediaMessage()
+                message.title = "我在【求监督】晒了一条新证据，感觉离成为成功人士越来越近了。快来围观我的奋斗历程吧！"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = stuct["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 1
+                WXApi.sendReq(rep)
+            }
+        }
+    }
+
     
     /*
     // Override to support conditional editing of the table view.
