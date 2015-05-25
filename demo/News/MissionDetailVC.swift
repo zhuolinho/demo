@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDelegate, APIProtocol, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate {
     
     var mid = -1
     var stuct = NSMutableDictionary()
@@ -45,6 +45,107 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         dispatch_async(dispatch_get_main_queue(), {
             self.selfTableView.reloadData()
         })
+    }
+
+    func shareButtonClick(button: UIButton) {
+        let actionSheet = UIActionSheet()
+        actionSheet.delegate = self
+        actionSheet.addButtonWithTitle("分享给微信好友")
+        actionSheet.addButtonWithTitle("分享到朋友圈")
+        actionSheet.addButtonWithTitle("取消")
+        actionSheet.cancelButtonIndex = 2
+        actionSheet.tag = button.tag
+        actionSheet.showInView(view)
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if segmentCtrl.selectedSegmentIndex == 0 {
+            if buttonIndex == 0 {
+                let message = WXMediaMessage()
+                message.title = "“从今天起，我要开启一项新挑战！想看我如何完成挑战？来监督我吧！”"
+                message.description = "求监督是国内首款集社交、游戏与习惯养成与一身的软件，用好友的力量督促你一直进步，让成长变得更简单。\n在这里，坚持不再是一件孤独的事。"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = stuct["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 0
+                WXApi.sendReq(rep)
+            }
+            else if buttonIndex == 1 {
+                let message = WXMediaMessage()
+                message.title = "“从今天起，我要开启一项新挑战！想看我如何完成挑战？来监督我吧！”"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = stuct["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 1
+                WXApi.sendReq(rep)
+            }
+        }
+        else if segmentCtrl.selectedSegmentIndex == 1 {
+            if buttonIndex == 0 {
+                let message = WXMediaMessage()
+                message.title = "我在【求监督】晒了一条新证据，感觉离成为成功人士越来越近了。快来围观我的奋斗历程吧！"
+                message.description = "求监督是国内首款集社交、游戏与习惯养成与一身的软件，用好友的力量督促你一直进步，让成长变得更简单。\n在这里，坚持不再是一件孤独的事。"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = evidences[actionSheet.tag]["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 0
+                WXApi.sendReq(rep)
+            }
+            else if buttonIndex == 1 {
+                let message = WXMediaMessage()
+                message.title = "我在【求监督】晒了一条新证据，感觉离成为成功人士越来越近了。快来围观我的奋斗历程吧！"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = evidences[actionSheet.tag]["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 1
+                WXApi.sendReq(rep)
+            }
+        }
+        else {
+            if buttonIndex == 0 {
+                let message = WXMediaMessage()
+                message.title = "“从今天起，我要开启一项新挑战！想看我如何完成挑战？来监督我吧！”"
+                message.description = "求监督是国内首款集社交、游戏与习惯养成与一身的软件，用好友的力量督促你一直进步，让成长变得更简单。\n在这里，坚持不再是一件孤独的事。"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = missionComment["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 0
+                WXApi.sendReq(rep)
+            }
+            else if buttonIndex == 1 {
+                let message = WXMediaMessage()
+                message.title = "“从今天起，我要开启一项新挑战！想看我如何完成挑战？来监督我吧！”"
+                message.setThumbImage(UIImage(named: "logo"))
+                let ext = WXWebpageObject()
+                ext.webpageUrl = missionComment["shareUrl"] as! String
+                message.mediaObject = ext
+                let rep = SendMessageToWXReq()
+                rep.bText = false
+                rep.message = message
+                rep.scene = 1
+                WXApi.sendReq(rep)
+            }
+        }
     }
 
     
@@ -297,6 +398,8 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.likeButton.tag = indexPath.section
                 cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 cell.commentButton.addTarget(self, action: "commentButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+                cell.shareButton.tag = indexPath.section
+                cell.shareButton.addTarget(self, action: "shareButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 return cell
             }
             else if indexPath.row > 6 {
@@ -413,6 +516,8 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell.likeButton.addTarget(self, action: "likeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 cell.commentButton.tag = indexPath.section
                 cell.commentButton.addTarget(self, action: "commentButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+                cell.shareButton.tag = indexPath.section
+                cell.shareButton.addTarget(self, action: "shareButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
                 return cell
             }
             else if indexPath.row > 6 {

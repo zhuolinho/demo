@@ -10,6 +10,7 @@ import UIKit
 
 class LikeCell: UITableViewCell {
 
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
