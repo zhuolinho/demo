@@ -51,6 +51,12 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate, APIP
         if unreadCommentNum == 0 || unreadMissionNum == 0 {
             api.getMyInfo()
         }
+        if navigationController!.tabBarItem.badgeValue == "" && unreadCommentNum == 0 && unreadMissionNum == 0 {
+            navigationController!.tabBarItem.badgeValue = nil
+        }
+        if self.navigationController!.tabBarItem.badgeValue == nil && (self.unreadCommentNum != 0 || self.unreadMissionNum != 0) {
+            self.navigationController!.tabBarItem.badgeValue = ""
+        }
         refreshDataSource()
     }
     override func viewDidLoad() {
@@ -267,6 +273,9 @@ class ChatTableViewController: UITableViewController, IChatManagerDelegate, APIP
         unreadMissionNum = res["unreadMissionNum"] as! Int
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
+            if self.navigationController!.tabBarItem.badgeValue == nil && (self.unreadCommentNum != 0 || self.unreadMissionNum != 0) {
+                self.navigationController!.tabBarItem.badgeValue = ""
+            }
         })
     }
     /*
