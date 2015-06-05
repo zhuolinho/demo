@@ -1053,11 +1053,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "472"
-            endingLineNumber = "472"
+            startingLineNumber = "474"
+            endingLineNumber = "474"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1085,11 +1085,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "tableView(_:willDisplayCell:forRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1101,11 +1101,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "tableView(_:willDisplayCell:forRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1149,11 +1149,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "465"
-            endingLineNumber = "465"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1165,11 +1165,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "504"
-            endingLineNumber = "504"
+            startingLineNumber = "506"
+            endingLineNumber = "506"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
             <Locations>
@@ -1213,11 +1213,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "504"
-            endingLineNumber = "504"
+            startingLineNumber = "506"
+            endingLineNumber = "506"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1229,11 +1229,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "508"
-            endingLineNumber = "508"
+            startingLineNumber = "510"
+            endingLineNumber = "510"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1245,11 +1245,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "508"
-            endingLineNumber = "508"
+            startingLineNumber = "510"
+            endingLineNumber = "510"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1277,11 +1277,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
+            startingLineNumber = "712"
+            endingLineNumber = "712"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1293,11 +1293,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "709"
-            endingLineNumber = "709"
+            startingLineNumber = "711"
+            endingLineNumber = "711"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1373,11 +1373,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1533,11 +1533,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2285,11 +2285,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455022289.658762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "691"
-            endingLineNumber = "691"
+            startingLineNumber = "694"
+            endingLineNumber = "694"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2301,7 +2301,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "450941799.561583"
+            timestampString = "454991380.683969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
@@ -2394,11 +2394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455093860.036468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "697"
-            endingLineNumber = "697"
+            startingLineNumber = "705"
+            endingLineNumber = "705"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2410,7 +2410,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455021999.49604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "190"
@@ -2426,7 +2426,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455021999.49604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "243"
@@ -2458,11 +2458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455022077.528753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "666"
-            endingLineNumber = "666"
+            startingLineNumber = "668"
+            endingLineNumber = "668"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2474,11 +2474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455021999.49604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
+            startingLineNumber = "528"
+            endingLineNumber = "528"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2506,11 +2506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455093860.036468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "759"
-            endingLineNumber = "759"
+            startingLineNumber = "767"
+            endingLineNumber = "767"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2522,7 +2522,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455021999.49604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "200"
@@ -2538,11 +2538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455021999.49604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "603"
-            endingLineNumber = "603"
+            startingLineNumber = "605"
+            endingLineNumber = "605"
             landmarkName = "collectionView(_:cellForItemAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2554,11 +2554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2570,11 +2570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "likeButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2586,11 +2586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
             landmarkName = "likeButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2602,11 +2602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2618,11 +2618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2634,11 +2634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455093860.036468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "852"
-            endingLineNumber = "852"
+            startingLineNumber = "860"
+            endingLineNumber = "860"
             landmarkName = "likeButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2650,11 +2650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
             landmarkName = "viceButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2666,11 +2666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455093860.036468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "811"
-            endingLineNumber = "811"
+            startingLineNumber = "819"
+            endingLineNumber = "819"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2778,11 +2778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/Chat/ChatTableViewController.swift"
-            timestampString = "452431970.499011"
+            timestampString = "455100622.172476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2922,11 +2922,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/Chat/ChatTableViewController.swift"
-            timestampString = "452431970.499011"
+            timestampString = "455100622.172476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3239,11 +3239,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/MissionDetailVC.swift"
-            timestampString = "454260353.704081"
+            timestampString = "455021999.49604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "562"
-            endingLineNumber = "562"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3287,11 +3287,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/Chat/ChatTableViewController.swift"
-            timestampString = "452431970.499011"
+            timestampString = "455100622.172476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3415,11 +3415,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "550"
-            endingLineNumber = "550"
+            startingLineNumber = "552"
+            endingLineNumber = "552"
             landmarkName = "commentButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3431,11 +3431,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "560"
+            endingLineNumber = "560"
             landmarkName = "changeContentViewPoint(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3447,11 +3447,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "541"
-            endingLineNumber = "541"
+            startingLineNumber = "543"
+            endingLineNumber = "543"
             landmarkName = "commentButtonClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3587,11 +3587,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
+            startingLineNumber = "588"
+            endingLineNumber = "588"
             landmarkName = "pinglunQueding(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -3811,12 +3811,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "demo/News/NewsViewController.swift"
-            timestampString = "454259606.819345"
+            timestampString = "454989575.435764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "603"
-            endingLineNumber = "603"
+            startingLineNumber = "605"
+            endingLineNumber = "605"
             landmarkName = "actionSheet(_:clickedButtonAtIndex:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "demo/Chat/ChatTableViewController.swift"
+            timestampString = "455100622.172476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "didReceiveAPIResponseOf(_:data:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "demo/Chat/ChatTableViewController.swift"
+            timestampString = "455100622.172476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "didReceiveAPIResponseOf(_:data:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -231,7 +231,6 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                         cell.evidentState.hidden = true
                     }
                     cell.backgroundColor = UIColor.orangeColor()
-                    cell.typeLabel.text = "距离任务结束"
                     cell.meneyLabel.text = String(charge)
                     let formatSever = NSDateFormatter()
                     formatSever.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -240,12 +239,15 @@ class NewsViewController: UITableViewController, APIProtocol, UICollectionViewDe
                     let hour = Int(endTime!.timeIntervalSinceNow / 3600)
                     if stuct["status"] as! Int == -1 || stuct["status"] as! Int == 2 {
                         cell.timeLabel.text = "已完成"
+                        cell.typeLabel.text = "任务已经过期"
                     }
                     else if stuct["status"] as! Int == 3 {
                         cell.timeLabel.text = "未成功"
+                        cell.typeLabel.text = "任务已经过期"
                     }
                     else {
                         cell.timeLabel.text = "\(hour / 24)天\(hour % 24)小时"
+                        cell.typeLabel.text = "距离任务结束"
                     }
                 }
                 else {

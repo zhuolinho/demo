@@ -348,7 +348,6 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     cell.evidentState.hidden = true
                 }
                 cell.backgroundColor = UIColor.orangeColor()
-                cell.typeLabel.text = "距离任务结束"
                 cell.meneyLabel.text = String(charge)
                 let formatSever = NSDateFormatter()
                 formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
@@ -357,12 +356,15 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 let hour = Int(endTime!.timeIntervalSinceNow / 3600)
                 if stuct["status"] as! Int == -1 || stuct["status"] as! Int == 2 {
                     cell.timeLabel.text = "已完成"
+                    cell.typeLabel.text = "任务已经过期"
                 }
                 else if stuct["status"] as! Int == 3 {
                     cell.timeLabel.text = "未成功"
+                    cell.typeLabel.text = "任务已经过期"
                 }
                 else {
                     cell.timeLabel.text = "\(hour / 24)天\(hour % 24)小时"
+                    cell.typeLabel.text = "距离任务结束"
                 }
                 return cell
             }
@@ -681,6 +683,7 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                                     dispatch_async(dispatch_get_main_queue(), {
                                         PicDic.picDic[url] = img
                                         self.selfTableView.reloadData()
+                                        
                                     })
                                 }
                             }
@@ -690,6 +693,11 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             }
             dispatch_async(dispatch_get_main_queue(), {
                 self.selfTableView.reloadData()
+                if self.stuct["username"] != nil && self.stuct["username"] as! String == API.userInfo.username {
+                    if self.stuct["status"] as! Int == 0 || self.stuct["status"] as! Int == 1 {
+                        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addEvidence"), animated: true)
+                    }
+                }
             })
         }
         else if api === getEvidences {
@@ -926,6 +934,13 @@ class MissionDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         mainView.hidden = true
         mainView.center = CGPointMake(mainView.center.x, view.bounds.height)
     }
+    
+    func addEvidence() {
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("NewEvidenceVC") as! NewEvidenceVC
+        vc.missionInfo = stuct
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
