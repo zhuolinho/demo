@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
     var cancelLock = NSLock()
     var loginLock = NSLock()
 
+    @IBOutlet weak var wxLabel: UILabel!
     @IBOutlet weak var wxButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var usrName: UITextField!
@@ -100,6 +101,8 @@ class LoginViewController: UIViewController, APIProtocol, ValuePass {
         self.navigationController?.navigationBarHidden = false
         self.navigationController?.interactivePopGestureRecognizer.enabled = false
         AppDelegate.root?.delegat = self
+        wxButton.hidden = !WXApi.isWXAppInstalled()
+        wxLabel.hidden = !WXApi.isWXAppInstalled()
         // Do any additional setup after loading the view.
     }
     
