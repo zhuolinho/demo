@@ -10,6 +10,7 @@ import UIKit
 
 class OtherResultViewController: UIViewController, APIProtocol, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
 
+    @IBOutlet weak var backgroundView: UIScrollView!
     @IBAction func shareButtonClick(sender: AnyObject) {
         if res["shareUrl"] != nil {
             let actionSheet = UIActionSheet()
@@ -46,6 +47,7 @@ class OtherResultViewController: UIViewController, APIProtocol, UITableViewDeleg
         againButton.layer.cornerRadius = 3
         againButton.layer.masksToBounds = true
         againButton.enabled = false
+        backgroundView.contentSize = CGSize(width: 0, height: 504)
         // Do any additional setup after loading the view.
     }
 
