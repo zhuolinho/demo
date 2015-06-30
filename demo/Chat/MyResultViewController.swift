@@ -10,6 +10,7 @@ import UIKit
 
 class MyResultViewController: UIViewController, APIProtocol, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
 
+    @IBOutlet weak var backgroundView: UIScrollView!
     @IBOutlet weak var viewTable: UITableView!
     var mid = -1
     let api1 = API()
@@ -55,6 +56,7 @@ class MyResultViewController: UIViewController, APIProtocol, UITableViewDelegate
         formatSever.timeZone = NSTimeZone(forSecondsFromGMT: 8 * 3600)
         againButton.layer.cornerRadius = 3
         againButton.layer.masksToBounds = true
+        backgroundView.contentSize = CGSize(width: 0, height: 504)
         // Do any additional setup after loading the view.
     }
 
